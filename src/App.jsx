@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import './App.css'
 
 function Header() {
@@ -365,6 +365,155 @@ function Biometric() {
   )
 }
 
+const CARDS_DATA = [
+  { id: 1, name: 'Visa Classic', img: 'https://www.evoca.am/images-cache/cards/1/1714986642953/415x261.png' },
+  { id: 2, name: 'Mastercard Standard', img: 'https://www.evoca.am/images-cache/cards/1/17404717644263/415x261.png' },
+  { id: 3, name: 'Visa Digital', img: 'https://www.evoca.am/images-cache/cards/1/17881574661708/415x261.png' },
+  { id: 4, name: 'Arca Classic', img: 'https://www.evoca.am/images-cache/cards/1/17149865475676/415x261.png' },
+  { id: 5, name: 'Arca UnionPay Co-badge', img: 'https://www.evoca.am/images-cache/cards/1/17404717113297/415x261.png' },
+  { id: 6, name: 'Wilco Visa Infinite', img: 'https://www.evoca.am/images-cache/cards/1/17404717289057/415x261.png' },
+  { id: 7, name: 'Evoca Gift Card', img: 'https://www.evoca.am/images-cache/cards/1/17149865646885/415x261.png' },
+  { id: 8, name: 'Digital Gift Card', img: 'https://www.evoca.am/images-cache/cards/1/17815131185095/415x261.png' }
+];
+
+// --- Компонент 3D Карты ---
+function TiltCard({ card }) {
+  const cardRef = useRef(null);
+  const [style, setStyle] = useState({
+    transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)',
+    transition: 'transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1)'
+  });
+
+  const handleMouseMove = (e) => {
+    if (!cardRef.current) return;
+    const { left, top, width, height } = cardRef.current.getBoundingClientRect();
+    
+    // Вычисляем положение курсора от -1 до 1 относительно центра
+    const x = (e.clientX - left - width / 2) / (width / 2);
+    const y = (e.clientY - top - height / 2) / (height / 2);
+
+    // Умножаем на градусы (15 градусов максимум)
+    const rotateX = y * -15; 
+    const rotateY = x * 15;
+
+    setStyle({
+      transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(0.96, 0.96, 0.96)`,
+      transition: 'transform 0.1s ease-out' // Ускоряем анимацию при движении
+    });
+  };
+
+  const handleMouseLeave = () => {
+    setStyle({
+      transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)',
+      transition: 'transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1)' // Плавный возврат
+    });
+  };
+
+  return (
+    <div className="relative flex justify-center items-center w-full max-w-[450px]">
+      <div 
+        ref={cardRef}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        style={style}
+        className="cursor-pointer z-10"
+      >
+        <img 
+          src={card.img} 
+          alt={card.name} 
+          className="w-[415px] h-[261px] object-cover rounded-xl shadow-2xl" 
+        />
+      </div>
+      
+      {/* Мягкая тень под картой (остается на месте при наклоне карты) */}
+      <div className="absolute -bottom-8 w-[80%] h-8 bg-black/10 blur-xl rounded-[100%] pointer-events-none"></div>
+    </div>
+  );
+}
+
+
+
+
+// --- 3d kartshkeq ---
+function CardsShowcase() {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const handleUp = () => setActiveIndex((prev) => (prev > 0 ? prev - 1 : CARDS_DATA.length - 1));
+  const handleDown = () => setActiveIndex((prev) => (prev < CARDS_DATA.length - 1 ? prev + 1 : 0));
+
+  return (
+    <section className="bg-[#f3f6fa] py-20 px-6 w-full overflow-hidden">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-16">
+        
+        {/* 1. Вертикальный слайдер (Левая часть) */}
+        <div className="flex flex-col items-center shrink-0 w-[200px]">
+          <button onClick={handleUp} className="text-purple-700 hover:text-purple-900 transition mb-6">
+            <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
+            </svg>
+          </button>
+
+          {/* Контейнер слайдера */}
+          <div className="h-[420px] overflow-hidden relative w-full mask-image-vertical">
+            {/* Лента карточек */}
+            <div 
+              className="flex flex-col gap-6 absolute w-full transition-transform duration-500 ease-in-out"
+              style={{ transform: `translateY(calc(210px - 60px - ${activeIndex * 144}px))` }} 
+              // 210px - половина высоты контейнера. 60px - половина высоты карточки с маргинами. 144px - шаг (высота + gap).
+            >
+              {CARDS_DATA.map((card, index) => {
+                const isActive = index === activeIndex;
+                return (
+                  <div 
+                    key={card.id} 
+                    onClick={() => setActiveIndex(index)}
+                    className={`flex flex-col items-center cursor-pointer transition-all duration-300 ${
+                      isActive ? 'opacity-100 scale-110' : 'opacity-60 scale-95 hover:opacity-80'
+                    }`}
+                  >
+                    <img 
+                      src={card.img} 
+                      alt={card.name} 
+                      className="w-[140px] h-auto object-cover rounded-md shadow-sm" 
+                    />
+                    <span className="text-xs font-semibold text-gray-800 mt-3 text-center">
+                      {card.name}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          <button onClick={handleDown} className="text-purple-700 hover:text-purple-900 transition mt-6">
+            <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+        </div>
+
+        {/* 2. 3D Карта (Центр) */}
+        <div className="flex-1 flex justify-center perspective-1000">
+           <TiltCard card={CARDS_DATA[activeIndex]} />
+        </div>
+
+        {/* 3. Описание и кнопка (Правая часть) */}
+        <div className="w-full max-w-sm text-center md:text-left shrink-0">
+          <h2 className="text-3xl font-bold text-gray-800 mb-6 transition-all duration-300">
+            {CARDS_DATA[activeIndex].name}
+          </h2>
+          <button className="bg-purple-700 hover:bg-purple-800 text-white font-semibold py-3 px-8 rounded-full transition-colors shadow-md">
+            Մանրամասն
+          </button>
+        </div>
+
+      </div>
+    </section>
+  );
+}
+
+
+
 function App() {
   return (
     <>
@@ -372,6 +521,7 @@ function App() {
       <Slider />
       <Biometric />
       <BestFromEvoca />
+      <CardsShowcase />
     </>
   )
 }

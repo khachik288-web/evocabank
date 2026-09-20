@@ -42,3 +42,9 @@
   animation: dotringPulse 3s ease-in-out infinite;
 }
  
+
+
+.mask-image-vertical {
+  mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+}
