@@ -252,6 +252,63 @@ function Slider() {
   )
 }
 
+function BiometricFaceMask() {
+  return (
+    <svg
+      viewBox="0 0 203 274"
+      className="facemask-pulse pointer-events-none absolute left-1/2 top-[6%] h-[88%] w-auto -translate-x-1/2"
+    >
+      <path
+        d="M57.8514 4L25.7432 29.954M57.8514 4H96.4257M57.8514 4L68.8677 36.5M135 4L169.338 29.954M135 4L134.743 38.8637M135 4H96.4257M169.338 29.954L198.324 81.7496M169.338 29.954L159.527 65.2334M198.324 81.7496L201 132.792M198.324 81.7496L159.527 65.2334M198.324 81.7496L179.149 119.917M201 132.792L183.743 203.576M201 132.792L179.149 119.917M201 132.792L170.453 167.881M183.743 203.576L159.527 248.877M183.743 203.576L119.838 176.206M183.743 203.576L144.321 221.036M183.743 203.576L170.453 167.881M159.527 248.877L130.541 269.641M159.527 248.877L144.321 221.036M130.541 269.641L82.2297 272M130.541 269.641L144.321 221.036M130.541 269.641L97.0946 244.63M82.2297 272L43.5676 244.63M82.2297 272L57.8514 221.036M82.2297 272L97.0946 244.63M43.5676 244.63L22.5135 210.654M43.5676 244.63L57.8514 221.036M22.5135 210.654L15.4865 167.24M22.5135 210.654L57.8514 221.036M22.5135 210.654L78.7973 176.206M15.4865 167.24L3 132.792M15.4865 167.24L48.0405 132.186M15.4865 167.24L78.7973 176.206M3 132.792V78.4463M3 132.792L21.7297 118.029M3 78.4463L25.7432 29.954M3 78.4463L39.5676 65.2334M3 78.4463L21.7297 118.029M25.7432 29.954L81.4865 73.7274M25.7432 29.954L39.5676 65.2334M81.4865 73.7274H114.486M81.4865 73.7274L39.5676 65.2334M81.4865 73.7274L89.0676 109.535M81.4865 73.7274L68.8677 36.5M114.486 73.7274L159.527 65.2334M114.486 73.7274L110.919 109.535M114.486 73.7274L134.743 38.8637M159.527 65.2334L134.743 38.8637M179.149 119.917L150.162 132.186M150.162 132.186L119.838 176.206M150.162 132.186L110.919 109.535M150.162 132.186L170.453 167.881M119.838 176.206L144.321 221.036M119.838 176.206L100.095 161.106M119.838 176.206L115.378 139.871M119.838 176.206L170.453 167.881M144.321 221.036L97.0946 244.63M97.0946 244.63L57.8514 221.036M89.0676 109.535L48.0405 132.186M89.0676 109.535H110.919M89.0676 109.535L84.9324 139.871M78.7973 176.206L57.8514 221.036M78.7973 176.206L48.0405 132.186M78.7973 176.206L100.095 161.106M78.7973 176.206L84.9324 139.871M21.7297 118.029L48.0405 132.186M110.919 109.535L115.378 139.871M100.095 161.106L84.9324 139.871M100.095 161.106L115.378 139.871M134.743 38.8637L96.4257 4M96.4257 4L68.8677 36.5"
+        stroke="white"
+        strokeWidth="0.7"
+      />
+      {[
+        [57, 4], [69, 36], [39, 65], [96, 3], [135, 38], [134, 4], [169, 30],
+        [160, 65], [114, 73], [198, 82], [150, 132], [100, 161], [78, 176],
+        [120, 176], [48, 131], [3, 133], [21, 117], [16, 167], [23, 211],
+        [58, 221], [144, 222], [183, 203], [200, 133], [179, 119], [170, 168],
+        [159, 249], [131, 269], [82, 271], [44, 244], [97, 245], [85, 140],
+        [115, 141], [81, 73], [26, 30], [3, 79], [89, 110], [111, 110],
+      ].map(([cx, cy], i) => (
+        <circle key={i} cx={cx} cy={cy} r="2" fill="white" />
+      ))}
+    </svg>
+  )
+}
+
+function BiometricFaces() {
+  const faces = [
+    'https://www.evoca.am/img/temp/biometric/face1.png',
+    'https://www.evoca.am/img/temp/biometric/face2.png',
+    'https://www.evoca.am/img/temp/biometric/face3.png',
+  ]
+  const [current, setCurrent] = useState(0)
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((c) => (c + 1) % faces.length)
+    }, 3000)
+    return () => clearInterval(timer)
+  }, [faces.length])
+
+  return (
+    <>
+      {faces.map((src, i) => (
+        <img
+          key={src}
+          src={src}
+          alt={`Face scan ${i + 1}`}
+          className={`absolute left-1/2 top-[6%] h-[88%] w-auto -translate-x-1/2 object-contain transition-opacity duration-1000 ease-in-out ${
+            i === current ? 'opacity-100' : 'opacity-0'
+          }`}
+        />
+      ))}
+      <BiometricFaceMask />
+    </>
+  )
+}
+
 function Biometric() {
   return (
     <section className="mx-auto max-w-7xl px-6 py-20">
@@ -279,12 +336,8 @@ function Biometric() {
             />
           </svg>
 
-          {/* face image on top */}
-          <img
-            src="https://www.evoca.am/img/temp/biometric/face2.png"
-            alt="Face ID biometric scan"
-            className="absolute left-1/2 top-[6%] h-[88%] w-auto -translate-x-1/2 object-contain"
-          />
+          {/* crossfading face photos + animated biometric mask on top */}
+          <BiometricFaces />
         </div>
 
         {/* Text + QR + CTA */}
@@ -318,7 +371,173 @@ function App() {
       <Header />
       <Slider />
       <Biometric />
+      <BestFromEvoca />
     </>
+  )
+}
+
+function DotRing() {
+  // approximates the site's 9-layer pulsing dot-ring animation with generated dots
+  const rings = [46, 39, 32, 25, 18]
+  return (
+    <svg viewBox="0 0 400 400" className="absolute inset-0 h-full w-full">
+      {rings.map((r, ringIndex) => {
+        const count = 22 + ringIndex * 4
+        return Array.from({ length: count }).map((_, i) => {
+          const angle = (i / count) * Math.PI * 2
+          const radius = r * 4
+          const cx = 200 + radius * Math.cos(angle)
+          const cy = 200 + radius * Math.sin(angle)
+          return (
+            <circle
+              key={`${ringIndex}-${i}`}
+              cx={cx}
+              cy={cy}
+              r="2"
+              fill="#56CCF2"
+              opacity="0.4"
+              className="dotring-pulse"
+              style={{ animationDelay: `${(ringIndex * 0.3 + i * 0.03).toFixed(2)}s` }}
+            />
+          )
+        })
+      })}
+    </svg>
+  )
+}
+
+function StatueIllustration() {
+  // stylized placeholder silhouette (bust + orb) since no real statue asset was provided
+  return (
+    <svg viewBox="0 0 240 320" className="relative z-10 h-full w-full drop-shadow-2xl">
+      <defs>
+        <linearGradient id="statueGrad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#f4f4f6" />
+          <stop offset="100%" stopColor="#c9cdd6" />
+        </linearGradient>
+      </defs>
+      {/* head */}
+      <ellipse cx="120" cy="55" rx="34" ry="40" fill="url(#statueGrad)" />
+      {/* hair/crown shape */}
+      <path d="M86 40 Q120 5 154 40 L150 55 Q120 30 90 55 Z" fill="url(#statueGrad)" />
+      {/* neck + shoulders + drapery */}
+      <path
+        d="M95 90 L145 90 L170 140 Q180 220 165 300 L75 300 Q60 220 70 140 Z"
+        fill="url(#statueGrad)"
+      />
+      {/* draped fold lines */}
+      <path d="M95 120 Q120 160 100 300" stroke="#9aa0ab" strokeWidth="2" fill="none" opacity="0.5" />
+      <path d="M145 120 Q120 170 140 300" stroke="#9aa0ab" strokeWidth="2" fill="none" opacity="0.5" />
+      {/* arms holding orb */}
+      <path d="M75 170 Q55 190 60 230 Q65 250 90 250" fill="url(#statueGrad)" />
+      <path d="M165 170 Q185 190 180 230 Q175 250 150 250" fill="url(#statueGrad)" />
+      {/* orb */}
+      <circle cx="120" cy="245" r="34" fill="url(#statueGrad)" stroke="#9aa0ab" strokeWidth="1" />
+      <circle cx="108" cy="233" r="8" fill="#ffffff" opacity="0.6" />
+    </svg>
+  )
+}
+
+function BestFromEvoca() {
+  const cards = [
+    {
+      tag: 'Թվային քարտեր',
+      title: 'Evoca Digital քարտ',
+      desc: 'Evoca Digital քարտն արդեն հասանելի է EvocaTOUCH հավելվածով։ Ակտիվացրու այն հիմա և ընտրիր քո սիրելի դիզայնը։',
+    },
+    {
+      tag: 'Նվեր քարտեր',
+      title: 'Evoca Gift Card',
+      desc: 'Գնիր Evoca Gift Card, և լավագույն նվերը կլինի քոնը: Քարտը հարմար է բոլոր առիթների համար:',
+    },
+    {
+      tag: 'Նոր հավելված',
+      title: 'EvocaTOUCH 2',
+      desc: 'EvocaTOUCH-ը պարզապես բանկային հավելված չէ, վստահ ենք՝ այն քեզ համար դառնալու է ապրելակերպ։',
+    },
+    {
+      tag: 'Օնլայն վճարումներ',
+      title: 'Արագ online վճարումներ',
+      desc: 'Կատարիր քո ընթացիկ վճարումները Evocabank-ի online տերմինալի միջոցով՝ պարզ և արագ: Այն հասանելի է 24/7:',
+    },
+  ]
+
+  // decorative low-poly triangles scattered around the section
+  const triangles = [
+    { className: 'left-[8%] top-[8%] h-10 w-10 -rotate-12', color: '#ffffff33' },
+    { className: 'right-[10%] top-[4%] h-8 w-8 rotate-45', color: '#facc15' },
+    { className: 'right-[4%] top-[45%] h-6 w-6 rotate-12', color: '#a78bfa' },
+    { className: 'left-[4%] bottom-[20%] h-7 w-7 -rotate-45', color: '#ffffff33' },
+    { className: 'left-[14%] bottom-[6%] h-5 w-5 rotate-90', color: '#facc15' },
+    { className: 'right-[16%] bottom-[10%] h-9 w-9 rotate-6', color: '#a78bfa' },
+  ]
+
+  return (
+    <section className="relative overflow-hidden bg-purple-700 py-20">
+      {/* decorative triangles */}
+      {triangles.map((t, i) => (
+        <div
+          key={i}
+          className={`pointer-events-none absolute ${t.className}`}
+          style={{
+            clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
+            backgroundColor: t.color,
+          }}
+        />
+      ))}
+
+      <div className="relative z-10 mx-auto max-w-7xl px-6">
+        <div className="flex flex-col items-center gap-12 md:flex-row md:items-start md:gap-16">
+          {/* statue + dot ring */}
+          <div className="relative h-[320px] w-[280px] shrink-0">
+            <DotRing />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="h-[85%] w-[65%]">
+                <StatueIllustration />
+              </div>
+            </div>
+          </div>
+
+          {/* title + cards */}
+          <div className="flex-1">
+            <h2 className="mb-8 text-2xl font-bold text-white md:text-4xl">
+              Լավագույնը Evocabank-ից
+            </h2>
+
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              {cards.map((c) => (
+                <a
+                  key={c.title}
+                  href="#"
+                  className="block rounded-2xl bg-white p-6 shadow-lg transition hover:-translate-y-1 hover:shadow-xl"
+                >
+                  <span className="mb-3 inline-block rounded bg-purple-50 px-2 py-1 text-xs font-medium text-purple-700">
+                    {c.tag}
+                  </span>
+                  <h3 className="mb-2 text-lg font-bold text-gray-900">{c.title}</h3>
+                  <p className="text-sm text-gray-500">{c.desc}</p>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* floating contact button */}
+      <button
+        aria-label="contact"
+        className="fixed bottom-20 right-6 z-30 flex h-14 w-14 items-center justify-center rounded-full bg-white text-purple-700 shadow-xl transition hover:scale-105"
+      >
+        <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+        </svg>
+      </button>
+
+      {/* bottom contact bar */}
+      <div className="fixed bottom-0 left-0 right-0 z-20 bg-purple-900/90 py-2 text-center text-sm text-white backdrop-blur">
+        Գրեք մեզ, մենք online ենք​ !
+      </div>
+    </section>
   )
 }
 

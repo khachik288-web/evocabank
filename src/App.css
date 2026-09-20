@@ -11,39 +11,34 @@
   animation: flash 0.5s ease-out forwards;
 }
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+@keyframes facemaskPulse {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+ 
+.facemask-pulse {
+  animation: facemaskPulse 2.4s ease-in-out infinite;
+}
+ 
+@keyframes dotringPulse {
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.05);
+  }
+}
+ 
+.dotring-pulse {
+  transform-origin: center;
+  animation: dotringPulse 3s ease-in-out infinite;
+}
+ 
