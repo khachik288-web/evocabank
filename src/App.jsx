@@ -514,6 +514,314 @@ function CardsShowcase() {
 
 
 
+const formatMoney = (num, minDecimals = 0, maxDecimals = 2) => {
+  return new Intl.NumberFormat('en-US', {
+    minimumFractionDigits: minDecimals,
+    maximumFractionDigits: maxDecimals,
+  }).format(num);
+};
+
+
+
+// tiv-hashvark
+function RangeInput({ label, value, min, max, unit, onChange, step = 1 }) {
+  const percent = ((value - min) / (max - min)) * 100;
+
+  return (
+    <div className="mb-6">
+      <div className="flex justify-between items-center border border-gray-200 rounded-xl px-4 py-3 bg-white shadow-sm">
+        <span className="text-gray-700 text-sm">{label}</span>
+        <div className="flex items-center gap-1 font-bold text-gray-900 text-lg">
+          <input
+            type="text"
+            className="w-24 text-right outline-none bg-transparent"
+            value={formatMoney(value)}
+            onChange={(e) => {
+              const val = Number(e.target.value.replace(/,/g, ''));
+              if (!isNaN(val)) onChange(Math.min(Math.max(val, min), max));
+            }}
+          />
+          {unit && <span>{unit}</span>}
+        </div>
+      </div>
+      
+      {/* Кастомный Range Slider */}
+      <div className="relative w-full h-1 mt-2 bg-gray-200 rounded-full">
+        <div 
+          className="absolute top-0 left-0 h-full bg-purple-700 rounded-full"
+          style={{ width: `${percent}%` }}
+        ></div>
+        <input
+          type="range"
+          min={min}
+          max={max}
+          step={step}
+          value={value}
+          onChange={(e) => onChange(Number(e.target.value))}
+          className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
+        />
+        {/* Фиолетовый треугольник (ползунок) */}
+        <div 
+          className="absolute top-1 w-0 h-0 border-l-[6px] border-r-[6px] border-b-[8px] border-transparent border-b-purple-700 pointer-events-none -translate-x-1/2"
+          style={{ left: `${percent}%` }}
+        ></div>
+      </div>
+      <div className="flex justify-between mt-2 text-xs text-gray-400">
+        <span>{formatMoney(min)} {unit && unit.replace('%', '')}</span>
+        <span>{formatMoney(max)} {unit && unit.replace('%', '')}</span>
+      </div>
+    </div>
+  );
+}
+
+function Calculator() {
+  const [activeTab, setActiveTab] = useState('loan'); // 'loan' | 'deposit'
+  const [showModal, setShowModal] = useState(false);
+
+  // Стейты кредита
+  const [loanAmount, setLoanAmount] = useState(1000000);
+  const [loanRate, setLoanRate] = useState(8);
+  const [loanTerm, setLoanTerm] = useState(24);
+  const [loanType, setLoanType] = useState('differentiated'); // 'differentiated' | 'annuity'
+
+  // Стейты вклада
+  const [depositAmount, setDepositAmount] = useState(100000);
+  const [depositRate, setDepositRate] = useState(12);
+  const [depositTerm, setDepositTerm] = useState(91);
+
+  // --- Математика Вклада ---
+  // Обычный расчет: (Сумма * Ставка / 100) / 365
+  const dailyInterest = (depositAmount * (depositRate / 100)) / 365;
+  const totalGrossInterest = dailyInterest * depositTerm;
+  const netInterest = totalGrossInterest * 0.9; // минус 10% налог
+
+  // --- Математика Кредита ---
+  const generateLoanSchedule = () => {
+    let schedule = [];
+    let totalInterestPaid = 0;
+    let principalRemaining = loanAmount;
+    let monthlyRate = loanRate / 100 / 12;
+
+    if (loanType === 'annuity') {
+      const monthlyPayment = (loanAmount * monthlyRate * Math.pow(1 + monthlyRate, loanTerm)) / (Math.pow(1 + monthlyRate, loanTerm) - 1);
+      
+      for (let i = 1; i <= loanTerm; i++) {
+        let interest = principalRemaining * monthlyRate;
+        let principal = monthlyPayment - interest;
+        principalRemaining -= principal;
+        totalInterestPaid += interest;
+        
+        schedule.push({ month: i, interest, principal, total: monthlyPayment });
+      }
+    } else {
+      // Дифференцированный (Зսպանակաձև)
+      const monthlyPrincipal = loanAmount / loanTerm;
+      for (let i = 1; i <= loanTerm; i++) {
+        let interest = principalRemaining * monthlyRate;
+        principalRemaining -= monthlyPrincipal;
+        totalInterestPaid += interest;
+        
+        schedule.push({ month: i, interest, principal: monthlyPrincipal, total: monthlyPrincipal + interest });
+      }
+    }
+
+    return { schedule, totalInterestPaid, totalPayment: loanAmount + totalInterestPaid };
+  };
+
+  const loanData = generateLoanSchedule();
+
+  return (
+    <section className="bg-[#f8f9fc] py-16 px-4 font-sans">
+      <div className="max-w-4xl mx-auto">
+        <h2 className="text-3xl font-bold text-gray-900 text-center mb-10">Հաշվիչներ</h2>
+
+        {/* Вкладки */}
+        <div className="flex px-4">
+          <button 
+            onClick={() => setActiveTab('loan')}
+            className={`px-8 py-3 rounded-t-xl font-semibold transition-colors ${activeTab === 'loan' ? 'bg-white text-gray-900 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] relative z-10' : 'bg-transparent text-gray-500 hover:text-gray-700'}`}
+          >
+            Վարկ
+          </button>
+          <button 
+            onClick={() => setActiveTab('deposit')}
+            className={`px-8 py-3 rounded-t-xl font-semibold transition-colors ${activeTab === 'deposit' ? 'bg-white text-gray-900 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] relative z-10' : 'bg-transparent text-gray-500 hover:text-gray-700'}`}
+          >
+            Ավանդ
+          </button>
+        </div>
+
+        {/* Контейнер калькулятора */}
+        <div className="bg-white rounded-2xl rounded-tl-none shadow-xl p-8 relative z-20">
+          
+          {/* --- Вкладка ВАРК (КРЕДИТ) --- */}
+          {activeTab === 'loan' && (
+            <div className="animate-fade-in">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12">
+                <RangeInput label="Վարկի գումար" value={loanAmount} min={0} max={50000000} onChange={setLoanAmount} step={10000} />
+                <RangeInput label="Ժամկետ" value={loanTerm} min={1} max={1200} unit=" ամիս" onChange={setLoanTerm} />
+                <RangeInput label="Տարեկան տոկոսադրույք" value={loanRate} min={1} max={36} unit=" %" onChange={setLoanRate} />
+                
+                <div className="mb-6">
+                  <span className="text-gray-400 text-sm block mb-3">Մարման ձև</span>
+                  <div className="flex gap-6">
+                    <label className="flex items-center gap-2 cursor-pointer">
+                      <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${loanType === 'differentiated' ? 'border-purple-700' : 'border-gray-300'}`}>
+                        {loanType === 'differentiated' && <div className="w-2.5 h-2.5 bg-purple-700 rounded-full"></div>}
+                      </div>
+                      <input type="radio" className="hidden" checked={loanType === 'differentiated'} onChange={() => setLoanType('differentiated')} />
+                      <span className="text-gray-800 font-medium">Զսպանակաձև</span>
+                    </label>
+                    <label className="flex items-center gap-2 cursor-pointer">
+                      <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${loanType === 'annuity' ? 'border-purple-700' : 'border-gray-300'}`}>
+                        {loanType === 'annuity' && <div className="w-2.5 h-2.5 bg-purple-700 rounded-full"></div>}
+                      </div>
+                      <input type="radio" className="hidden" checked={loanType === 'annuity'} onChange={() => setLoanType('annuity')} />
+                      <span className="text-gray-800 font-medium">Անուիտետ</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-col md:flex-row justify-between items-center mt-6 border-t border-gray-100 pt-6">
+                <p className="text-gray-400 text-xs text-center md:text-left mb-4 md:mb-0 max-w-sm">
+                  Բոլոր հաշվարկները կրում են մոտավոր բնույթ և չեն հանդիսանում հրապարակային առաջարկ:
+                </p>
+                <button 
+                  onClick={() => setShowModal(true)}
+                  className="bg-[#5c00b3] hover:bg-purple-800 text-white font-semibold py-3 px-10 rounded-full transition-colors w-full md:w-auto"
+                >
+                  Հաշվել
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* --- Вкладка АВАНД (ВКЛАД) --- */}
+          {activeTab === 'deposit' && (
+            <div className="animate-fade-in grid grid-cols-1 md:grid-cols-2 gap-12">
+              <div>
+                <RangeInput label="Ներդրվող գումար" value={depositAmount} min={0} max={50000000} onChange={setDepositAmount} step={10000} />
+                <RangeInput label="Տարեկան տոկոսադրույք" value={depositRate} min={1} max={36} unit=" %" onChange={setDepositRate} />
+                <RangeInput label="Ավանդի ժամկետ" value={depositTerm} min={91} max={1095} unit=" օր" onChange={setDepositTerm} />
+              </div>
+
+              <div className="flex flex-col justify-center">
+                <div className="flex justify-between items-center py-4 border-b border-gray-100">
+                  <span className="text-gray-700 text-sm max-w-[200px]">Օրական կտրվածքով հաշվարկվող տոկոսագումար *</span>
+                  <span className="font-bold text-gray-900">{formatMoney(dailyInterest, 2)}</span>
+                </div>
+                <div className="flex justify-between items-center py-4 border-b border-gray-100">
+                  <span className="text-gray-700 text-sm max-w-[200px]">Ավանդային պայմանագրի գործողության ընթացքում հաշվարկվող ընդհանուր տոկոսային եկամուտ</span>
+                  <span className="font-bold text-gray-900">{formatMoney(totalGrossInterest, 2)}</span>
+                </div>
+                <div className="flex justify-between items-center py-4 border-b border-gray-100">
+                  <span className="text-gray-700 text-sm max-w-[200px]">Ավանդային պայմանագրի գործողության ընթացքում ավանդատուին փաստացի վճարվող զուտ տոկոսային եկամուտ</span>
+                  <span className="font-bold text-gray-900">{formatMoney(netInterest, 2)}</span>
+                </div>
+                <div className="mt-4 flex items-start gap-2 text-gray-400 text-xs">
+                  <svg className="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <p>Ներդրված ավանդի դիմաց ստացվող տոկոսագումարներն հարկվում են 10% եկամտային հարկի չափով</p>
+                </div>
+              </div>
+
+              <div className="md:col-span-2 pt-6 border-t border-gray-100 mt-[-10px]">
+                <p className="text-gray-400 text-xs">Բոլոր հաշվարկները կրում են մոտավոր բնույթ և չեն հանդիսանում հրապարակային առաջարկ:</p>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* --- Модальное окно результатов кредита --- */}
+      {showModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+          <div className="bg-white rounded-2xl w-full max-w-4xl max-h-[90vh] flex flex-col shadow-2xl relative animate-fade-in-up">
+            
+            <button onClick={() => setShowModal(false)} className="absolute right-4 top-4 text-gray-400 hover:text-gray-700">
+              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
+
+            <div className="p-8 pb-4">
+              <h3 className="text-2xl font-bold text-gray-800 mb-6">Վարկային հաշվիչի արդյունքներ</h3>
+              
+              {/* Серый блок со сводкой */}
+              <div className="grid grid-cols-4 bg-[#f3f4f6] rounded-xl overflow-hidden mb-6">
+                <div className="p-4 border-r border-white">
+                  <span className="text-xs text-gray-500 block mb-1">Գումար</span>
+                  <span className="font-bold text-gray-900">{formatMoney(loanAmount)}</span>
+                </div>
+                <div className="p-4 border-r border-white">
+                  <span className="text-xs text-gray-500 block mb-1">Տարեկան տոկոսադրույք</span>
+                  <span className="font-bold text-gray-900">{loanRate}%</span>
+                </div>
+                <div className="p-4 border-r border-white">
+                  <span className="text-xs text-gray-500 block mb-1">Վարկի ժամկետը</span>
+                  <span className="font-bold text-gray-900">{loanTerm}</span>
+                </div>
+                <div className="p-4 bg-[#eceef1]">
+                  <span className="text-xs text-gray-500 block mb-1">Ողջ վճարումը(Ողջ գումար + ...)</span>
+                  <span className="font-bold text-gray-900">{formatMoney(loanData.totalPayment, 2)}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Таблица платежей */}
+            <div className="overflow-y-auto px-8 flex-1 mb-6 custom-scrollbar">
+              <table className="w-full text-left text-sm border-collapse">
+                <thead className="sticky top-0 bg-white shadow-[0_4px_2px_-2px_rgba(0,0,0,0.05)] z-10">
+                  <tr>
+                    <th className="py-4 font-medium text-gray-600 border-b border-gray-200">Ամիս</th>
+                    <th className="py-4 font-medium text-gray-600 border-b border-gray-200">Վճարվելիք տոկոսագումար</th>
+                    <th className="py-4 font-medium text-gray-600 border-b border-gray-200">Վարկի մասնակի մարում</th>
+                    <th className="py-4 font-medium text-gray-600 border-b border-gray-200">Վարկի ամսական վճար</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {loanData.schedule.map((row) => (
+                    <tr key={row.month} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                      <td className="py-4 font-semibold text-gray-800">{row.month}</td>
+                      <td className="py-4 text-gray-800">{formatMoney(row.interest, 2)}</td>
+                      <td className="py-4 text-gray-800">{formatMoney(row.principal, 2)}</td>
+                      <td className="py-4 font-bold text-gray-900">{formatMoney(row.total, 2)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Итоги (Футер таблицы) */}
+            <div className="p-8 pt-4 border-t border-gray-200 bg-white rounded-b-2xl">
+              <div className="flex font-bold text-gray-900 text-sm">
+                <div className="w-1/4">Ընդամենը</div>
+                <div className="w-1/4 text-blue-900">{formatMoney(loanData.totalInterestPaid, 2)}</div>
+                <div className="w-1/4">{formatMoney(loanAmount)}</div>
+                <div className="w-1/4 text-blue-900">{formatMoney(loanData.totalPayment, 2)}</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      )}
+      
+      {/* Небольшие стили для анимаций */}
+      <style>{`
+        .animate-fade-in { animation: fadeIn 0.4s ease-out; }
+        .animate-fade-in-up { animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+      `}</style>
+    </section>
+  );
+}
+
+
 function App() {
   return (
     <>
@@ -522,6 +830,7 @@ function App() {
       <Biometric />
       <BestFromEvoca />
       <CardsShowcase />
+      <Calculator />
     </>
   )
 }
