@@ -1219,6 +1219,102 @@ function BestFromEvoca() {
   )
 }
 
+const NEWS_DATA = [
+  {
+    id: 1,
+    tag: 'Կենսակերպ',
+    tagColor: '#8bd34a',
+    title: 'Դիլիջան, մենք գալիս ենք',
+    date: '11.09.2026',
+    image: 'https://www.evoca.am/images-cache/news/1/17891134831451/439x320.png',
+  },
+  {
+    id: 2,
+    tag: 'Կենսակերպ',
+    tagColor: '#8bd34a',
+    title: 'Evocabank-ը՝ Retro Fest-ի ֆինանսական գործընկեր',
+    date: '03.09.2026',
+    image: 'https://www.evoca.am/images-cache/news/1/17884237814941/439x320.png',
+  },
+  {
+    id: 3,
+    tag: 'Պրոդուկտներ',
+    tagColor: '#e6007e',
+    title: 'Դեպի նոր ուսումնական տարի՝ մինչև 23% cashback-ով',
+    date: '21.08.2026',
+    image: 'https://www.evoca.am/images-cache/news/1/17873217684586/439x320.png',
+  },
+]
+
+function NewsSection() {
+  return (
+    <section className="bg-[#eef2fb] py-16 px-6">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-10 flex items-center justify-between">
+          <h2 className="text-3xl font-bold text-gray-900 md:text-4xl">
+            Վերջին նորությունները
+          </h2>
+          <a
+            href="#"
+            className="hidden shrink-0 items-center gap-2 rounded-full bg-[#e4d3f8] px-6 py-3 font-semibold text-purple-800 transition-colors hover:bg-[#d8bff5] sm:inline-flex"
+          >
+            Բոլոր նորությունները
+            <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {NEWS_DATA.map((item) => (
+            <a
+              key={item.id}
+              href="#"
+              className="group overflow-hidden rounded-2xl bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+            >
+              <div className="aspect-[439/320] w-full overflow-hidden">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+
+              <div className="p-6">
+                <div className="mb-3 flex items-center gap-2">
+                  <span
+                    className="h-4 w-[3px] rounded-full"
+                    style={{ backgroundColor: item.tagColor }}
+                  />
+                  <span className="text-sm font-medium text-gray-500">{item.tag}</span>
+                </div>
+
+                <h3 className="mb-4 text-lg font-bold leading-snug text-gray-900">
+                  {item.title}
+                </h3>
+
+                <span className="text-sm text-gray-400">{item.date}</span>
+              </div>
+            </a>
+          ))}
+        </div>
+
+        <div className="mt-8 flex justify-center sm:hidden">
+          <a
+            href="#"
+            className="inline-flex items-center gap-2 rounded-full bg-[#e4d3f8] px-6 py-3 font-semibold text-purple-800 transition-colors hover:bg-[#d8bff5]"
+          >
+            Բոլոր նորությունները
+            <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function App() {
   return (
     <>
@@ -1230,6 +1326,7 @@ function App() {
       <Calculator />
       <OnlineBankingBanner />
       <Partners />
+      <NewsSection />
     </>
   )
 }
