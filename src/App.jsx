@@ -28,7 +28,7 @@ function Header() {
       {/* Top thin bar */}
       <div className="border-b border-gray-200 px-6">
         <div className="mx-auto flex max-w-7xl items-center justify-between">
-          <nav className="flex items-center">
+          <nav className="hidden lg:flex items-center">
             {topLinks.map((link, i) => (
               <a
                 key={link}
@@ -44,7 +44,7 @@ function Header() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-5 text-gray-600">
+          <div className="flex items-center gap-5 text-gray-600 py-2 lg:py-0">
             <a href="#" className="flex items-center gap-1 text-purple-700 hover:underline">
               Առցանց հայտեր
               <svg className="h-3 w-3" viewBox="0 0 24 24" fill="none">
@@ -82,7 +82,7 @@ function Header() {
                 <line x1="21" y1="21" x2="16.65" y2="16.65" />
               </svg>
             </button>
-            <button aria-label="menu" className="hover:text-purple-700">
+            <button aria-label="menu" className="hover:text-purple-700 lg:hidden">
               <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <line x1="3" y1="6" x2="21" y2="6" />
                 <line x1="3" y1="12" x2="21" y2="12" />
@@ -100,7 +100,7 @@ function Header() {
             <span className="text-2xl font-bold tracking-tight text-gray-800">
               evoc<span className="text-purple-700">a</span>
             </span>
-            <nav className="flex items-center gap-7 font-medium">
+            <nav className="hidden xl:flex items-center gap-7 font-medium">
               {mainLinks.map((link, i) => (
                 <a
                   key={link}
@@ -113,7 +113,7 @@ function Header() {
             </nav>
           </div>
 
-          <button className="rounded-full bg-purple-700 px-6 py-2.5 font-semibold text-white hover:bg-purple-800">
+          <button className="rounded-full bg-purple-700 px-6 py-2.5 font-semibold text-white hover:bg-purple-800 transition-colors">
             EvocaONLINE
           </button>
         </div>
@@ -189,7 +189,6 @@ function Slider() {
 
   return (
     <div className={`relative overflow-hidden transition-colors duration-500 ${slide.bg}`}>
-      {/* white flash overlay on slide change */}
       <div key={flashKey} className="pointer-events-none absolute inset-0 z-20 bg-white animate-flash" />
 
       <div className="relative z-10 mx-auto flex max-w-7xl flex-col items-center gap-10 px-6 py-16 md:flex-row md:justify-between">
@@ -213,7 +212,6 @@ function Slider() {
         </div>
       </div>
 
-      {/* arrows + dots */}
       <div className="relative z-10 flex items-center justify-center gap-5 pb-8">
         <button
           aria-label="previous slide"
@@ -313,9 +311,7 @@ function Biometric() {
   return (
     <section className="mx-auto max-w-7xl px-6 py-20">
       <div className="flex flex-col items-center gap-12 md:flex-row md:items-center md:justify-center md:gap-20">
-        {/* Triangle + face */}
         <div className="relative h-[420px] w-[340px] shrink-0">
-          {/* decorative dotted circle behind */}
           <div
             className="absolute left-1/2 top-1/2 h-[380px] w-[380px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-60"
             style={{
@@ -325,7 +321,6 @@ function Biometric() {
             }}
           />
 
-          {/* rounded purple triangle */}
           <svg
             viewBox="0 0 360 440"
             className="absolute inset-0 h-full w-full drop-shadow-lg"
@@ -336,11 +331,9 @@ function Biometric() {
             />
           </svg>
 
-          {/* crossfading face photos + animated biometric mask on top */}
           <BiometricFaces />
         </div>
 
-        {/* Text + QR + CTA */}
         <div className="max-w-md text-center md:text-left">
           <h2 className="mb-4 text-2xl font-semibold text-gray-900 md:text-3xl">
             Դարձիր Evocabank-ի հաճախորդ բիոմետրիկ նույնականացմամբ
@@ -355,7 +348,7 @@ function Biometric() {
               alt="QR code"
               className="h-32 w-32 object-contain"
             />
-            <button className="rounded-full bg-purple-700 px-6 py-3 font-semibold text-white hover:bg-purple-800">
+            <button className="rounded-full bg-purple-700 px-6 py-3 font-semibold text-white hover:bg-purple-800 transition-colors">
               Իմանալ ավելին
             </button>
           </div>
@@ -376,7 +369,6 @@ const CARDS_DATA = [
   { id: 8, name: 'Digital Gift Card', img: 'https://www.evoca.am/images-cache/cards/1/17815131185095/415x261.png' }
 ];
 
-// --- Компонент 3D Карты ---
 function TiltCard({ card }) {
   const cardRef = useRef(null);
   const [style, setStyle] = useState({
@@ -388,24 +380,22 @@ function TiltCard({ card }) {
     if (!cardRef.current) return;
     const { left, top, width, height } = cardRef.current.getBoundingClientRect();
     
-    // Вычисляем положение курсора от -1 до 1 относительно центра
     const x = (e.clientX - left - width / 2) / (width / 2);
     const y = (e.clientY - top - height / 2) / (height / 2);
 
-    // Умножаем на градусы (15 градусов максимум)
     const rotateX = y * -15; 
     const rotateY = x * 15;
 
     setStyle({
       transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(0.96, 0.96, 0.96)`,
-      transition: 'transform 0.1s ease-out' // Ускоряем анимацию при движении
+      transition: 'transform 0.1s ease-out'
     });
   };
 
   const handleMouseLeave = () => {
     setStyle({
       transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)',
-      transition: 'transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1)' // Плавный возврат
+      transition: 'transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1)'
     });
   };
 
@@ -421,20 +411,15 @@ function TiltCard({ card }) {
         <img 
           src={card.img} 
           alt={card.name} 
-          className="w-[415px] h-[261px] object-cover rounded-xl shadow-2xl" 
+          className="w-[415px] max-w-full h-auto object-cover rounded-xl shadow-2xl" 
         />
       </div>
       
-      {/* Мягкая тень под картой (остается на месте при наклоне карты) */}
       <div className="absolute -bottom-8 w-[80%] h-8 bg-black/10 blur-xl rounded-[100%] pointer-events-none"></div>
     </div>
   );
 }
 
-
-
-
-// --- 3d kartshkeq ---
 function CardsShowcase() {
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -443,9 +428,8 @@ function CardsShowcase() {
 
   return (
     <section className="bg-[#f3f6fa] py-20 px-6 w-full overflow-hidden">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-16">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12 lg:gap-16">
         
-        {/* 1. Вертикальный слайдер (Левая часть) */}
         <div className="flex flex-col items-center shrink-0 w-[200px]">
           <button onClick={handleUp} className="text-purple-700 hover:text-purple-900 transition mb-6">
             <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
@@ -453,13 +437,10 @@ function CardsShowcase() {
             </svg>
           </button>
 
-          {/* Контейнер слайдера */}
           <div className="h-[420px] overflow-hidden relative w-full mask-image-vertical">
-            {/* Лента карточек */}
             <div 
               className="flex flex-col gap-6 absolute w-full transition-transform duration-500 ease-in-out"
               style={{ transform: `translateY(calc(210px - 60px - ${activeIndex * 144}px))` }} 
-              // 210px - половина высоты контейнера. 60px - половина высоты карточки с маргинами. 144px - шаг (высота + gap).
             >
               {CARDS_DATA.map((card, index) => {
                 const isActive = index === activeIndex;
@@ -492,12 +473,10 @@ function CardsShowcase() {
           </button>
         </div>
 
-        {/* 2. 3D Карта (Центр) */}
-        <div className="flex-1 flex justify-center perspective-1000">
+        <div className="flex-1 flex justify-center perspective-1000 w-full">
            <TiltCard card={CARDS_DATA[activeIndex]} />
         </div>
 
-        {/* 3. Описание и кнопка (Правая часть) */}
         <div className="w-full max-w-sm text-center md:text-left shrink-0">
           <h2 className="text-3xl font-bold text-gray-800 mb-6 transition-all duration-300">
             {CARDS_DATA[activeIndex].name}
@@ -512,8 +491,6 @@ function CardsShowcase() {
   );
 }
 
-
-
 const formatMoney = (num, minDecimals = 0, maxDecimals = 2) => {
   return new Intl.NumberFormat('en-US', {
     minimumFractionDigits: minDecimals,
@@ -521,9 +498,6 @@ const formatMoney = (num, minDecimals = 0, maxDecimals = 2) => {
   }).format(num);
 };
 
-
-
-// tiv-hashvark
 function RangeInput({ label, value, min, max, unit, onChange, step = 1 }) {
   const percent = ((value - min) / (max - min)) * 100;
 
@@ -545,7 +519,6 @@ function RangeInput({ label, value, min, max, unit, onChange, step = 1 }) {
         </div>
       </div>
       
-      {/* Кастомный Range Slider */}
       <div className="relative w-full h-1 mt-2 bg-gray-200 rounded-full">
         <div 
           className="absolute top-0 left-0 h-full bg-purple-700 rounded-full"
@@ -560,7 +533,6 @@ function RangeInput({ label, value, min, max, unit, onChange, step = 1 }) {
           onChange={(e) => onChange(Number(e.target.value))}
           className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
         />
-        {/* Фиолетовый треугольник (ползунок) */}
         <div 
           className="absolute top-1 w-0 h-0 border-l-[6px] border-r-[6px] border-b-[8px] border-transparent border-b-purple-700 pointer-events-none -translate-x-1/2"
           style={{ left: `${percent}%` }}
@@ -575,27 +547,22 @@ function RangeInput({ label, value, min, max, unit, onChange, step = 1 }) {
 }
 
 function Calculator() {
-  const [activeTab, setActiveTab] = useState('loan'); // 'loan' | 'deposit'
+  const [activeTab, setActiveTab] = useState('loan');
   const [showModal, setShowModal] = useState(false);
 
-  // Стейты кредита
   const [loanAmount, setLoanAmount] = useState(1000000);
   const [loanRate, setLoanRate] = useState(8);
   const [loanTerm, setLoanTerm] = useState(24);
-  const [loanType, setLoanType] = useState('differentiated'); // 'differentiated' | 'annuity'
+  const [loanType, setLoanType] = useState('differentiated');
 
-  // Стейты вклада
   const [depositAmount, setDepositAmount] = useState(100000);
   const [depositRate, setDepositRate] = useState(12);
   const [depositTerm, setDepositTerm] = useState(91);
 
-  // --- Математика Вклада ---
-  // Обычный расчет: (Сумма * Ставка / 100) / 365
   const dailyInterest = (depositAmount * (depositRate / 100)) / 365;
   const totalGrossInterest = dailyInterest * depositTerm;
-  const netInterest = totalGrossInterest * 0.9; // минус 10% налог
+  const netInterest = totalGrossInterest * 0.9;
 
-  // --- Математика Кредита ---
   const generateLoanSchedule = () => {
     let schedule = [];
     let totalInterestPaid = 0;
@@ -614,7 +581,6 @@ function Calculator() {
         schedule.push({ month: i, interest, principal, total: monthlyPayment });
       }
     } else {
-      // Дифференцированный (Зսպանակաձև)
       const monthlyPrincipal = loanAmount / loanTerm;
       for (let i = 1; i <= loanTerm; i++) {
         let interest = principalRemaining * monthlyRate;
@@ -635,7 +601,6 @@ function Calculator() {
       <div className="max-w-4xl mx-auto">
         <h2 className="text-3xl font-bold text-gray-900 text-center mb-10">Հաշվիչներ</h2>
 
-        {/* Вкладки */}
         <div className="flex px-4">
           <button 
             onClick={() => setActiveTab('loan')}
@@ -651,10 +616,7 @@ function Calculator() {
           </button>
         </div>
 
-        {/* Контейнер калькулятора */}
-        <div className="bg-white rounded-2xl rounded-tl-none shadow-xl p-8 relative z-20">
-          
-          {/* --- Вкладка ВАРК (КРЕДИТ) --- */}
+        <div className="bg-white rounded-2xl rounded-tl-none shadow-xl p-6 sm:p-8 relative z-20">
           {activeTab === 'loan' && (
             <div className="animate-fade-in">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12">
@@ -697,9 +659,8 @@ function Calculator() {
             </div>
           )}
 
-          {/* --- Вкладка АВАНД (ВКЛАД) --- */}
           {activeTab === 'deposit' && (
-            <div className="animate-fade-in grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div className="animate-fade-in grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
               <div>
                 <RangeInput label="Ներդրվող գումար" value={depositAmount} min={0} max={50000000} onChange={setDepositAmount} step={10000} />
                 <RangeInput label="Տարեկան տոկոսադրույք" value={depositRate} min={1} max={36} unit=" %" onChange={setDepositRate} />
@@ -735,7 +696,6 @@ function Calculator() {
         </div>
       </div>
 
-      {/* --- Модальное окно результатов кредита --- */}
       {showModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
           <div className="bg-white rounded-2xl w-full max-w-4xl max-h-[90vh] flex flex-col shadow-2xl relative animate-fade-in-up">
@@ -744,16 +704,15 @@ function Calculator() {
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
             </button>
 
-            <div className="p-8 pb-4">
+            <div className="p-6 sm:p-8 pb-4">
               <h3 className="text-2xl font-bold text-gray-800 mb-6">Վարկային հաշվիչի արդյունքներ</h3>
               
-              {/* Серый блок со сводкой */}
-              <div className="grid grid-cols-4 bg-[#f3f4f6] rounded-xl overflow-hidden mb-6">
-                <div className="p-4 border-r border-white">
+              <div className="grid grid-cols-2 sm:grid-cols-4 bg-[#f3f4f6] rounded-xl overflow-hidden mb-6">
+                <div className="p-4 border-r border-b sm:border-b-0 border-white">
                   <span className="text-xs text-gray-500 block mb-1">Գումար</span>
                   <span className="font-bold text-gray-900">{formatMoney(loanAmount)}</span>
                 </div>
-                <div className="p-4 border-r border-white">
+                <div className="p-4 border-r border-b sm:border-b-0 border-white">
                   <span className="text-xs text-gray-500 block mb-1">Տարեկան տոկոսադրույք</span>
                   <span className="font-bold text-gray-900">{loanRate}%</span>
                 </div>
@@ -762,21 +721,20 @@ function Calculator() {
                   <span className="font-bold text-gray-900">{loanTerm}</span>
                 </div>
                 <div className="p-4 bg-[#eceef1]">
-                  <span className="text-xs text-gray-500 block mb-1">Ողջ վճարումը(Ողջ գումար + ...)</span>
+                  <span className="text-xs text-gray-500 block mb-1">Ողջ վճարումը</span>
                   <span className="font-bold text-gray-900">{formatMoney(loanData.totalPayment, 2)}</span>
                 </div>
               </div>
             </div>
 
-            {/* Таблица платежей */}
-            <div className="overflow-y-auto px-8 flex-1 mb-6 custom-scrollbar">
+            <div className="overflow-y-auto px-6 sm:px-8 flex-1 mb-6 custom-scrollbar">
               <table className="w-full text-left text-sm border-collapse">
                 <thead className="sticky top-0 bg-white shadow-[0_4px_2px_-2px_rgba(0,0,0,0.05)] z-10">
                   <tr>
                     <th className="py-4 font-medium text-gray-600 border-b border-gray-200">Ամիս</th>
-                    <th className="py-4 font-medium text-gray-600 border-b border-gray-200">Վճարվելիք տոկոսագումար</th>
-                    <th className="py-4 font-medium text-gray-600 border-b border-gray-200">Վարկի մասնակի մարում</th>
-                    <th className="py-4 font-medium text-gray-600 border-b border-gray-200">Վարկի ամսական վճար</th>
+                    <th className="py-4 font-medium text-gray-600 border-b border-gray-200">Տոկոսագումար</th>
+                    <th className="py-4 font-medium text-gray-600 border-b border-gray-200">Մասնակի մարում</th>
+                    <th className="py-4 font-medium text-gray-600 border-b border-gray-200">Ամսական վճար</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -792,8 +750,7 @@ function Calculator() {
               </table>
             </div>
 
-            {/* Итоги (Футер таблицы) */}
-            <div className="p-8 pt-4 border-t border-gray-200 bg-white rounded-b-2xl">
+            <div className="p-6 sm:p-8 pt-4 border-t border-gray-200 bg-white rounded-b-2xl">
               <div className="flex font-bold text-gray-900 text-sm">
                 <div className="w-1/4">Ընդամենը</div>
                 <div className="w-1/4 text-blue-900">{formatMoney(loanData.totalInterestPaid, 2)}</div>
@@ -806,7 +763,6 @@ function Calculator() {
         </div>
       )}
       
-      {/* Небольшие стили для анимаций */}
       <style>{`
         .animate-fade-in { animation: fadeIn 0.4s ease-out; }
         .animate-fade-in-up { animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
@@ -821,22 +777,298 @@ function Calculator() {
   );
 }
 
+function OnlineBankingBanner() {
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
-function App() {
   return (
-    <>
-      <Header />
-      <Slider />
-      <Biometric />
-      <BestFromEvoca />
-      <CardsShowcase />
-      <Calculator />
-    </>
+    <section className="w-full overflow-hidden bg-white">
+      <div className="relative w-full bg-[#5c00b3] p-10 max-[550px]:p-5 max-[550px]:pt-8 lg:p-16 flex flex-col lg:flex-row items-center justify-between gap-12 max-[550px]:gap-6 overflow-hidden">
+        
+        <div className="absolute top-10 left-10 max-[550px]:left-2 max-[550px]:top-4 w-8 h-8 max-[550px]:w-5 max-[550px]:h-5 border-[6px] max-[550px]:border-[4px] border-[#ff47d6] rounded-full opacity-80 z-0"></div>
+        <div className="absolute top-20 right-10 max-[550px]:right-2 w-0 h-0 border-l-[12px] border-r-[12px] border-b-[20px] max-[550px]:border-l-[8px] max-[550px]:border-r-[8px] max-[550px]:border-b-[14px] border-transparent border-b-[#facc15] opacity-80 z-0 rotate-12"></div>
+        <div className="absolute bottom-10 right-20 max-[550px]:right-4 max-[550px]:bottom-4 w-8 h-8 opacity-80 z-0 text-[#ff47d6]">
+           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 12 L20 12 M12 4 L12 20" stroke="currentColor" strokeWidth="4" strokeLinecap="round"/></svg>
+        </div>
+
+        <div className="relative flex flex-col md:flex-row items-end justify-center w-full lg:w-1/2 gap-4 max-[550px]:gap-2 z-10 mt-4">
+          <div className="relative w-full max-w-[480px] max-[550px]:max-w-[320px]">
+            <div className="relative bg-black rounded-t-2xl max-[550px]:rounded-t-xl p-2 pb-5 max-[550px]:p-1.5 max-[550px]:pb-3 border-[3px] border-[#222] shadow-2xl z-10">
+              <div className="relative aspect-video bg-gray-900 rounded-[4px] overflow-hidden group">
+                {!isVideoPlaying ? (
+                  <>
+                    <img 
+                      src="https://www.evoca.am/images-cache/banners/1/16170067683633/485x304.jpg" 
+                      alt="EvocaTOUCH Video Cover" 
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div 
+                      className="absolute inset-0 bg-black/20 flex items-center justify-center cursor-pointer"
+                      onClick={() => setIsVideoPlaying(true)}
+                    >
+                      <svg viewBox="0 0 68 48" className="w-16 h-16 max-[550px]:w-10 max-[550px]:h-10 transition-transform duration-300 group-hover:scale-110 drop-shadow-lg">
+                        <path className="fill-[#ff0000] opacity-90 group-hover:opacity-100 transition-opacity" d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.1 34 .1 34 .1s-21.79 0-27.1.15C3.97 2.33 2.26 4.81 1.48 7.74.1 13.06.1 24 .1 24s0 10.94 1.38 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.9 34 47.9 34 47.9s21.79 0 27.1-.15c2.93-.78 4.64-3.26 5.42-6.19C67.9 34.94 67.9 24 67.9 24s0-10.94-1.38-16.26z"/>
+                        <path className="fill-white" d="M27 36l18-12-18-12v24z"/>
+                      </svg>
+                    </div>
+                  </>
+                ) : (
+                  <iframe 
+                    id="video-KwAgMHEx8ys" 
+                    className="w-full h-full absolute top-0 left-0"
+                    src="https://www.youtube.com/embed/KwAgMHEx8ys?autoplay=1&enablejsapi=1" 
+                    frameBorder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowFullScreen 
+                    title="EvocaTOUCH"
+                  ></iframe>
+                )}
+              </div>
+              <div className="absolute top-1.5 max-[550px]:top-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 max-[550px]:w-1 max-[550px]:h-1 bg-gray-600 rounded-full"></div>
+            </div>
+            
+            <div className="relative h-4 max-[550px]:h-3 bg-[#b5b7ba] rounded-b-xl shadow-lg flex justify-center z-20 mx-[-4px]">
+              <div className="w-24 max-[550px]:w-16 h-[6px] max-[550px]:h-[4px] bg-[#939598] rounded-b-md"></div>
+            </div>
+            <div className="h-1 bg-[#838588] rounded-b-3xl mx-1 shadow-2xl"></div>
+          </div>
+
+          <div className="relative w-[120px] max-[550px]:w-[85px] shrink-0 transform md:-translate-x-12 translate-y-6 max-[550px]:translate-y-2 md:translate-y-0 z-30">
+            <div className="border-[5px] max-[550px]:border-[3px] border-[#1a1a1a] rounded-[24px] max-[550px]:rounded-[16px] overflow-hidden bg-black shadow-2xl relative">
+              <img 
+                src="https://www.evoca.am/images-cache/banners/1/16153622710205/140x300.jpg" 
+                alt="Evoca Mobile App" 
+                className="w-full h-auto block" 
+              />
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-10 max-[550px]:w-6 h-3 max-[550px]:h-2 bg-[#1a1a1a] rounded-b-lg max-[550px]:rounded-b-md"></div>
+            </div>
+          </div>
+        </div>
+
+        <div className="relative w-full lg:w-1/2 text-white z-10 flex flex-col items-center text-center lg:items-start lg:text-left mt-8 max-[550px]:mt-6 lg:mt-0 px-4 lg:px-10">
+          <h2 className="text-3xl max-[550px]:text-2xl font-bold mb-4 max-[550px]:mb-2 tracking-wide text-[#f4f4f4]">
+            Օնլայն և մոբայլ բանկինգ
+          </h2>
+          <p className="text-[15px] max-[550px]:text-[13px] leading-relaxed mb-8 max-[550px]:mb-6 text-[#e2d5f8] max-w-md font-light">
+            Evocabank-ը արագ, պարզ և նորարար ծառայություններ մատուցող բանկ է, որն առանձնանում է տեղեկատվական նորագույն տեխնոլոգիաների ակտիվ կիրառմամբ:
+          </p>
+          
+          <button className="bg-white text-[#5c00b3] px-8 max-[550px]:px-6 py-3.5 max-[550px]:py-3 rounded-full font-bold max-[550px]:text-sm shadow-lg hover:bg-gray-100 transition-colors mb-10 max-[550px]:mb-8 w-max max-[550px]:w-full">
+            Դառնալ հաճախորդ
+          </button>
+          
+          <div className="flex flex-col max-[550px]:flex-col sm:flex-row items-center sm:items-start gap-6 max-[550px]:gap-4 w-full justify-center lg:justify-start">
+            <div className="bg-white p-1.5 rounded-lg shadow-md shrink-0 max-[550px]:hidden">
+              <img 
+                src="https://www.evoca.am/images-cache/banners/1/16136269557179/101x101.png" 
+                alt="Download App QR Code" 
+                className="w-[85px] h-[85px] object-cover" 
+              />
+            </div>
+            
+            <div className="flex flex-col items-center sm:items-start">
+              <p className="text-xs mb-3 font-medium text-[#e2d5f8]">Ներբեռնել հավելվածները՝</p>
+              <div className="flex gap-3 max-[550px]:w-full max-[550px]:justify-center">
+                <a 
+                  href="https://apps.apple.com/am/app/evocatouch/id970309076" 
+                  target="_blank" 
+                  rel="noreferrer"
+                  className="flex items-center gap-2 bg-black border border-gray-700 hover:border-gray-500 text-white rounded-lg px-2.5 py-1.5 max-[550px]:flex-1 max-[550px]:justify-center transition-colors"
+                >
+                  <svg viewBox="0 0 24 24" className="w-5 h-5 max-[550px]:w-4 max-[550px]:h-4 fill-white"><path d="M16.365 14.363c-.015-2.27 1.83-3.375 1.91-3.42-1.045-1.53-2.67-1.74-3.255-1.77-1.38-.135-2.685.81-3.39.81-.705 0-1.77-.78-2.91-.765-1.5.015-2.88.87-3.645 2.205-1.56 2.685-.39 6.66 1.125 8.85.735 1.065 1.62 2.25 2.76 2.205 1.095-.045 1.515-.72 2.835-.72 1.32 0 1.695.72 2.835.69 1.185-.015 1.95-1.08 2.685-2.145.855-1.245 1.2-2.46 1.215-2.52-.03-.015-2.145-.825-2.16-3.42zM15.015 9.123c.6-.735.99-1.755.885-2.775-.87.03-1.95.585-2.58 1.305-.54.615-1.005 1.65-.87 2.655.975.075 1.965-.45 2.565-1.185z"/></svg>
+                  <div className="flex flex-col items-start leading-none">
+                    <span className="text-[9px] max-[550px]:text-[8px] text-gray-300">Download on the</span>
+                    <span className="text-[13px] max-[550px]:text-[11px] font-semibold -mt-0.5">App Store</span>
+                  </div>
+                </a>
+
+                <a 
+                  href="https://play.google.com/store/apps/details?id=am.prometeybank.mobilebank&hl=en&gl=US" 
+                  target="_blank" 
+                  rel="noreferrer"
+                  className="flex items-center gap-2 bg-black border border-gray-700 hover:border-gray-500 text-white rounded-lg px-2.5 py-1.5 max-[550px]:flex-1 max-[550px]:justify-center transition-colors"
+                >
+                  <svg viewBox="0 0 24 24" className="w-5 h-5 max-[550px]:w-4 max-[550px]:h-4"><path fill="#4caf50" d="M4 2v20l14-10z"/><path fill="#ffeb3b" d="M18 12l-5-3.5-3.5 3.5 3.5 3.5z"/><path fill="#f44336" d="M4 2l9.5 6.5-4 4z"/><path fill="#2196f3" d="M4 22l9.5-6.5-4-4z"/></svg>
+                  <div className="flex flex-col items-start leading-none">
+                    <span className="text-[9px] max-[550px]:text-[8px] text-gray-300">GET IT ON</span>
+                    <span className="text-[13px] max-[550px]:text-[11px] font-semibold -mt-0.5">Google Play</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// --- ИСПРАВЛЕННЫЙ И ВЫЛИЗАННЫЙ КОМПОНЕНТ ПАРТНЕРОВ ---
+const PARTNERS_DATA = [
+  { id: 1, name: 'Partner 1', logo: 'https://www.evoca.am/images-cache/partners/1/16104583322099/185x80_grayscale.png', url: '#' },
+  { id: 2, name: 'Partner 2', logo: 'https://www.evoca.am/images-cache/partners/1/17689930369925/185x80_grayscale.png', url: '#' },
+  { id: 3, name: 'Partner 3', logo: 'https://www.evoca.am/images-cache/partners/1/16104594273635/185x80_grayscale.png', url: '#' },
+  { id: 4, name: 'Partner 4', logo: 'https://www.evoca.am/images-cache/partners/1/1610459808737/185x80_grayscale.png', url: '#' },
+  { id: 5, name: 'Partner 5', logo: 'https://www.evoca.am/images-cache/partners/1/16104599802947/185x80_grayscale.png', url: '#' },
+  { id: 6, name: 'Partner 6', logo: 'https://www.evoca.am/images-cache/partners/1/16104603665095/185x80_grayscale.png', url: '#' },
+  { id: 7, name: 'Partner 7', logo: 'https://www.evoca.am/images-cache/partners/1/16104604109064/185x80_grayscale.png', url: '#' },
+  { id: 8, name: 'Partner 8', logo: 'https://www.evoca.am/images-cache/partners/1/16104604382658/185x80_grayscale.png', url: '#' },
+  { id: 9, name: 'Partner 9', logo: 'https://www.evoca.am/images-cache/partners/1/17104032198171/185x80_grayscale.png', url: '#' },
+  { id: 10, name: 'Partner 10', logo: 'https://www.evoca.am/images-cache/partners/1/17077436606929/185x80_grayscale.png', url: '#' },
+  { id: 11, name: 'Partner 11', logo: 'https://www.evoca.am/images-cache/partners/1/17107493820339/185x80_grayscale.png', url: '#' },
+]
+
+function DottedCircles() {
+  return (
+    <svg
+      viewBox="0 0 300 300"
+      className="absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 opacity-80 pointer-events-none"
+    >
+      {[40, 58, 76, 94, 112, 130].map((r, ringIdx) => {
+        const count = 16 + ringIdx * 8
+        return Array.from({ length: count }).map((_, i) => {
+          const angle = (i / count) * Math.PI * 2
+          const cx = 150 + r * Math.cos(angle)
+          const cy = 150 + r * Math.sin(angle)
+          return <circle key={`${ringIdx}-${i}`} cx={cx} cy={cy} r="1.8" fill="#facc15" />
+        })
+      })}
+    </svg>
+  )
+}
+
+function Partners() {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [visibleCount, setVisibleCount] = useState(4)
+
+  // Идеально просчитанные адаптивные брекпоинты
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) setVisibleCount(1)
+      else if (window.innerWidth < 1024) setVisibleCount(2)
+      else if (window.innerWidth < 1280) setVisibleCount(3)
+      else setVisibleCount(4)
+    }
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  const maxIndex = Math.max(0, PARTNERS_DATA.length - visibleCount)
+
+  // Защита от вылета индекса за пределы при изменчивости visibleCount
+  useEffect(() => {
+    if (currentIndex > maxIndex) {
+      setCurrentIndex(maxIndex)
+    }
+  }, [visibleCount, maxIndex, currentIndex])
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1))
+  }
+
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1))
+  }
+
+  return (
+    <section className="bg-white py-16 lg:py-24 px-4 sm:px-6 w-full overflow-hidden">
+      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-12 w-full">
+        
+        {/* Левая часть: Текст и Кнопка */}
+        <div className="w-full lg:w-[380px] xl:w-[420px] shrink-0 text-center lg:text-left">
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4 lg:mb-6">
+            Գործընկերներ
+          </h2>
+          <p className="text-sm lg:text-[15px] text-gray-600 leading-relaxed mb-6 lg:mb-8">
+            Դարձեք Evocabank-ի Գործընկեր և եկեք միասին գնանք դեպի գունեղ նոր իրականություն: Դառնալով Evoca ընտանիքի անդամ` Դուք մուտք կգործեք ժամանակակից և յուրահատուկ աշխարհ: Մենք մշտապես բաց ենք հետաքրքիր առաջարկների ու համագործակցությունների համար:
+          </p>
+          <a
+            href="#"
+            className="inline-flex items-center gap-2 bg-[#f0e6fb] hover:bg-[#e4d3f8] text-purple-800 font-semibold px-6 py-2.5 rounded-full text-sm transition-colors shadow-sm"
+          >
+            Բոլոր գործընկերները
+            <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+
+        {/* Правая часть: min-w-0 здесь КРИТИЧЕСКИ ВАЖЕН для защиты Flexbox от переполнения */}
+        <div className="relative min-w-0 flex-1 w-full bg-[#f8f9fc] rounded-2xl py-8 px-3 sm:px-6 flex items-center shadow-sm">
+          
+          {/* Декоративный круг из точек и рука */}
+          <div className="absolute -left-8 xl:-left-12 top-1/2 -translate-y-1/2 w-56 xl:w-64 h-56 xl:h-64 hidden md:block pointer-events-none z-10">
+            <DottedCircles />
+            <img
+              src="https://www.evoca.am/img/hand.png"
+              alt="Evoca Hand"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[280px] xl:h-[340px] max-w-none object-contain z-20 filter drop-shadow-md"
+            />
+          </div>
+
+          {/* Контейнер карусели со стрелками */}
+          <div className="flex items-center w-full pl-0 md:pl-20 xl:pl-28 pr-1 sm:pr-2 gap-1 sm:gap-3 z-20 min-w-0">
+            
+            {/* Стрелка Влево */}
+            <button
+              onClick={handlePrev}
+              className="text-purple-700 hover:text-purple-900 hover:bg-purple-100/50 rounded-full transition p-2 shrink-0 focus:outline-none"
+              aria-label="Previous partners"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+
+            {/* Вьюпорт слайдера */}
+            <div className="overflow-hidden flex-1 min-w-0">
+              <div
+                className="flex transition-transform duration-500 ease-in-out"
+                style={{ transform: `translateX(-${currentIndex * (100 / visibleCount)}%)` }}
+              >
+                {PARTNERS_DATA.map((partner) => (
+                  <div
+                    key={partner.id}
+                    className="shrink-0 px-2 sm:px-4 flex items-center justify-center border-r border-gray-200/80 last:border-r-0"
+                    style={{ width: `${100 / visibleCount}%` }}
+                  >
+                    <a
+                      href={partner.url}
+                      className="group flex items-center justify-center h-16 sm:h-20 w-full hover:scale-105 transition-transform duration-300"
+                    >
+                      <img
+                        src={partner.logo}
+                        alt={partner.name}
+                        className="max-h-10 sm:max-h-12 max-w-[100px] sm:max-w-[130px] object-contain transition-all duration-300 group-hover:brightness-90"
+                      />
+                    </a>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Стрелка Вправо */}
+            <button
+              onClick={handleNext}
+              className="text-purple-700 hover:text-purple-900 hover:bg-purple-100/50 rounded-full transition p-2 shrink-0 focus:outline-none"
+              aria-label="Next partners"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
   )
 }
 
 function DotRing() {
-  // approximates the site's 9-layer pulsing dot-ring animation with generated dots
   const rings = [46, 39, 32, 25, 18]
   return (
     <svg viewBox="0 0 400 400" className="absolute inset-0 h-full w-full">
@@ -866,7 +1098,6 @@ function DotRing() {
 }
 
 function StatueIllustration() {
-  // stylized placeholder silhouette (bust + orb) since no real statue asset was provided
   return (
     <svg viewBox="0 0 240 320" className="relative z-10 h-full w-full drop-shadow-2xl">
       <defs>
@@ -875,22 +1106,16 @@ function StatueIllustration() {
           <stop offset="100%" stopColor="#c9cdd6" />
         </linearGradient>
       </defs>
-      {/* head */}
       <ellipse cx="120" cy="55" rx="34" ry="40" fill="url(#statueGrad)" />
-      {/* hair/crown shape */}
       <path d="M86 40 Q120 5 154 40 L150 55 Q120 30 90 55 Z" fill="url(#statueGrad)" />
-      {/* neck + shoulders + drapery */}
       <path
         d="M95 90 L145 90 L170 140 Q180 220 165 300 L75 300 Q60 220 70 140 Z"
         fill="url(#statueGrad)"
       />
-      {/* draped fold lines */}
       <path d="M95 120 Q120 160 100 300" stroke="#9aa0ab" strokeWidth="2" fill="none" opacity="0.5" />
       <path d="M145 120 Q120 170 140 300" stroke="#9aa0ab" strokeWidth="2" fill="none" opacity="0.5" />
-      {/* arms holding orb */}
       <path d="M75 170 Q55 190 60 230 Q65 250 90 250" fill="url(#statueGrad)" />
       <path d="M165 170 Q185 190 180 230 Q175 250 150 250" fill="url(#statueGrad)" />
-      {/* orb */}
       <circle cx="120" cy="245" r="34" fill="url(#statueGrad)" stroke="#9aa0ab" strokeWidth="1" />
       <circle cx="108" cy="233" r="8" fill="#ffffff" opacity="0.6" />
     </svg>
@@ -921,7 +1146,6 @@ function BestFromEvoca() {
     },
   ]
 
-  // decorative low-poly triangles scattered around the section
   const triangles = [
     { className: 'left-[8%] top-[8%] h-10 w-10 -rotate-12', color: '#ffffff33' },
     { className: 'right-[10%] top-[4%] h-8 w-8 rotate-45', color: '#facc15' },
@@ -933,7 +1157,6 @@ function BestFromEvoca() {
 
   return (
     <section className="relative overflow-hidden bg-purple-700 py-20">
-      {/* decorative triangles */}
       {triangles.map((t, i) => (
         <div
           key={i}
@@ -947,7 +1170,6 @@ function BestFromEvoca() {
 
       <div className="relative z-10 mx-auto max-w-7xl px-6">
         <div className="flex flex-col items-center gap-12 md:flex-row md:items-start md:gap-16">
-          {/* statue + dot ring */}
           <div className="relative h-[320px] w-[280px] shrink-0">
             <DotRing />
             <div className="absolute inset-0 flex items-center justify-center">
@@ -957,7 +1179,6 @@ function BestFromEvoca() {
             </div>
           </div>
 
-          {/* title + cards */}
           <div className="flex-1">
             <h2 className="mb-8 text-2xl font-bold text-white md:text-4xl">
               Լավագույնը Evocabank-ից
@@ -982,7 +1203,6 @@ function BestFromEvoca() {
         </div>
       </div>
 
-      {/* floating contact button */}
       <button
         aria-label="contact"
         className="fixed bottom-20 right-6 z-30 flex h-14 w-14 items-center justify-center rounded-full bg-white text-purple-700 shadow-xl transition hover:scale-105"
@@ -992,11 +1212,25 @@ function BestFromEvoca() {
         </svg>
       </button>
 
-      {/* bottom contact bar */}
       <div className="fixed bottom-0 left-0 right-0 z-20 bg-purple-900/90 py-2 text-center text-sm text-white backdrop-blur">
         Գրեք մեզ, մենք online ենք​ !
       </div>
     </section>
+  )
+}
+
+function App() {
+  return (
+    <>
+      <Header />
+      <Slider />
+      <Biometric />
+      <BestFromEvoca />
+      <CardsShowcase />
+      <Calculator />
+      <OnlineBankingBanner />
+      <Partners />
+    </>
   )
 }
 
