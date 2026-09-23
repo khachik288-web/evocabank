@@ -1,6 +1,12 @@
-import { useState, useEffect, useRef } from 'react'
-import './App.css'
+import React, { useState, useEffect, useRef } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Container, Row, Col, Form } from 'react-bootstrap';
+import { FaFacebookF, FaInstagram, FaPinterestP, FaYoutube, FaLinkedinIn } from 'react-icons/fa';
+import './App.css';
 
+
+
+// --- 1. HEADER ---
 function Header() {
   const topLinks = [
     'Անձնական',
@@ -10,7 +16,7 @@ function Header() {
     'Նորություններ',
     'Բլոգ',
     'Կարիերա',
-  ]
+  ];
 
   const mainLinks = [
     'Վարկեր',
@@ -21,11 +27,10 @@ function Header() {
     'Արժեթղթեր',
     'EvocaSALARY',
     'EvocaTOUCH',
-  ]
+  ];
 
   return (
     <header className="w-full text-sm">
-      {/* Top thin bar */}
       <div className="border-b border-gray-200 px-6">
         <div className="mx-auto flex max-w-7xl items-center justify-between">
           <nav className="hidden lg:flex items-center">
@@ -93,7 +98,6 @@ function Header() {
         </div>
       </div>
 
-      {/* Main bar */}
       <div className="px-6 py-4">
         <div className="mx-auto flex max-w-7xl items-center justify-between">
           <div className="flex items-center gap-10">
@@ -119,9 +123,10 @@ function Header() {
         </div>
       </div>
     </header>
-  )
+  );
 }
 
+// --- 2. SLIDER ---
 function Slider() {
   const slides = [
     {
@@ -131,8 +136,7 @@ function Slider() {
       textColor: 'text-white',
       subTextColor: 'text-purple-100',
       buttonClass: 'bg-white text-purple-700 hover:bg-purple-50',
-      image:
-        'https://www.evoca.am/images-cache/sliders/1/17740137222872/7152cafab4609e8483a365f79ecf04cb-577x486.png',
+      image: 'https://www.evoca.am/images-cache/sliders/1/17740137222872/7152cafab4609e8483a365f79ecf04cb-577x486.png',
     },
     {
       bg: 'bg-gray-200',
@@ -141,8 +145,7 @@ function Slider() {
       textColor: 'text-gray-900',
       subTextColor: 'text-gray-600',
       buttonClass: 'bg-purple-700 text-white hover:bg-purple-800',
-      image:
-        'https://www.evoca.am/images-cache/sliders/1/17480089224912/4012c7541d8db15b5666bb0e4f4bdf7a-576x486.png',
+      image: 'https://www.evoca.am/images-cache/sliders/1/17480089224912/4012c7541d8db15b5666bb0e4f4bdf7a-576x486.png',
     },
     {
       bg: 'bg-black',
@@ -151,8 +154,7 @@ function Slider() {
       textColor: 'text-white',
       subTextColor: 'text-gray-300',
       buttonClass: 'bg-white text-purple-700 hover:bg-purple-50',
-      image:
-        'https://www.evoca.am/images-cache/sliders/1/17612202124044/b74e87ec0e83aa10cb128d41f0ada026-577x486.png',
+      image: 'https://www.evoca.am/images-cache/sliders/1/17612202124044/b74e87ec0e83aa10cb128d41f0ada026-577x486.png',
     },
     {
       bg: 'bg-gray-800',
@@ -161,31 +163,30 @@ function Slider() {
       textColor: 'text-white',
       subTextColor: 'text-gray-300',
       buttonClass: 'bg-white text-purple-700 hover:bg-purple-50',
-      image:
-        'https://www.evoca.am/images-cache/sliders/1/16856146843579/345dd727d7ee28e2cd6ec180e5d65740-577x486.jpg',
+      image: 'https://www.evoca.am/images-cache/sliders/1/16856146843579/345dd727d7ee28e2cd6ec180e5d65740-577x486.jpg',
     },
-  ]
+  ];
 
-  const [current, setCurrent] = useState(0)
-  const [flashKey, setFlashKey] = useState(0)
+  const [current, setCurrent] = useState(0);
+  const [flashKey, setFlashKey] = useState(0);
 
   const goTo = (index) => {
-    const nextIndex = (index + slides.length) % slides.length
-    setCurrent(nextIndex)
-    setFlashKey((k) => k + 1)
-  }
+    const nextIndex = (index + slides.length) % slides.length;
+    setCurrent(nextIndex);
+    setFlashKey((k) => k + 1);
+  };
 
-  const goNext = () => goTo(current + 1)
-  const goPrev = () => goTo(current - 1)
+  const goNext = () => goTo(current + 1);
+  const goPrev = () => goTo(current - 1);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      goTo(current + 1)
-    }, 5000)
-    return () => clearInterval(timer)
-  }, [current])
+      goTo(current + 1);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [current]);
 
-  const slide = slides[current]
+  const slide = slides[current];
 
   return (
     <div className={`relative overflow-hidden transition-colors duration-500 ${slide.bg}`}>
@@ -247,9 +248,10 @@ function Slider() {
         </button>
       </div>
     </div>
-  )
+  );
 }
 
+// --- 3. BIOMETRIC ---
 function BiometricFaceMask() {
   return (
     <svg
@@ -272,7 +274,7 @@ function BiometricFaceMask() {
         <circle key={i} cx={cx} cy={cy} r="2" fill="white" />
       ))}
     </svg>
-  )
+  );
 }
 
 function BiometricFaces() {
@@ -280,15 +282,15 @@ function BiometricFaces() {
     'https://www.evoca.am/img/temp/biometric/face1.png',
     'https://www.evoca.am/img/temp/biometric/face2.png',
     'https://www.evoca.am/img/temp/biometric/face3.png',
-  ]
-  const [current, setCurrent] = useState(0)
+  ];
+  const [current, setCurrent] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrent((c) => (c + 1) % faces.length)
-    }, 3000)
-    return () => clearInterval(timer)
-  }, [faces.length])
+      setCurrent((c) => (c + 1) % faces.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, [faces.length]);
 
   return (
     <>
@@ -304,7 +306,7 @@ function BiometricFaces() {
       ))}
       <BiometricFaceMask />
     </>
-  )
+  );
 }
 
 function Biometric() {
@@ -315,16 +317,12 @@ function Biometric() {
           <div
             className="absolute left-1/2 top-1/2 h-[380px] w-[380px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-60"
             style={{
-              backgroundImage:
-                'radial-gradient(circle, #d1d5db 1.5px, transparent 1.5px)',
+              backgroundImage: 'radial-gradient(circle, #d1d5db 1.5px, transparent 1.5px)',
               backgroundSize: '14px 14px',
             }}
           />
 
-          <svg
-            viewBox="0 0 360 440"
-            className="absolute inset-0 h-full w-full drop-shadow-lg"
-          >
+          <svg viewBox="0 0 360 440" className="absolute inset-0 h-full w-full drop-shadow-lg">
             <path
               d="M 70,30 L 290,30 Q 330,30 315.32,67.2 L 194.68,372.8 Q 180,410 165.32,372.8 L 44.68,67.2 Q 30,30 70,30 Z"
               className="fill-purple-700"
@@ -355,9 +353,10 @@ function Biometric() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
+// --- 4. CARDS SHOWCASE ---
 const CARDS_DATA = [
   { id: 1, name: 'Visa Classic', img: 'https://www.evoca.am/images-cache/cards/1/1714986642953/415x261.png' },
   { id: 2, name: 'Mastercard Standard', img: 'https://www.evoca.am/images-cache/cards/1/17404717644263/415x261.png' },
@@ -366,55 +365,52 @@ const CARDS_DATA = [
   { id: 5, name: 'Arca UnionPay Co-badge', img: 'https://www.evoca.am/images-cache/cards/1/17404717113297/415x261.png' },
   { id: 6, name: 'Wilco Visa Infinite', img: 'https://www.evoca.am/images-cache/cards/1/17404717289057/415x261.png' },
   { id: 7, name: 'Evoca Gift Card', img: 'https://www.evoca.am/images-cache/cards/1/17149865646885/415x261.png' },
-  { id: 8, name: 'Digital Gift Card', img: 'https://www.evoca.am/images-cache/cards/1/17815131185095/415x261.png' }
+  { id: 8, name: 'Digital Gift Card', img: 'https://www.evoca.am/images-cache/cards/1/17815131185095/415x261.png' },
 ];
 
 function TiltCard({ card }) {
   const cardRef = useRef(null);
   const [style, setStyle] = useState({
     transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)',
-    transition: 'transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1)'
+    transition: 'transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1)',
   });
 
   const handleMouseMove = (e) => {
     if (!cardRef.current) return;
     const { left, top, width, height } = cardRef.current.getBoundingClientRect();
-    
     const x = (e.clientX - left - width / 2) / (width / 2);
     const y = (e.clientY - top - height / 2) / (height / 2);
-
-    const rotateX = y * -15; 
+    const rotateX = y * -15;
     const rotateY = x * 15;
 
     setStyle({
       transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(0.96, 0.96, 0.96)`,
-      transition: 'transform 0.1s ease-out'
+      transition: 'transform 0.1s ease-out',
     });
   };
 
   const handleMouseLeave = () => {
     setStyle({
       transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)',
-      transition: 'transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1)'
+      transition: 'transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1)',
     });
   };
 
   return (
     <div className="relative flex justify-center items-center w-full max-w-[450px]">
-      <div 
+      <div
         ref={cardRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         style={style}
         className="cursor-pointer z-10"
       >
-        <img 
-          src={card.img} 
-          alt={card.name} 
-          className="w-[415px] max-w-full h-auto object-cover rounded-xl shadow-2xl" 
+        <img
+          src={card.img}
+          alt={card.name}
+          className="w-[415px] max-w-full h-auto object-cover rounded-xl shadow-2xl"
         />
       </div>
-      
       <div className="absolute -bottom-8 w-[80%] h-8 bg-black/10 blur-xl rounded-[100%] pointer-events-none"></div>
     </div>
   );
@@ -429,7 +425,6 @@ function CardsShowcase() {
   return (
     <section className="bg-[#f3f6fa] py-20 px-6 w-full overflow-hidden">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12 lg:gap-16">
-        
         <div className="flex flex-col items-center shrink-0 w-[200px]">
           <button onClick={handleUp} className="text-purple-700 hover:text-purple-900 transition mb-6">
             <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
@@ -438,24 +433,24 @@ function CardsShowcase() {
           </button>
 
           <div className="h-[420px] overflow-hidden relative w-full mask-image-vertical">
-            <div 
+            <div
               className="flex flex-col gap-6 absolute w-full transition-transform duration-500 ease-in-out"
-              style={{ transform: `translateY(calc(210px - 60px - ${activeIndex * 144}px))` }} 
+              style={{ transform: `translateY(calc(210px - 60px - ${activeIndex * 144}px))` }}
             >
               {CARDS_DATA.map((card, index) => {
                 const isActive = index === activeIndex;
                 return (
-                  <div 
-                    key={card.id} 
+                  <div
+                    key={card.id}
                     onClick={() => setActiveIndex(index)}
                     className={`flex flex-col items-center cursor-pointer transition-all duration-300 ${
                       isActive ? 'opacity-100 scale-110' : 'opacity-60 scale-95 hover:opacity-80'
                     }`}
                   >
-                    <img 
-                      src={card.img} 
-                      alt={card.name} 
-                      className="w-[140px] h-auto object-cover rounded-md shadow-sm" 
+                    <img
+                      src={card.img}
+                      alt={card.name}
+                      className="w-[140px] h-auto object-cover rounded-md shadow-sm"
                     />
                     <span className="text-xs font-semibold text-gray-800 mt-3 text-center">
                       {card.name}
@@ -474,7 +469,7 @@ function CardsShowcase() {
         </div>
 
         <div className="flex-1 flex justify-center perspective-1000 w-full">
-           <TiltCard card={CARDS_DATA[activeIndex]} />
+          <TiltCard card={CARDS_DATA[activeIndex]} />
         </div>
 
         <div className="w-full max-w-sm text-center md:text-left shrink-0">
@@ -485,12 +480,12 @@ function CardsShowcase() {
             Մանրամասն
           </button>
         </div>
-
       </div>
     </section>
   );
 }
 
+// --- 5. CALCULATOR ---
 const formatMoney = (num, minDecimals = 0, maxDecimals = 2) => {
   return new Intl.NumberFormat('en-US', {
     minimumFractionDigits: minDecimals,
@@ -518,9 +513,9 @@ function RangeInput({ label, value, min, max, unit, onChange, step = 1 }) {
           {unit && <span>{unit}</span>}
         </div>
       </div>
-      
+
       <div className="relative w-full h-1 mt-2 bg-gray-200 rounded-full">
-        <div 
+        <div
           className="absolute top-0 left-0 h-full bg-purple-700 rounded-full"
           style={{ width: `${percent}%` }}
         ></div>
@@ -533,7 +528,7 @@ function RangeInput({ label, value, min, max, unit, onChange, step = 1 }) {
           onChange={(e) => onChange(Number(e.target.value))}
           className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
         />
-        <div 
+        <div
           className="absolute top-1 w-0 h-0 border-l-[6px] border-r-[6px] border-b-[8px] border-transparent border-b-purple-700 pointer-events-none -translate-x-1/2"
           style={{ left: `${percent}%` }}
         ></div>
@@ -571,13 +566,11 @@ function Calculator() {
 
     if (loanType === 'annuity') {
       const monthlyPayment = (loanAmount * monthlyRate * Math.pow(1 + monthlyRate, loanTerm)) / (Math.pow(1 + monthlyRate, loanTerm) - 1);
-      
       for (let i = 1; i <= loanTerm; i++) {
         let interest = principalRemaining * monthlyRate;
         let principal = monthlyPayment - interest;
         principalRemaining -= principal;
         totalInterestPaid += interest;
-        
         schedule.push({ month: i, interest, principal, total: monthlyPayment });
       }
     } else {
@@ -586,7 +579,6 @@ function Calculator() {
         let interest = principalRemaining * monthlyRate;
         principalRemaining -= monthlyPrincipal;
         totalInterestPaid += interest;
-        
         schedule.push({ month: i, interest, principal: monthlyPrincipal, total: monthlyPrincipal + interest });
       }
     }
@@ -602,13 +594,13 @@ function Calculator() {
         <h2 className="text-3xl font-bold text-gray-900 text-center mb-10">Հաշվիչներ</h2>
 
         <div className="flex px-4">
-          <button 
+          <button
             onClick={() => setActiveTab('loan')}
             className={`px-8 py-3 rounded-t-xl font-semibold transition-colors ${activeTab === 'loan' ? 'bg-white text-gray-900 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] relative z-10' : 'bg-transparent text-gray-500 hover:text-gray-700'}`}
           >
             Վարկ
           </button>
-          <button 
+          <button
             onClick={() => setActiveTab('deposit')}
             className={`px-8 py-3 rounded-t-xl font-semibold transition-colors ${activeTab === 'deposit' ? 'bg-white text-gray-900 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] relative z-10' : 'bg-transparent text-gray-500 hover:text-gray-700'}`}
           >
@@ -623,7 +615,7 @@ function Calculator() {
                 <RangeInput label="Վարկի գումար" value={loanAmount} min={0} max={50000000} onChange={setLoanAmount} step={10000} />
                 <RangeInput label="Ժամկետ" value={loanTerm} min={1} max={1200} unit=" ամիս" onChange={setLoanTerm} />
                 <RangeInput label="Տարեկան տոկոսադրույք" value={loanRate} min={1} max={36} unit=" %" onChange={setLoanRate} />
-                
+
                 <div className="mb-6">
                   <span className="text-gray-400 text-sm block mb-3">Մարման ձև</span>
                   <div className="flex gap-6">
@@ -649,7 +641,7 @@ function Calculator() {
                 <p className="text-gray-400 text-xs text-center md:text-left mb-4 md:mb-0 max-w-sm">
                   Բոլոր հաշվարկները կրում են մոտավոր բնույթ և չեն հանդիսանում հրապարակային առաջարկ:
                 </p>
-                <button 
+                <button
                   onClick={() => setShowModal(true)}
                   className="bg-[#5c00b3] hover:bg-purple-800 text-white font-semibold py-3 px-10 rounded-full transition-colors w-full md:w-auto"
                 >
@@ -699,14 +691,12 @@ function Calculator() {
       {showModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
           <div className="bg-white rounded-2xl w-full max-w-4xl max-h-[90vh] flex flex-col shadow-2xl relative animate-fade-in-up">
-            
             <button onClick={() => setShowModal(false)} className="absolute right-4 top-4 text-gray-400 hover:text-gray-700">
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
             </button>
 
             <div className="p-6 sm:p-8 pb-4">
               <h3 className="text-2xl font-bold text-gray-800 mb-6">Վարկային հաշվիչի արդյունքներ</h3>
-              
               <div className="grid grid-cols-2 sm:grid-cols-4 bg-[#f3f4f6] rounded-xl overflow-hidden mb-6">
                 <div className="p-4 border-r border-b sm:border-b-0 border-white">
                   <span className="text-xs text-gray-500 block mb-1">Գումար</span>
@@ -758,36 +748,24 @@ function Calculator() {
                 <div className="w-1/4 text-blue-900">{formatMoney(loanData.totalPayment, 2)}</div>
               </div>
             </div>
-
           </div>
         </div>
       )}
-      
-      <style>{`
-        .animate-fade-in { animation: fadeIn 0.4s ease-out; }
-        .animate-fade-in-up { animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
-        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
-        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 4px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
-      `}</style>
     </section>
   );
 }
 
+// --- 6. ONLINE BANKING BANNER ---
 function OnlineBankingBanner() {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
   return (
     <section className="w-full overflow-hidden bg-white">
       <div className="relative w-full bg-[#5c00b3] p-10 max-[550px]:p-5 max-[550px]:pt-8 lg:p-16 flex flex-col lg:flex-row items-center justify-between gap-12 max-[550px]:gap-6 overflow-hidden">
-        
         <div className="absolute top-10 left-10 max-[550px]:left-2 max-[550px]:top-4 w-8 h-8 max-[550px]:w-5 max-[550px]:h-5 border-[6px] max-[550px]:border-[4px] border-[#ff47d6] rounded-full opacity-80 z-0"></div>
         <div className="absolute top-20 right-10 max-[550px]:right-2 w-0 h-0 border-l-[12px] border-r-[12px] border-b-[20px] max-[550px]:border-l-[8px] max-[550px]:border-r-[8px] max-[550px]:border-b-[14px] border-transparent border-b-[#facc15] opacity-80 z-0 rotate-12"></div>
         <div className="absolute bottom-10 right-20 max-[550px]:right-4 max-[550px]:bottom-4 w-8 h-8 opacity-80 z-0 text-[#ff47d6]">
-           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 12 L20 12 M12 4 L12 20" stroke="currentColor" strokeWidth="4" strokeLinecap="round"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 12 L20 12 M12 4 L12 20" stroke="currentColor" strokeWidth="4" strokeLinecap="round"/></svg>
         </div>
 
         <div className="relative flex flex-col md:flex-row items-end justify-center w-full lg:w-1/2 gap-4 max-[550px]:gap-2 z-10 mt-4">
@@ -796,12 +774,12 @@ function OnlineBankingBanner() {
               <div className="relative aspect-video bg-gray-900 rounded-[4px] overflow-hidden group">
                 {!isVideoPlaying ? (
                   <>
-                    <img 
-                      src="https://www.evoca.am/images-cache/banners/1/16170067683633/485x304.jpg" 
-                      alt="EvocaTOUCH Video Cover" 
+                    <img
+                      src="https://www.evoca.am/images-cache/banners/1/16170067683633/485x304.jpg"
+                      alt="EvocaTOUCH Video Cover"
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
-                    <div 
+                    <div
                       className="absolute inset-0 bg-black/20 flex items-center justify-center cursor-pointer"
                       onClick={() => setIsVideoPlaying(true)}
                     >
@@ -812,20 +790,18 @@ function OnlineBankingBanner() {
                     </div>
                   </>
                 ) : (
-                  <iframe 
-                    id="video-KwAgMHEx8ys" 
+                  <iframe
+                    id="video-KwAgMHEx8ys"
                     className="w-full h-full absolute top-0 left-0"
-                    src="https://www.youtube.com/embed/KwAgMHEx8ys?autoplay=1&enablejsapi=1" 
-                    frameBorder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowFullScreen 
+                    src="https://www.youtube.com/embed/KwAgMHEx8ys?autoplay=1&enablejsapi=1"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
                     title="EvocaTOUCH"
                   ></iframe>
                 )}
               </div>
-              <div className="absolute top-1.5 max-[550px]:top-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 max-[550px]:w-1 max-[550px]:h-1 bg-gray-600 rounded-full"></div>
             </div>
-            
             <div className="relative h-4 max-[550px]:h-3 bg-[#b5b7ba] rounded-b-xl shadow-lg flex justify-center z-20 mx-[-4px]">
               <div className="w-24 max-[550px]:w-16 h-[6px] max-[550px]:h-[4px] bg-[#939598] rounded-b-md"></div>
             </div>
@@ -834,12 +810,11 @@ function OnlineBankingBanner() {
 
           <div className="relative w-[120px] max-[550px]:w-[85px] shrink-0 transform md:-translate-x-12 translate-y-6 max-[550px]:translate-y-2 md:translate-y-0 z-30">
             <div className="border-[5px] max-[550px]:border-[3px] border-[#1a1a1a] rounded-[24px] max-[550px]:rounded-[16px] overflow-hidden bg-black shadow-2xl relative">
-              <img 
-                src="https://www.evoca.am/images-cache/banners/1/16153622710205/140x300.jpg" 
-                alt="Evoca Mobile App" 
-                className="w-full h-auto block" 
+              <img
+                src="https://www.evoca.am/images-cache/banners/1/16153622710205/140x300.jpg"
+                alt="Evoca Mobile App"
+                className="w-full h-auto block"
               />
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-10 max-[550px]:w-6 h-3 max-[550px]:h-2 bg-[#1a1a1a] rounded-b-lg max-[550px]:rounded-b-md"></div>
             </div>
           </div>
         </div>
@@ -851,59 +826,17 @@ function OnlineBankingBanner() {
           <p className="text-[15px] max-[550px]:text-[13px] leading-relaxed mb-8 max-[550px]:mb-6 text-[#e2d5f8] max-w-md font-light">
             Evocabank-ը արագ, պարզ և նորարար ծառայություններ մատուցող բանկ է, որն առանձնանում է տեղեկատվական նորագույն տեխնոլոգիաների ակտիվ կիրառմամբ:
           </p>
-          
+
           <button className="bg-white text-[#5c00b3] px-8 max-[550px]:px-6 py-3.5 max-[550px]:py-3 rounded-full font-bold max-[550px]:text-sm shadow-lg hover:bg-gray-100 transition-colors mb-10 max-[550px]:mb-8 w-max max-[550px]:w-full">
             Դառնալ հաճախորդ
           </button>
-          
-          <div className="flex flex-col max-[550px]:flex-col sm:flex-row items-center sm:items-start gap-6 max-[550px]:gap-4 w-full justify-center lg:justify-start">
-            <div className="bg-white p-1.5 rounded-lg shadow-md shrink-0 max-[550px]:hidden">
-              <img 
-                src="https://www.evoca.am/images-cache/banners/1/16136269557179/101x101.png" 
-                alt="Download App QR Code" 
-                className="w-[85px] h-[85px] object-cover" 
-              />
-            </div>
-            
-            <div className="flex flex-col items-center sm:items-start">
-              <p className="text-xs mb-3 font-medium text-[#e2d5f8]">Ներբեռնել հավելվածները՝</p>
-              <div className="flex gap-3 max-[550px]:w-full max-[550px]:justify-center">
-                <a 
-                  href="https://apps.apple.com/am/app/evocatouch/id970309076" 
-                  target="_blank" 
-                  rel="noreferrer"
-                  className="flex items-center gap-2 bg-black border border-gray-700 hover:border-gray-500 text-white rounded-lg px-2.5 py-1.5 max-[550px]:flex-1 max-[550px]:justify-center transition-colors"
-                >
-                  <svg viewBox="0 0 24 24" className="w-5 h-5 max-[550px]:w-4 max-[550px]:h-4 fill-white"><path d="M16.365 14.363c-.015-2.27 1.83-3.375 1.91-3.42-1.045-1.53-2.67-1.74-3.255-1.77-1.38-.135-2.685.81-3.39.81-.705 0-1.77-.78-2.91-.765-1.5.015-2.88.87-3.645 2.205-1.56 2.685-.39 6.66 1.125 8.85.735 1.065 1.62 2.25 2.76 2.205 1.095-.045 1.515-.72 2.835-.72 1.32 0 1.695.72 2.835.69 1.185-.015 1.95-1.08 2.685-2.145.855-1.245 1.2-2.46 1.215-2.52-.03-.015-2.145-.825-2.16-3.42zM15.015 9.123c.6-.735.99-1.755.885-2.775-.87.03-1.95.585-2.58 1.305-.54.615-1.005 1.65-.87 2.655.975.075 1.965-.45 2.565-1.185z"/></svg>
-                  <div className="flex flex-col items-start leading-none">
-                    <span className="text-[9px] max-[550px]:text-[8px] text-gray-300">Download on the</span>
-                    <span className="text-[13px] max-[550px]:text-[11px] font-semibold -mt-0.5">App Store</span>
-                  </div>
-                </a>
-
-                <a 
-                  href="https://play.google.com/store/apps/details?id=am.prometeybank.mobilebank&hl=en&gl=US" 
-                  target="_blank" 
-                  rel="noreferrer"
-                  className="flex items-center gap-2 bg-black border border-gray-700 hover:border-gray-500 text-white rounded-lg px-2.5 py-1.5 max-[550px]:flex-1 max-[550px]:justify-center transition-colors"
-                >
-                  <svg viewBox="0 0 24 24" className="w-5 h-5 max-[550px]:w-4 max-[550px]:h-4"><path fill="#4caf50" d="M4 2v20l14-10z"/><path fill="#ffeb3b" d="M18 12l-5-3.5-3.5 3.5 3.5 3.5z"/><path fill="#f44336" d="M4 2l9.5 6.5-4 4z"/><path fill="#2196f3" d="M4 22l9.5-6.5-4-4z"/></svg>
-                  <div className="flex flex-col items-start leading-none">
-                    <span className="text-[9px] max-[550px]:text-[8px] text-gray-300">GET IT ON</span>
-                    <span className="text-[13px] max-[550px]:text-[11px] font-semibold -mt-0.5">Google Play</span>
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
-
         </div>
       </div>
     </section>
   );
 }
 
-// --- ИСПРАВЛЕННЫЙ И ВЫЛИЗАННЫЙ КОМПОНЕНТ ПАРТНЕРОВ ---
+// --- 7. PARTNERS ---
 const PARTNERS_DATA = [
   { id: 1, name: 'Partner 1', logo: 'https://www.evoca.am/images-cache/partners/1/16104583322099/185x80_grayscale.png', url: '#' },
   { id: 2, name: 'Partner 2', logo: 'https://www.evoca.am/images-cache/partners/1/17689930369925/185x80_grayscale.png', url: '#' },
@@ -911,117 +844,44 @@ const PARTNERS_DATA = [
   { id: 4, name: 'Partner 4', logo: 'https://www.evoca.am/images-cache/partners/1/1610459808737/185x80_grayscale.png', url: '#' },
   { id: 5, name: 'Partner 5', logo: 'https://www.evoca.am/images-cache/partners/1/16104599802947/185x80_grayscale.png', url: '#' },
   { id: 6, name: 'Partner 6', logo: 'https://www.evoca.am/images-cache/partners/1/16104603665095/185x80_grayscale.png', url: '#' },
-  { id: 7, name: 'Partner 7', logo: 'https://www.evoca.am/images-cache/partners/1/16104604109064/185x80_grayscale.png', url: '#' },
-  { id: 8, name: 'Partner 8', logo: 'https://www.evoca.am/images-cache/partners/1/16104604382658/185x80_grayscale.png', url: '#' },
-  { id: 9, name: 'Partner 9', logo: 'https://www.evoca.am/images-cache/partners/1/17104032198171/185x80_grayscale.png', url: '#' },
-  { id: 10, name: 'Partner 10', logo: 'https://www.evoca.am/images-cache/partners/1/17077436606929/185x80_grayscale.png', url: '#' },
-  { id: 11, name: 'Partner 11', logo: 'https://www.evoca.am/images-cache/partners/1/17107493820339/185x80_grayscale.png', url: '#' },
-]
-
-function DottedCircles() {
-  return (
-    <svg
-      viewBox="0 0 300 300"
-      className="absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 opacity-80 pointer-events-none"
-    >
-      {[40, 58, 76, 94, 112, 130].map((r, ringIdx) => {
-        const count = 16 + ringIdx * 8
-        return Array.from({ length: count }).map((_, i) => {
-          const angle = (i / count) * Math.PI * 2
-          const cx = 150 + r * Math.cos(angle)
-          const cy = 150 + r * Math.sin(angle)
-          return <circle key={`${ringIdx}-${i}`} cx={cx} cy={cy} r="1.8" fill="#facc15" />
-        })
-      })}
-    </svg>
-  )
-}
+];
 
 function Partners() {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [visibleCount, setVisibleCount] = useState(4)
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(4);
 
-  // Идеально просчитанные адаптивные брекпоинты
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 640) setVisibleCount(1)
-      else if (window.innerWidth < 1024) setVisibleCount(2)
-      else if (window.innerWidth < 1280) setVisibleCount(3)
-      else setVisibleCount(4)
-    }
-    handleResize()
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
+      if (window.innerWidth < 640) setVisibleCount(1);
+      else if (window.innerWidth < 1024) setVisibleCount(2);
+      else if (window.innerWidth < 1280) setVisibleCount(3);
+      else setVisibleCount(4);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
-  const maxIndex = Math.max(0, PARTNERS_DATA.length - visibleCount)
+  const maxIndex = Math.max(0, PARTNERS_DATA.length - visibleCount);
 
-  // Защита от вылета индекса за пределы при изменчивости visibleCount
-  useEffect(() => {
-    if (currentIndex > maxIndex) {
-      setCurrentIndex(maxIndex)
-    }
-  }, [visibleCount, maxIndex, currentIndex])
-
-  const handleNext = () => {
-    setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1))
-  }
-
-  const handlePrev = () => {
-    setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1))
-  }
+  const handleNext = () => setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+  const handlePrev = () => setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
 
   return (
     <section className="bg-white py-16 lg:py-24 px-4 sm:px-6 w-full overflow-hidden">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-12 w-full">
-        
-        {/* Левая часть: Текст и Кнопка */}
         <div className="w-full lg:w-[380px] xl:w-[420px] shrink-0 text-center lg:text-left">
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4 lg:mb-6">
             Գործընկերներ
           </h2>
           <p className="text-sm lg:text-[15px] text-gray-600 leading-relaxed mb-6 lg:mb-8">
-            Դարձեք Evocabank-ի Գործընկեր և եկեք միասին գնանք դեպի գունեղ նոր իրականություն: Դառնալով Evoca ընտանիքի անդամ` Դուք մուտք կգործեք ժամանակակից և յուրահատուկ աշխարհ: Մենք մշտապես բաց ենք հետաքրքիր առաջարկների ու համագործակցությունների համար:
+            Դարձեք Evocabank-ի Գործընկեր և եկեք միասին գնանք դեպի գունեղ նոր իրականություն:
           </p>
-          <a
-            href="#"
-            className="inline-flex items-center gap-2 bg-[#f0e6fb] hover:bg-[#e4d3f8] text-purple-800 font-semibold px-6 py-2.5 rounded-full text-sm transition-colors shadow-sm"
-          >
-            Բոլոր գործընկերները
-            <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-            </svg>
-          </a>
         </div>
 
-        {/* Правая часть: min-w-0 здесь КРИТИЧЕСКИ ВАЖЕН для защиты Flexbox от переполнения */}
         <div className="relative min-w-0 flex-1 w-full bg-[#f8f9fc] rounded-2xl py-8 px-3 sm:px-6 flex items-center shadow-sm">
-          
-          {/* Декоративный круг из точек и рука */}
-          <div className="absolute -left-8 xl:-left-12 top-1/2 -translate-y-1/2 w-56 xl:w-64 h-56 xl:h-64 hidden md:block pointer-events-none z-10">
-            <DottedCircles />
-            <img
-              src="https://www.evoca.am/img/hand.png"
-              alt="Evoca Hand"
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[280px] xl:h-[340px] max-w-none object-contain z-20 filter drop-shadow-md"
-            />
-          </div>
-
-          {/* Контейнер карусели со стрелками */}
-          <div className="flex items-center w-full pl-0 md:pl-20 xl:pl-28 pr-1 sm:pr-2 gap-1 sm:gap-3 z-20 min-w-0">
-            
-            {/* Стрелка Влево */}
-            <button
-              onClick={handlePrev}
-              className="text-purple-700 hover:text-purple-900 hover:bg-purple-100/50 rounded-full transition p-2 shrink-0 focus:outline-none"
-              aria-label="Previous partners"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-
-            {/* Вьюпорт слайдера */}
+          <div className="flex items-center w-full gap-3 z-20 min-w-0">
+            <button onClick={handlePrev} className="text-purple-700 p-2">‹</button>
             <div className="overflow-hidden flex-1 min-w-0">
               <div
                 className="flex transition-transform duration-500 ease-in-out"
@@ -1030,305 +890,846 @@ function Partners() {
                 {PARTNERS_DATA.map((partner) => (
                   <div
                     key={partner.id}
-                    className="shrink-0 px-2 sm:px-4 flex items-center justify-center border-r border-gray-200/80 last:border-r-0"
+                    className="shrink-0 px-4 flex items-center justify-center"
                     style={{ width: `${100 / visibleCount}%` }}
                   >
-                    <a
-                      href={partner.url}
-                      className="group flex items-center justify-center h-16 sm:h-20 w-full hover:scale-105 transition-transform duration-300"
-                    >
-                      <img
-                        src={partner.logo}
-                        alt={partner.name}
-                        className="max-h-10 sm:max-h-12 max-w-[100px] sm:max-w-[130px] object-contain transition-all duration-300 group-hover:brightness-90"
-                      />
-                    </a>
+                    <img src={partner.logo} alt={partner.name} className="max-h-12 object-contain" />
                   </div>
                 ))}
               </div>
             </div>
-
-            {/* Стрелка Вправо */}
-            <button
-              onClick={handleNext}
-              className="text-purple-700 hover:text-purple-900 hover:bg-purple-100/50 rounded-full transition p-2 shrink-0 focus:outline-none"
-              aria-label="Next partners"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-
+            <button onClick={handleNext} className="text-purple-700 p-2">›</button>
           </div>
-
         </div>
-
       </div>
     </section>
-  )
+  );
 }
 
-function DotRing() {
-  const rings = [46, 39, 32, 25, 18]
-  return (
-    <svg viewBox="0 0 400 400" className="absolute inset-0 h-full w-full">
-      {rings.map((r, ringIndex) => {
-        const count = 22 + ringIndex * 4
-        return Array.from({ length: count }).map((_, i) => {
-          const angle = (i / count) * Math.PI * 2
-          const radius = r * 4
-          const cx = 200 + radius * Math.cos(angle)
-          const cy = 200 + radius * Math.sin(angle)
-          return (
-            <circle
-              key={`${ringIndex}-${i}`}
-              cx={cx}
-              cy={cy}
-              r="2"
-              fill="#56CCF2"
-              opacity="0.4"
-              className="dotring-pulse"
-              style={{ animationDelay: `${(ringIndex * 0.3 + i * 0.03).toFixed(2)}s` }}
-            />
-          )
-        })
-      })}
-    </svg>
-  )
-}
-
-function StatueIllustration() {
-  return (
-    <svg viewBox="0 0 240 320" className="relative z-10 h-full w-full drop-shadow-2xl">
-      <defs>
-        <linearGradient id="statueGrad" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#f4f4f6" />
-          <stop offset="100%" stopColor="#c9cdd6" />
-        </linearGradient>
-      </defs>
-      <ellipse cx="120" cy="55" rx="34" ry="40" fill="url(#statueGrad)" />
-      <path d="M86 40 Q120 5 154 40 L150 55 Q120 30 90 55 Z" fill="url(#statueGrad)" />
-      <path
-        d="M95 90 L145 90 L170 140 Q180 220 165 300 L75 300 Q60 220 70 140 Z"
-        fill="url(#statueGrad)"
-      />
-      <path d="M95 120 Q120 160 100 300" stroke="#9aa0ab" strokeWidth="2" fill="none" opacity="0.5" />
-      <path d="M145 120 Q120 170 140 300" stroke="#9aa0ab" strokeWidth="2" fill="none" opacity="0.5" />
-      <path d="M75 170 Q55 190 60 230 Q65 250 90 250" fill="url(#statueGrad)" />
-      <path d="M165 170 Q185 190 180 230 Q175 250 150 250" fill="url(#statueGrad)" />
-      <circle cx="120" cy="245" r="34" fill="url(#statueGrad)" stroke="#9aa0ab" strokeWidth="1" />
-      <circle cx="108" cy="233" r="8" fill="#ffffff" opacity="0.6" />
-    </svg>
-  )
-}
-
+// --- 8. BEST FROM EVOCA ---
 function BestFromEvoca() {
   const cards = [
-    {
-      tag: 'Թվային քարտեր',
-      title: 'Evoca Digital քարտ',
-      desc: 'Evoca Digital քարտն արդեն հասանելի է EvocaTOUCH հավելվածով։ Ակտիվացրու այն հիմա և ընտրիր քո սիրելի դիզայնը։',
-    },
-    {
-      tag: 'Նվեր քարտեր',
-      title: 'Evoca Gift Card',
-      desc: 'Գնիր Evoca Gift Card, և լավագույն նվերը կլինի քոնը: Քարտը հարմար է բոլոր առիթների համար:',
-    },
-    {
-      tag: 'Նոր հավելված',
-      title: 'EvocaTOUCH 2',
-      desc: 'EvocaTOUCH-ը պարզապես բանկային հավելված չէ, վստահ ենք՝ այն քեզ համար դառնալու է ապրելակերպ։',
-    },
-    {
-      tag: 'Օնլայն վճարումներ',
-      title: 'Արագ online վճարումներ',
-      desc: 'Կատարիր քո ընթացիկ վճարումները Evocabank-ի online տերմինալի միջոցով՝ պարզ և արագ: Այն հասանելի է 24/7:',
-    },
-  ]
-
-  const triangles = [
-    { className: 'left-[8%] top-[8%] h-10 w-10 -rotate-12', color: '#ffffff33' },
-    { className: 'right-[10%] top-[4%] h-8 w-8 rotate-45', color: '#facc15' },
-    { className: 'right-[4%] top-[45%] h-6 w-6 rotate-12', color: '#a78bfa' },
-    { className: 'left-[4%] bottom-[20%] h-7 w-7 -rotate-45', color: '#ffffff33' },
-    { className: 'left-[14%] bottom-[6%] h-5 w-5 rotate-90', color: '#facc15' },
-    { className: 'right-[16%] bottom-[10%] h-9 w-9 rotate-6', color: '#a78bfa' },
-  ]
+    { tag: 'Թվային քարտեր', title: 'Evoca Digital քարտ', desc: 'Evoca Digital քարտն արդեն հասանելի է EvocaTOUCH հավելվածով։' },
+    { tag: 'Նվեր քարտեր', title: 'Evoca Gift Card', desc: 'Գնիր Evoca Gift Card, և լավագույն նվերը կլինի քոնը:' },
+    { tag: 'Նոր հավելված', title: 'EvocaTOUCH 2', desc: 'EvocaTOUCH-ը պարզապես բանկային հավելված չէ։' },
+    { tag: 'Օնլայն վճարումներ', title: 'Արագ online վճարումներ', desc: 'Կատարիր քո ընթացիկ վճարումները Evocabank-ի online տերմինալի միջոցով։' },
+  ];
 
   return (
     <section className="relative overflow-hidden bg-purple-700 py-20">
-      {triangles.map((t, i) => (
-        <div
-          key={i}
-          className={`pointer-events-none absolute ${t.className}`}
-          style={{
-            clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
-            backgroundColor: t.color,
-          }}
-        />
-      ))}
-
       <div className="relative z-10 mx-auto max-w-7xl px-6">
-        <div className="flex flex-col items-center gap-12 md:flex-row md:items-start md:gap-16">
-          <div className="relative h-[320px] w-[280px] shrink-0">
-            <DotRing />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="h-[85%] w-[65%]">
-                <StatueIllustration />
-              </div>
+        <h2 className="mb-8 text-2xl font-bold text-white md:text-4xl text-center md:text-left">
+          Լավագույնը Evocabank-ից
+        </h2>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          {cards.map((c) => (
+            <div key={c.title} className="rounded-2xl bg-white p-6 shadow-lg">
+              <span className="mb-3 inline-block rounded bg-purple-50 px-2 py-1 text-xs font-medium text-purple-700">
+                {c.tag}
+              </span>
+              <h3 className="mb-2 text-lg font-bold text-gray-900">{c.title}</h3>
+              <p className="text-sm text-gray-500">{c.desc}</p>
             </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// --- 9. NEWS SECTION ---
+const NEWS_DATA = [
+  { id: 1, tag: 'Կենսակերպ', title: 'Դիլիջան, մենք գալիս ենք', date: '11.09.2026', image: 'https://www.evoca.am/images-cache/news/1/17891134831451/439x320.png' },
+  { id: 2, tag: 'Կենսակերպ', title: 'Evocabank-ը՝ Retro Fest-ի ֆինանսական գործընկեր', date: '03.09.2026', image: 'https://www.evoca.am/images-cache/news/1/17884237814941/439x320.png' },
+  { id: 3, tag: 'Պրոդուկտներ', title: 'Դեպի նոր ուսումնական տարի՝ մինչև 23% cashback-ով', date: '21.08.2026', image: 'https://www.evoca.am/images-cache/news/1/17873217684586/439x320.png' },
+];
+
+function NewsSection() {
+  return (
+    <section className="bg-[#eef2fb] py-16 px-6">
+      <div className="mx-auto max-w-7xl">
+        <h2 className="mb-10 text-3xl font-bold text-gray-900 md:text-4xl">Վերջին նորությունները</h2>
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {NEWS_DATA.map((item) => (
+            <div key={item.id} className="overflow-hidden rounded-2xl bg-white shadow-sm p-4">
+              <img src={item.image} alt={item.title} className="h-48 w-full object-cover rounded-xl mb-4" />
+              <span className="text-xs font-semibold text-purple-700">{item.tag}</span>
+              <h3 className="text-lg font-bold my-2 text-gray-900">{item.title}</h3>
+              <span className="text-sm text-gray-400">{item.date}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const EVOCA_REVIEWS_DATA = [
+  {
+    id: 1,
+    text: "Բանկ, որ իր ռեբրենդինգի շքեղ միջոցառմամբ ու աշխատանքային ձևաչափով բանկային ոլորտում ամրապնդեց որակ և ճաշակ թելադրեց: Evocabank-ն առաջին իսկ վայրկյանից ստիպեց նորովի և ժամանակակից հայացքով",
+    author: "Կամո Թովմասյան",
+    role: "KAMOBLOG մեդիա-հարթակի հիմնադիր, influencer"
+  },
+  {
+    id: 2,
+    text: "Հայաստանի իրականության մեջ բացառիկ հրաշք բանկ: Միայն այս հնարավորությունը ընձեռելով երիտասարդ ընտանիքներին` նման ցածր տոկոսով բնակարան ձեռք բերել, արժանի է մեծ հարգանքի: Շնորհակալ ենք, որ Դուք կաք:",
+    author: "Սուսաննա Վանյան",
+    role: "Հաճախորդ"
+  },
+  {
+    id: 3,
+    text: "Գերազանց սպասարկում, ընտիր ու հավես անձնակազմ Ազատության մասնաճյուղում: Վարկային բաժնից շատ շնորհակալ եմ, վարկս ձևակերպվեց առանց ավելորդ քաշքշուկների` հեշտ, արագ, որակով: Սպասարկման",
+    author: "Նունե Գևորգյան",
+    role: "Հաճախորդ"
+  },
+  {
+    id: 4,
+    text: "Դեպի նոր իրականություն. ահա թե ուր ենք մենք շարժվում ամեն մի նախագիծ Evocabank-ի հետ հաջողությամբ ավարտելիս: Ավելի քան 5 տարի համագործակցելով` կարելի է ասել, որ միասին անցել ենք մի մեծ ճանապարհ` լի",
+    author: "Արամ Ագարյան",
+    role: "Indigo Branding-ի հիմնադիր"
+  },
+  {
+    id: 5,
+    text: "Լավագույն նորարարական և թվային բանկ` լավագույն ծառայություններով և անձնակազմով:",
+    author: "Էլեն Վարդանյան",
+    role: "Հաճախորդ"
+  }
+];
+
+function ReviewsSlider() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Автопереключение слайдов каждые 5 секунд
+  useEffect(() => {
+    if (!EVOCA_REVIEWS_DATA.length) return;
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % EVOCA_REVIEWS_DATA.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const review = EVOCA_REVIEWS_DATA[currentIndex];
+
+  if (!review) return null;
+
+  return (
+    <section className="py-5 position-relative overflow-hidden" style={{ backgroundColor: '#f8f9fa' }}>
+      {/* Левый декоративный элемент */}
+      <div className="position-absolute start-0 top-50 translate-middle-y d-none d-lg-block ps-5 opacity-75">
+        <div className="d-flex align-items-center gap-3">
+          <div style={{ fontSize: '80px', lineHeight: 1 }}>👌</div>
+          <div style={{ fontSize: '40px', color: '#7000ff', fontWeight: 'bold' }}>&#8221;</div>
+        </div>
+        <div style={{ width: '40px', height: '10px', borderBottom: '3px dashed #7000ff', marginTop: '10px' }}></div>
+      </div>
+
+      {/* Правый декоративный элемент (плавающий палец вверх) */}
+      <div className="position-absolute end-0 top-50 translate-middle-y d-none d-lg-block pe-5">
+        <div className="d-flex align-items-center gap-3">
+          <div style={{ fontSize: '40px', color: '#7000ff', fontWeight: 'bold' }}>&#8222;</div>
+          <div className="review__bg-item animate-box review__bg-item--2 pa floating-hand">
+            <img 
+              src="https://www.evoca.am/img/reviews/hand1.png" 
+              alt="Hand thumbs up" 
+              style={{ maxHeight: '120px', objectFit: 'contain' }}
+            />
           </div>
+        </div>
+        <div style={{ width: '50px', height: '10px', borderBottom: '3px solid #ff007f', marginTop: '10px', transform: 'rotate(-10deg)' }}></div>
+      </div>
 
-          <div className="flex-1">
-            <h2 className="mb-8 text-2xl font-bold text-white md:text-4xl">
-              Լավագույնը Evocabank-ից
-            </h2>
+      {/* Основной контент отзыва */}
+      <div className="container position-relative z-1 my-4">
+        <div className="row justify-content-center">
+          <div className="col-12 col-md-8 text-center">
+            {/* Звезды */}
+            <div className="d-flex justify-content-center gap-1 mb-4">
+              {[...Array(5)].map((_, i) => (
+                <span key={i} style={{ color: '#ffcc00', fontSize: '24px' }}>★</span>
+              ))}
+            </div>
 
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              {cards.map((c) => (
-                <a
-                  key={c.title}
-                  href="#"
-                  className="block rounded-2xl bg-white p-6 shadow-lg transition hover:-translate-y-1 hover:shadow-xl"
-                >
-                  <span className="mb-3 inline-block rounded bg-purple-50 px-2 py-1 text-xs font-medium text-purple-700">
-                    {c.tag}
-                  </span>
-                  <h3 className="mb-2 text-lg font-bold text-gray-900">{c.title}</h3>
-                  <p className="text-sm text-gray-500">{c.desc}</p>
-                </a>
+            {/* Текст отзыва с анимацией плавности */}
+            <div style={{ minHeight: '120px', transition: 'all 0.4s ease-in-out' }}>
+              <p className="fs-5 fw-medium text-dark lh-base mb-4">
+                {review.text.includes('Evocabank') ? (
+                  <>
+                    {review.text.split('Evocabank')[0]}
+                    <span style={{ color: '#7000ff', fontWeight: 'bold' }}>Evocabank</span>
+                    {review.text.split('Evocabank')[1]}
+                  </>
+                ) : (
+                  review.text
+                )}
+              </p>
+              <h6 className="fw-bold mb-1" style={{ color: '#222', fontSize: '18px' }}>
+                {review.author}
+              </h6>
+              <p className="text-muted small mb-0">{review.role}</p>
+            </div>
+
+            {/* Точки пагинации */}
+            <div className="d-flex justify-content-center align-items-center gap-2 mt-5">
+              {EVOCA_REVIEWS_DATA.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setCurrentIndex(idx)}
+                  className="border-0 rounded-circle p-0 transition-all"
+                  style={{
+                    width: idx === currentIndex ? '10px' : '8px',
+                    height: idx === currentIndex ? '10px' : '8px',
+                    backgroundColor: idx === currentIndex ? '#7000ff' : '#ccc',
+                    cursor: 'pointer'
+                  }}
+                  aria-label={`Slide ${idx + 1}`}
+                />
               ))}
             </div>
           </div>
         </div>
       </div>
 
-      <button
-        aria-label="contact"
-        className="fixed bottom-20 right-6 z-30 flex h-14 w-14 items-center justify-center rounded-full bg-white text-purple-700 shadow-xl transition hover:scale-105"
-      >
-        <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
-        </svg>
-      </button>
-
-      <div className="fixed bottom-0 left-0 right-0 z-20 bg-purple-900/90 py-2 text-center text-sm text-white backdrop-blur">
-        Գրեք մեզ, մենք online ենք​ !
-      </div>
+      {/* Стили для анимации плавающей руки */}
+      <style>{`
+        @keyframes floatHand {
+          0% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-12px) rotate(3deg); }
+          100% { transform: translateY(0px) rotate(0deg); }
+        }
+        .floating-hand {
+          animation: floatHand 4s ease-in-out infinite;
+        }
+      `}</style>
     </section>
-  )
+  );
 }
 
-const NEWS_DATA = [
+
+
+
+
+const REVIEWS = [
   {
     id: 1,
-    tag: 'Կենսակերպ',
-    tagColor: '#8bd34a',
-    title: 'Դիլիջան, մենք գալիս ենք',
-    date: '11.09.2026',
-    image: 'https://www.evoca.am/images-cache/news/1/17891134831451/439x320.png',
+    text: "Բանկ, որ իր ռեբրենդինգի շքեղ միջոցառմամբ ու աշխատանքային ձևաչափով բանկային ոլորտում ամրապնդեց որակ և ճաշակ թելադրեց: Evocabank-ն առաջին իսկ վայրկյանից ստիպեց նորովի և ժամանակակից հայացքով",
+    author: "Կամո Թովմասյան",
+    role: "KAMOBLOG մեդիա-հարթակի հիմնադիր, influencer"
   },
   {
     id: 2,
-    tag: 'Կենսակերպ',
-    tagColor: '#8bd34a',
-    title: 'Evocabank-ը՝ Retro Fest-ի ֆինանսական գործընկեր',
-    date: '03.09.2026',
-    image: 'https://www.evoca.am/images-cache/news/1/17884237814941/439x320.png',
+    text: "Հայաստանի իրականության մեջ բացառիկ հրաշք բանկ: Միայն այս հնարավորությունը ընձեռելով երիտասարդ ընտանիքներին` նման ցածր տոկոսով բնակարան ձեռք բերել, արժանի է մեծ հարգանքի: Շնորհակալ ենք, որ Դուք կաք:",
+    author: "Սուսաննա Վանյան",
+    role: "Հաճախորդ"
   },
   {
     id: 3,
-    tag: 'Պրոդուկտներ',
-    tagColor: '#e6007e',
-    title: 'Դեպի նոր ուսումնական տարի՝ մինչև 23% cashback-ով',
-    date: '21.08.2026',
-    image: 'https://www.evoca.am/images-cache/news/1/17873217684586/439x320.png',
+    text: "Գերազանց սպասարկում, ընտիր ու հավես անձնակազմ Ազատության մասնաճյուղում: Վարկային բաժնից շատ շնորհակալ եմ, վարկս ձևակերպվեց առանց ավելորդ քաշքշուկների` հեշտ, արագ, որակով: Սպասարկման",
+    author: "Նունե Գևորգյան",
+    role: "Հաճախորդ"
   },
-]
+  {
+    id: 4,
+    text: "Դեպի նոր իրականություն. ահա թե ուր ենք մենք շարժվում ամեն մի նախագիծ Evocabank-ի հետ հաջողությամբ ավարտելիս: Ավելի քան 5 տարի համագործակցելով` կարելի է ասել, որ միասին անցել ենք մի մեծ ճանապարհ` լի",
+    author: "Արամ Ագարյան",
+    role: "Indigo Branding-ի հիմնադիր"
+  },
+  {
+    id: 5,
+    text: "Լավագույն նորարարական և թվային բանկ` լավագույն ծառայություններով և անձնակազմով:",
+    author: "Էլեն Վարդանյան",
+    role: "Հաճախորդ"
+  }
+];
 
-function NewsSection() {
+
+
+
+
+
+
+
+
+function EvocaFooter() {
   return (
-    <section className="bg-[#eef2fb] py-16 px-6">
-      <div className="mx-auto max-w-7xl">
-        <div className="mb-10 flex items-center justify-between">
-          <h2 className="text-3xl font-bold text-gray-900 md:text-4xl">
-            Վերջին նորությունները
-          </h2>
-          <a
-            href="#"
-            className="hidden shrink-0 items-center gap-2 rounded-full bg-[#e4d3f8] px-6 py-3 font-semibold text-purple-800 transition-colors hover:bg-[#d8bff5] sm:inline-flex"
-          >
-            Բոլոր նորությունները
-            <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-            </svg>
-          </a>
-        </div>
+    <footer className="w-100 bg-white border-top text-dark pt-5">
+      <Container>
+        <Row className="g-4 pb-5">
+          {/* Колонках 1: Логотип, адрес и регулятор */}
+          <Col lg={3} md={6}>
+            <div className="mb-4">
+              <h3 className="fw-bold" style={{ color: '#7000ff', letterSpacing: '-1px' }}>
+                evoca<span className="fw-normal text-dark">BANK</span>
+              </h3>
+            </div>
+            <p className="text-muted small mb-4" style={{ fontSize: '13px', lineHeight: '1.6' }}>
+              ք. Երևան, 0010,<br />
+              Հանրապետության 44/2
+            </p>
+            <p className="text-muted small mb-4" style={{ fontSize: '12px', lineHeight: '1.5' }}>
+              <strong>Evocabank-ը վերահսկվում է Հայաստանի Հանրապետության Կենտրոնական բանկի կողմից</strong>
+            </p>
+            <p className="text-muted extra-small" style={{ fontSize: '11px' }}>
+              1990 - 2026, ԲՈԼՈՐ ԻՐԱՎՈՒՆՔՆԵՐԸ ՊԱՇՏՊԱՆՎԱԾ ԵՆ
+            </p>
+          </Col>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {NEWS_DATA.map((item) => (
-            <a
-              key={item.id}
-              href="#"
-              className="group overflow-hidden rounded-2xl bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
-            >
-              <div className="aspect-[439/320] w-full overflow-hidden">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
+          {/* Колонках 2: Բանկի մասին */}
+          <Col lg={3} md={6}>
+            <h6 className="fw-bold mb-3" style={{ fontSize: '15px' }}>Բանկի մասին</h6>
+            <ul className="list-unstyled text-muted small d-flex flex-column gap-2" style={{ fontSize: '13px' }}>
+              <li><a href="#about" className="text-reset text-decoration-none hover-purple">Մեր մասին</a></li>
+              <li><a href="#management" className="text-reset text-decoration-none hover-purple">Ղեկավարություն</a></li>
+              <li><a href="#shareholders" className="text-reset text-decoration-none hover-purple">Բաժնետերեր</a></li>
+              <li><a href="#reports" className="text-reset text-decoration-none hover-purple">Հաշվետվություններ</a></li>
+              <li><a href="#acts" className="text-reset text-decoration-none hover-purple">Իրավական ակտեր</a></li>
+              <li><a href="#tariffs" className="text-reset text-decoration-none hover-purple">Սակագներ</a></li>
+              <li><a href="#property" className="text-reset text-decoration-none hover-purple">Օտարվող գույք</a></li>
+              <li><a href="#builders" className="text-reset text-decoration-none hover-purple">Կառուցապատողներ</a></li>
+              <li><a href="#partners" className="text-reset text-decoration-none hover-purple">Գործընկեր ավտոսրահներ</a></li>
+              <li><a href="#archive" className="text-reset text-decoration-none hover-purple">Սակագների արխիվ</a></li>
+            </ul>
+          </Col>
 
-              <div className="p-6">
-                <div className="mb-3 flex items-center gap-2">
-                  <span
-                    className="h-4 w-[3px] rounded-full"
-                    style={{ backgroundColor: item.tagColor }}
-                  />
-                  <span className="text-sm font-medium text-gray-500">{item.tag}</span>
-                </div>
+          {/* Колонках 3: Օգտակար հղումներ */}
+          <Col lg={3} md={6}>
+            <h6 className="fw-bold mb-3" style={{ fontSize: '15px' }}>Օգտակար հղումներ</h6>
+            <ul className="list-unstyled text-muted small d-flex flex-column gap-2" style={{ fontSize: '13px' }}>
+              <li><a href="#rights" className="text-reset text-decoration-none hover-purple">Հաճախորդի իրավունքները (Բողոքի ներկայացման կանոններ)</a></li>
+              <li><a href="#residency" className="text-reset text-decoration-none hover-purple">Հաճախորդի ռեզիդենտության չափանիշներ</a></li>
+              <li><a href="#reg" className="text-reset text-decoration-none hover-purple">Կարգավորում</a></li>
+              <li><a href="#privacy" className="text-reset text-decoration-none hover-purple">Գաղտնիության քաղաքականություն</a></li>
+              <li><a href="#mediator" className="text-reset text-decoration-none hover-purple">Ֆին. հաշտարար</a></li>
+              <li><a href="#crime" className="text-reset text-decoration-none hover-purple">Ֆինանսական հանցագործությունների կանխարգելում</a></li>
+              <li><a href="#cardholders" className="text-reset text-decoration-none hover-purple">Հղումներ Բանկի քարտապանների համար</a></li>
+            </ul>
+          </Col>
 
-                <h3 className="mb-4 text-lg font-bold leading-snug text-gray-900">
-                  {item.title}
-                </h3>
+          {/* Колонках 4: Այլ հղումներ, Соцсети и Приложения */}
+          <Col lg={3} md={6}>
+            <h6 className="fw-bold mb-3" style={{ fontSize: '15px' }}>Այլ հղումներ</h6>
+            <ul className="list-unstyled text-muted small d-flex flex-column gap-2 mb-4" style={{ fontSize: '13px' }}>
+              <li><a href="#online" className="text-reset text-decoration-none hover-purple">EvocaONLINE</a></li>
+              <li><a href="#boxes" className="text-reset text-decoration-none hover-purple">Պահատուփեր</a></li>
+              <li><a href="#faq" className="text-reset text-decoration-none hover-purple">Հաճախ տրվող հարցեր</a></li>
+              <li><a href="#announcements" className="text-reset text-decoration-none hover-purple">Հայտարարություններ</a></li>
+              <li><a href="#dibrary" className="text-reset text-decoration-none hover-purple">Dibrary</a></li>
+              <li><a href="#contact" className="text-reset text-decoration-none hover-purple">Հետադարձ կապ</a></li>
+            </ul>
 
-                <span className="text-sm text-gray-400">{item.date}</span>
-              </div>
-            </a>
-          ))}
-        </div>
+            {/* Иконки соцсетей */}
+            <div className="d-flex gap-3 text-muted mb-3">
+              <a href="#fb" className="text-reset"><FaFacebookF /></a>
+              <a href="#ig" className="text-reset"><FaInstagram /></a>
+              <a href="#pin" className="text-reset"><FaPinterestP /></a>
+              <a href="#yt" className="text-reset"><FaYoutube /></a>
+              <a href="#in" className="text-reset"><FaLinkedinIn /></a>
+            </div>
 
-        <div className="mt-8 flex justify-center sm:hidden">
-          <a
-            href="#"
-            className="inline-flex items-center gap-2 rounded-full bg-[#e4d3f8] px-6 py-3 font-semibold text-purple-800 transition-colors hover:bg-[#d8bff5]"
-          >
-            Բոլոր նորությունները
-            <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-            </svg>
-          </a>
+            {/* Кнопки App Store и Google Play */}
+            <div className="d-flex gap-2 mb-4">
+              <span className="badge bg-dark p-2 text-wrap" style={{ cursor: 'pointer' }}>App Store</span>
+              <span className="badge bg-dark p-2 text-wrap" style={{ cursor: 'pointer' }}>Google Play</span>
+            </div>
+
+            {/* Контакты */}
+            <div className="small">
+              <a href="#branches" className="d-block text-purple fw-bold mb-2 text-decoration-none" style={{ color: '#7000ff' }}>
+                Բանկի հասցեները և աշխատաժամերը
+              </a>
+              <a href="#contact" className="d-block text-purple fw-bold mb-3 text-decoration-none" style={{ color: '#7000ff' }}>
+                Կապ մեզ հետ
+              </a>
+              <div className="fw-bold text-dark">+374 10 605555</div>
+              <div className="fw-bold text-dark fs-5">8444</div>
+            </div>
+          </Col>
+        </Row>
+      </Container>
+
+      {/* Нижняя полоса с диclaimer-ом, партнерами и плавающим чатом */}
+      <div className="py-3 bg-light border-top position-relative">
+        <Container className="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+          <p className="text-muted extra-small mb-0" style={{ fontSize: '10px', maxWidth: '700px' }}>
+            Հարգելի' այցելու, Կայքի որևէ տեղեկատվության վերաբերյալ տարբեր լեզուներում անհամապատասխանության, ինչպես նաև ռուսերեն և անգլերեն լեզուներով ոչ ամբողջական նյութ տեսնելու դեպքում խնդրում ենք առաջնորդվել հայերեն տարբերակով: "Էվոկաբանկ" ԲԲԸ-ն պատասխանատվություն չի կրում իր ինտերնետային կայքում հղված այլ անձանց ինտերնետային կայքերի բովանդակության ստույգության և արժանահավատության, այնտեղ տեղադրված գովազդների, ինչպես նաև երրորդ անձանց կողմից այդ կայքերում տեղադրված տեղեկատվության օգտագործման հնարավոր հետևանքների համար:
+          </p>
+
+          <div className="d-flex align-items-center gap-3 opacity-75">
+            <span className="fw-bold fs-6 text-secondary">fininfo</span>
+            <span className="fw-bold fs-6 text-secondary">arca</span>
+          </div>
+        </Container>
+
+        {/* Фиксированный плавающий онлайн-чат внизу справа */}
+        <div 
+          className="position-fixed bottom-0 end-0 m-4 p-3 rounded-4 shadow-lg text-white d-flex align-items-center gap-2"
+          style={{ backgroundColor: '#7000ff', zIndex: 9999, cursor: 'pointer' }}
+        >
+          <span>💬</span>
+          <span className="fw-bold small">Գրեք մեզ, մենք օնլայն ենք !</span>
         </div>
       </div>
-    </section>
-  )
+    </footer>
+  );
 }
 
-function App() {
+
+const CURRENCY_RATES = {
+  cash: {
+    USD: { buy: 383.0, sell: 387.5, buyTrend: 'down', sellTrend: 'up' },
+    EUR: { buy: 410.0, sell: 421.0, buyTrend: 'down', sellTrend: 'up' },
+    RUB: { buy: 4.24, sell: 4.43, buyTrend: 'down', sellTrend: 'up' },
+  },
+  nonCash: {
+    USD: { buy: 361.0, sell: 365.5, buyTrend: 'down', sellTrend: 'up' },
+    EUR: { buy: 410.0, sell: 421.0, buyTrend: 'down', sellTrend: 'up' },
+    RUB: { buy: 4.24, sell: 4.43, buyTrend: 'down', sellTrend: 'up' },
+  },
+  gold: [
+    { type: 'Ոսկու ստանդարտացված ձուլակտոր (1գ)', buy: '32,500', sell: '35,000' },
+  ],
+  rubleFee: [
+    { currency: 'RUB', rate: '10%' },
+  ]
+};
+
+// Круглые флаги SVG
+function FlagUSD() {
+  return (
+    <svg className="w-5 h-5 rounded-full shrink-0 shadow-sm" viewBox="0 0 32 32">
+      <clipPath id="circle-us"><circle cx="16" cy="16" r="16"/></clipPath>
+      <g clipPath="url(#circle-us)">
+        <path fill="#bd10e0" d="M0 0h32v32H0z"/>
+        <path fill="#e02020" d="M0 0h32v32H0z"/>
+        <path stroke="#fff" strokeWidth="2.5" d="M0 2.5h32M0 7.5h32M0 12.5h32M0 17.5h32M0 22.5h32M0 27.5h32"/>
+        <path fill="#00205b" d="M0 0h16v16H0z"/>
+        <circle cx="4" cy="4" r="1" fill="#fff"/>
+        <circle cx="12" cy="4" r="1" fill="#fff"/>
+        <circle cx="8" cy="8" r="1" fill="#fff"/>
+        <circle cx="4" cy="12" r="1" fill="#fff"/>
+        <circle cx="12" cy="12" r="1" fill="#fff"/>
+      </g>
+    </svg>
+  );
+}
+
+function FlagEUR() {
+  return (
+    <svg className="w-5 h-5 rounded-full shrink-0 shadow-sm" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="16" fill="#003399"/>
+      <circle cx="16" cy="6" r="1" fill="#ffcc00"/>
+      <circle cx="21" cy="7.5" r="1" fill="#ffcc00"/>
+      <circle cx="24.5" cy="11" r="1" fill="#ffcc00"/>
+      <circle cx="26" cy="16" r="1" fill="#ffcc00"/>
+      <circle cx="24.5" cy="21" r="1" fill="#ffcc00"/>
+      <circle cx="21" cy="24.5" r="1" fill="#ffcc00"/>
+      <circle cx="16" cy="26" r="1" fill="#ffcc00"/>
+      <circle cx="11" cy="24.5" r="1" fill="#ffcc00"/>
+      <circle cx="7.5" cy="21" r="1" fill="#ffcc00"/>
+      <circle cx="6" cy="16" r="1" fill="#ffcc00"/>
+      <circle cx="7.5" cy="11" r="1" fill="#ffcc00"/>
+      <circle cx="11" cy="7.5" r="1" fill="#ffcc00"/>
+    </svg>
+  );
+}
+
+function FlagRUB() {
+  return (
+    <svg className="w-5 h-5 rounded-full shrink-0 shadow-sm" viewBox="0 0 32 32">
+      <clipPath id="circle-ru"><circle cx="16" cy="16" r="16"/></clipPath>
+      <g clipPath="url(#circle-ru)">
+        <path fill="#fff" d="M0 0h32v10.67H0z"/>
+        <path fill="#0039a6" d="M0 10.67h32v10.66H0z"/>
+        <path fill="#d52b1e" d="M0 21.33h32V32H0z"/>
+      </g>
+    </svg>
+  );
+}
+
+function CurrencyExchange() {
+  const [activeTab, setActiveTab] = useState('nonCash'); // 'cash' | 'nonCash' | 'gold' | 'ruble'
+  
+  // Состояния для калькулятора валют
+  const [fromAmount, setFromAmount] = useState('1000');
+  const [fromCurr, setFromCurr] = useState('AMD');
+  const [toCurr, setToCurr] = useState('USD');
+
+  const rates = activeTab === 'cash' ? CURRENCY_RATES.cash : CURRENCY_RATES.nonCash;
+
+  // Расчет конвертации
+  const calculateResult = () => {
+    const amount = parseFloat(fromAmount);
+    if (isNaN(amount) || amount <= 0) return '0';
+
+    if (fromCurr === toCurr) return amount.toString();
+
+    // AMD в валюту
+    if (fromCurr === 'AMD' && rates[toCurr]) {
+      return (amount / rates[toCurr].sell).toFixed(2);
+    }
+    // Валюта в AMD
+    if (toCurr === 'AMD' && rates[fromCurr]) {
+      return (amount * rates[fromCurr].buy).toFixed(2);
+    }
+    // Кросс-курс (например USD -> EUR)
+    if (rates[fromCurr] && rates[toCurr]) {
+      const amdValue = amount * rates[fromCurr].buy;
+      return (amdValue / rates[toCurr].sell).toFixed(2);
+    }
+
+    return '0';
+  };
+
+  return (
+    <section className="bg-white py-16 px-4 sm:px-6 w-full font-sans">
+      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
+        
+        {/* ЛЕВАЯ ЧАСТЬ: Дисклеймер, Вкладки и Курсы */}
+        <div className="flex-1 w-full">
+          {/* Дисклеймер */}
+          <p className="text-gray-800 text-sm sm:text-[15px] leading-relaxed font-medium mb-8 max-w-3xl">
+            20,000 ԱՄՆ դոլարից ավել կամ դրան համարժեք այլ արտարժույթի փոխարկման դեպքում գործարքը հաստատվում է Բանկի հայեցողությամբ և Բանկի կողմից որոշված փոխարժեքով: 100,000 դրամ կամ դրան համարժեք արտարժույթից ավելի փոխանակման գործարքների իրականացման համար անհրաժեշտ է ներկայացնել անձը հաստատող փաստաթուղթ:
+          </p>
+
+          {/* Навигация Табов */}
+          <div className="flex flex-wrap items-center gap-2 border-b border-gray-100">
+            <button
+              onClick={() => setActiveTab('cash')}
+              className={`px-5 py-3 text-sm font-semibold rounded-t-2xl transition-all ${
+                activeTab === 'cash'
+                  ? 'bg-white text-gray-900 shadow-[0_-4px_12px_rgba(0,0,0,0.03)] border-t border-x border-gray-100 relative z-10'
+                  : 'text-gray-400 hover:text-purple-700 bg-transparent'
+              }`}
+            >
+              Կանխիկ
+            </button>
+            <button
+              onClick={() => setActiveTab('nonCash')}
+              className={`px-5 py-3 text-sm font-semibold rounded-t-2xl transition-all ${
+                activeTab === 'nonCash'
+                  ? 'bg-white text-gray-900 shadow-[0_-4px_12px_rgba(0,0,0,0.03)] border-t border-x border-gray-100 relative z-10'
+                  : 'text-gray-400 hover:text-purple-700 bg-transparent'
+              }`}
+            >
+              Անկանխիկ
+            </button>
+            <button
+              onClick={() => setActiveTab('gold')}
+              className={`px-5 py-3 text-sm font-semibold rounded-t-2xl transition-all ${
+                activeTab === 'gold'
+                  ? 'bg-white text-gray-900 shadow-[0_-4px_12px_rgba(0,0,0,0.03)] border-t border-x border-gray-100 relative z-10'
+                  : 'text-gray-400 hover:text-purple-700 bg-transparent'
+              }`}
+            >
+              Ոսկու փոխարժեք
+            </button>
+            <button
+              onClick={() => setActiveTab('ruble')}
+              className={`px-5 py-3 text-sm font-semibold rounded-t-2xl transition-all ${
+                activeTab === 'ruble'
+                  ? 'bg-white text-gray-900 shadow-[0_-4px_12px_rgba(0,0,0,0.03)] border-t border-x border-gray-100 relative z-10'
+                  : 'text-gray-400 hover:text-purple-700 bg-transparent'
+              }`}
+            >
+              Ռուբլու կանխիկ մուտք
+            </button>
+          </div>
+
+          {/* Карточка с курсами и калькулятором */}
+          <div className="bg-white rounded-2xl rounded-tl-none border border-gray-100 shadow-[0_10px_30px_rgba(0,0,0,0.04)] p-6 sm:p-8">
+            
+            {/* РЕЖИМ 1 И 2: КАНХИК И АНКАНХИК */}
+            {(activeTab === 'cash' || activeTab === 'nonCash') && (
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                
+                {/* Таблица курсов */}
+                <div className="md:col-span-6 border-r-0 md:border-r border-gray-100 pr-0 md:pr-6">
+                  <div className="grid grid-cols-3 text-xs text-gray-400 font-medium pb-3 border-b border-gray-100">
+                    <div>Արժույթ</div>
+                    <div className="text-center">Առք</div>
+                    <div className="text-center">Վաճառք</div>
+                  </div>
+
+                  {/* USD */}
+                  <div className="grid grid-cols-3 items-center py-3.5 border-b border-gray-50 text-sm">
+                    <div className="flex items-center gap-2.5 font-bold text-gray-800">
+                      <FlagUSD />
+                      <span>USD</span>
+                    </div>
+                    <div className="flex items-center justify-center gap-1 font-bold text-gray-900">
+                      <span className="text-red-500 text-xs">▼</span>
+                      <span>{rates.USD.buy}</span>
+                    </div>
+                    <div className="flex items-center justify-center gap-1 font-bold text-gray-900">
+                      <span className="text-emerald-500 text-xs">▲</span>
+                      <span>{rates.USD.sell}</span>
+                    </div>
+                  </div>
+
+                  {/* EUR */}
+                  <div className="grid grid-cols-3 items-center py-3.5 border-b border-gray-50 text-sm">
+                    <div className="flex items-center gap-2.5 font-bold text-gray-800">
+                      <FlagEUR />
+                      <span>EUR</span>
+                    </div>
+                    <div className="flex items-center justify-center gap-1 font-bold text-gray-900">
+                      <span className="text-red-500 text-xs">▼</span>
+                      <span>{rates.EUR.buy}</span>
+                    </div>
+                    <div className="flex items-center justify-center gap-1 font-bold text-gray-900">
+                      <span className="text-emerald-500 text-xs">▲</span>
+                      <span>{rates.EUR.sell}</span>
+                    </div>
+                  </div>
+
+                  {/* RUB */}
+                  <div className="grid grid-cols-3 items-center py-3.5 border-b border-gray-50 text-sm">
+                    <div className="flex items-center gap-2.5 font-bold text-gray-800">
+                      <FlagRUB />
+                      <span>RUB</span>
+                    </div>
+                    <div className="flex items-center justify-center gap-1 font-bold text-gray-900">
+                      <span className="text-red-500 text-xs">▼</span>
+                      <span>{rates.RUB.buy}</span>
+                    </div>
+                    <div className="flex items-center justify-center gap-1 font-bold text-gray-900">
+                      <span className="text-emerald-500 text-xs">▲</span>
+                      <span>{rates.RUB.sell}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Калькулятор конвертации */}
+                <div className="md:col-span-6 flex flex-col gap-4">
+                  {/* Поле "У меня есть" */}
+                  <div className="flex flex-col gap-1">
+                    <label className="text-xs text-gray-400">Ունեմ</label>
+                    <div className="flex items-center justify-between border border-gray-200 rounded-xl px-4 py-2.5 bg-white focus-within:border-purple-600 transition-colors">
+                      <input
+                        type="number"
+                        className="w-full outline-none font-bold text-gray-900 text-base bg-transparent"
+                        value={fromAmount}
+                        onChange={(e) => setFromAmount(e.target.value)}
+                      />
+                      <select
+                        value={fromCurr}
+                        onChange={(e) => setFromCurr(e.target.value)}
+                        className="bg-transparent font-bold text-purple-700 text-sm outline-none cursor-pointer pl-2"
+                      >
+                        <option value="AMD">AMD</option>
+                        <option value="USD">USD</option>
+                        <option value="EUR">EUR</option>
+                        <option value="RUB">RUB</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  {/* Поле "Я получу" */}
+                  <div className="flex flex-col gap-1">
+                    <label className="text-xs text-gray-400">Կստանամ</label>
+                    <div className="flex items-center justify-between border border-gray-200 rounded-xl px-4 py-2.5 bg-white">
+                      <input
+                        type="text"
+                        readOnly
+                        className="w-full outline-none font-bold text-gray-900 text-base bg-transparent"
+                        value={calculateResult()}
+                      />
+                      <select
+                        value={toCurr}
+                        onChange={(e) => setToCurr(e.target.value)}
+                        className="bg-transparent font-bold text-purple-700 text-sm outline-none cursor-pointer pl-2"
+                      >
+                        <option value="USD">USD</option>
+                        <option value="AMD">AMD</option>
+                        <option value="EUR">EUR</option>
+                        <option value="RUB">RUB</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* РЕЖИМ 3: РՈՒԲԼՈՒ ԿԱՆԽԻԿ ՄՈՒՏՔ */}
+            {activeTab === 'ruble' && (
+              <div className="py-2">
+                <div className="grid grid-cols-2 text-xs text-gray-400 font-medium pb-3 border-b border-gray-100">
+                  <div>Արժույթ</div>
+                  <div>Սակագին</div>
+                </div>
+                <div className="grid grid-cols-2 items-center py-4 border-b border-gray-50 text-base">
+                  <div className="font-bold text-gray-900">RUB</div>
+                  <div className="font-bold text-gray-900">10%</div>
+                </div>
+              </div>
+            )}
+
+            {/* РЕЖИМ 4: ՈՍԿՈՒ ՓՈԽԱՐԺԵՔ */}
+            {activeTab === 'gold' && (
+              <div className="py-2">
+                <div className="grid grid-cols-3 text-xs text-gray-400 font-medium pb-3 border-b border-gray-100">
+                  <div>Տեսակ</div>
+                  <div className="text-center">Առք</div>
+                  <div className="text-center">Վաճառք</div>
+                </div>
+                {CURRENCY_RATES.gold.map((g, idx) => (
+                  <div key={idx} className="grid grid-cols-3 items-center py-4 border-b border-gray-50 text-sm">
+                    <div className="font-bold text-gray-800">{g.type}</div>
+                    <div className="text-center font-bold text-gray-900">{g.buy} ֏</div>
+                    <div className="text-center font-bold text-gray-900">{g.sell} ֏</div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* Подвал карточки */}
+            <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mt-6 pt-4 border-t border-gray-100 text-xs">
+              <span className="text-gray-400">
+                Թարմացվել է` {activeTab === 'ruble' ? '10.07.26' : '23.09.26'}
+              </span>
+              {(activeTab === 'cash' || activeTab === 'nonCash') && (
+                <button className="text-purple-700 font-bold hover:underline">
+                  Այլ արտարժույթներ
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* ПРАВАЯ ЧАСТЬ: Наша локация / Адреса */}
+        <div className="w-full lg:w-80 shrink-0">
+          <h3 className="text-2xl font-bold text-gray-900 mb-2">Մեր հասցեները</h3>
+          <p className="text-xs text-gray-500 leading-relaxed mb-6">
+            Բանկի հասցեները, աշխատաժամերը, բանկոմատները
+          </p>
+
+          {/* Графика карты с маркером */}
+          <div className="relative w-full flex justify-center items-center py-4 mb-6">
+            {/* Иллюстрация сложенной карты */}
+            <div>
+              <img src="https://www.evoca.am/img/addresses.png" alt="" />
+
+              {/* Фиолетовый пин Evocabank */}
+              <div className="relative z-10 flex flex-col items-center animate-bounce">
+                <div className="w-12 h-12 bg-purple-700 rounded-full rounded-bl-none rotate-45 flex items-center justify-center shadow-lg border-2 border-white">
+                  <span className="text-white font-black text-lg -rotate-45 transform">v</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Кнопка "Смотреть на карте" */}
+          <button className="w-full bg-[#f3ebfc] hover:bg-[#e9d8fa] text-purple-700 font-bold py-3.5 px-6 rounded-full transition-colors text-sm flex items-center justify-center gap-2">
+            <span>Դիտել քարտեզը</span>
+            <span className="text-base">›</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+  );
+}
+
+
+// --- 11. HOMEPAGE КОМПОНЕНТ (ГЛАВНАЯ СТРАНИЦА) ---
+function HomePage() {
   return (
     <>
-      <Header />
       <Slider />
       <Biometric />
-      <BestFromEvoca />
       <CardsShowcase />
       <Calculator />
       <OnlineBankingBanner />
       <Partners />
+      <BestFromEvoca />
       <NewsSection />
+      <CurrencyExchange />
+      <ReviewsSlider />
+
     </>
-  )
+  );
 }
 
-export default App
+// --- 12. АДАПТИВНЫЕ СТИЛИ (superski @media) ---
+function ResponsiveStyles() {
+  return (
+    <style>{`
+      /* ====== Базовая типографика, тянется вместе с шириной экрана ====== */
+      .evoca-app h1 { font-size: clamp(1.75rem, 1.1rem + 2.6vw, 3.25rem); }
+      .evoca-app h2 { font-size: clamp(1.4rem, 1rem + 1.6vw, 2.25rem); }
+      .evoca-app h3 { font-size: clamp(1.1rem, 0.95rem + 0.7vw, 1.5rem); }
+
+      /* ====== ≥1536px — большие мониторы: чуть больше воздуха ====== */
+      @media (min-width: 1536px) {
+        .evoca-app .max-w-7xl { max-width: 88rem; }
+      }
+
+      /* ====== 1024–1279px — маленькие ноутбуки: правим верхнее меню ====== */
+      @media (max-width: 1279px) and (min-width: 1024px) {
+        .evoca-app header nav.xl\\:flex { gap: 1.1rem !important; font-size: 0.9rem; }
+      }
+
+      /* ====== 768–1023px — планшеты ====== */
+      @media (max-width: 1023px) {
+        .evoca-app header .px-6 { padding-left: 1rem; padding-right: 1rem; }
+        .evoca-app section { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+      }
+
+      /* ====== 576–767px — большие телефоны ====== */
+      @media (max-width: 767px) {
+        .evoca-app .grid.sm\\:grid-cols-2 { gap: 1rem; }
+        .evoca-app button { font-size: 0.9rem; }
+        .evoca-app .card-body { padding: 1rem !important; }
+      }
+
+      /* ====== 480–575px — телефоны поменьше ====== */
+      @media (max-width: 575px) {
+        .evoca-app header .py-4 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+        .evoca-app header span.text-2xl { font-size: 1.4rem; }
+        .evoca-app .rounded-full.bg-purple-700 { padding: 0.5rem 1rem; font-size: 0.85rem; }
+        .evoca-app .d-flex.gap-4 { gap: 0.75rem !important; }
+      }
+
+      /* ====== ≤380px — самые узкие экраны ====== */
+      @media (max-width: 380px) {
+        .evoca-app .max-w-7xl { padding-left: 0.75rem; padding-right: 0.75rem; }
+        .evoca-app .input-group { flex-direction: column; }
+        .evoca-app .input-group > * { width: 100% !important; }
+      }
+
+      /* ====== Ландшафтная ориентация на телефонах — уменьшаем вертикальные отступы ====== */
+      @media (max-height: 480px) and (orientation: landscape) {
+        .evoca-app section { padding-top: 1.25rem; padding-bottom: 1.25rem; }
+      }
+
+      /* ====== Печать — на всякий случай ====== */
+      @media print {
+        .evoca-app header, .evoca-app footer { display: none !important; }
+      }
+    `}</style>
+  );
+}
+
+// --- 13. ГЛАВНЫЙ КОМПОНЕНТ С МАРШРУТИЗАЦИЕЙ ---
+function App() {
+  return (
+    <Router>
+      <div className="evoca-app">
+        <ResponsiveStyles />
+
+        {/* Хедер виден всегда на всех страницах */}
+        <Header />
+
+        {/* Маршрутизация по страницам */}
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+        </Routes>
+
+        {/* Футер виден всегда на всех страницах */}
+        <EvocaFooter />
+      </div>
+    </Router>
+  );
+}
+
+export default App;
