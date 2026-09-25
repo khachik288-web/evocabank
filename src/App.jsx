@@ -1,22 +1,23 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { Container, Row, Col, Form } from 'react-bootstrap';
 import { FaFacebookF, FaInstagram, FaPinterestP, FaYoutube, FaLinkedinIn } from 'react-icons/fa';
 import './App.css';
+import Business from './busines';
 
 
 
 // --- 1. HEADER ---
 function Header() {
   const topLinks = [
-    'Անձնական',
-    'Բիզնես',
-    'Անընդհատ ֆինանսավորումներ',
-    'Մեր մասին',
-    'Նորություններ',
-    'Բլոգ',
-    'Կարիերա',
-  ]
+  { label: 'Անձնական', path: '/' },
+  { label: 'Բիզնես', path: '/business' },
+  { label: 'Անընդհատ ֆինանսավորումներ', path: '#' },
+  { label: 'Մեր մասին', path: '#' },
+  { label: 'Նորություններ', path: '#' },
+  { label: 'Բլոգ', path: '#' },
+  { label: 'Կարիերա', path: '#' },
+]
  
   const mainLinks = [
     'Վարկեր',
@@ -36,18 +37,18 @@ function Header() {
         <div className="mx-auto flex max-w-7xl items-center justify-between">
           <nav className="flex items-center">
             {topLinks.map((link, i) => (
-              <a
-                key={link}
-                href="#"
-                className={`relative px-4 py-3 text-gray-700 no-underline hover:text-purple-700 no-underline hover:no-underline ${
-                  i === 0
-                    ? 'text-purple-700 after:absolute after:left-0 after:right-0 after:-bottom-px after:h-0.5 after:bg-purple-700'
-                    : ''
-                }`}
-              >
-                {link}
-              </a>
-            ))}
+  <Link
+    key={link.label}
+    to={link.path}
+    className={`relative px-4 py-3 text-black no-underline hover:text-purple-700 no-underline hover:no-underline ${
+      i === 0
+        ? 'text-purple-700 after:absolute after:left-0 after:right-0 after:-bottom-px after:h-0.5 after:bg-purple-700'
+        : ''
+    }`}
+  >
+    {link.label}
+  </Link>
+))}
           </nav>
  
           <div className="flex items-center gap-5 text-gray-600">
@@ -111,7 +112,7 @@ function Header() {
                 <a
                   key={link}
                   href="#"
-                  className={`no-underline hover:no-underline ${
+                  className={`no-underline hover:no-underline text-black ${
                     i === 0 ? 'text-purple-700' : 'text-gray-800 hover:text-purple-700'
                   }`}
                 >
@@ -1727,6 +1728,7 @@ function App() {
         {/* Маршрутизация по страницам */}
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/business" element={<Business />} />
         </Routes>
 
         {/* Футер виден всегда на всех страницах */}
