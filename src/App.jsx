@@ -16,8 +16,8 @@ function Header() {
     'Նորություններ',
     'Բլոգ',
     'Կարիերա',
-  ];
-
+  ]
+ 
   const mainLinks = [
     'Վարկեր',
     'Քարտեր',
@@ -27,18 +27,19 @@ function Header() {
     'Արժեթղթեր',
     'EvocaSALARY',
     'EvocaTOUCH',
-  ];
-
+  ]
+ 
   return (
     <header className="w-full text-sm">
+      {/* Top thin bar */}
       <div className="border-b border-gray-200 px-6">
         <div className="mx-auto flex max-w-7xl items-center justify-between">
-          <nav className="hidden lg:flex items-center">
+          <nav className="flex items-center">
             {topLinks.map((link, i) => (
               <a
                 key={link}
                 href="#"
-                className={`relative px-4 py-3 text-gray-700 hover:text-purple-700 ${
+                className={`relative px-4 py-3 text-gray-700 no-underline hover:text-purple-700 no-underline hover:no-underline ${
                   i === 0
                     ? 'text-purple-700 after:absolute after:left-0 after:right-0 after:-bottom-px after:h-0.5 after:bg-purple-700'
                     : ''
@@ -48,21 +49,21 @@ function Header() {
               </a>
             ))}
           </nav>
-
-          <div className="flex items-center gap-5 text-gray-600 py-2 lg:py-0">
-            <a href="#" className="flex items-center gap-1 text-purple-700 hover:underline">
+ 
+          <div className="flex items-center gap-5 text-gray-600">
+            <a href="#" className="flex items-center gap-1 text-purple-700 no-underline hover:no-underline">
               Առցանց հայտեր
               <svg className="h-3 w-3" viewBox="0 0 24 24" fill="none">
                 <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" />
               </svg>
             </a>
-            <a href="#" className="flex items-center gap-1 text-purple-700 hover:underline">
+            <a href="#" className="flex items-center gap-1 text-purple-700 no-underline no-underline hover:no-underline">
               Հետադարձ կապ
               <svg className="h-3 w-3" viewBox="0 0 24 24" fill="none">
                 <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" />
               </svg>
             </a>
-
+ 
             <button aria-label="location" className="hover:text-purple-700">
               <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5.5z" />
@@ -87,7 +88,7 @@ function Header() {
                 <line x1="21" y1="21" x2="16.65" y2="16.65" />
               </svg>
             </button>
-            <button aria-label="menu" className="hover:text-purple-700 lg:hidden">
+            <button aria-label="menu" className="hover:text-purple-700">
               <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <line x1="3" y1="6" x2="21" y2="6" />
                 <line x1="3" y1="12" x2="21" y2="12" />
@@ -97,33 +98,36 @@ function Header() {
           </div>
         </div>
       </div>
-
+ 
+      {/* Main bar */}
       <div className="px-6 py-4">
         <div className="mx-auto flex max-w-7xl items-center justify-between">
           <div className="flex items-center gap-10">
             <span className="text-2xl font-bold tracking-tight text-gray-800">
               evoc<span className="text-purple-700">a</span>
             </span>
-            <nav className="hidden xl:flex items-center gap-7 font-medium">
+            <nav className="flex items-center gap-7 font-medium">
               {mainLinks.map((link, i) => (
                 <a
                   key={link}
                   href="#"
-                  className={i === 0 ? 'text-purple-700' : 'text-gray-800 hover:text-purple-700'}
+                  className={`no-underline hover:no-underline ${
+                    i === 0 ? 'text-purple-700' : 'text-gray-800 hover:text-purple-700'
+                  }`}
                 >
                   {link}
                 </a>
               ))}
             </nav>
           </div>
-
-          <button className="rounded-full bg-purple-700 px-6 py-2.5 font-semibold text-white hover:bg-purple-800 transition-colors">
+ 
+          <button className="rounded-full bg-purple-700 px-6 py-2.5 font-semibold text-white hover:bg-purple-800">
             EvocaONLINE
           </button>
         </div>
       </div>
     </header>
-  );
+  )
 }
 
 // --- 2. SLIDER ---
