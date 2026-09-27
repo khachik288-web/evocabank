@@ -4,6 +4,7 @@ import { Container, Row, Col, Form } from 'react-bootstrap';
 import { FaFacebookF, FaInstagram, FaPinterestP, FaYoutube, FaLinkedinIn } from 'react-icons/fa';
 import './App.css';
 import Business from './busines';
+import WebPayment from './WebPayment';
 
 
 
@@ -12,7 +13,7 @@ function Header() {
   const topLinks = [
   { label: 'Անձնական', path: '/' },
   { label: 'Բիզնես', path: '/business' },
-  { label: 'Անընդհատ ֆինանսավորումներ', path: '#' },
+  { label: 'Անընդհատ ֆինանսավորումներ', path: '/web-payment' },
   { label: 'Մեր մասին', path: '#' },
   { label: 'Նորություններ', path: '#' },
   { label: 'Բլոգ', path: '#' },
@@ -1715,6 +1716,19 @@ function ResponsiveStyles() {
   );
 }
 
+// --- Обёртка с общим Header/Footer сайта (для всех обычных страниц) ---
+function SiteLayout({ children }) {
+  return (
+    <>
+      {/* Хедер виден всегда на страницах сайта */}
+      <Header />
+      {children}
+      {/* Футер виден всегда на страницах сайта */}
+      <EvocaFooter />
+    </>
+  );
+}
+
 // --- 13. ГЛАВНЫЙ КОМПОНЕНТ С МАРШРУТИЗАЦИЕЙ ---
 function App() {
   return (
@@ -1722,17 +1736,14 @@ function App() {
       <div className="evoca-app">
         <ResponsiveStyles />
 
-        {/* Хедер виден всегда на всех страницах */}
-        <Header />
-
         {/* Маршрутизация по страницам */}
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/business" element={<Business />} />
-        </Routes>
+          <Route path="/" element={<SiteLayout><HomePage /></SiteLayout>} />
+          <Route path="/business" element={<SiteLayout><Business /></SiteLayout>} />
 
-        {/* Футер виден всегда на всех страницах */}
-        <EvocaFooter />
+          {/* Страница "Անընդհատ ֆինանսավորումներ" — без общего Header/Footer сайта, у неё свои */}
+          <Route path="/web-payment" element={<WebPayment />} />
+        </Routes>
       </div>
     </Router>
   );
