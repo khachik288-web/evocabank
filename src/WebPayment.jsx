@@ -144,7 +144,7 @@ function WebPayment() {
         <div className="mx-auto max-w-5xl px-6 py-16">
           <h1 className="mb-10 text-center text-3xl font-bold text-gray-900">Գլխավոր</h1>
 
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 mt-[70px]">
             {PAYMENT_CATEGORIES.map((cat) => (
               <button
                 key={cat.title}

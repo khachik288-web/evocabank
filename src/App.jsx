@@ -1,26 +1,33 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { Container, Row, Col, Form } from 'react-bootstrap';
 import { FaFacebookF, FaInstagram, FaPinterestP, FaYoutube, FaLinkedinIn } from 'react-icons/fa';
 import './App.css';
 import Business from './busines';
 import WebPayment from './WebPayment';
+import About from './About';
 
 
 
 // --- 1. HEADER ---
 function Header() {
+  const { pathname } = useLocation();
+  const isAbout = pathname.startsWith('/about');
+
   const topLinks = [
-  { label: 'Անձնական', path: '/' },
-  { label: 'Բիզնես', path: '/business' },
-  { label: 'Անընդհատ ֆինանսավորումներ', path: '/web-payment' },
-  { label: 'Մեր մասին', path: '#' },
-  { label: 'Նորություններ', path: '#' },
-  { label: 'Բլոգ', path: '#' },
-  { label: 'Կարիերա', path: '#' },
-]
- 
-  const mainLinks = [
+    { label: 'Անհատ', path: '/' },
+    { label: 'Բիզնես', path: '/business' },
+    { label: 'Ակնթարթային վճարումներ', path: '/web-payment' },
+    { label: 'Մեր մասին', path: '/about' },
+    { label: 'Նորություններ', path: '#' },
+    { label: 'Բլոգ', path: '#' },
+    { label: 'Կարիերա', path: '#' },
+  ];
+
+  const isTopActive = (path) =>
+    path === '/' ? pathname === '/' : path !== '#' && pathname.startsWith(path);
+
+  const personalLinks = [
     'Վարկեր',
     'Քարտեր',
     'Ավանդներ',
@@ -29,20 +36,34 @@ function Header() {
     'Արժեթղթեր',
     'EvocaSALARY',
     'EvocaTOUCH',
-  ]
- 
+  ];
+
+  const aboutLinks = ['Evoca-ի մասին', 'Սակագներ', 'Հաշվետվություններ', 'Հայտարարություններ'];
+  const mainLinks = isAbout ? aboutLinks : personalLinks;
+
+  const aboutSubNav = [
+    { label: 'Ընդհանուր', path: '/about' },
+    { label: 'Կառուցվածք', path: '#' },
+    { label: 'Բաժնետերեր', path: '#' },
+    { label: 'Ղեկավարություն', path: '#' },
+    { label: 'Գործընկերներ', path: '#' },
+    { label: 'Մրցանակներ', path: '#' },
+    { label: 'CSR', path: '#' },
+    { label: 'Էվոկա ֆինանսական խումբ', path: '#' },
+  ];
+
   return (
     <header className="w-full text-sm">
       {/* Top thin bar */}
       <div className="border-b border-gray-200 px-6">
         <div className="mx-auto flex max-w-7xl items-center justify-between">
           <nav className="flex items-center">
-            {topLinks.map((link, i) => (
+            {topLinks.map((link) => (
   <Link
     key={link.label}
     to={link.path}
     className={`relative px-4 py-3 text-black no-underline hover:text-purple-700 no-underline hover:no-underline ${
-      i === 0
+      isTopActive(link.path)
         ? 'text-purple-700 after:absolute after:left-0 after:right-0 after:-bottom-px after:h-0.5 after:bg-purple-700'
         : ''
     }`}
@@ -128,6 +149,30 @@ function Header() {
           </button>
         </div>
       </div>
+
+      {/* Purple sub navigation (only on "Մեր մասին" pages) */}
+      {isAbout && (
+        <div className="bg-[#6a00db]">
+          <div className="mx-auto max-w-7xl overflow-x-auto px-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <nav className="flex min-w-max items-stretch">
+              {aboutSubNav.map((item) => {
+                const active = item.path !== '#' && pathname === item.path;
+                return (
+                  <Link
+                    key={item.label}
+                    to={item.path}
+                    className={`whitespace-nowrap px-5 py-[19px] text-[15px] font-semibold text-white no-underline hover:no-underline hover:bg-[#5a00bd] ${
+                      active ? 'bg-[#5a00bd]' : ''
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
+            </nav>
+          </div>
+        </div>
+      )}
     </header>
   )
 }
@@ -1740,6 +1785,7 @@ function App() {
         <Routes>
           <Route path="/" element={<SiteLayout><HomePage /></SiteLayout>} />
           <Route path="/business" element={<SiteLayout><Business /></SiteLayout>} />
+          <Route path="/about" element={<SiteLayout><About /></SiteLayout>} />
 
           {/* Страница "Անընդհատ ֆինանսավորումներ" — без общего Header/Footer сайта, у неё свои */}
           <Route path="/web-payment" element={<WebPayment />} />
