@@ -1,1 +1,41 @@
 @import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Прячем ползунок прокрутки для видео-слайдера, но оставляем функционал */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes coolFadeIn {
+  0% { 
+    opacity: 0; 
+    transform: translateY(40px) scale(0.95); 
+    filter: blur(8px); 
+  }
+  100% { 
+    opacity: 1; 
+    transform: translateY(0) scale(1); 
+    filter: blur(0); 
+  }
+}
+
+.animate-cool-entrance {
+  animation: coolFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}

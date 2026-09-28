@@ -6,11 +6,11 @@ import './App.css';
 import Business from './busines';
 import WebPayment from './WebPayment';
 import About from './About';
-
+import Career from './Career';
 
 
 // --- 1. HEADER ---
-function Header() {
+export function Header() {
   const { pathname } = useLocation();
   const isAbout = pathname.startsWith('/about');
 
@@ -21,7 +21,7 @@ function Header() {
     { label: 'Մեր մասին', path: '/about' },
     { label: 'Նորություններ', path: '#' },
     { label: 'Բլոգ', path: '#' },
-    { label: 'Կարիերա', path: '#' },
+    { label: 'Կարիերա', path: '/career' },
   ];
 
   const isTopActive = (path) =>
@@ -1201,7 +1201,7 @@ const REVIEWS = [
 
 
 
-function EvocaFooter() {
+export function EvocaFooter() {
   return (
     <footer className="w-100 bg-white border-top text-dark pt-5">
       <Container>
@@ -1780,7 +1780,7 @@ function App() {
     <Router>
       <div className="evoca-app">
         <ResponsiveStyles />
-
+      <Header />
         {/* Маршрутизация по страницам */}
         <Routes>
           <Route path="/" element={<SiteLayout><HomePage /></SiteLayout>} />
@@ -1789,6 +1789,7 @@ function App() {
 
           {/* Страница "Անընդհատ ֆինանսավորումներ" — без общего Header/Footer сайта, у неё свои */}
           <Route path="/web-payment" element={<WebPayment />} />
+          <Route path="/career" element={<Career />} />
         </Routes>
       </div>
     </Router>
