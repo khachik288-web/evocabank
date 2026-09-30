@@ -8,6 +8,7 @@ import WebPayment from './WebPayment';
 import About from './About';
 import Career from './Career';
 import News from './News';
+import Blog from './Blog';
 
 // --- 1. HEADER ---
 export function Header() {
@@ -20,7 +21,7 @@ export function Header() {
     { label: 'Ակնթարթային վճարումներ', path: '/web-payment' },
     { label: 'Մեր մասին', path: '/about' },
     { label: 'Նորություններ', path: '/news' },
-    { label: 'Բլոգ', path: '#' },
+    { label: 'Բլոգ', path: '/blog' },
     { label: 'Կարիերա', path: '/career' },
   ];
 
@@ -1790,6 +1791,7 @@ function App() {
           <Route path="/web-payment" element={<WebPayment />} />
           <Route path="/career" element={<SiteLayout><Career /></SiteLayout>} />
           <Route path="/news" element={<SiteLayout><News /></SiteLayout>} />
+          <Route path="/blog" element={<SiteLayout><Blog /></SiteLayout>} />
         </Routes>
       </div>
     </Router>
