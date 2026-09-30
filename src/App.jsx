@@ -7,7 +7,7 @@ import Business from './busines';
 import WebPayment from './WebPayment';
 import About from './About';
 import Career from './Career';
-
+import News from './News';
 
 // --- 1. HEADER ---
 export function Header() {
@@ -19,7 +19,7 @@ export function Header() {
     { label: 'Բիզնես', path: '/business' },
     { label: 'Ակնթարթային վճարումներ', path: '/web-payment' },
     { label: 'Մեր մասին', path: '/about' },
-    { label: 'Նորություններ', path: '#' },
+    { label: 'Նորություններ', path: '/news' },
     { label: 'Բլոգ', path: '#' },
     { label: 'Կարիերա', path: '/career' },
   ];
@@ -1229,7 +1229,7 @@ export function EvocaFooter() {
           <Col lg={3} md={6}>
             <h6 className="fw-bold mb-3" style={{ fontSize: '15px' }}>Բանկի մասին</h6>
             <ul className="list-unstyled text-muted small d-flex flex-column gap-2" style={{ fontSize: '13px' }}>
-              <li><a href="#about" className="text-reset text-decoration-none hover-purple">Մեր մասին</a></li>
+              <li><a href="/about" className="text-reset text-decoration-none hover-purple">Մեր մասին</a></li>
               <li><a href="#management" className="text-reset text-decoration-none hover-purple">Ղեկավարություն</a></li>
               <li><a href="#shareholders" className="text-reset text-decoration-none hover-purple">Բաժնետերեր</a></li>
               <li><a href="#reports" className="text-reset text-decoration-none hover-purple">Հաշվետվություններ</a></li>
@@ -1780,7 +1780,6 @@ function App() {
     <Router>
       <div className="evoca-app">
         <ResponsiveStyles />
-      <Header />
         {/* Маршрутизация по страницам */}
         <Routes>
           <Route path="/" element={<SiteLayout><HomePage /></SiteLayout>} />
@@ -1789,7 +1788,8 @@ function App() {
 
           {/* Страница "Անընդհատ ֆինանսավորումներ" — без общего Header/Footer сайта, у неё свои */}
           <Route path="/web-payment" element={<WebPayment />} />
-          <Route path="/career" element={<Career />} />
+          <Route path="/career" element={<SiteLayout><Career /></SiteLayout>} />
+          <Route path="/news" element={<SiteLayout><News /></SiteLayout>} />
         </Routes>
       </div>
     </Router>

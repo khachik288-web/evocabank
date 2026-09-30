@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { EvocaFooter } from './App';
 
 const Career = () => {
   const [activeTab, setActiveTab] = useState('Մշակույթ');
@@ -348,7 +347,6 @@ const Career = () => {
           </button>
         </form>
       </div>
-      <EvocaFooter />
     </div>
   );
 };
