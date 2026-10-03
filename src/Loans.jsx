@@ -261,6 +261,28 @@ function LoanCard({ loan }) {
   );
 }
 
+export function FloatingActions() {
+  return (
+    <>
+      <button
+        type="button"
+        aria-label="call"
+        className="fixed bottom-24 right-6 z-40 flex h-12 w-12 items-center justify-center rounded-full shadow-md"
+        style={{ background: '#d9c8f5', color: PURPLE }}
+      >
+        <Phone size={20} fill="currentColor" />
+      </button>
+      <button
+        type="button"
+        className="fixed bottom-0 right-6 z-40 rounded-t-lg px-4 py-3 text-[13px] font-semibold text-white"
+        style={{ background: PURPLE }}
+      >
+        Գրեք մեզ, մենք օնլայն ենք !
+      </button>
+    </>
+  );
+}
+
 export default function Loans() {
   const [filter, setFilter] = useState('all');
   const list = filter === 'all' ? LOANS : LOANS.filter((l) => l.cats.includes(filter));
@@ -319,22 +341,7 @@ export default function Loans() {
         </div>
       </div>
 
-      {/* Плавающие кнопки: звонок и чат */}
-      <button
-        type="button"
-        aria-label="call"
-        className="fixed bottom-24 right-6 z-40 flex h-12 w-12 items-center justify-center rounded-full shadow-md"
-        style={{ background: '#d9c8f5', color: PURPLE }}
-      >
-        <Phone size={20} fill="currentColor" />
-      </button>
-      <button
-        type="button"
-        className="fixed bottom-0 right-6 z-40 rounded-t-lg px-4 py-3 text-[13px] font-semibold text-white"
-        style={{ background: PURPLE }}
-      >
-        Գրեք մեզ, մենք օնլայն ենք !
-      </button>
+      <FloatingActions />
     </main>
   );
 }

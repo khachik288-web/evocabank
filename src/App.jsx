@@ -10,6 +10,7 @@ import Career from './Career';
 import News from './News';
 import Blog from './Blog';
 import Loans from './Loans';
+import { HistoryPage, InfoPage } from './LoanInfo';
 
 // --- 1. HEADER ---
 export function Header() {
@@ -50,8 +51,8 @@ export function Header() {
 
   const loansSubNav = [
     { label: 'Վարկեր', path: '/loans' },
-    { label: 'Վարկային պատմություն և սքոր', path: '#' },
-    { label: 'Կարևոր տեղեկատվություն', path: '#' },
+    { label: 'Վարկային պատմություն և սքոր', path: '/loans/history' },
+    { label: 'Կարևոր տեղեկատվություն', path: '/loans/info' },
   ];
 
   const aboutSubNav = [
@@ -1807,6 +1808,8 @@ function App() {
           <Route path="/news" element={<SiteLayout><News /></SiteLayout>} />
           <Route path="/blog" element={<SiteLayout><Blog /></SiteLayout>} />
           <Route path="/loans" element={<SiteLayout><Loans /></SiteLayout>} />
+          <Route path="/loans/history" element={<SiteLayout><HistoryPage /></SiteLayout>} />
+          <Route path="/loans/info" element={<SiteLayout><InfoPage /></SiteLayout>} />
         </Routes>
       </div>
     </Router>
