@@ -9,11 +9,13 @@ import About from './About';
 import Career from './Career';
 import News from './News';
 import Blog from './Blog';
+import Loans from './Loans';
 
 // --- 1. HEADER ---
 export function Header() {
   const { pathname } = useLocation();
   const isAbout = pathname.startsWith('/about');
+  const isLoans = pathname.startsWith('/loans');
 
   const topLinks = [
     { label: 'Անհատ', path: '/' },
@@ -26,21 +28,31 @@ export function Header() {
   ];
 
   const isTopActive = (path) =>
-    path === '/' ? pathname === '/' : path !== '#' && pathname.startsWith(path);
+    path === '/'
+      ? pathname === '/' || isLoans // «Անհատ» подсвечен и на подстраницах раздела (Վարկեր)
+      : path !== '#' && pathname.startsWith(path);
 
   const personalLinks = [
-    'Վարկեր',
-    'Քարտեր',
-    'Ավանդներ',
-    'Հաշիվներ',
-    'Փոխանցումներ',
-    'Արժեթղթեր',
-    'EvocaSALARY',
-    'EvocaTOUCH',
-  ];
+    { label: 'Վարկեր', path: '/loans' },
+    { label: 'Քարտեր', path: '#' },
+    { label: 'Ավանդներ', path: '#' },
+    { label: 'Հաշիվներ', path: '#' },
+    { label: 'Փոխանցումներ', path: '#' },
+    { label: 'Արժեթղթեր', path: '#' },
+    { label: 'EvocaSALARY', path: '#' },
+    { label: 'EvocaTOUCH', path: '#' },
+  ].map((l) => ({ ...l }));
 
-  const aboutLinks = ['Evoca-ի մասին', 'Սակագներ', 'Հաշվետվություններ', 'Հայտարարություններ'];
+  const aboutLinks = ['Evoca-ի մասին', 'Սակագներ', 'Հաշվետվություններ', 'Հայտարարություններ'].map(
+    (label) => ({ label, path: '#' })
+  );
   const mainLinks = isAbout ? aboutLinks : personalLinks;
+
+  const loansSubNav = [
+    { label: 'Վարկեր', path: '/loans' },
+    { label: 'Վարկային պատմություն և սքոր', path: '#' },
+    { label: 'Կարևոր տեղեկատվություն', path: '#' },
+  ];
 
   const aboutSubNav = [
     { label: 'Ընդհանուր', path: '/about' },
@@ -52,6 +64,8 @@ export function Header() {
     { label: 'CSR', path: '#' },
     { label: 'Էվոկա ֆինանսական խումբ', path: '#' },
   ];
+
+  const subNav = isAbout ? aboutSubNav : isLoans ? loansSubNav : null;
 
   return (
     <header className="w-full text-sm">
@@ -132,15 +146,15 @@ export function Header() {
             </span>
             <nav className="flex items-center gap-7 font-medium">
               {mainLinks.map((link, i) => (
-                <a
-                  key={link}
-                  href="#"
+                <Link
+                  key={link.label}
+                  to={link.path}
                   className={`no-underline hover:no-underline text-black ${
                     i === 0 ? 'text-purple-700' : 'text-gray-800 hover:text-purple-700'
                   }`}
                 >
-                  {link}
-                </a>
+                  {link.label}
+                </Link>
               ))}
             </nav>
           </div>
@@ -151,12 +165,12 @@ export function Header() {
         </div>
       </div>
 
-      {/* Purple sub navigation (only on "Մեր մասին" pages) */}
-      {isAbout && (
+      {/* Purple sub navigation ("Մեր մասին" и "Անհատ → Վարկեր") */}
+      {subNav && (
         <div className="bg-[#6a00db]">
           <div className="mx-auto max-w-7xl overflow-x-auto px-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             <nav className="flex min-w-max items-stretch">
-              {aboutSubNav.map((item) => {
+              {subNav.map((item) => {
                 const active = item.path !== '#' && pathname === item.path;
                 return (
                   <Link
@@ -1792,6 +1806,7 @@ function App() {
           <Route path="/career" element={<SiteLayout><Career /></SiteLayout>} />
           <Route path="/news" element={<SiteLayout><News /></SiteLayout>} />
           <Route path="/blog" element={<SiteLayout><Blog /></SiteLayout>} />
+          <Route path="/loans" element={<SiteLayout><Loans /></SiteLayout>} />
         </Routes>
       </div>
     </Router>
