@@ -272,13 +272,6 @@ export function FloatingActions() {
       >
         <Phone size={20} fill="currentColor" />
       </button>
-      <button
-        type="button"
-        className="fixed bottom-0 right-6 z-40 rounded-t-lg px-4 py-3 text-[13px] font-semibold text-white"
-        style={{ background: PURPLE }}
-      >
-        Գրեք մեզ, մենք օնլայն ենք !
-      </button>
     </>
   );
 }
