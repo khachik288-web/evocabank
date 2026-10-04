@@ -1,0 +1,192 @@
+/* ====== Страница «Քարտեր» (Անհատ → Քարտեր) ====== */
+.cards-page {
+  --cp-purple: #6a00db;
+  background: #fff;
+  color: #000;
+}
+.cards-wrap {
+  max-width: 80rem;            /* как у Header / Loans (max-w-7xl) */
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* --- Breadcrumbs --- */
+.cards-crumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 32px;
+  font-size: 12px;
+  color: #222;
+}
+.cards-crumbs a { color: #222; text-decoration: none; }
+.cards-crumbs svg { color: #999; flex: none; }
+
+.cards-title {
+  margin: 56px 0 40px;
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+/* --- Filter chips --- */
+.cards-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 20px;
+  margin-bottom: 40px;
+}
+.cards-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 34px;
+  padding: 0 15px;
+  border: 0;
+  border-radius: 999px;
+  background: #f1f1f1;
+  color: #222;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+.cards-chip:hover { background: #e7e1f5; }
+.cards-chip.is-active { background: var(--cp-purple); color: #fff; font-weight: 600; }
+.cards-chip.is-logo { padding: 0 20px; min-width: 62px; }
+.cards-chip.is-logo.is-active { background: #ece6f8; box-shadow: inset 0 0 0 2px var(--cp-purple); }
+
+/* логотипы платёжных систем в чипах */
+.logo-arca { font-weight: 900; font-size: 18px; letter-spacing: -0.5px; color: #6a00db; }
+.logo-arca b { color: #00c389; font-weight: 900; }
+.logo-visa { font-weight: 900; font-style: italic; font-size: 17px; color: #1a1f71; letter-spacing: -0.5px; }
+.logo-mc { position: relative; width: 28px; height: 18px; }
+.logo-mc i { position: absolute; top: 0; width: 18px; height: 18px; border-radius: 50%; }
+.logo-mc i:first-child { left: 0; background: #eb001b; }
+.logo-mc i:last-child { right: 0; background: #f79e1b; opacity: .95; }
+.logo-up { display: inline-flex; width: 36px; height: 20px; border-radius: 3px; overflow: hidden; }
+.logo-up i { flex: 1; }
+.logo-up i:nth-child(1) { background: #e21836; }
+.logo-up i:nth-child(2) { background: #00447c; }
+.logo-up i:nth-child(3) { background: #007b84; }
+
+/* --- Card row --- */
+.card-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 58px;
+  padding: 56px 0 48px;
+  border-top: 1px solid #e5e5e5;
+}
+.card-row:first-of-type { border-top: 0; padding-top: 16px; }
+.card-row:last-of-type { border-bottom: 1px solid #e5e5e5; }
+
+.card-img-box {
+  position: relative;
+  flex: none;
+  width: 332px;
+  padding-bottom: 36px;
+}
+.card-img-box img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 415 / 261;
+  object-fit: contain;
+  border-radius: 12px;
+}
+/* размытая тень-эллипс под картой */
+.card-img-box::after {
+  content: '';
+  position: absolute;
+  left: 4%;
+  right: 4%;
+  bottom: 0;
+  height: 14px;
+  background: rgba(0, 0, 0, .12);
+  border-radius: 50%;
+  filter: blur(8px);
+}
+
+.card-info { min-width: 0; flex: 1; }
+.card-name { margin: 0 0 14px; font-size: 24px; font-weight: 800; line-height: 1.25; }
+.card-desc { margin: 0 0 18px; max-width: 470px; font-size: 13px; line-height: 1.55; color: #222; }
+
+.card-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0 0;
+  margin-bottom: 20px;
+}
+.card-stat { padding-right: 16px; }
+.card-stat-pre { min-height: 13px; font-size: 9.5px; line-height: 13px; color: #222; }
+.card-stat-value {
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.25;
+  white-space: nowrap;
+  color: var(--cp-purple);
+}
+.card-stat-label { margin-top: 6px; font-size: 10.5px; line-height: 1.5; color: #222; }
+
+.card-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 4px;
+  padding: 13px 30px;
+  border-radius: 999px;
+  background: #ece6f8;
+  color: var(--cp-purple);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background .2s;
+}
+.card-more:hover { background: #e0d6f5; text-decoration: none; }
+.card-row.no-stats .card-more { margin-top: 18px; }
+
+.cards-empty { padding: 60px 0; text-align: center; color: #888; }
+
+/* ====== @media ====== */
+
+/* ≥1536px — большие мониторы */
+@media (min-width: 1536px) {
+  .cards-wrap { max-width: 88rem; }
+}
+
+/* ≤1199px — маленькие ноутбуки */
+@media (max-width: 1199px) {
+  .card-row { gap: 40px; }
+  .card-img-box { width: 300px; }
+  .card-stat-value { font-size: 24px; }
+}
+
+/* ≤991px — планшеты: картинка сверху, текст снизу */
+@media (max-width: 991px) {
+  .cards-title { margin: 40px 0 28px; font-size: 34px; }
+  .card-row { flex-direction: column; align-items: stretch; gap: 20px; padding: 40px 0 36px; }
+  .card-row:first-of-type { padding-top: 8px; }
+  .card-img-box { width: 100%; max-width: 415px; }
+  .card-desc { max-width: 640px; }
+  .card-stats { max-width: 640px; }
+}
+
+/* ≤767px — большие телефоны */
+@media (max-width: 767px) {
+  .cards-wrap { padding: 0 1rem; }
+  .cards-crumbs { padding-top: 20px; }
+  .cards-title { margin: 28px 0 20px; font-size: 28px; }
+  .cards-filters { flex-wrap: nowrap; overflow-x: auto; gap: 10px; margin: 0 -1rem 24px; padding: 0 1rem 6px; scrollbar-width: none; }
+  .cards-filters::-webkit-scrollbar { display: none; }
+  .cards-chip { flex: none; white-space: nowrap; }
+  .card-name { font-size: 21px; }
+  .card-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 0; }
+  .card-stat-value { font-size: 24px; }
+}
+
+/* ≤479px — маленькие телефоны */
+@media (max-width: 479px) {
+  .cards-title { font-size: 24px; }
+  .card-img-box { max-width: 100%; }
+  .card-more { width: 100%; justify-content: center; }
+  .card-stat-value { font-size: 22px; }
+}

@@ -10,6 +10,7 @@ import Career from './Career';
 import News from './News';
 import Blog from './Blog';
 import Loans from './Loans';
+import Cards from './Cards';
 import { HistoryPage, InfoPage } from './LoanInfo';
 
 // --- 1. HEADER ---
@@ -17,6 +18,7 @@ export function Header() {
   const { pathname } = useLocation();
   const isAbout = pathname.startsWith('/about');
   const isLoans = pathname.startsWith('/loans');
+  const isCards = pathname.startsWith('/cards');
 
   const topLinks = [
     { label: 'Անհատ', path: '/' },
@@ -30,12 +32,12 @@ export function Header() {
 
   const isTopActive = (path) =>
     path === '/'
-      ? pathname === '/' || isLoans // «Անհատ» подсвечен и на подстраницах раздела (Վարկեր)
+      ? pathname === '/' || isLoans || isCards // «Անհատ» подсвечен и на подстраницах раздела (Վարկեր)
       : path !== '#' && pathname.startsWith(path);
 
   const personalLinks = [
     { label: 'Վարկեր', path: '/loans' },
-    { label: 'Քարտեր', path: '#' },
+    { label: 'Քարտեր', path: '/cards' },
     { label: 'Ավանդներ', path: '#' },
     { label: 'Հաշիվներ', path: '#' },
     { label: 'Փոխանցումներ', path: '#' },
@@ -55,6 +57,13 @@ export function Header() {
     { label: 'Կարևոր տեղեկատվություն', path: '/loans/info' },
   ];
 
+  const cardsSubNav = [
+    { label: 'Քարտեր', path: '/cards' },
+    { label: 'Քարտերի տրամադրում և սպասարկում', path: '#' },
+    { label: 'Սոցիալական ապահովության վճարային քարտեր', path: '#' },
+    { label: 'Evoca Benefits', path: '#' },
+  ];
+
   const aboutSubNav = [
     { label: 'Ընդհանուր', path: '/about' },
     { label: 'Կառուցվածք', path: '#' },
@@ -66,7 +75,7 @@ export function Header() {
     { label: 'Էվոկա ֆինանսական խումբ', path: '#' },
   ];
 
-  const subNav = isAbout ? aboutSubNav : isLoans ? loansSubNav : null;
+  const subNav = isAbout ? aboutSubNav : isLoans ? loansSubNav : isCards ? cardsSubNav : null;
 
   return (
     <header className="w-full text-sm">
@@ -151,7 +160,7 @@ export function Header() {
                   key={link.label}
                   to={link.path}
                   className={`no-underline hover:no-underline text-black ${
-                    i === 0 ? 'text-purple-700' : 'text-gray-800 hover:text-purple-700'
+                    (isCards ? link.path === '/cards' : i === 0) ? 'text-purple-700' : 'text-gray-800 hover:text-purple-700'
                   }`}
                 >
                   {link.label}
@@ -1809,6 +1818,7 @@ function App() {
           <Route path="/blog" element={<SiteLayout><Blog /></SiteLayout>} />
           <Route path="/loans" element={<SiteLayout><Loans /></SiteLayout>} />
           <Route path="/loans/history" element={<SiteLayout><HistoryPage /></SiteLayout>} />
+          <Route path="/cards" element={<SiteLayout><Cards /></SiteLayout>} />
           <Route path="/loans/info" element={<SiteLayout><InfoPage /></SiteLayout>} />
         </Routes>
       </div>
