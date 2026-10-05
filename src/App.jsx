@@ -11,6 +11,7 @@ import News from './News';
 import Blog from './Blog';
 import Loans from './Loans';
 import Cards from './Cards';
+import CardsService from './CardsService';
 import { HistoryPage, InfoPage } from './LoanInfo';
 
 // --- 1. HEADER ---
@@ -59,7 +60,7 @@ export function Header() {
 
   const cardsSubNav = [
     { label: 'Քարտեր', path: '/cards' },
-    { label: 'Քարտերի տրամադրում և սպասարկում', path: '#' },
+    { label: 'Քարտերի տրամադրում և սպասարկում', path: '/cardsservice' },
     { label: 'Սոցիալական ապահովության վճարային քարտեր', path: '#' },
     { label: 'Evoca Benefits', path: '#' },
   ];
@@ -1819,6 +1820,7 @@ function App() {
           <Route path="/loans" element={<SiteLayout><Loans /></SiteLayout>} />
           <Route path="/loans/history" element={<SiteLayout><HistoryPage /></SiteLayout>} />
           <Route path="/cards" element={<SiteLayout><Cards /></SiteLayout>} />
+          <Route path="/cardsservice" element={<SiteLayout><CardsService /></SiteLayout>} />
           <Route path="/loans/info" element={<SiteLayout><InfoPage /></SiteLayout>} />
         </Routes>
       </div>

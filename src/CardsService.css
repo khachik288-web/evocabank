@@ -1,0 +1,105 @@
+/* ====== «Քարտերի տրամադրում և սպասարկում» ====== */
+.svc-page { --sv-purple: #6a00db; background: #fff; color: #000; }
+.svc-wrap { max-width: 80rem; margin: 0 auto; padding: 0 1.5rem; }
+
+.svc-crumbs { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding-top: 32px; font-size: 12px; color: #222; }
+.svc-crumbs a { color: #222; text-decoration: none; }
+.svc-crumbs a:hover { color: var(--sv-purple); }
+.svc-crumbs svg { color: #999; flex: none; }
+
+.svc-body { position: relative; padding-top: 48px; }
+.svc-content { max-width: 825px; margin: 0 auto; }
+
+.svc-title { margin: 0 0 56px; font-size: 28px; font-weight: 600; line-height: 1.25; }
+.svc-heading { margin: 0 0 22px; font-size: 20px; font-weight: 800; text-transform: uppercase; letter-spacing: .3px; }
+
+/* --- share --- */
+.svc-share {
+  position: sticky; top: 130px; float: left;
+  display: flex; flex-direction: column; gap: 4px;
+  width: 42px; padding: 8px 0; margin-top: 4px;
+  background: #f1f1f1; border-radius: 6px; align-items: center;
+}
+.svc-share a { display: flex; width: 34px; height: 30px; align-items: center; justify-content: center; color: #888; border-radius: 4px; transition: color .2s, background .2s, transform .2s; }
+.svc-share a:hover { color: #fff; background: var(--sv-purple); transform: translateY(-1px); }
+
+/* --- accordion --- */
+.svc-acc { display: flex; flex-direction: column; gap: 14px; }
+.svc-item { border: 1px solid #e0d0fa; border-radius: 14px; background: #fff; transition: border-color .25s, box-shadow .25s, background .25s; }
+.svc-item:hover { border-color: #b98af0; background: #fcfaff; }
+.svc-item.is-open { border-color: var(--sv-purple); background: #fff; box-shadow: 0 6px 22px rgba(106, 0, 219, .08); }
+
+.svc-head {
+  display: flex; align-items: center; gap: 14px; width: 100%;
+  padding: 13px 22px; border: 0; background: transparent; text-align: left;
+  font-size: 14px; font-weight: 700; color: #6b6b6b; cursor: pointer;
+  transition: color .2s;
+}
+.svc-head:hover { color: #000; }
+.svc-item.is-open .svc-head { color: #000; padding-top: 16px; }
+.svc-chev { flex: none; color: var(--sv-purple); transition: transform .3s; }
+.svc-item.is-open .svc-chev { transform: rotate(180deg); }
+
+.svc-panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .35s ease; }
+.svc-item.is-open .svc-panel { grid-template-rows: 1fr; }
+.svc-panel > div { overflow: hidden; }
+.svc-list { margin: 0; padding: 12px 24px 26px 62px; }
+.svc-list li { margin-bottom: 14px; padding-left: 8px; font-size: 14px; line-height: 1.5; color: #1a1a1a; }
+.svc-list li::marker { color: var(--sv-purple); font-weight: 700; }
+.svc-soon { margin: 0; padding: 4px 24px 22px 56px; font-size: 14px; color: #888; }
+
+/* --- documents --- */
+.svc-docs { max-width: 750px; margin: 56px auto 0; }
+.svc-docs h2 { margin: 0 0 22px; font-size: 22px; font-weight: 800; }
+.svc-doc-list { display: flex; flex-direction: column; gap: 22px; margin: 0; padding: 0; list-style: none; }
+.svc-doc {
+  display: flex; align-items: center; gap: 12px; height: 45px; padding: 0 10px;
+  border-radius: 6px; background: #f5f3f8; color: #000; font-size: 13px; font-weight: 600;
+  text-decoration: none; transition: background .2s, transform .2s, box-shadow .2s;
+}
+.svc-doc span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.svc-doc svg { flex: none; color: var(--sv-purple); transition: transform .2s; }
+.svc-doc:hover { background: #f1e9fc; color: #000; text-decoration: none; transform: translateX(4px); box-shadow: 0 4px 14px rgba(106, 0, 219, .1); }
+.svc-doc:hover svg { transform: translateY(-1px) scale(1.08); }
+
+.svc-bottom { height: 90px; }
+.svc-updated { border-bottom: 1px solid #e5e5e5; }
+.svc-updated div { max-width: 80rem; margin: 0 auto; padding: 14px 1.5rem; text-align: right; font-size: 11px; color: #888; }
+
+/* ====== @media ====== */
+@media (min-width: 1536px) { .svc-wrap, .svc-updated div { max-width: 88rem; } }
+
+@media (max-width: 1199px) {
+  .svc-content { max-width: 760px; }
+  .svc-docs { max-width: 700px; }
+}
+
+/* планшеты: шеринг-иконки уходят в строку над контентом */
+@media (max-width: 991px) {
+  .svc-body { padding-top: 32px; }
+  .svc-share { position: static; float: none; flex-direction: row; width: auto; display: inline-flex; padding: 4px 8px; margin: 0 0 24px; }
+  .svc-title { margin-bottom: 36px; font-size: 24px; }
+  .svc-heading { font-size: 18px; }
+  .svc-list { padding-left: 52px; }
+}
+
+@media (max-width: 767px) {
+  .svc-wrap, .svc-updated div { padding-left: 1rem; padding-right: 1rem; }
+  .svc-crumbs { padding-top: 20px; }
+  .svc-title { font-size: 21px; margin-bottom: 28px; }
+  .svc-heading { font-size: 16px; }
+  .svc-head { padding: 12px 14px; font-size: 13px; gap: 10px; }
+  .svc-list { padding: 8px 16px 20px 38px; }
+  .svc-list li { font-size: 13px; padding-left: 4px; }
+  .svc-docs { margin-top: 40px; }
+  .svc-docs h2 { font-size: 19px; }
+  .svc-doc-list { gap: 12px; }
+  .svc-updated div { text-align: left; }
+}
+
+@media (max-width: 479px) {
+  .svc-title { font-size: 19px; }
+  .svc-doc { font-size: 12px; height: 42px; }
+  .svc-doc:hover { transform: none; }
+  .svc-item { border-radius: 10px; }
+}
