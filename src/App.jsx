@@ -13,6 +13,10 @@ import Loans from './Loans';
 import Cards from './Cards';
 import CardsService from './CardsService';
 import { HistoryPage, InfoPage } from './LoanInfo';
+import CardsSocial from './CardsSocial';
+import Benefits from './Benefits';
+import DepositsPage from './DepositsPage';
+
 
 // --- 1. HEADER ---
 export function Header() {
@@ -39,7 +43,7 @@ export function Header() {
   const personalLinks = [
     { label: 'Վարկեր', path: '/loans' },
     { label: 'Քարտեր', path: '/cards' },
-    { label: 'Ավանդներ', path: '#' },
+    { label: 'Ավանդներ', path: '/deposits' },
     { label: 'Հաշիվներ', path: '#' },
     { label: 'Փոխանցումներ', path: '#' },
     { label: 'Արժեթղթեր', path: '#' },
@@ -61,8 +65,8 @@ export function Header() {
   const cardsSubNav = [
     { label: 'Քարտեր', path: '/cards' },
     { label: 'Քարտերի տրամադրում և սպասարկում', path: '/cardsservice' },
-    { label: 'Սոցիալական ապահովության վճարային քարտեր', path: '#' },
-    { label: 'Evoca Benefits', path: '#' },
+    { label: 'Սոցիալական ապահովության վճարային քարտեր', path: '/cards/social' },
+    { label: 'Evoca Benefits', path: '/cards/benefits' },
   ];
 
   const aboutSubNav = [
@@ -170,7 +174,7 @@ export function Header() {
             </nav>
           </div>
  
-          <button className="rounded-full bg-purple-700 px-6 py-2.5 font-semibold text-white hover:bg-purple-800">
+          <button className="bg-purple-700 px-6 py-2.5 font-semibold text-white hover:bg-purple-800">
             EvocaONLINE
           </button>
         </div>
@@ -1822,6 +1826,9 @@ function App() {
           <Route path="/cards" element={<SiteLayout><Cards /></SiteLayout>} />
           <Route path="/cardsservice" element={<SiteLayout><CardsService /></SiteLayout>} />
           <Route path="/loans/info" element={<SiteLayout><InfoPage /></SiteLayout>} />
+          <Route path="/cards/social" element={<SiteLayout><CardsSocial /></SiteLayout>} />
+          <Route path="/cards/benefits" element={<SiteLayout><Benefits /></SiteLayout>} />
+          <Route path="/deposits" element={<DepositsPage />} />
         </Routes>
       </div>
     </Router>

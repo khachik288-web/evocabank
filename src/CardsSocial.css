@@ -1,0 +1,134 @@
+/* ====== «Սոցիալական ապահովության վճարային քարտեր» ====== */
+.soc-page { --so-purple: #6a00db; background: #fff; color: #000; }
+.soc-wrap { max-width: 80rem; margin: 0 auto; padding: 0 1.5rem; }
+
+/* --- Breadcrumbs --- */
+.soc-crumbs { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding-top: 32px; font-size: 12px; color: #222; }
+.soc-crumbs a { color: #222; text-decoration: none; transition: color .2s; }
+.soc-crumbs a:hover { color: var(--so-purple); }
+.soc-crumbs svg { color: #999; flex: none; }
+
+/* --- Hero: серый блок слева, фиолетовый с фото справа --- */
+.soc-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  margin-top: 36px;
+  border-radius: 18px;
+  overflow: hidden;
+}
+.soc-hero-text {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 48px 56px;
+  background: #f4f4f4;
+}
+.soc-hero-title { margin: 0 0 24px; font-size: 34px; font-weight: 800; line-height: 1.2; }
+.soc-hero-desc { margin: 0; max-width: 480px; font-size: 14px; line-height: 1.6; color: #222; }
+.soc-hero-img { position: relative; background: #cba8f7; min-height: 320px; }
+.soc-hero-img img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: top center;
+  transition: transform .6s ease;
+}
+.soc-hero:hover .soc-hero-img img { transform: scale(1.03); }
+
+/* --- Контент со шерингом слева --- */
+.soc-body { position: relative; padding-top: 52px; }
+.soc-content { max-width: 825px; margin: 0 auto; }
+
+.soc-share {
+  position: sticky; top: 130px; float: left;
+  display: flex; flex-direction: column; gap: 4px;
+  width: 42px; padding: 8px 0; margin-top: 4px;
+  background: #f1f1f1; border-radius: 6px; align-items: center;
+}
+.soc-share a {
+  display: flex; width: 34px; height: 30px; align-items: center; justify-content: center;
+  color: #888; border-radius: 4px;
+  transition: color .2s, background .2s, transform .2s;
+}
+.soc-share a:hover { color: #fff; background: var(--so-purple); transform: translateY(-1px); }
+
+.soc-p { margin: 0 0 16px; font-size: 14px; line-height: 1.6; color: #1a1a1a; }
+.soc-link { color: var(--so-purple); font-weight: 600; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color .2s; }
+.soc-link:hover { border-color: var(--so-purple); }
+
+.soc-h2 { margin: 44px 0 22px; font-size: 22px; font-weight: 800; line-height: 1.25; }
+
+.soc-list { margin: 0; padding: 0 0 0 2px; list-style: none; }
+.soc-list li {
+  position: relative;
+  margin-bottom: 16px; padding-left: 22px;
+  font-size: 14px; line-height: 1.6; color: #1a1a1a;
+}
+.soc-list li::before {
+  content: '';
+  position: absolute; left: 0; top: 9px;
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--so-purple);
+}
+.soc-note {
+  margin: 26px 0 0; padding: 18px 22px;
+  border-left: 3px solid var(--so-purple);
+  border-radius: 0 10px 10px 0;
+  background: #faf7ff;
+  font-size: 13.5px; line-height: 1.6; color: #222;
+}
+
+/* --- Документы --- */
+.soc-docs { max-width: 750px; margin: 56px auto 0; }
+.soc-docs h2 { margin: 0 0 22px; font-size: 22px; font-weight: 800; }
+.soc-doc-list { display: flex; flex-direction: column; gap: 18px; margin: 0; padding: 0; list-style: none; }
+.soc-doc {
+  display: flex; align-items: center; gap: 12px; height: 45px; padding: 0 10px;
+  border-radius: 6px; background: #f5f3f8; color: #000;
+  font-size: 13px; font-weight: 600; text-decoration: none;
+  transition: background .2s, transform .2s, box-shadow .2s;
+}
+.soc-doc span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.soc-doc svg { flex: none; color: var(--so-purple); transition: transform .2s; }
+.soc-doc:hover { background: #f1e9fc; color: #000; text-decoration: none; transform: translateX(4px); box-shadow: 0 4px 14px rgba(106, 0, 219, .1); }
+.soc-doc:hover svg { transform: translateY(-1px) scale(1.08); }
+
+.soc-bottom { height: 90px; }
+.soc-updated { border-bottom: 1px solid #e5e5e5; }
+.soc-updated div { max-width: 80rem; margin: 0 auto; padding: 14px 1.5rem; text-align: right; font-size: 11px; color: #888; }
+
+/* ====== @media ====== */
+@media (min-width: 1536px) { .soc-wrap, .soc-updated div { max-width: 88rem; } }
+
+@media (max-width: 1199px) {
+  .soc-content { max-width: 760px; }
+  .soc-docs { max-width: 700px; }
+}
+
+/* планшеты: шеринг в строку, hero компактнее */
+@media (max-width: 991px) {
+  .soc-hero-text { padding: 36px 32px; }
+  .soc-hero-title { font-size: 28px; }
+  .soc-body { padding-top: 36px; }
+  .soc-share { position: static; float: none; flex-direction: row; width: auto; display: inline-flex; padding: 4px 8px; margin: 0 0 24px; }
+  .soc-h2 { margin-top: 34px; font-size: 20px; }
+}
+
+@media (max-width: 767px) {
+  .soc-wrap, .soc-updated div { padding-left: 1rem; padding-right: 1rem; }
+  .soc-crumbs { padding-top: 20px; }
+  .soc-hero { grid-template-columns: 1fr; margin-top: 24px; }
+  .soc-hero-text { padding: 28px 22px; order: 1; }
+  .soc-hero-img { order: 2; min-height: 260px; }
+  .soc-hero-title { font-size: 23px; margin-bottom: 16px; }
+  .soc-hero-desc { font-size: 13px; }
+  .soc-h2 { font-size: 18px; }
+  .soc-p, .soc-list li, .soc-note { font-size: 13px; }
+  .soc-docs { margin-top: 40px; }
+  .soc-docs h2 { font-size: 19px; }
+  .soc-doc-list { gap: 12px; }
+  .soc-updated div { text-align: left; }
+}
+
+@media (max-width: 479px) {
+  .soc-hero-title { font-size: 20px; }
+  .soc-hero-img { min-height: 220px; }
+  .soc-doc { font-size: 12px; height: 42px; }
+  .soc-doc:hover { transform: none; }
+}

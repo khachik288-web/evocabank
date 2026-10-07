@@ -1,0 +1,445 @@
+
+
+.evoca-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header Styles */
+.evoca-header {
+  background: #fff;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 40px;
+  font-size: 13px;
+  color: #666;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.top-nav .left-links span,
+.top-nav .right-links span {
+  margin-right: 18px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.top-nav .left-links span:hover,
+.top-nav .right-links span:hover {
+  color: #7b1fa2;
+}
+
+.top-nav .active {
+  color: #7b1fa2;
+  font-weight: 600;
+}
+
+.main-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+}
+
+.logo-evoca {
+  font-size: 28px;
+  font-weight: 800;
+  color: #7b1fa2;
+  letter-spacing: -0.5px;
+}
+
+.main-links span {
+  margin: 0 14px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  color: #333;
+  transition: color 0.2s;
+}
+
+.main-links span:hover,
+.main-links .active-link {
+  color: #7b1fa2;
+}
+
+.online-btn {
+  background-color: #7b1fa2;
+  color: #fff;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.online-btn:hover {
+  background-color: #6a1b9a;
+  transform: translateY(-1px);
+}
+
+/* Purple Submenu / Tabs */
+.sub-purple-bar {
+  background-color: #6a0dad;
+  padding: 0 40px;
+}
+
+.tabs-wrapper {
+  display: flex;
+  gap: 10px;
+}
+
+.tab-btn {
+  background: transparent;
+  border: none;
+  color: #fff;
+  padding: 14px 24px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.tab-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.tab-btn.active {
+  background-color: #4a0080;
+}
+
+/* Breadcrumbs */
+.breadcrumbs {
+  padding: 20px 40px 10px;
+  font-size: 13px;
+  color: #777;
+}
+
+.breadcrumbs span {
+  margin: 0 4px;
+  cursor: pointer;
+}
+
+.breadcrumbs .current {
+  color: #333;
+  font-weight: 500;
+}
+
+/* Main Content Wrapper */
+.evoca-main-content {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+  flex: 1;
+}
+
+.page-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #222;
+}
+
+/* Cards (Tab 1) */
+.cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.deposit-card {
+  display: flex;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.3s;
+}
+
+.deposit-card:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.deposit-card-image {
+  width: 380px;
+  min-width: 380px;
+}
+
+.deposit-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.deposit-card-content {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.deposit-card-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 12px;
+}
+
+.deposit-card-description {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 24px;
+}
+
+.deposit-card-stats {
+  display: flex;
+  gap: 25px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-label {
+  font-size: 11px;
+  color: #888;
+}
+
+.stat-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: #6a0dad;
+  margin: 2px 0;
+}
+
+.stat-sub {
+  font-size: 12px;
+  color: #666;
+}
+
+.deposit-card-btn {
+  align-self: flex-start;
+  background-color: #f0e6f7;
+  color: #6a0dad;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.deposit-card-btn:hover {
+  background-color: #e2d1f3;
+}
+
+/* Accordion & Info Page (Tab 2) */
+.accordion-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.accordion-item {
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  background: #fff;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.accordion-item.open {
+  border-color: #6a0dad;
+}
+
+.accordion-header {
+  padding: 18px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  color: #222;
+  user-select: none;
+}
+
+.accordion-header:hover {
+  background-color: #fcfaff;
+}
+
+.accordion-body {
+  padding: 0 24px 24px;
+  color: #444;
+  font-size: 14px;
+  line-height: 1.7;
+  border-top: 1px solid #f0f0f0;
+  margin-top: 5px;
+  padding-top: 15px;
+}
+
+.info-list {
+  padding-left: 20px;
+}
+
+.info-list li {
+  margin-bottom: 12px;
+}
+
+/* Documents Section */
+.documents-section {
+  margin-top: 40px;
+}
+
+.docs-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.docs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.doc-item {
+  display: flex;
+  align-items: center;
+  background: #f7f7f9;
+  padding: 16px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.doc-item:hover {
+  background: #eee8f5;
+}
+
+.doc-icon {
+  margin-right: 15px;
+  font-size: 20px;
+}
+
+.doc-name {
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+}
+
+.updated-date {
+  text-align: right;
+  color: #888;
+  font-size: 12px;
+  margin-top: 30px;
+}
+
+/* Footer */
+.evoca-footer {
+  background-color: #fff;
+  border-top: 1px solid #e0e0e0;
+  padding: 50px 40px 30px;
+  margin-top: auto;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.5fr 1fr 1.5fr;
+  gap: 30px;
+  font-size: 13px;
+}
+
+.footer-col h4 {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #222;
+}
+
+.footer-col ul {
+  list-style: none;
+}
+
+.footer-col ul li {
+  margin-bottom: 10px;
+  color: #555;
+  cursor: pointer;
+}
+
+.footer-col ul li:hover {
+  color: #6a0dad;
+}
+
+.footer-logo {
+  font-weight: 800;
+  font-size: 22px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.brand-col p {
+  color: #777;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.social-icons span, .app-btn {
+  display: inline-block;
+  margin-right: 8px;
+  margin-bottom: 10px;
+  font-size: 12px;
+  color: #6a0dad;
+  cursor: pointer;
+}
+
+/* Responsive / Media Queries */
+@media (max-width: 992px) {
+  .deposit-card {
+    flex-direction: column;
+  }
+  
+  .deposit-card-image {
+    width: 100%;
+    min-width: unset;
+    height: 220px;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .main-links {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .top-nav {
+    display: none;
+  }
+
+  .deposit-card-stats {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+  }
+}
