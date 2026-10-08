@@ -1,0 +1,61 @@
+/* Всё под .bh — глобальных стилей нет, Tailwind на остальных страницах не ломается */
+.bh { --p: #6a00dc; --pd: #4f00a8; position: sticky; top: 0; z-index: 50; background: #fff; font-family: 'Noto Sans Armenian', 'Mardoto', system-ui, sans-serif; color: #222; box-shadow: 0 4px 12px rgba(0,0,0,.14); }
+.bh *, .bh *::before, .bh *::after { box-sizing: border-box; }
+.bh a { text-decoration: none; color: inherit; }
+.bh button { background: none; border: 0; padding: 0; cursor: pointer; color: inherit; }
+.bh-wrap { max-width: 1300px; margin: 0 auto; padding: 0 20px; }
+
+.bh-top { border-bottom: 1px solid #e5e5e5; max-height: 48px; overflow: hidden; transition: max-height .3s, opacity .3s; }
+.is-scrolled .bh-top { max-height: 0; opacity: 0; border: 0; }
+.bh-top-in, .bh-main-in { display: flex; align-items: center; gap: 20px; }
+.bh-top-in { justify-content: space-between; }
+.bh-top nav, .bh-top-r, .bh-icons { display: flex; align-items: center; }
+.bh-top nav { gap: 4px; font-size: 12px; }
+.bh-top nav a { padding: 17px 12px; transition: color .2s; white-space: nowrap; }
+.bh-top nav a:hover, .bh-top nav a.on { color: var(--p); }
+.bh-top-r { gap: 26px; font-size: 12px; }
+.bh-link { color: var(--p) !important; display: flex; align-items: center; gap: 5px; transition: opacity .2s; }
+.bh-link:hover { opacity: .7; }
+.bh-icons { gap: 14px; }
+.bh-icons button { display: flex; transition: color .2s, transform .2s; }
+.bh-icons button:hover { color: var(--p); transform: scale(1.15); }
+
+.bh-main { height: 86px; transition: height .3s; }
+.is-scrolled .bh-main { height: 72px; }
+.bh-main-in { height: 100%; gap: 34px; }
+.bh-brand { display: block; line-height: 0; }
+.bh-logo { font-size: 42px; font-weight: 800; letter-spacing: -1px; color: #666; line-height: 1; display: block; }
+.bh-logo b { color: var(--p); }
+.bh-mark { width: 46px; height: 46px; display: none; }
+.is-scrolled .bh-logo { display: none; }
+.is-scrolled .bh-mark { display: block; }
+.bh-nav { display: flex; gap: 32px; font-size: 14px; font-weight: 700; flex: 1; }
+.bh-nav a { padding: 8px 0; white-space: nowrap; transition: color .2s; }
+.bh-nav a:hover, .bh-nav a.on { color: var(--p); }
+.bh-pill { background: var(--p); color: #fff !important; font-size: 13px; font-weight: 700; padding: 11px 26px; border-radius: 999px; transition: background .2s, transform .2s; }
+.bh-pill:hover { background: var(--pd); transform: translateY(-1px); }
+.bh-burger { display: none; }
+
+.bh-sub { background: var(--p); height: 54px; }
+.bh-sub .bh-wrap { height: 100%; display: flex; }
+.bh-sub span { display: flex; align-items: center; padding: 0 18px; background: var(--pd); color: #fff; font-size: 12px; font-weight: 700; }
+
+@media (max-width: 1100px) {
+  .bh-nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #fff; flex-direction: column; gap: 0; padding: 8px 20px 16px; box-shadow: 0 8px 12px rgba(0,0,0,.12); }
+  .bh-nav.open { display: flex; }
+  .bh-nav a { padding: 12px 0; border-bottom: 1px solid #eee; }
+  .bh-main-in { justify-content: space-between; }
+  .bh-pill { margin-left: auto; }
+  .bh-burger { display: block; }
+  .bh-top-r .bh-link { display: none; }
+}
+@media (max-width: 760px) {
+  .bh-top nav { overflow-x: auto; white-space: nowrap; scrollbar-width: none; }
+  .bh-icons { display: none; }
+}
+@media (max-width: 640px) {
+  .bh-wrap { padding: 0 14px; }
+  .bh-main { height: 68px; }
+  .bh-logo { font-size: 32px; }
+  .bh-pill { padding: 8px 16px; font-size: 12px; }
+}

@@ -16,6 +16,8 @@ import { HistoryPage, InfoPage } from './LoanInfo';
 import CardsSocial from './CardsSocial';
 import Benefits from './Benefits';
 import DepositsPage from './DepositsPage';
+import BusinessHeader from './BusinessHeader';
+import Avandner from './Avandner';
 
 
 // --- 1. HEADER ---
@@ -1793,10 +1795,12 @@ function ResponsiveStyles() {
 
 // --- Обёртка с общим Header/Footer сайта (для всех обычных страниц) ---
 function SiteLayout({ children }) {
+  const { pathname } = useLocation();
+  const isBusiness = pathname.startsWith('/business');
   return (
     <>
-      {/* Хедер виден всегда на страницах сайта */}
-      <Header />
+      {/* Бизнес-разделу — свой хедер, остальным — хедер «Անհատ» */}
+      {isBusiness ? <BusinessHeader /> : <Header />}
       {children}
       {/* Футер виден всегда на страницах сайта */}
       <EvocaFooter />
@@ -1829,6 +1833,7 @@ function App() {
           <Route path="/cards/social" element={<SiteLayout><CardsSocial /></SiteLayout>} />
           <Route path="/cards/benefits" element={<SiteLayout><Benefits /></SiteLayout>} />
           <Route path="/deposits" element={<DepositsPage />} />
+          <Route path="/business/deposits" element={<SiteLayout><Avandner /></SiteLayout>} />
         </Routes>
       </div>
     </Router>
