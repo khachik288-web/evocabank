@@ -5,9 +5,11 @@ import './BusinessHeader.css';
 
 const TOP = [['Անհատ', '/'], ['Բիզնես', '/business'], ['Ակնթարթային վճարումներ', '/web-payment'], ['Մեր մասին', '/about'], ['Նորություններ', '/news'], ['Բլոգ', '/blog'], ['Կարիերա', '/career']];
 // [название, путь] — путь '#' пока заглушка
-const MAIN = [['Վարկեր', '/business'], ['Լիզինգ', '#'], ['Հաշիվներ', '#'], ['Ավանդներ', '/business/deposits'], ['Արժեթղթերի շուկա', '#'], ['Առևտրի ֆինանսավորում', '#'], ['Դիջիթալ', '#'], ['Այլ', '#']];
+const MAIN = [['Վարկեր', '/business'], ['Քարտեր', '/cards'], ['Հաշիվներ', '/business/accounts'], ['Ավանդներ', '/business/deposits'], ['Արժեթղթերի շուկա', '#'], ['Առևտրի ֆինանսավորում', '#'], ['Դիջիթալ', '#'], ['Այլ', '#']];
 // Заголовок фиолетовой полосы по маршруту
 const SUB = { '/business': 'Բիզնես վարկեր', '/business/deposits': 'Դասական ավանդ' };
+// Вкладки фиолетовой полосы для раздела «Հաշիվներ»
+const ACCOUNT_TABS = [['Հաշիվների բացում և սպասարկում', '/business/accounts'], ['Առարկայազուրկ մետաղական հաշիվներ', '/business/accounts/metal']];
 
 export default function BusinessHeader({ sub }) {
   const { pathname } = useLocation();
@@ -22,7 +24,8 @@ export default function BusinessHeader({ sub }) {
   }, []);
 
   const title = sub || SUB[pathname] || 'Բիզնես վարկեր';
-  const isActive = (p) => p !== '#' && pathname === p;
+  const isAccounts = pathname.startsWith('/business/accounts');
+  const isActive = (p) => p !== '#' && (p === '/business/accounts' ? isAccounts : pathname === p);
 
   return (
     <header className={`bh ${scrolled ? 'is-scrolled' : ''}`}>
@@ -57,7 +60,11 @@ export default function BusinessHeader({ sub }) {
         </div>
       </div>
 
-      <div className="bh-sub"><div className="bh-wrap"><span>{title}</span></div></div>
+      <div className="bh-sub"><div className="bh-wrap">
+        {isAccounts
+          ? ACCOUNT_TABS.map(([l, p]) => <Link key={p} to={p} className={pathname === p ? 'on' : ''}>{l}</Link>)
+          : <span>{title}</span>}
+      </div></div>
     </header>
   );
 }

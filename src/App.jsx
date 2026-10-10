@@ -18,6 +18,8 @@ import Benefits from './Benefits';
 import DepositsPage from './DepositsPage';
 import BusinessHeader from './BusinessHeader';
 import Avandner from './Avandner';
+import Accounts from './Accounts';
+import MetalAccounts from './MetalAccounts';
 
 
 // --- 1. HEADER ---
@@ -1834,6 +1836,8 @@ function App() {
           <Route path="/cards/benefits" element={<SiteLayout><Benefits /></SiteLayout>} />
           <Route path="/deposits" element={<DepositsPage />} />
           <Route path="/business/deposits" element={<SiteLayout><Avandner /></SiteLayout>} />
+          <Route path="/business/accounts" element={<SiteLayout><Accounts /></SiteLayout>} />
+          <Route path="/business/accounts/metal" element={<SiteLayout><MetalAccounts /></SiteLayout>} />
         </Routes>
       </div>
     </Router>

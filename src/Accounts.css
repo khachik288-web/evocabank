@@ -1,0 +1,26 @@
+/* Дополнения к Avandner.css (.dp) для страниц «Հաշիվներ». Всё скоупится под .dp */
+.dp-h4 { font-size: 16px; font-weight: 700; color: var(--tx); margin: 30px 0 16px; }
+.dp-link { color: var(--p) !important; text-decoration: underline !important; font-weight: 500; transition: color .2s; }
+.dp-link:hover { color: var(--pd) !important; }
+.dp-pur { color: var(--p); }
+.dp-content > .dp-p:first-child { margin-top: 0; }
+
+/* Несколько аккордеонов подряд */
+.dp-accs { display: flex; flex-direction: column; gap: 14px; }
+.dp-accs .dp-acc { border-color: #e1d3f6; border-radius: 14px; transition: border-color .2s, box-shadow .2s; }
+.dp-accs .dp-acc:hover { border-color: var(--p); box-shadow: 0 4px 14px rgba(106, 0, 220, .08); }
+.dp-accs .dp-acc.open { border-color: var(--p); box-shadow: none; }
+.dp-accs .dp-acc-head { padding: 14px 24px; }
+.dp-acc-body .dp-list { padding-left: 24px; margin-bottom: 8px; }
+.dp-acc-body .dp-list > li { margin-bottom: 14px; }
+.dp-acc-body .dp-h4 { margin: 24px 0 14px; }
+.dp-acc-body .dp-dash li { margin-bottom: 10px; }
+
+/* Изображение hero: плавный hover (как на «Ավանդներ») + мягкое появление */
+.dp-hero img { animation: dpFade .5s ease; }
+
+@media (max-width: 640px) {
+  .dp-accs .dp-acc-head { padding: 12px 14px; }
+  .dp-h4 { font-size: 15px; }
+  .dp-acc-body .dp-list { padding-left: 20px; }
+}
