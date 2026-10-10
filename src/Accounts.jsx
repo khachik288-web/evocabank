@@ -56,14 +56,14 @@ export function Share() {
   );
 }
 
-export function Accordion({ title, defaultOpen = false, children }) {
+export function Accordion({ title, defaultOpen = false, wide = false, children }) {
   const [open, setOpen] = useState(defaultOpen);
   return (
     <div className={`dp-acc ${open ? 'open' : ''}`}>
       <button className="dp-acc-head" onClick={() => setOpen(!open)} aria-expanded={open}>
         <ChevronDown size={18} /> {title}
       </button>
-      {open && <div className="dp-acc-body">{children}</div>}
+      {open && <div className={`dp-acc-body ${wide ? 'dp-acc-wide' : ''}`}>{children}</div>}
     </div>
   );
 }

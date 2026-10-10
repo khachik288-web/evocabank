@@ -5,9 +5,11 @@ import './BusinessHeader.css';
 
 const TOP = [['Անհատ', '/'], ['Բիզնես', '/business'], ['Ակնթարթային վճարումներ', '/web-payment'], ['Մեր մասին', '/about'], ['Նորություններ', '/news'], ['Բլոգ', '/blog'], ['Կարիերա', '/career']];
 // [название, путь] — путь '#' пока заглушка
-const MAIN = [['Վարկեր', '/business'], ['Քարտեր', '/cards'], ['Հաշիվներ', '/business/accounts'], ['Ավանդներ', '/business/deposits'], ['Արժեթղթերի շուկա', '#'], ['Առևտրի ֆինանսավորում', '#'], ['Դիջիթալ', '#'], ['Այլ', '#']];
+const MAIN = [['Վարկեր', '/business'], ['Քարտեր', '/cards'], ['Հաշիվներ', '/business/accounts'], ['Ավանդներ', '/business/deposits'], ['Արժեթղթերի շուկա', '/business/securities'], ['Առևտրի ֆինանսավորում', '#'], ['Դիջիթալ', '#'], ['Այլ', '#']];
 // Заголовок фиолетовой полосы по маршруту
 const SUB = { '/business': 'Բիզնես վարկեր', '/business/deposits': 'Դասական ավանդ' };
+// Вкладки фиолетовой полосы для раздела «Արժեթղթերի շուկա»
+const SECURITIES_TABS = [['Ներդրումային ծառայություններ', '/business/securities'], ['Պարտատոմսեր', '/business/securities/bonds'], ['ՀԿԴ ծառայություններ', '/business/securities/hkd'], ['Ռեպո/Հակադարձ ռեպո գործարքներ', '/business/securities/repo'], ['EvocaINVEST', '/business/securities/evocainvest']];
 // Вкладки фиолетовой полосы для раздела «Հաշիվներ»
 const ACCOUNT_TABS = [['Հաշիվների բացում և սպասարկում', '/business/accounts'], ['Առարկայազուրկ մետաղական հաշիվներ', '/business/accounts/metal']];
 
@@ -25,7 +27,9 @@ export default function BusinessHeader({ sub }) {
 
   const title = sub || SUB[pathname] || 'Բիզնես վարկեր';
   const isAccounts = pathname.startsWith('/business/accounts');
-  const isActive = (p) => p !== '#' && (p === '/business/accounts' ? isAccounts : pathname === p);
+  const isSecurities = pathname.startsWith('/business/securities');
+  const tabs = isAccounts ? ACCOUNT_TABS : isSecurities ? SECURITIES_TABS : null;
+  const isActive = (p) => p !== '#' && (p === '/business/accounts' ? isAccounts : p === '/business/securities' ? isSecurities : pathname === p);
 
   return (
     <header className={`bh ${scrolled ? 'is-scrolled' : ''}`}>
@@ -61,8 +65,8 @@ export default function BusinessHeader({ sub }) {
       </div>
 
       <div className="bh-sub"><div className="bh-wrap">
-        {isAccounts
-          ? ACCOUNT_TABS.map(([l, p]) => <Link key={p} to={p} className={pathname === p ? 'on' : ''}>{l}</Link>)
+        {tabs
+          ? tabs.map(([l, p]) => <Link key={p} to={p} className={pathname === p ? 'on' : ''}>{l}</Link>)
           : <span>{title}</span>}
       </div></div>
     </header>

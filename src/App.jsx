@@ -20,6 +20,11 @@ import BusinessHeader from './BusinessHeader';
 import Avandner from './Avandner';
 import Accounts from './Accounts';
 import MetalAccounts from './MetalAccounts';
+import InvestServices from './InvestServices';
+import Bonds from './Bonds';
+import Hkd from './Hkd';
+import Repo from './Repo';
+import EvocaInvest from './EvocaInvest';
 
 
 // --- 1. HEADER ---
@@ -1838,6 +1843,11 @@ function App() {
           <Route path="/business/deposits" element={<SiteLayout><Avandner /></SiteLayout>} />
           <Route path="/business/accounts" element={<SiteLayout><Accounts /></SiteLayout>} />
           <Route path="/business/accounts/metal" element={<SiteLayout><MetalAccounts /></SiteLayout>} />
+          <Route path="/business/securities" element={<SiteLayout><InvestServices /></SiteLayout>} />
+          <Route path="/business/securities/bonds" element={<SiteLayout><Bonds /></SiteLayout>} />
+          <Route path="/business/securities/hkd" element={<SiteLayout><Hkd /></SiteLayout>} />
+          <Route path="/business/securities/repo" element={<SiteLayout><Repo /></SiteLayout>} />
+          <Route path="/business/securities/evocainvest" element={<SiteLayout><EvocaInvest /></SiteLayout>} />
         </Routes>
       </div>
     </Router>

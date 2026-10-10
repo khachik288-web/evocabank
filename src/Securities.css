@@ -1,0 +1,92 @@
+/* Раздел «Արժեթղթերի շուկա». Всё под .dp (см. Avandner.css) */
+.dp-plain { padding-top: 24px; }
+.dp-plain .dp-share { margin-top: 118px; }
+.dp-title { font-size: 32px; font-weight: 500; line-height: 1.3; margin: 8px 0 44px !important; }
+.dp-plain .dp-p { margin: 0 0 26px; }
+.dp-ph { font-size: 15px; font-weight: 700; color: var(--p); line-height: 1.6; margin: 30px 0 14px; }
+.dp-ph + .dp-p { margin-top: 0; }
+.dp-muted { color: #888; font-style: italic; }
+.dp-wide { display: block; width: 100%; height: auto; margin: 26px 0 34px; border-radius: 4px; }
+.dp-spacer { height: 36px; }
+.dp-contact { display: flex; flex-wrap: wrap; gap: 14px 32px; margin: 0 0 26px; }
+.dp-contact a { display: inline-flex; align-items: center; gap: 10px; color: var(--p) !important; font-weight: 700; transition: opacity .2s; }
+.dp-contact a:hover { opacity: .7; }
+
+/* Бондс: заголовок внутри аккордеона и таблица */
+.dp-center-h { text-align: center; text-transform: uppercase; color: var(--p); font-size: 22px; font-weight: 700; margin: 6px 0 24px !important; }
+.dp-acc-body .dp-table-wrap { margin: 0 0 8px; box-shadow: 0 0 10px rgba(0,0,0,.08); }
+.dp-acc-body .dp-table { min-width: 520px; }
+.dp-table .dp-left { text-align: left !important; }
+.dp-table td.dp-left, .dp-table th.dp-left { font-weight: 400; }
+.dp-table thead th { font-weight: 500; font-size: 13px; background: #fafafa; }
+
+/* Три карточки документов */
+.dp-docs3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 40px 0 16px; padding: 24px; background: #fff; border-radius: 8px; box-shadow: 0 0 14px rgba(0,0,0,.07); }
+.dp-doccard { display: flex; flex-direction: column; align-items: center; gap: 18px; padding: 14px 8px 18px; border-radius: 8px; text-align: center; font-size: 12px; font-weight: 700; text-transform: uppercase; line-height: 1.5; color: var(--p) !important; text-decoration: underline !important; transition: transform .25s, box-shadow .25s, background .25s; }
+.dp-doccard svg { width: 96px; height: 128px; transition: transform .25s; }
+.dp-doccard:hover { transform: translateY(-4px); background: #faf6ff; box-shadow: 0 8px 20px rgba(106, 0, 220, .12); }
+.dp-doccard:hover svg { transform: scale(1.05); }
+
+/* Список файлов */
+.dp-h2s { font-size: 24px; font-weight: 700; margin: 54px 0 22px; }
+.dp-files { display: flex; flex-direction: column; gap: 24px; padding: 0; margin: 0; list-style: none; }
+.dp-file { display: flex; align-items: center; gap: 14px; padding: 12px 18px; background: #f5f3f9; border-radius: 4px; font-size: 13px; font-weight: 700; color: var(--tx) !important; text-decoration: underline !important; transition: background .2s, color .2s; }
+.dp-file svg { color: var(--p); flex-shrink: 0; }
+.dp-file:hover { background: #ece5f8; color: var(--p) !important; }
+
+/* Видео в аккордеоне */
+.dp-videos { display: flex; flex-direction: column; gap: 22px; }
+.dp-video { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #000; }
+.dp-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.dp-accs .dp-acc-body.dp-acc-wide { padding: 8px 28px 28px; }
+
+/* Форма обратной связи */
+.dp-formbox { background: #eef0f6; padding: 0 clamp(14px, 11%, 120px); margin: 26px 0 8px; }
+.dp-form { background: #fff; border-radius: 6px; box-shadow: 0 2px 12px rgba(0,0,0,.06); }
+.dp-form h3 { text-align: center; font-size: 26px; font-weight: 400; padding: 34px 20px 28px; border-bottom: 1px solid #e5e7ee; }
+.dp-form form { padding: 26px 32px 34px; display: flex; flex-direction: column; gap: 22px; }
+.dp-form label { font-size: 13px; color: #444; display: block; margin-bottom: 8px; }
+.dp-form .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.dp-form small { display: block; font-size: 10px; color: #777; margin-top: 6px; }
+.dp-input { width: 100%; height: 36px; padding: 0 12px; border: 1px solid #cfd3dd; border-radius: 3px; font: inherit; font-size: 13px; background: #fff; transition: border-color .2s, box-shadow .2s; }
+.dp-input:focus { outline: 0; border-color: var(--p); box-shadow: 0 0 0 3px rgba(106, 0, 220, .12); }
+.dp-phone { display: flex; }
+.dp-phone .pre { display: flex; align-items: center; gap: 8px; height: 36px; padding: 0 12px; border: 1px solid #cfd3dd; border-right: 0; border-radius: 3px 0 0 3px; font-size: 13px; background: #fff; white-space: nowrap; }
+.dp-phone .dp-input { border-radius: 0 3px 3px 0; }
+.dp-flag { width: 18px; height: 12px; background: linear-gradient(#d90012 33.3%, #0033a0 33.3% 66.6%, #f2a800 66.6%); display: inline-block; }
+.dp-submit { align-self: flex-start; height: 40px; padding: 0 30px; border: 0; border-radius: 999px; background: var(--p); color: #fff; font: 700 13px inherit; font-family: inherit; cursor: pointer; transition: background .2s, transform .2s; }
+.dp-submit:hover { background: var(--pd); transform: translateY(-1px); }
+.dp-thanks { padding: 34px 32px 44px; text-align: center; color: var(--p); font-weight: 700; animation: dpFade .3s ease; }
+
+@media (max-width: 900px) {
+  .dp-plain .dp-share { margin-top: 0; }
+  .dp-title { font-size: 26px; margin-bottom: 28px !important; }
+}
+@media (max-width: 640px) {
+  .dp-docs3 { grid-template-columns: 1fr; padding: 14px; }
+  .dp-center-h { font-size: 17px; }
+  .dp-accs .dp-acc-body.dp-acc-wide { padding: 4px 12px 18px; }
+  .dp-form .row2 { grid-template-columns: 1fr; }
+  .dp-form form { padding: 20px 16px 26px; }
+  .dp-form h3 { font-size: 20px; padding: 24px 12px 20px; }
+  .dp-formbox { padding: 0; }
+  .dp-file { padding: 10px 12px; font-size: 12px; }
+  .dp-title { font-size: 22px; }
+}
+
+/* Перебиваем глобальный `.dp h2/h3/h4 { margin: 0 }` из Avandner.css */
+.dp .dp-caps { margin: 56px 0 22px; }
+.dp .dp-h2s { margin: 54px 0 22px; }
+.dp .dp-ph { margin: 30px 0 14px; }
+.dp .dp-h4 { margin: 30px 0 16px; }
+.dp .dp-acc-body .dp-h4 { margin: 24px 0 14px; }
+.dp .dp-center-h { margin: 6px 0 24px; }
+/* flex-ребёнок не должен растягиваться под min-width таблицы */
+.dp-accs > .dp-acc { min-width: 0; }
+.dp-acc-body { overflow-x: auto; }
+.dp-content { min-width: 0; }
+.dp-acc-head { overflow-wrap: anywhere; text-align: left; }
+.dp-file { overflow-wrap: anywhere; }
+.dp .dp-p { margin: 18px 0; }
+.dp .dp-plain .dp-p { margin: 0 0 26px; }
+.dp .dp-contact { margin: 0 0 26px; }
