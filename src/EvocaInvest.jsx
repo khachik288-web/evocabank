@@ -69,7 +69,7 @@ function ContactForm() {
 
 export default function EvocaInvest() {
   return (
-    <div className="dp">
+    <div className="dp dp-v2">
       <div className="dp-wrap">
         <SecCrumbs current="EvocaINVEST" />
 

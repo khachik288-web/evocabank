@@ -25,6 +25,10 @@ import Bonds from './Bonds';
 import Hkd from './Hkd';
 import Repo from './Repo';
 import EvocaInvest from './EvocaInvest';
+import TradeGuarantee from './TradeGuarantee';
+import TradeFactoring from './TradeFactoring';
+import TradeCredit from './TradeCredit';
+import TradeCollection from './TradeCollection';
 
 
 // --- 1. HEADER ---
@@ -1848,6 +1852,10 @@ function App() {
           <Route path="/business/securities/hkd" element={<SiteLayout><Hkd /></SiteLayout>} />
           <Route path="/business/securities/repo" element={<SiteLayout><Repo /></SiteLayout>} />
           <Route path="/business/securities/evocainvest" element={<SiteLayout><EvocaInvest /></SiteLayout>} />
+          <Route path="/business/trade-finance" element={<SiteLayout><TradeGuarantee /></SiteLayout>} />
+          <Route path="/business/trade-finance/factoring" element={<SiteLayout><TradeFactoring /></SiteLayout>} />
+          <Route path="/business/trade-finance/letter-of-credit" element={<SiteLayout><TradeCredit /></SiteLayout>} />
+          <Route path="/business/trade-finance/collection" element={<SiteLayout><TradeCollection /></SiteLayout>} />
         </Routes>
       </div>
     </Router>

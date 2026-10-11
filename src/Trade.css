@@ -1,0 +1,57 @@
+/* Раздел «Առևտրի ֆինանսավորում». Всё под .dp */
+.dp .dp-lead { margin: 0 0 26px; }
+.dp .dp-gt { position: relative; margin: 30px 0 14px 24px; color: var(--p); font-size: 15px; line-height: 1.5; }
+.dp .dp-gt::before { content: ''; position: absolute; left: -24px; top: 9px; width: 8px; height: 8px; border-radius: 50%; background: var(--p); }
+.dp .dp-card { margin: 0 0 26px; padding: 14px 12px; background: #fff; border-radius: 6px; box-shadow: 0 0 12px rgba(0,0,0,.08); font-size: 12px; line-height: 1.75; transition: box-shadow .25s, transform .25s; }
+.dp .dp-card:hover { box-shadow: 0 6px 20px rgba(106, 0, 220, .14); transform: translateY(-2px); }
+.dp .dp-card i { display: block; }
+.dp .dp-card span { display: block; }
+.dp .dp-bold { font-weight: 700; margin: 30px 0 18px; }
+.dp .dp-sub { font-size: 32px; font-weight: 500; margin: 40px 0 22px; line-height: 1.3; }
+.dp .dp-plain .dp-list { margin-bottom: 26px; }
+.dp .dp-plain .dp-list > li { margin-bottom: 14px; }
+
+/* Нумерованная таблица */
+.dp .dp-numwrap { margin: 20px 0 28px; }
+.dp-numtable { width: 100%; min-width: 560px; border-collapse: collapse; font-size: 12px; line-height: 1.8; text-align: left; background: #fff; }
+.dp-numtable th { padding: 12px 14px; text-align: left; font-weight: 500; border-bottom: 1px solid #e8dff5; }
+.dp-numtable td { padding: 10px 12px; border-bottom: 1px solid #e8dff5; vertical-align: middle; }
+.dp-numtable tbody tr:last-child td { border-bottom: 0; }
+.dp-numtable td.n { width: 72px; border-right: 1px solid #e8dff5; padding-left: 12px; }
+.dp-numtable td.l { width: 38%; border-right: 1px solid #e8dff5; }
+.dp-numtable tbody tr { transition: background .15s; }
+.dp-numtable tbody tr:hover { background: #f8f3fe; }
+.dp-numtable ul { list-style: none; margin: 0; padding: 0; }
+.dp-numtable li { position: relative; padding-left: 20px; margin: 2px 0; }
+.dp-numtable li::before { content: ''; position: absolute; left: 4px; top: 9px; width: 5px; height: 5px; border-radius: 50%; background: var(--p); }
+.dp-numtable td.v p { margin: 0 0 10px; }
+.dp-numtable td.v p:last-child { margin-bottom: 0; }
+.dp-numtable td.sub { padding: 0; }
+.dp-numtable .inner { width: 100%; border-collapse: collapse; }
+.dp-numtable .inner td { border-bottom: 1px solid #e8dff5; padding: 10px 12px; }
+.dp-numtable .inner tr:last-child td { border-bottom: 0; }
+.dp-numtable .inner td:first-child { width: 70%; border-right: 1px solid #e8dff5; }
+.dp-numtable td.v.center, .dp-numtable td.v .center { text-align: center; }
+
+/* Таблица сакагнов «- действие | сумма» */
+.dp-ratetable { width: 100%; min-width: 480px; border-collapse: collapse; font-size: 12px; background: #fff; }
+.dp-ratetable th { text-align: left; font-weight: 400; padding: 12px 14px; border-bottom: 1px solid #e8dff5; }
+.dp-ratetable td { padding: 9px 14px; border-bottom: 1px solid #e8dff5; }
+.dp-ratetable td + td { text-align: center; border-left: 1px solid #e8dff5; width: 48%; }
+.dp-ratetable tbody tr { transition: background .15s; }
+.dp-ratetable tbody tr:hover { background: #f8f3fe; }
+.dp-ratetable tbody tr:last-child td { border-bottom: 0; }
+
+.dp-acc-body .dp-numwrap { margin-top: 4px; }
+.dp-acc-body.dp-acc-wide { padding: 8px 28px 28px; }
+
+@media (max-width: 900px) {
+  .dp .dp-sub { font-size: 26px; }
+}
+@media (max-width: 640px) {
+  .dp .dp-sub { font-size: 22px; }
+  .dp .dp-gt { margin-left: 20px; }
+  .dp .dp-gt::before { left: -20px; }
+  .dp-numtable td.n { width: 44px; }
+  .dp-acc-body.dp-acc-wide { padding: 4px 12px 18px; }
+}

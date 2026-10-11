@@ -5,9 +5,11 @@ import './BusinessHeader.css';
 
 const TOP = [['Անհատ', '/'], ['Բիզնես', '/business'], ['Ակնթարթային վճարումներ', '/web-payment'], ['Մեր մասին', '/about'], ['Նորություններ', '/news'], ['Բլոգ', '/blog'], ['Կարիերա', '/career']];
 // [название, путь] — путь '#' пока заглушка
-const MAIN = [['Վարկեր', '/business'], ['Քարտեր', '/cards'], ['Հաշիվներ', '/business/accounts'], ['Ավանդներ', '/business/deposits'], ['Արժեթղթերի շուկա', '/business/securities'], ['Առևտրի ֆինանսավորում', '#'], ['Դիջիթալ', '#'], ['Այլ', '#']];
+const MAIN = [['Վարկեր', '/business'], ['Քարտեր', '/cards'], ['Հաշիվներ', '/business/accounts'], ['Ավանդներ', '/business/deposits'], ['Արժեթղթերի շուկա', '/business/securities'], ['Առևտրի ֆինանսավորում', '/business/trade-finance'], ['Դիջիթալ', '#'], ['Այլ', '#']];
 // Заголовок фиолетовой полосы по маршруту
 const SUB = { '/business': 'Բիզնես վարկեր', '/business/deposits': 'Դասական ավանդ' };
+// Вкладки фиолетовой полосы для раздела «Առևտրի ֆինանսավորում»
+const TRADE_TABS = [['Երաշխիք', '/business/trade-finance'], ['Ֆակտորինգային ֆինանսավորում', '/business/trade-finance/factoring'], ['Ակրեդիտիվ', '/business/trade-finance/letter-of-credit'], ['Ինկասո', '/business/trade-finance/collection']];
 // Вкладки фиолетовой полосы для раздела «Արժեթղթերի շուկա»
 const SECURITIES_TABS = [['Ներդրումային ծառայություններ', '/business/securities'], ['Պարտատոմսեր', '/business/securities/bonds'], ['ՀԿԴ ծառայություններ', '/business/securities/hkd'], ['Ռեպո/Հակադարձ ռեպո գործարքներ', '/business/securities/repo'], ['EvocaINVEST', '/business/securities/evocainvest']];
 // Вкладки фиолетовой полосы для раздела «Հաշիվներ»
@@ -28,8 +30,9 @@ export default function BusinessHeader({ sub }) {
   const title = sub || SUB[pathname] || 'Բիզնես վարկեր';
   const isAccounts = pathname.startsWith('/business/accounts');
   const isSecurities = pathname.startsWith('/business/securities');
-  const tabs = isAccounts ? ACCOUNT_TABS : isSecurities ? SECURITIES_TABS : null;
-  const isActive = (p) => p !== '#' && (p === '/business/accounts' ? isAccounts : p === '/business/securities' ? isSecurities : pathname === p);
+  const isTrade = pathname.startsWith('/business/trade-finance');
+  const tabs = isAccounts ? ACCOUNT_TABS : isSecurities ? SECURITIES_TABS : isTrade ? TRADE_TABS : null;
+  const isActive = (p) => p !== '#' && (p === '/business/accounts' ? isAccounts : p === '/business/securities' ? isSecurities : p === '/business/trade-finance' ? isTrade : pathname === p);
 
   return (
     <header className={`bh ${scrolled ? 'is-scrolled' : ''}`}>

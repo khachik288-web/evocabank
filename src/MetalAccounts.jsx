@@ -11,7 +11,7 @@ const METAL_HERO = 'https://www.evoca.am/images-cache/menu/1/16154599304948/780x
 
 export default function MetalAccounts() {
   return (
-    <div className="dp">
+    <div className="dp dp-v2">
       <div className="dp-wrap">
         <Crumbs current="Առարկայազուրկ մետաղական հաշիվներ" />
 

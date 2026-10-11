@@ -121,7 +121,7 @@ export function FatcaAccordion() {
 /* ---------- Страница: Հաշիվների բացում և սպասարկում ---------- */
 export default function Accounts() {
   return (
-    <div className="dp">
+    <div className="dp dp-v2">
       <div className="dp-wrap">
         <Crumbs current="Հաշիվների բացում և սպասարկում" />
 

@@ -90,3 +90,28 @@
 .dp .dp-p { margin: 18px 0; }
 .dp .dp-plain .dp-p { margin: 0 0 26px; }
 .dp .dp-contact { margin: 0 0 26px; }
+
+/* Глобальное `.evoca-app h1/h2/h3 { font-size: clamp(...) }` (App.jsx) перебивает размеры заголовков.
+   На новых страницах (.dp-v2) возвращаем размеры из макета. */
+.dp.dp-v2 .dp-title { font-size: 32px; }
+.dp.dp-v2 .dp-hero-text h1 { font-size: 36px; }
+.dp.dp-v2 .dp-h2 { font-size: 32px; }
+.dp.dp-v2 .dp-caps { font-size: 22px; }
+.dp.dp-v2 .dp-ph { font-size: 15px; }
+.dp.dp-v2 .dp-h4 { font-size: 16px; }
+.dp.dp-v2 .dp-center-h { font-size: 22px; }
+.dp.dp-v2 .dp-h2s { font-size: 24px; }
+.dp.dp-v2 .dp-sub { font-size: 32px; }
+.dp.dp-v2 .dp-form h3 { font-size: 26px; }
+@media (max-width: 900px) {
+  .dp.dp-v2 .dp-title, .dp.dp-v2 .dp-sub { font-size: 26px; }
+  .dp.dp-v2 .dp-hero-text h1 { font-size: 28px; }
+  .dp.dp-v2 .dp-h2 { font-size: 26px; }
+}
+@media (max-width: 640px) {
+  .dp.dp-v2 .dp-title, .dp.dp-v2 .dp-sub { font-size: 22px; }
+  .dp.dp-v2 .dp-caps { font-size: 18px; }
+  .dp.dp-v2 .dp-center-h { font-size: 17px; }
+  .dp.dp-v2 .dp-h2s { font-size: 20px; }
+  .dp.dp-v2 .dp-form h3 { font-size: 20px; }
+}

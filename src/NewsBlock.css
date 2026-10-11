@@ -1,0 +1,40 @@
+/* Блок новостей. Всё под .nb — глобальные стили не затрагиваются */
+.nb { background: #eef4fb; padding: 72px 0 80px; font-family: 'Noto Sans Armenian', 'Mardoto', system-ui, sans-serif; color: #222; }
+.nb *, .nb *::before, .nb *::after { box-sizing: border-box; }
+.nb-wrap { max-width: 1300px; margin: 0 auto; padding: 0 20px; }
+.nb-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 52px; }
+.nb .nb-title { margin: 0; font-size: 32px; font-weight: 700; line-height: 1.2; }
+.nb a { text-decoration: none; color: inherit; }
+.nb .nb-all { display: inline-flex; align-items: center; gap: 8px; flex-shrink: 0; padding: 12px 22px; border-radius: 999px; background: #e4e0f6; color: #6a00dc; font-size: 13px; font-weight: 700; transition: background .2s, color .2s, transform .2s, box-shadow .2s; }
+.nb .nb-all svg { transition: transform .2s; }
+.nb .nb-all:hover { background: #6a00dc; color: #fff; transform: translateY(-1px); box-shadow: 0 6px 16px rgba(106, 0, 220, .25); }
+.nb .nb-all:hover svg { transform: translateX(3px); }
+
+.nb-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 52px 52px; }
+.nb .nb-card { display: flex; flex-direction: column; background: #fff; border-radius: 14px; overflow: hidden; box-shadow: 0 2px 10px rgba(30, 40, 90, .05); transition: transform .3s, box-shadow .3s; }
+.nb .nb-card:hover { transform: translateY(-6px); box-shadow: 0 16px 34px rgba(30, 40, 90, .14); }
+.nb-img { display: block; aspect-ratio: 439 / 320; overflow: hidden; background: #dfe6f3; }
+.nb-img img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+.nb .nb-card:hover .nb-img img { transform: scale(1.06); }
+.nb-body { display: flex; flex-direction: column; gap: 18px; padding: 20px 24px 22px; flex: 1; }
+.nb-tag { align-self: flex-start; border-left: 3px solid #a3e635; padding-left: 10px; font-size: 11px; font-weight: 700; line-height: 1.2; }
+.nb-name { font-size: 15px; font-weight: 700; line-height: 1.5; transition: color .2s; }
+.nb .nb-card:hover .nb-name { color: #6a00dc; }
+.nb-date { margin-top: auto; font-size: 13px; color: #b3b8c4; }
+
+@media (max-width: 1100px) {
+  .nb-grid { gap: 28px; }
+  .nb-body { padding: 16px 18px 18px; }
+}
+@media (max-width: 860px) {
+  .nb { padding: 52px 0 60px; }
+  .nb-grid { grid-template-columns: repeat(2, 1fr); }
+  .nb .nb-title { font-size: 26px; }
+  .nb-head { margin-bottom: 32px; }
+}
+@media (max-width: 560px) {
+  .nb-wrap { padding: 0 14px; }
+  .nb-head { flex-direction: column; align-items: flex-start; }
+  .nb-grid { grid-template-columns: 1fr; gap: 22px; }
+  .nb .nb-title { font-size: 22px; }
+}

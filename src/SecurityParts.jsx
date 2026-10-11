@@ -8,24 +8,26 @@ import { Share } from './Accounts';
 
 export { List, Accordion, Share, Hero } from './Accounts';
 
-/* Хлебные крошки: Բիզնես › Արժեթղթերի շուկա › <текущая> */
-export function SecCrumbs({ current }) {
+const SEC = { label: 'Արժեթղթերի շուկա', path: '/business/securities' };
+
+/* Хлебные крошки: Բիզնես › <раздел> › <текущая> (по умолчанию раздел — Արժեթղթերի շուկա) */
+export function SecCrumbs({ current, section = SEC }) {
   return (
     <div className="dp-crumbs">
       <Home size={15} /><ChevronRight size={11} />
       <Link to="/business">Բիզնես</Link><ChevronRight size={11} />
-      <Link to="/business/securities">Արժեթղթերի շուկա</Link><ChevronRight size={11} />
+      <Link to={section.path}>{section.label}</Link><ChevronRight size={11} />
       <span>{current}</span>
     </div>
   );
 }
 
 /* Страница без hero-картинки: заголовок в колонке контента + боковая панель соцсетей */
-export function PlainPage({ title, current, updated, children }) {
+export function PlainPage({ title, current, updated, section, after, children }) {
   return (
-    <div className="dp">
+    <div className="dp dp-v2">
       <div className="dp-wrap">
-        <SecCrumbs current={current || title} />
+        <SecCrumbs current={current || title} section={section} />
         <div className="dp-body dp-plain">
           <Share />
           <article className="dp-content">
@@ -34,6 +36,7 @@ export function PlainPage({ title, current, updated, children }) {
           </article>
         </div>
       </div>
+      {after}
       {updated && <p className="dp-updated">Թարմացվել է՝ {updated}</p>}
     </div>
   );
