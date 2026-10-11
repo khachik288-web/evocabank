@@ -1,0 +1,87 @@
+/* Страницы «Անհատ → Հաշիվներ». Всё под .dp.pa (поверх Avandner.css / Accounts.css) */
+
+/* ---- Текст ---- */
+.pa .pa-first { margin-top: 0; }
+.pa .pa-b { font-weight: 700; }
+.pa .pa-terms { margin: 34px 0 6px; }
+.pa .pa-sub { font-size: 16px; font-weight: 700; color: var(--p); margin: 34px 0 14px; line-height: 1.5; }
+.pa .dp-h2 { margin-top: 0; }
+
+/* Ссылки: плавный hover */
+.pa .dp-link { transition: color .2s, text-decoration-color .2s; }
+.pa .dp-link:hover { color: var(--pd) !important; text-decoration-color: transparent !important; }
+
+/* ---- 4 преимущества (savings) ---- */
+.pa-feats { display: flex; flex-direction: column; gap: 4px; }
+.pa-feat { padding: 10px 14px 10px 16px; margin-left: -16px; border-left: 3px solid transparent; border-radius: 0 10px 10px 0; transition: background .25s, border-color .25s, transform .25s; }
+.pa-feat h4 { font-size: 14px; font-weight: 700; color: var(--p); margin: 0 0 2px; transition: color .2s; }
+.pa-feat p { margin: 0; font-size: 14px; line-height: 1.7; }
+.pa-feat:hover { background: #f8f3fe; border-left-color: var(--p); transform: translateX(4px); }
+.pa-feat:hover h4 { color: var(--pd); }
+
+/* ---- Широкий баннер на фоне (opening) ---- */
+.pa-body-short { padding-bottom: 40px; }
+.pa-banner { position: relative; display: flex; align-items: center; justify-content: center; min-height: 530px; padding: 40px 20px; background-size: cover; background-position: center; background-color: #3a3a46; isolation: isolate; overflow: hidden; }
+.pa-banner::before { content: ''; position: absolute; inset: 0; background: rgba(20, 16, 30, .55); z-index: -1; }
+.pa-banner p { margin: 0; max-width: 640px; text-align: center; color: #fff; font-size: 28px; font-weight: 700; line-height: 1.5; text-shadow: 0 2px 12px rgba(0,0,0,.35); animation: dpFade .6s ease; }
+.pa-narrow { max-width: 880px; margin: 0 auto; padding: 20px 0 70px; font-size: 14px; line-height: 1.8; }
+.pa-narrow .dp-caps { margin-top: 40px; }
+
+/* ---- Аккордеоны ---- */
+.pa .dp-accs .dp-acc:not(.open) .dp-acc-head { color: #666; }
+.pa .dp-accs .dp-acc:not(.open):hover .dp-acc-head { color: var(--tx); }
+.pa .dp-acc-head { font-weight: 600; }
+.pa .dp-acc.open .dp-acc-head { font-weight: 700; color: var(--tx); }
+.pa .dp-acc-head svg { transition: transform .25s; }
+
+/* ---- Преимущества внутри аккордеона (non-resident) ---- */
+.pa-adv { display: flex; flex-direction: column; gap: 22px; padding: 6px 0 4px 6px; }
+.pa-adv > div { position: relative; padding-left: 24px; transition: transform .2s; }
+.pa-adv > div::before { content: ''; position: absolute; left: 0; top: 9px; width: 8px; height: 8px; border-radius: 50%; background: var(--p); }
+.pa-adv > div:hover { transform: translateX(4px); }
+.pa-adv b { display: block; color: var(--p); font-weight: 700; }
+.pa-adv p { margin: 0 !important; }
+.pa-steps { margin: 6px 0 0; padding-left: 24px; }
+.pa-steps li { margin-bottom: 12px; }
+.pa-steps li::marker { color: var(--p); font-weight: 700; }
+
+/* ---- Փաստաթղթեր ---- */
+.pa-docs { margin-top: 52px; }
+.pa-docs-title { font-size: 22px; font-weight: 700; color: #111; margin: 0 0 24px; }
+.pa .pa-doc { display: flex; align-items: center; gap: 14px; background: #f6f4f9; border-radius: 6px; padding: 12px 14px; margin-bottom: 24px; font-size: 14px; font-weight: 700; color: #111; line-height: 1.5; transition: background .2s, color .2s, transform .2s, box-shadow .2s; }
+.pa .pa-doc svg { color: var(--p); flex-shrink: 0; transition: transform .2s; }
+.pa .pa-doc:hover { background: #ece2fb; color: var(--p); transform: translateX(6px); box-shadow: 0 4px 14px rgba(106, 0, 220, .12); }
+.pa .pa-doc:hover svg { transform: translateY(2px); }
+
+/* ---- Hero ---- */
+.pa .dp-hero img { transition: transform .6s ease; }
+.pa .dp-hero-text { transition: background .3s; }
+.pa .dp-hero:hover .dp-hero-text { background: #f0ecf6; }
+
+/* ============ Media ============ */
+@media (max-width: 900px) {
+  .pa-banner { min-height: 360px; }
+  .pa-banner p { font-size: 22px; }
+  .pa-narrow { padding-bottom: 48px; }
+  .pa-body-short { padding-bottom: 24px; }
+  .pa-feat { margin-left: 0; }
+}
+@media (max-width: 640px) {
+  .pa-banner { min-height: 280px; padding: 28px 16px; }
+  .pa-banner p { font-size: 18px; }
+  .pa-docs { margin-top: 36px; }
+  .pa-docs-title { font-size: 19px; margin-bottom: 16px; }
+  .pa .pa-doc { font-size: 13px; padding: 10px 12px; margin-bottom: 14px; gap: 10px; }
+  .pa .pa-doc svg { width: 26px; height: 26px; }
+  .pa .dp-hero-text h1 { font-size: 24px; }
+  .pa .dp-hero-text p { font-size: 13px; line-height: 1.8; }
+  .pa .dp-hero img { max-height: 300px; }
+  .pa .dp-crumbs { padding-top: 20px; }
+  .pa .dp-caps { font-size: 18px; margin-top: 32px; }
+}
+@media (hover: none) {
+  .pa-feat:hover, .pa .pa-doc:hover, .pa-adv > div:hover { transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pa *, .pa-banner p { transition: none !important; animation: none !important; }
+}

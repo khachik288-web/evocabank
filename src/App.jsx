@@ -29,6 +29,8 @@ import TradeGuarantee from './TradeGuarantee';
 import TradeFactoring from './TradeFactoring';
 import TradeCredit from './TradeCredit';
 import TradeCollection from './TradeCollection';
+import { MoneyTransfers, PaymentSystems } from './PersonalTransfers';
+import { SavingsAccount, AccountsOpening, MetalAccountsPersonal, NonResidentRemote } from './PersonalAccounts';
 
 
 // --- 1. HEADER ---
@@ -37,6 +39,8 @@ export function Header() {
   const isAbout = pathname.startsWith('/about');
   const isLoans = pathname.startsWith('/loans');
   const isCards = pathname.startsWith('/cards');
+  const isAccounts = pathname.startsWith('/accounts');
+  const isTransfers = pathname.startsWith('/transfers');
 
   const topLinks = [
     { label: 'Անհատ', path: '/' },
@@ -50,15 +54,15 @@ export function Header() {
 
   const isTopActive = (path) =>
     path === '/'
-      ? pathname === '/' || isLoans || isCards // «Անհատ» подсвечен и на подстраницах раздела (Վարկեր)
+      ? pathname === '/' || isLoans || isCards || isAccounts || isTransfers // «Անհատ» подсвечен и на подстраницах раздела (Վարկեր)
       : path !== '#' && pathname.startsWith(path);
 
   const personalLinks = [
     { label: 'Վարկեր', path: '/loans' },
     { label: 'Քարտեր', path: '/cards' },
     { label: 'Ավանդներ', path: '/deposits' },
-    { label: 'Հաշիվներ', path: '#' },
-    { label: 'Փոխանցումներ', path: '#' },
+    { label: 'Հաշիվներ', path: '/accounts' },
+    { label: 'Փոխանցումներ', path: '/transfers' },
     { label: 'Արժեթղթեր', path: '#' },
     { label: 'EvocaSALARY', path: '#' },
     { label: 'EvocaTOUCH', path: '#' },
@@ -82,6 +86,18 @@ export function Header() {
     { label: 'Evoca Benefits', path: '/cards/benefits' },
   ];
 
+  const accountsSubNav = [
+    { label: 'Evoca խնայողական հաշիվ', path: '/accounts' },
+    { label: 'Հաշիվների բացում և սպասարկում', path: '/accounts/opening' },
+    { label: 'Առարկայազուրկ մետաղական հաշիվներ', path: '/accounts/metal' },
+    { label: 'Ոչ ռեզիդենտ հաճախորդների հեռավար սպասարկում', path: '/accounts/non-resident' },
+  ];
+
+  const transfersSubNav = [
+    { label: 'Դրամական փոխանցումներ', path: '/transfers' },
+    { label: 'Վճարային համակարգեր', path: '/transfers/payment-systems' },
+  ];
+
   const aboutSubNav = [
     { label: 'Ընդհանուր', path: '/about' },
     { label: 'Կառուցվածք', path: '#' },
@@ -93,7 +109,7 @@ export function Header() {
     { label: 'Էվոկա ֆինանսական խումբ', path: '#' },
   ];
 
-  const subNav = isAbout ? aboutSubNav : isLoans ? loansSubNav : isCards ? cardsSubNav : null;
+  const subNav = isAbout ? aboutSubNav : isLoans ? loansSubNav : isCards ? cardsSubNav : isAccounts ? accountsSubNav : isTransfers ? transfersSubNav : null;
 
   return (
     <header className="w-full text-sm">
@@ -178,7 +194,7 @@ export function Header() {
                   key={link.label}
                   to={link.path}
                   className={`no-underline hover:no-underline text-black ${
-                    (isCards ? link.path === '/cards' : i === 0) ? 'text-purple-700' : 'text-gray-800 hover:text-purple-700'
+                    (isCards ? link.path === '/cards' : isAccounts ? link.path === '/accounts' : isTransfers ? link.path === '/transfers' : i === 0) ? 'text-purple-700' : 'text-gray-800 hover:text-purple-700'
                   }`}
                 >
                   {link.label}
@@ -1844,6 +1860,12 @@ function App() {
           <Route path="/cards/social" element={<SiteLayout><CardsSocial /></SiteLayout>} />
           <Route path="/cards/benefits" element={<SiteLayout><Benefits /></SiteLayout>} />
           <Route path="/deposits" element={<DepositsPage />} />
+          <Route path="/transfers" element={<SiteLayout><MoneyTransfers /></SiteLayout>} />
+          <Route path="/transfers/payment-systems" element={<SiteLayout><PaymentSystems /></SiteLayout>} />
+          <Route path="/accounts" element={<SiteLayout><SavingsAccount /></SiteLayout>} />
+          <Route path="/accounts/opening" element={<SiteLayout><AccountsOpening /></SiteLayout>} />
+          <Route path="/accounts/metal" element={<SiteLayout><MetalAccountsPersonal /></SiteLayout>} />
+          <Route path="/accounts/non-resident" element={<SiteLayout><NonResidentRemote /></SiteLayout>} />
           <Route path="/business/deposits" element={<SiteLayout><Avandner /></SiteLayout>} />
           <Route path="/business/accounts" element={<SiteLayout><Accounts /></SiteLayout>} />
           <Route path="/business/accounts/metal" element={<SiteLayout><MetalAccounts /></SiteLayout>} />
