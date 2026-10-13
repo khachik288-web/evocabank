@@ -70,3 +70,47 @@
   .dg-logo { max-width: 160px; }
   .dg-fee .dg-fee-v { white-space: normal; }
 }
+
+/* ---- Տերմինալի տեղադրման հայտ ---- */
+.dg-formwrap { max-width: 800px; margin: 20px 0 30px 100px; }
+.dg-form { background: #fff; border-radius: 14px; box-shadow: 0 0 14px rgba(106, 0, 220, .14); padding: 18px 20px 34px; display: flex; flex-direction: column; gap: 26px; transition: box-shadow .3s; }
+.dg-form:hover { box-shadow: 0 6px 26px rgba(106, 0, 220, .18); }
+.dg .dg-form-h { font-size: 22px; font-weight: 500; color: var(--p); margin: 0; line-height: 1.4; }
+.dg-label { display: block; font-size: 15px; font-weight: 500; margin-bottom: 12px; line-height: 1.5; }
+.dg-req { color: #e1001a; }
+.dg-hint { display: block; font-size: 10px; font-style: italic; color: #777; margin-top: 6px; }
+.dg-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.dg-row2-in { margin-top: -10px; }
+.dg-input { width: 100%; height: 52px; padding: 0 14px; border: 1px solid #dcdfe8; border-radius: 6px; background: #fff; font: inherit; font-size: 15px; transition: border-color .2s, box-shadow .2s; }
+.dg-input:hover { border-color: #b9a2e6; }
+.dg-input:focus { outline: 0; border-color: var(--p); box-shadow: 0 0 0 3px rgba(106, 0, 220, .14); }
+.dg-area { height: auto; min-height: 90px; padding: 12px 14px; resize: vertical; }
+.dg-phone { display: flex; }
+.dg-pre { display: flex; align-items: center; gap: 8px; padding: 0 14px; border: 1px solid #dcdfe8; border-right: 0; border-radius: 6px 0 0 6px; background: #f1f1f4; font-size: 12px; white-space: nowrap; }
+.dg-pre b { font-size: 8px; font-weight: 400; }
+.dg-phone .dg-input { border-radius: 0 6px 6px 0; }
+.dg-flag { width: 20px; height: 13px; display: inline-block; background: linear-gradient(#d90012 33.3%, #0033a0 33.3% 66.6%, #f2a800 66.6%); }
+.dg-radios { display: flex; flex-wrap: wrap; gap: 14px 28px; }
+.dg-radio { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font-size: 14px; }
+.dg-radio input { position: absolute; opacity: 0; pointer-events: none; }
+.dg-dot { width: 18px; height: 18px; border: 2px solid #b9bcc8; border-radius: 50%; display: inline-block; transition: border-color .2s, box-shadow .2s; }
+.dg-radio:hover .dg-dot { border-color: var(--p); }
+.dg-radio input:checked + .dg-dot { border-color: var(--p); box-shadow: inset 0 0 0 3px #fff, inset 0 0 0 9px var(--p); }
+.dg-radio input:focus-visible + .dg-dot { box-shadow: 0 0 0 3px rgba(106, 0, 220, .25); }
+.dg-agree { display: flex; align-items: flex-start; gap: 12px; font-size: 12px; line-height: 1.6; color: #444; cursor: pointer; }
+.dg-agree input { margin-top: 3px; accent-color: var(--p); width: 16px; height: 16px; flex-shrink: 0; }
+.dg-submit { align-self: flex-start; height: 44px; padding: 0 36px; border: 0; border-radius: 999px; background: var(--p); color: #fff; font: 700 14px inherit; font-family: inherit; cursor: pointer; transition: background .2s, transform .2s, box-shadow .2s; }
+.dg-submit:hover { background: var(--pd); transform: translateY(-2px); box-shadow: 0 6px 16px rgba(106, 0, 220, .3); }
+.dg-thanks { max-width: 800px; margin: 20px 0 30px 100px; padding: 48px 32px; text-align: center; background: #faf6ff; border-radius: 14px; animation: dpFade .3s ease; }
+.dg-thanks h3 { color: var(--p); font-size: 24px; margin: 0 0 12px; }
+.dg-thanks p { margin: 0 0 22px; }
+.dg-thanks .dg-submit { align-self: center; }
+
+@media (max-width: 1100px) { .dg-formwrap, .dg-thanks { margin-left: 0; } }
+@media (max-width: 640px) {
+  .dg-form { padding: 16px 14px 26px; gap: 22px; }
+  .dg .dg-form-h { font-size: 18px; }
+  .dg-row2 { grid-template-columns: 1fr; }
+  .dg-row2-in { margin-top: 0; }
+  .dg-input { height: 46px; }
+}

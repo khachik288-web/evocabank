@@ -402,3 +402,122 @@ export function DigitalTariffs() {
     </PlainPage>
   );
 }
+
+/* 4. Տերմինալի տեղադրման հայտ */
+const LEGAL_FORMS = ['ԱԸ', 'ՍՊԸ', 'ՓԲԸ', 'ԲԲԸ', 'Այլ'];
+const TERMINALS = ['POS', 'ՀԴՄ POS', 'V-POS', 'M-POS'];
+
+function Field({ label, req, hint, children }) {
+  return (
+    <div className="dg-field">
+      {label && <label className="dg-label">{label}{req && <span className="dg-req"> *</span>}</label>}
+      {children}
+      {hint && <small className="dg-hint">{hint}</small>}
+    </div>
+  );
+}
+
+const Input = (p) => <input className="dg-input" {...p} />;
+const Area = (p) => <textarea className="dg-input dg-area" rows={3} {...p} />;
+
+function Radios({ name, options, required }) {
+  return (
+    <div className="dg-radios">
+      {options.map((o, i) => (
+        <label key={o} className="dg-radio">
+          <input type="radio" name={name} value={o} required={required && i === 0} />
+          <span className="dg-dot" /> {o}
+        </label>
+      ))}
+    </div>
+  );
+}
+
+export function TerminalRequest() {
+  const [sent, setSent] = useState(false);
+
+  return (
+    <PlainPage title="Տերմինալի տեղադրման հայտ" section={SECTION}>
+      <div className="dg">
+        <div className="dg-formwrap">
+          {sent ? (
+            <div className="dg-thanks">
+              <h3>Շնորհակալություն:</h3>
+              <p>Ձեր հայտն ընդունված է: Մեր մասնագետը շուտով կապ կհաստատի Ձեզ հետ:</p>
+              <button type="button" className="dg-submit" onClick={() => setSent(false)}>Նոր հայտ</button>
+            </div>
+          ) : (
+            <form className="dg-form" onSubmit={(e) => { e.preventDefault(); setSent(true); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
+              <h3 className="dg-form-h">V-POS, POS կամ mPOS տերմինալի տեղադրման հայտ</h3>
+
+              <Field label="Անուն Ազգանուն">
+                <div className="dg-row2">
+                  <div><Input name="firstName" /><small className="dg-hint">Անուն</small></div>
+                  <div><Input name="lastName" /><small className="dg-hint">Ազգանուն</small></div>
+                </div>
+              </Field>
+
+              <Field label="Հեռախոսի համար">
+                <div className="dg-phone">
+                  <span className="dg-pre"><i className="dg-flag" /> +374 <b>▾</b></span>
+                  <Input name="phone" type="tel" inputMode="tel" />
+                </div>
+              </Field>
+
+              <Field label="Կազմակերպության անվանում" req><Input name="org" required /></Field>
+              <Field label="ՀՎՀՀ" req><Input name="tin" required /></Field>
+              <Field label="Կազմակերպության ստեղծման ամսաթիվ օր/ամիս/տարի" req hint="dd-MMM-yyyy">
+                <Input name="orgDate" type="date" required className="dg-input dg-date" />
+              </Field>
+
+              <Field label="Իրավաբանական հասցե" hint="Փողոցի անուն, տան համար, բնակարանի համար">
+                <Input name="street" />
+              </Field>
+              <div className="dg-row2 dg-row2-in">
+                <Field hint="Մարզ"><Input name="region" /></Field>
+                <Field hint="Քաղաք"><Input name="city" /></Field>
+              </div>
+              <div className="dg-row2 dg-row2-in">
+                <Field hint="Փոստային ինդեքս"><Input name="zip" /></Field>
+              </div>
+
+              <Field label="Տնօրենի Անուն Ազգանուն">
+                <div className="dg-row2">
+                  <div><Input name="dirFirst" /><small className="dg-hint">Անուն</small></div>
+                  <div><Input name="dirLast" /><small className="dg-hint">Ազգանուն</small></div>
+                </div>
+              </Field>
+              <Field label="Տնօրենի անձնագրի համարը" req><Input name="passport" required /></Field>
+              <Field label="Անձնագրի տրման ամսաթիվը" req hint="dd-MMM-yyyy">
+                <Input name="passportDate" type="date" required className="dg-input dg-date" />
+              </Field>
+              <Field label="Ում կողմից է տրված" req><Input name="passportBy" required /></Field>
+
+              <Field label="Խնդրում ենք նշել իրավասու կոնտակտային անձի հեռախոսահամարները" req><Input name="contactPhones" required /></Field>
+              <Field label="Խնդրում ենք նշել իրավասու կոնտակտային անձի էլ. փոստի հասցեն"><Input name="contactEmail" type="email" /></Field>
+
+              <Field label="Կազմակերպության իրավական ձևը" req><Radios name="legalForm" options={LEGAL_FORMS} required /></Field>
+              <Field label="Պահանջվող տերմինալի ձևը" req><Radios name="terminal" options={TERMINALS} required /></Field>
+
+              <Field label="Առևտրային և սպասարկման կետի անվանում (հայերեն և անգլերեն)" req><Area name="pointName" required /></Field>
+              <Field label="Առևտրային և սպասարկման կետի հասցե"><Area name="pointAddr" /></Field>
+              <Field label="Ինտերնետային կայքի անվանում (V-POS-ի դեպքում)"><Input name="site" /></Field>
+              <Field label="Վերջին տարվա, ամսվա միջին շրջանառությունը ՀՀ դրամով"><Input name="turnover" inputMode="numeric" /></Field>
+              <Field label="Կազմակերպության կողմից վաճառվող ապրանքների կամ ծառայությունների համառոտ նկարագիրը" req><Area name="goods" required /></Field>
+              <Field label="Արդյո՞ք նախկինում վճարումներն ընդունել եք վճարային քարտերով: Եթե այո, խնդրում ենք նշել նաև սպասարկող կազմակերպության անվանումը և վերջինիս հետ պայմանագիրը խզելու պատճառները:"><Area name="prev" /></Field>
+              <Field label="Որքան ամսական իրացում եք կանխատեսում վճարային քարտերով վճարումներով" req><Input name="forecast" required inputMode="numeric" /></Field>
+              <Field label="Նշումների համար"><Area name="notes" /></Field>
+
+              <label className="dg-agree">
+                <input type="checkbox" required />
+                <span>Սույն հայտը լրացնելով՝ հավաստում եմ, որ դրանում ներկայացված տվյալները ստույգ են, լրիվ և արժանահավատ: Տալիս եմ իմ համաձայնությունը, որպեսզի Բանկը ստուգի դրանց իսկությունը:</span>
+              </label>
+
+              <button type="submit" className="dg-submit">Ուղարկել</button>
+            </form>
+          )}
+        </div>
+      </div>
+    </PlainPage>
+  );
+}
