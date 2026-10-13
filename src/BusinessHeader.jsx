@@ -5,7 +5,7 @@ import './BusinessHeader.css';
 
 const TOP = [['Անհատ', '/'], ['Բիզնես', '/business'], ['Ակնթարթային վճարումներ', '/web-payment'], ['Մեր մասին', '/about'], ['Նորություններ', '/news'], ['Բլոգ', '/blog'], ['Կարիերա', '/career']];
 // [название, путь] — путь '#' пока заглушка
-const MAIN = [['Վարկեր', '/business'], ['Քարտեր', '/cards'], ['Հաշիվներ', '/business/accounts'], ['Ավանդներ', '/business/deposits'], ['Արժեթղթերի շուկա', '/business/securities'], ['Առևտրի ֆինանսավորում', '/business/trade-finance'], ['Դիջիթալ', '#'], ['Այլ', '#']];
+const MAIN = [['Վարկեր', '/business'], ['Քարտեր', '/cards'], ['Հաշիվներ', '/business/accounts'], ['Ավանդներ', '/business/deposits'], ['Արժեթղթերի շուկա', '/business/securities'], ['Առևտրի ֆինանսավորում', '/business/trade-finance'], ['Դիջիթալ', '/business/digital'], ['Այլ', '#']];
 // Заголовок фиолетовой полосы по маршруту
 const SUB = { '/business': 'Բիզնես վարկեր', '/business/deposits': 'Դասական ավանդ' };
 // Вкладки фиолетовой полосы для раздела «Առևտրի ֆինանսավորում»
@@ -14,6 +14,9 @@ const TRADE_TABS = [['Երաշխիք', '/business/trade-finance'], ['Ֆակտո�
 const SECURITIES_TABS = [['Ներդրումային ծառայություններ', '/business/securities'], ['Պարտատոմսեր', '/business/securities/bonds'], ['ՀԿԴ ծառայություններ', '/business/securities/hkd'], ['Ռեպո/Հակադարձ ռեպո գործարքներ', '/business/securities/repo'], ['EvocaINVEST', '/business/securities/evocainvest']];
 // Вкладки фиолетовой полосы для раздела «Հաշիվներ»
 const ACCOUNT_TABS = [['Հաշիվների բացում և սպասարկում', '/business/accounts'], ['Առարկայազուրկ մետաղական հաշիվներ', '/business/accounts/metal']];
+
+// Вкладки фиолетовой полосы для раздела «Դիջիթալ»
+const DIGITAL_TABS = [['V-POS Տերմինալ', '/business/digital'], ['POS Տերմինալ', '/business/digital/pos'], ['Սակագներ', '/business/digital/tariffs'], ['Տերմինալի տեղադրման հայտ', '#'], ['Evoca Mobile POS mPOS', '#']];
 
 export default function BusinessHeader({ sub }) {
   const { pathname } = useLocation();
@@ -31,8 +34,9 @@ export default function BusinessHeader({ sub }) {
   const isAccounts = pathname.startsWith('/business/accounts');
   const isSecurities = pathname.startsWith('/business/securities');
   const isTrade = pathname.startsWith('/business/trade-finance');
-  const tabs = isAccounts ? ACCOUNT_TABS : isSecurities ? SECURITIES_TABS : isTrade ? TRADE_TABS : null;
-  const isActive = (p) => p !== '#' && (p === '/business/accounts' ? isAccounts : p === '/business/securities' ? isSecurities : p === '/business/trade-finance' ? isTrade : pathname === p);
+  const isDigital = pathname.startsWith('/business/digital');
+  const tabs = isDigital ? DIGITAL_TABS : isAccounts ? ACCOUNT_TABS : isSecurities ? SECURITIES_TABS : isTrade ? TRADE_TABS : null;
+  const isActive = (p) => p !== '#' && (p === '/business/accounts' ? isAccounts : p === '/business/securities' ? isSecurities : p === '/business/trade-finance' ? isTrade : p === '/business/digital' ? pathname === p : pathname === p);
 
   return (
     <header className={`bh ${scrolled ? 'is-scrolled' : ''}`}>
@@ -69,7 +73,7 @@ export default function BusinessHeader({ sub }) {
 
       <div className="bh-sub"><div className="bh-wrap">
         {tabs
-          ? tabs.map(([l, p]) => <Link key={p} to={p} className={pathname === p ? 'on' : ''}>{l}</Link>)
+          ? tabs.map(([l, p]) => <Link key={l} to={p} className={pathname === p ? 'on' : ''}>{l}</Link>)
           : <span>{title}</span>}
       </div></div>
     </header>

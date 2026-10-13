@@ -1,0 +1,72 @@
+/* Раздел «Դիջիթալ»: V-POS и POS терминалы. Базовые классы .dp-* — в Avandner.css */
+.dg .dg-hero { margin-top: 0; }
+.dg .dg-hero-ph { flex: 1; min-height: 320px; display: grid; place-items: center; background: linear-gradient(135deg, #e9d6ff, #c79bff); color: #fff; }
+.dg .dg-hero img { aspect-ratio: 4 / 3; }
+.dg .dg-body { padding-top: 50px; }
+.dg .dp-content { flex: 1; max-width: 1100px; font-size: 16px; line-height: 1.75; }
+.dg .dp-p { margin: 0 0 26px; }
+.dg .dg-list > li { margin-bottom: 20px; }
+.dg .dg-list > li::before { top: 12px; }
+.dg .dp-link { transition: color .2s, text-shadow .2s; }
+.dg .dp-link:hover { text-shadow: 0 0 .5px var(--pd); }
+.dg .dg-ol { padding-left: 24px; }
+.dg .dg-ol li::marker { color: var(--p); font-weight: 700; }
+.dg .dg-ph { font-size: 22px; font-weight: 700; color: var(--p); margin: 44px 0 18px; }
+.dg-sup { font-size: 10px; color: var(--p); margin-left: 1px; }
+
+/* Таблицы-карточки */
+.dg-card { background: #fff; border-radius: 6px; box-shadow: 0 0 14px rgba(106, 0, 220, .12); margin: 24px 0 28px; overflow-x: auto; transition: box-shadow .3s, transform .3s; }
+.dg-card:hover { box-shadow: 0 8px 26px rgba(106, 0, 220, .2); transform: translateY(-2px); }
+.dg-table { width: 100%; border-collapse: collapse; font-size: 13px; line-height: 1.6; min-width: 640px; }
+.dg-table th, .dg-table td { padding: 16px 15px; text-align: left; vertical-align: middle; border-bottom: 1px solid #ece6f7; border-right: 1px solid #ece6f7; }
+.dg-table th:last-child, .dg-table td:last-child { border-right: 0; }
+.dg-table thead th { font-weight: 400; color: #444; }
+.dg-table tbody tr:last-child td { border-bottom: 0; }
+.dg-table tbody tr { transition: background .2s; }
+.dg-table tbody tr:hover { background: #faf6ff; }
+.dg-table .dg-rowh { font-weight: 400; color: var(--tx); background: transparent; }
+.dg-table .dg-u { width: 20%; }
+.dg-table .dg-foot { color: #666; font-size: 12px; }
+.dg-vpos th:first-child, .dg-vpos td:first-child { width: 20%; }
+
+.dg-notes { list-style: none; padding: 0; margin: 0 0 26px; font-size: 12px; line-height: 1.8; color: #333; }
+.dg .dg-dash { list-style: none; padding: 0 0 0 22px; margin: 28px 0 10px; }
+.dg .dg-dash li { position: relative; }
+.dg .dg-dash li::before { content: ''; position: absolute; left: -22px; top: 14px; width: 10px; height: 2px; background: var(--p); }
+
+/* Картинка в тексте */
+.dg-pic { margin: 30px 0 10px; overflow: hidden; border-radius: 4px; max-width: 600px; }
+.dg-pic img { display: block; width: 100%; height: auto; transition: transform .5s; }
+.dg-pic:hover img { transform: scale(1.05); }
+
+/* Пункты фиолетовой полосы: hover */
+.bh-sub a { transition: background .2s; }
+
+@media (max-width: 900px) {
+  .dg .dg-hero-ph { min-height: 220px; }
+  .dg .dg-body { padding-top: 28px; }
+  .dg .dp-content { font-size: 15px; }
+  .dg .dg-ph { font-size: 19px; margin-top: 34px; }
+}
+@media (max-width: 640px) {
+  .dg .dp-content { font-size: 14px; line-height: 1.7; }
+  .dg .dg-ph { font-size: 17px; }
+  .dg-table { font-size: 12px; }
+  .dg-table th, .dg-table td { padding: 12px 10px; }
+  .dg-pic { max-width: 100%; }
+}
+
+/* ---- Սակագներ ---- */
+.dg-prov { margin: 0 0 44px; }
+.dg-prov-h { font-size: 22px; font-weight: 500; margin: 36px 0 18px; }
+.dg-logo { display: block; max-width: 220px; max-height: 110px; width: auto; height: auto; margin: 0 0 22px; transition: transform .3s; }
+.dg-logo:hover { transform: scale(1.06); }
+.dg-fee .dg-table { min-width: 560px; }
+.dg-fee .dg-fee-n { width: 30%; font-weight: 500; }
+.dg-fee .dg-fee-v { width: 28%; font-weight: 500; white-space: nowrap; }
+.dg-fee .dg-table td { padding: 18px 16px; }
+@media (max-width: 640px) {
+  .dg-prov-h { font-size: 19px; }
+  .dg-logo { max-width: 160px; }
+  .dg-fee .dg-fee-v { white-space: normal; }
+}
