@@ -16,7 +16,7 @@ const SECURITIES_TABS = [['Ներդրումային ծառայություննե
 const ACCOUNT_TABS = [['Հաշիվների բացում և սպասարկում', '/business/accounts'], ['Առարկայազուրկ մետաղական հաշիվներ', '/business/accounts/metal']];
 
 // Вкладки фиолетовой полосы для раздела «Դիջիթալ»
-const DIGITAL_TABS = [['V-POS Տերմինալ', '/business/digital'], ['POS Տերմինալ', '/business/digital/pos'], ['Սակագներ', '/business/digital/tariffs'], ['Տերմինալի տեղադրման հայտ', '/business/digital/request'], ['Evoca Mobile POS mPOS', '#']];
+const DIGITAL_TABS = [['V-POS Տերմինալ', '/business/digital'], ['POS Տերմինալ', '/business/digital/pos'], ['Սակագներ', '/business/digital/tariffs'], ['Տերմինալի տեղադրման հայտ', '/business/digital/request'], ['Evoca Mobile POS mPOS', '/business/digital/mpos']];
 
 export default function BusinessHeader({ sub }) {
   const { pathname } = useLocation();

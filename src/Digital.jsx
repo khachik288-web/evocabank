@@ -17,6 +17,7 @@ const IMG = 'https://www.evoca.am/images-cache/menu/1';
 const VPOS_HERO = `${IMG}/16158111599306/780x585.jpg`;
 const POS_HERO = `${IMG}/16158085302978/780x585.jpg`;
 const FILES = 'https://www.evoca.am/file_manager';
+const MPOS_HERO = 'https://www.evoca.am/images-cache/menu/1/16697156723793/780x585.png';
 const LOGO = {
   telcell: `${FILES}/telcell-evoca-logo.png`,
   upay: `${FILES}/uPay-evoca.png`,
@@ -433,6 +434,28 @@ function Radios({ name, options, required }) {
   );
 }
 
+
+export function MPos() {
+  return (
+    <DigitalPage
+      crumb="Evoca Mobile POS՝ mPOS"
+      updated="04/10/2024 12:10"
+      hero={{
+        title: 'Evoca Mobile POS՝ mPOS',
+        img: MPOS_HERO,
+        text: 'Evocabank-ի նոր mobile POS՝ mPOS գործիքի շնորհիվ Ձեր բիզնեսը կարող է ստանալ անկանխիկ վճարումներ՝ ավելի հեշտ ու արագ:',
+      }}
+    >
+      <p className="dp-p dg-tight">
+        <a className="dp-link dg-b" href="#">mPOS</a>-ը ստանդարտ POS տերմինալի մոբայլ տարբերակն է, որը ցանկացած Android սմարթֆոն վերածում է վճարային տերմինալի:<br />
+        mPOS-ը հատկապես հարմար է շարժական բիզնեսով զբաղվողների համար՝ բացօթյա խանութներ, սրճարաններ, միջոցառումների ընթացքում սննդի վաճառքի կետեր, օնլայն խանութներ, առաքման ծառայություններ, կամ ցանկացած այլ բիզնես, որը հաճախորդից վճարումն ընդունում է բիզնեսի տարածքից դուրս:<br />
+        mPOS-ն ակտիվացնելու համար բիզնեսին պարզապես անհրաժեշտ է <A>NFC ընթերցող Android սմարթֆոն</A>, որը միացված է ինտերնետին, և <A>Evoca-ի mPOS հավելվածը</A>: Այն կարող եք ներբեռնել Google Play-ից՝ Android 8.1 կամ ավելի թարմ ծրագրային ապահովման դեպքում:<br />
+        Հավելվածը ներբեռնելուց հետո պետք է մուտք գործել հավելված՝ Բանկի տրամադրած մուտքանունով և գաղտնաբառով: Եվ վերջ: Դուք արդեն կարող եք Ձեր հաճախորդներից ստանալ անհպում վճարումներ: Վճարում կատարելու համար հաճախորդը պարզապես մոտեցնում է Ձեր սմարթֆոնին իր քարտը կամ Apple Pay ունեցող հեռախոսը, որին կցված է Evoca վճարային քարտ:
+      </p>
+    </DigitalPage>
+  );
+}
+
 export function TerminalRequest() {
   const [sent, setSent] = useState(false);
 
@@ -515,7 +538,10 @@ export function TerminalRequest() {
 
               <button type="submit" className="dg-submit">Ուղարկել</button>
             </form>
+
+            
           )}
+          
         </div>
       </div>
     </PlainPage>

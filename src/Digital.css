@@ -114,3 +114,8 @@
   .dg-row2-in { margin-top: 0; }
   .dg-input { height: 46px; }
 }
+
+.dg .dg-tight { line-height: 1.75; }
+.dg .dg-b { font-weight: 700; }
+.dg .dg-tight .dp-link { transition: color .2s, background .2s; }
+.dg .dg-tight .dp-link:hover { background: #f3ebff; }

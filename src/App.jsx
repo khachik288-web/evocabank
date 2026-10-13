@@ -29,7 +29,7 @@ import TradeGuarantee from './TradeGuarantee';
 import TradeFactoring from './TradeFactoring';
 import TradeCredit from './TradeCredit';
 import TradeCollection from './TradeCollection';
-import { VPos, Pos, DigitalTariffs, TerminalRequest } from './Digital';
+import { VPos, Pos, DigitalTariffs, TerminalRequest, MPos } from './Digital';
 import { MoneyTransfers, PaymentSystems } from './PersonalTransfers';
 import { SavingsAccount, AccountsOpening, MetalAccountsPersonal, NonResidentRemote } from './PersonalAccounts';
 
@@ -1887,6 +1887,7 @@ function App() {
           <Route path="/business/trade-finance/collection" element={<SiteLayout><TradeCollection /></SiteLayout>} />\
           <Route path="/business/digital/tariffs" element={<SiteLayout><DigitalTariffs /></SiteLayout>} />
           <Route path="/business/digital/request" element={<SiteLayout><TerminalRequest /></SiteLayout>} />
+          <Route path="/business/digital/mpos" element={<SiteLayout><MPos /></SiteLayout>} />
         </Routes>
       </div>
     </Router>
