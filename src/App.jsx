@@ -120,8 +120,7 @@ export function Header() {
     { label: 'Էվոկա ֆինանսական խումբ', path: '#' },
   ];
 
-  const subNav = isAbout ? aboutSubNav : isLoans ? loansSubNav : isCards ? cardsSubNav : isAccounts ? accountsSubNav : isTransfers ? transfersSubNav : null;
-
+  const subNav = isAbout ? aboutSubNav : isLoans ? loansSubNav : isCards ? cardsSubNav : isAccounts ? accountsSubNav : isTransfers ? transfersSubNav : isSecurities ? securitiesSubNav : null;
   return (
     <header className="w-full text-sm">
       {/* Top thin bar */}
