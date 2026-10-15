@@ -34,6 +34,9 @@ import { MoneyTransfers, PaymentSystems } from './PersonalTransfers';
 import { SavingsAccount, AccountsOpening, MetalAccountsPersonal, NonResidentRemote } from './PersonalAccounts';
 import { SafeBoxes, BusinessTransfers } from './Other';
 import NewsBlock from './NewsBlock';
+import EvocaSalary from './EvocaSalary';
+import EvocaTouch from './EvocaTouch';
+
 
 // --- 1. HEADER ---
 export function Header() {
@@ -67,8 +70,8 @@ export function Header() {
     { label: 'Հաշիվներ', path: '/accounts' },
     { label: 'Փոխանցումներ', path: '/transfers' },
     { label: 'Արժեթղթեր', path: '/securities' },
-    { label: 'EvocaSALARY', path: '#' },
-    { label: 'EvocaTOUCH', path: '#' },
+    { label: 'EvocaSALARY', path: '/evocasalary' },
+    { label: 'EvocaTOUCH', path: '/evocatouch' },
   ].map((l) => ({ ...l }));
 
   const aboutLinks = ['Evoca-ի մասին', 'Սակագներ', 'Հաշվետվություններ', 'Հայտարարություններ'].map(
@@ -1903,6 +1906,8 @@ function App() {
           <Route path="/securities/hkd" element={<SiteLayout><Hkd /><NewsBlock /></SiteLayout>} />
           <Route path="/securities/repo" element={<SiteLayout><Repo /><NewsBlock /></SiteLayout>} />
           <Route path="/securities/evocainvest" element={<SiteLayout><EvocaInvest /><NewsBlock /></SiteLayout>} />
+          <Route path="/evocasalary" element={<SiteLayout><EvocaSalary /></SiteLayout>} />
+          <Route path="/evocatouch" element={<SiteLayout><EvocaTouch /></SiteLayout>} />
         </Routes>
       </div>
     </Router>
