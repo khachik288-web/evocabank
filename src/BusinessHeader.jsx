@@ -5,7 +5,7 @@ import './BusinessHeader.css';
 
 const TOP = [['Անհատ', '/'], ['Բիզնես', '/business'], ['Ակնթարթային վճարումներ', '/web-payment'], ['Մեր մասին', '/about'], ['Նորություններ', '/news'], ['Բլոգ', '/blog'], ['Կարիերա', '/career']];
 // [название, путь] — путь '#' пока заглушка
-const MAIN = [['Վարկեր', '/business'], ['Քարտեր', '/cards'], ['Հաշիվներ', '/business/accounts'], ['Ավանդներ', '/business/deposits'], ['Արժեթղթերի շուկա', '/business/securities'], ['Առևտրի ֆինանսավորում', '/business/trade-finance'], ['Դիջիթալ', '/business/digital'], ['Այլ', '#']];
+const MAIN = [['Վարկեր', '/business'], ['Քարտեր', '/cards'], ['Հաշիվներ', '/business/accounts'], ['Ավանդներ', '/business/deposits'], ['Արժեթղթերի շուկա', '/business/securities'], ['Առևտրի ֆինանսավորում', '/business/trade-finance'], ['Դիջիթալ', '/business/digital'], ['Այլ', '/business/other']];
 // Заголовок фиолетовой полосы по маршруту
 const SUB = { '/business': 'Բիզնես վարկեր', '/business/deposits': 'Դասական ավանդ' };
 // Вкладки фиолетовой полосы для раздела «Առևտրի ֆինանսավորում»
@@ -17,6 +17,9 @@ const ACCOUNT_TABS = [['Հաշիվների բացում և սպասարկում'
 
 // Вкладки фиолетовой полосы для раздела «Դիջիթալ»
 const DIGITAL_TABS = [['V-POS Տերմինալ', '/business/digital'], ['POS Տերմինալ', '/business/digital/pos'], ['Սակագներ', '/business/digital/tariffs'], ['Տերմինալի տեղադրման հայտ', '/business/digital/request'], ['Evoca Mobile POS mPOS', '/business/digital/mpos']];
+
+// ayl vkladken 
+const OTHER_TABS = [['Պահատուփեր', '/business/other'], ['Փոխանցումներ', '/business/other/transfers']];
 
 export default function BusinessHeader({ sub }) {
   const { pathname } = useLocation();
@@ -35,9 +38,9 @@ export default function BusinessHeader({ sub }) {
   const isSecurities = pathname.startsWith('/business/securities');
   const isTrade = pathname.startsWith('/business/trade-finance');
   const isDigital = pathname.startsWith('/business/digital');
-  const tabs = isDigital ? DIGITAL_TABS : isAccounts ? ACCOUNT_TABS : isSecurities ? SECURITIES_TABS : isTrade ? TRADE_TABS : null;
-  const isActive = (p) => p !== '#' && (p === '/business/accounts' ? isAccounts : p === '/business/securities' ? isSecurities : p === '/business/trade-finance' ? isTrade : p === '/business/digital' ? pathname === p : pathname === p);
-
+  const isOther = pathname.startsWith('/business/other');
+  const tabs = isOther ? OTHER_TABS : isDigital ? DIGITAL_TABS : isAccounts ? ACCOUNT_TABS : isSecurities ? SECURITIES_TABS : isTrade ? TRADE_TABS : null;
+  const isActive = (p) => p !== '#' && (p === '/business/other' ? isOther : p === '/business/accounts' ? isAccounts : p === '/business/securities' ? isSecurities : p === '/business/trade-finance' ? isTrade : pathname === p);
   return (
     <header className={`bh ${scrolled ? 'is-scrolled' : ''}`}>
       <div className="bh-top">

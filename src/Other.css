@@ -1,0 +1,19 @@
+/* Раздел «Այլ»: Պահատուփեր, Փոխանցումներ. Основа — Digital.css (.dg-*) */
+.ot .dp-content { max-width: 860px; }
+.ot .ot-h { font-size: 16px; font-weight: 700; margin: 36px 0 18px; line-height: 1.5; }
+.ot .ot-h2 { font-size: 32px; font-weight: 400; margin: 0 0 22px; }
+.ot .ot-center { text-align: left; }
+.ot .ot-card .dg-table { min-width: 600px; }
+.ot .ot-card .dg-table thead th { font-weight: 400; }
+.ot .ot-card .dg-table th, .ot .ot-card .dg-table td { padding: 12px 16px; }
+.ot .ot-note { font-size: 12px; margin: 0 0 30px; }
+.ot .dp-hero-text { flex-basis: 46%; }
+@media (max-width: 900px) {
+  .ot .dp-content { max-width: 100%; }
+  .ot .ot-h2 { font-size: 24px; }
+}
+@media (max-width: 640px) {
+  .ot .ot-h { font-size: 15px; }
+  .ot .ot-card .dg-table { min-width: 520px; }
+  .ot .ot-card .dg-table th, .ot .ot-card .dg-table td { padding: 10px; }
+}

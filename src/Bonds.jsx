@@ -1,6 +1,6 @@
 import React from 'react';
 import { FileDown } from 'lucide-react';
-import { PlainPage, List, Accordion, Soon } from './SecurityParts';
+import { PlainPage, List, Accordion, Soon, useIsPersonal } from './SecurityParts';
 
 const ROWS = [
   ['Անվանական արժեք', '10,000 ՀՀ դրամ', '100 ԱՄՆ դոլար'],
@@ -45,6 +45,7 @@ const FILES = [
 ];
 
 export default function Bonds() {
+  const personal = useIsPersonal();
   return (
     <PlainPage title="Պարտատոմսեր" updated="22/05/2026 10:36">
       <p className="dp-p">
@@ -60,7 +61,7 @@ export default function Bonds() {
 
       <h2 className="dp-h2 dp-caps">Անհրաժեշտ տեղեկատվություն</h2>
       <div className="dp-accs">
-        <Accordion title="ՏԱՍՆՉՈՐՍԵՐՈՐԴ ԵՎ ՏԱՍՆՀԻՆԳԵՐՈՐԴ ԹՈՂԱՐԿՈՒՄ" defaultOpen>
+        <Accordion title={personal ? 'Պարտատոմսերի թողարկում' : 'ՏԱՍՆՉՈՐՍԵՐՈՐԴ ԵՎ ՏԱՍՆՀԻՆԳԵՐՈՐԴ ԹՈՂԱՐԿՈՒՄ'} defaultOpen>
           <h3 className="dp-center-h">Թողարկվող պարտատոմսերի պայմաններ</h3>
           <div className="dp-table-wrap">
             <table className="dp-table">

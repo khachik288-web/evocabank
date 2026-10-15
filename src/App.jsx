@@ -32,8 +32,8 @@ import TradeCollection from './TradeCollection';
 import { VPos, Pos, DigitalTariffs, TerminalRequest, MPos } from './Digital';
 import { MoneyTransfers, PaymentSystems } from './PersonalTransfers';
 import { SavingsAccount, AccountsOpening, MetalAccountsPersonal, NonResidentRemote } from './PersonalAccounts';
-
-
+import { SafeBoxes, BusinessTransfers } from './Other';
+import NewsBlock from './NewsBlock';
 
 // --- 1. HEADER ---
 export function Header() {
@@ -43,6 +43,7 @@ export function Header() {
   const isCards = pathname.startsWith('/cards');
   const isAccounts = pathname.startsWith('/accounts');
   const isTransfers = pathname.startsWith('/transfers');
+  const isSecurities = pathname.startsWith('/securities');
 
   const topLinks = [
     { label: 'Անհատ', path: '/' },
@@ -56,7 +57,7 @@ export function Header() {
 
   const isTopActive = (path) =>
     path === '/'
-      ? pathname === '/' || isLoans || isCards || isAccounts || isTransfers // «Անհատ» подсвечен и на подстраницах раздела (Վարկեր)
+      ? pathname === '/' || isLoans || isCards || isAccounts || isTransfers || isSecurities// «Անհատ» подсвечен и на подстраницах раздела (Վարկեր)
       : path !== '#' && pathname.startsWith(path);
 
   const personalLinks = [
@@ -65,7 +66,7 @@ export function Header() {
     { label: 'Ավանդներ', path: '/deposits' },
     { label: 'Հաշիվներ', path: '/accounts' },
     { label: 'Փոխանցումներ', path: '/transfers' },
-    { label: 'Արժեթղթեր', path: '#' },
+    { label: 'Արժեթղթեր', path: '/securities' },
     { label: 'EvocaSALARY', path: '#' },
     { label: 'EvocaTOUCH', path: '#' },
   ].map((l) => ({ ...l }));
@@ -98,6 +99,14 @@ export function Header() {
   const transfersSubNav = [
     { label: 'Դրամական փոխանցումներ', path: '/transfers' },
     { label: 'Վճարային համակարգեր', path: '/transfers/payment-systems' },
+  ];
+
+  const securitiesSubNav = [
+    { label: 'Ներդրումային ծառայություններ', path: '/securities' },
+    { label: 'Պարտատոմսեր', path: '/securities/bonds' },
+    { label: 'ՀԿԴ ծառայություններ', path: '/securities/hkd' },
+    { label: 'Ռեպո/Հակադարձ Ռեպո գործարքներ', path: '/securities/repo' },
+    { label: 'EvocaINVEST', path: '/securities/evocainvest' },
   ];
 
   const aboutSubNav = [
@@ -196,7 +205,7 @@ export function Header() {
                   key={link.label}
                   to={link.path}
                   className={`no-underline hover:no-underline text-black ${
-                    (isCards ? link.path === '/cards' : isAccounts ? link.path === '/accounts' : isTransfers ? link.path === '/transfers' : i === 0) ? 'text-purple-700' : 'text-gray-800 hover:text-purple-700'
+                    (isCards ? link.path === '/cards' : isAccounts ? link.path === '/accounts' : isTransfers ? link.path === '/transfers' : isSecurities ? link.path === '/securities' : i === 0) ? 'text-purple-700' : 'text-gray-800 hover:text-purple-700'
                   }`}
                 >
                   {link.label}
@@ -1888,6 +1897,13 @@ function App() {
           <Route path="/business/digital/tariffs" element={<SiteLayout><DigitalTariffs /></SiteLayout>} />
           <Route path="/business/digital/request" element={<SiteLayout><TerminalRequest /></SiteLayout>} />
           <Route path="/business/digital/mpos" element={<SiteLayout><MPos /></SiteLayout>} />
+          <Route path="/business/other" element={<SiteLayout><SafeBoxes /></SiteLayout>} />
+          <Route path="/business/other/transfers" element={<SiteLayout><BusinessTransfers /></SiteLayout>} />
+          <Route path="/securities" element={<SiteLayout><InvestServices /><NewsBlock /></SiteLayout>} />
+          <Route path="/securities/bonds" element={<SiteLayout><Bonds /><NewsBlock /></SiteLayout>} />
+          <Route path="/securities/hkd" element={<SiteLayout><Hkd /><NewsBlock /></SiteLayout>} />
+          <Route path="/securities/repo" element={<SiteLayout><Repo /><NewsBlock /></SiteLayout>} />
+          <Route path="/securities/evocainvest" element={<SiteLayout><EvocaInvest /><NewsBlock /></SiteLayout>} />
         </Routes>
       </div>
     </Router>

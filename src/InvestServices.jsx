@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { PlainPage, PH, Accordion, Soon } from './SecurityParts';
+import { PlainPage, PH, Accordion, Soon, useIsPersonal } from './SecurityParts';
 
 export default function InvestServices() {
+  const personal = useIsPersonal();
   return (
     <PlainPage title="Ներդրումային ծառայություններ">
       <p className="dp-p">
@@ -11,7 +12,7 @@ export default function InvestServices() {
 
       <PH>Ինչպե՞ս դառնալ հաճախորդ:</PH>
       <p className="dp-p">
-        Ներդրումային ծառայություններից օգտվելու համար անհրաժեշտ է Բանկում ունենալ ընթացիկ բանկային հաշիվ, որի բացման համար պահանջվող փաստաթղթերին կարող եք ծանոթանալ <Link className="dp-link" to="/business/accounts">այստեղ</Link>:
+        Ներդրումային ծառայություններից օգտվելու համար անհրաժեշտ է Բանկում ունենալ ընթացիկ բանկային հաշիվ, որի բացման համար պահանջվող փաստաթղթերին կարող եք ծանոթանալ <Link className="dp-link" to={personal ? '/accounts/opening' : '/business/accounts'}>այստեղ</Link>:
       </p>
       <p className="dp-p">Բրոքերային հաշվի բացման համար անհրաժեշտ է այցելել Բանկի գլխամասային գրասենյակ:</p>
 
@@ -20,8 +21,10 @@ export default function InvestServices() {
 
       <PH>Հետադարձ կապ՝</PH>
       <p className="dp-p">
-        Հեռ.՝ 374 10 205555<br />
-        Էլ. հասցե՝ <a className="dp-link" href="mailto:invest@evoca.am">invest@evoca.am</a>
+        {personal ? <>Հեռ.՝ <b>374 33 777 453</b><br /><b>374 33 603 055</b></> : <>Հեռ.՝ 374 10 205555</>}<br /><br />
+        Էլ. հասցե՝ {personal
+          ? <a className="dp-link" href="mailto:investsecurities@evoca.am">investsecurities@evoca.am</a>
+          : <a className="dp-link" href="mailto:invest@evoca.am">invest@evoca.am</a>}
       </p>
 
       <p className="dp-p">
