@@ -36,6 +36,7 @@ import { SafeBoxes, BusinessTransfers } from './Other';
 import NewsBlock from './NewsBlock';
 import EvocaSalary from './EvocaSalary';
 import EvocaTouch from './EvocaTouch';
+import { ManagementPage, MemberPage } from './Management';
 
 
 // --- 1. HEADER ---
@@ -116,7 +117,7 @@ export function Header() {
     { label: 'Ընդհանուր', path: '/about' },
     { label: 'Կառուցվածք', path: '#' },
     { label: 'Բաժնետերեր', path: '#' },
-    { label: 'Ղեկավարություն', path: '#' },
+    { label: 'Ղեկավարություն', path: '/about/management' },
     { label: 'Գործընկերներ', path: '#' },
     { label: 'Մրցանակներ', path: '#' },
     { label: 'CSR', path: '#' },
@@ -1305,7 +1306,7 @@ export function EvocaFooter() {
             <h6 className="fw-bold mb-3" style={{ fontSize: '15px' }}>Բանկի մասին</h6>
             <ul className="list-unstyled text-muted small d-flex flex-column gap-2" style={{ fontSize: '13px' }}>
               <li><a href="/about" className="text-reset text-decoration-none hover-purple">Մեր մասին</a></li>
-              <li><a href="#management" className="text-reset text-decoration-none hover-purple">Ղեկավարություն</a></li>
+              <li><a href="/about/management" className="text-reset text-decoration-none hover-purple">Ղեկավարություն</a></li>
               <li><a href="#shareholders" className="text-reset text-decoration-none hover-purple">Բաժնետերեր</a></li>
               <li><a href="#reports" className="text-reset text-decoration-none hover-purple">Հաշվետվություններ</a></li>
               <li><a href="#acts" className="text-reset text-decoration-none hover-purple">Իրավական ակտեր</a></li>
@@ -1908,6 +1909,8 @@ function App() {
           <Route path="/securities/evocainvest" element={<SiteLayout><EvocaInvest /><NewsBlock /></SiteLayout>} />
           <Route path="/evocasalary" element={<SiteLayout><EvocaSalary /></SiteLayout>} />
           <Route path="/evocatouch" element={<SiteLayout><EvocaTouch /></SiteLayout>} />
+          <Route path="/about/management" element={<SiteLayout><ManagementPage /></SiteLayout>} />
+          <Route path="/about/management/:id" element={<SiteLayout><MemberPage /></SiteLayout>} />
         </Routes>
       </div>
     </Router>
