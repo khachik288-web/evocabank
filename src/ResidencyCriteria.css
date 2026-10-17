@@ -1,0 +1,224 @@
+.residency-page {
+  position: relative;
+  width: 100%;
+  background-color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: #2b2b2b;
+  padding-bottom: 60px;
+}
+
+/* Левая социальная панель */
+.residency-social-bar {
+  position: fixed;
+  left: 12px;
+  top: 280px;
+  display: flex;
+  flex-direction: column;
+  background: #f4f4f6;
+  border-radius: 6px;
+  padding: 6px 0;
+  z-index: 100;
+}
+
+.residency-social-bar a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: #888888;
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.residency-social-bar a:hover {
+  color: #7000ff;
+}
+
+.ig-icon {
+  font-size: 14px;
+}
+
+/* Контейнер страницы */
+.residency-container {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+/* Хлебные крошки */
+.residency-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #666666;
+  margin-bottom: 25px;
+}
+
+.crumb-home {
+  text-decoration: none;
+  color: #666;
+}
+
+.crumb-separator {
+  color: #aaa;
+  font-size: 14px;
+}
+
+.crumb-current {
+  color: #333333;
+  font-weight: 500;
+}
+
+/* Главный заголовок */
+.residency-title {
+  font-size: 36px;
+  font-weight: 700;
+  color: #222222;
+  line-height: 1.25;
+  margin-bottom: 35px;
+}
+
+/* Фиолетовые подзаголовки */
+.section-title-purple {
+  font-size: 18px;
+  font-weight: 700;
+  color: #7000ff;
+  margin-bottom: 16px;
+}
+
+.mt-8 {
+  margin-top: 32px;
+}
+
+/* Параграфы */
+.residency-p {
+  font-size: 15px;
+  line-height: 1.65;
+  color: #333333;
+  margin-bottom: 16px;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+/* Маркированный список (точки) */
+.purple-bullet-list {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 12px;
+  margin-bottom: 24px;
+}
+
+.purple-bullet-list li {
+  position: relative;
+  padding-left: 24px;
+  font-size: 15px;
+  line-height: 1.65;
+  color: #333333;
+  margin-bottom: 10px;
+}
+
+.purple-bullet-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: -2px;
+  color: #7000ff;
+  font-size: 24px;
+}
+
+/* Нумерованный список */
+.purple-numbered-list {
+  list-style: none;
+  counter-reset: custom-counter;
+  padding-left: 0;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.purple-numbered-list > li {
+  counter-increment: custom-counter;
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 20px;
+}
+
+.purple-numbered-list > li::before {
+  content: counter(custom-counter) ".";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #7000ff;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.list-heading {
+  font-size: 15px;
+  font-weight: 700;
+  color: #7000ff;
+  margin-bottom: 4px;
+}
+
+.list-description {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #333333;
+  margin: 0;
+}
+
+/* Вложенный маркированный список */
+.purple-bullet-sublist {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
+
+.purple-bullet-sublist li {
+  position: relative;
+  padding-left: 24px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #333333;
+  margin-bottom: 8px;
+}
+
+.purple-bullet-sublist li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: -2px;
+  color: #7000ff;
+  font-size: 24px;
+}
+
+/* Штамп даты обновления */
+.residency-updated-info {
+  text-align: right;
+  font-size: 12px;
+  color: #999999;
+  margin-top: 40px;
+}
+
+/* Адаптивные стили */
+@media (max-width: 992px) {
+  .residency-social-bar {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .residency-title {
+    font-size: 26px;
+  }
+  
+  .section-title-purple {
+    font-size: 16px;
+  }
+}
