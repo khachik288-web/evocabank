@@ -37,12 +37,15 @@ import NewsBlock from './NewsBlock';
 import EvocaSalary from './EvocaSalary';
 import EvocaTouch from './EvocaTouch';
 import { ManagementPage, MemberPage } from './Management';
+import Shareholders from './Shareholders';
+import AuditReports from './AuditReports';
 
 
 // --- 1. HEADER ---
 export function Header() {
   const { pathname } = useLocation();
   const isAbout = pathname.startsWith('/about');
+  const isReports = pathname.startsWith('/about/reports');
   const isLoans = pathname.startsWith('/loans');
   const isCards = pathname.startsWith('/cards');
   const isAccounts = pathname.startsWith('/accounts');
@@ -76,7 +79,7 @@ export function Header() {
   ].map((l) => ({ ...l }));
 
   const aboutLinks = ['Evoca-ի մասին', 'Սակագներ', 'Հաշվետվություններ', 'Հայտարարություններ'].map(
-    (label) => ({ label, path: '#' })
+    (label) => ({ label, path: label === 'Հաշվետվություններ' ? '/about/reports/audit' : '#' })
   );
   const mainLinks = isAbout ? aboutLinks : personalLinks;
 
@@ -113,10 +116,18 @@ export function Header() {
     { label: 'EvocaINVEST', path: '/securities/evocainvest' },
   ];
 
+  const reportsSubNav = [
+    { label: 'Աուդիտորական եզրակացություն', path: '/about/reports/audit' },
+    { label: 'Ֆինանսական հաշվետվություններ', path: '#' },
+    { label: 'Ներդրողների համար', path: '#' },
+    { label: 'Կիսամյակային հաշվետվություն', path: '#' },
+    { label: 'Տարեկան հաշվետվություն', path: '#' },
+  ];
+
   const aboutSubNav = [
     { label: 'Ընդհանուր', path: '/about' },
     { label: 'Կառուցվածք', path: '#' },
-    { label: 'Բաժնետերեր', path: '#' },
+    { label: 'Բաժնետերեր', path: '/about/shareholders' },
     { label: 'Ղեկավարություն', path: '/about/management' },
     { label: 'Գործընկերներ', path: '#' },
     { label: 'Մրցանակներ', path: '#' },
@@ -124,7 +135,7 @@ export function Header() {
     { label: 'Էվոկա ֆինանսական խումբ', path: '#' },
   ];
 
-  const subNav = isAbout ? aboutSubNav : isLoans ? loansSubNav : isCards ? cardsSubNav : isAccounts ? accountsSubNav : isTransfers ? transfersSubNav : isSecurities ? securitiesSubNav : null;
+  const subNav = isReports ? reportsSubNav : isAbout ? aboutSubNav : isLoans ? loansSubNav : isCards ? cardsSubNav : isAccounts ? accountsSubNav : isTransfers ? transfersSubNav : isSecurities ? securitiesSubNav : null;
   return (
     <header className="w-full text-sm">
       {/* Top thin bar */}
@@ -208,7 +219,7 @@ export function Header() {
                   key={link.label}
                   to={link.path}
                   className={`no-underline hover:no-underline text-black ${
-                    (isCards ? link.path === '/cards' : isAccounts ? link.path === '/accounts' : isTransfers ? link.path === '/transfers' : isSecurities ? link.path === '/securities' : i === 0) ? 'text-purple-700' : 'text-gray-800 hover:text-purple-700'
+                    (isReports ? link.path.startsWith('/about/reports') : isCards ? link.path === '/cards' : isAccounts ? link.path === '/accounts' : isTransfers ? link.path === '/transfers' : isSecurities ? link.path === '/securities' : i === 0) ? 'text-purple-700' : 'text-gray-800 hover:text-purple-700'
                   }`}
                 >
                   {link.label}
@@ -1307,8 +1318,8 @@ export function EvocaFooter() {
             <ul className="list-unstyled text-muted small d-flex flex-column gap-2" style={{ fontSize: '13px' }}>
               <li><a href="/about" className="text-reset text-decoration-none hover-purple">Մեր մասին</a></li>
               <li><a href="/about/management" className="text-reset text-decoration-none hover-purple">Ղեկավարություն</a></li>
-              <li><a href="#shareholders" className="text-reset text-decoration-none hover-purple">Բաժնետերեր</a></li>
-              <li><a href="#reports" className="text-reset text-decoration-none hover-purple">Հաշվետվություններ</a></li>
+              <li><a href="/about/shareholders" className="text-reset text-decoration-none hover-purple">Բաժնետերեր</a></li>
+              <li><a href="/about/reports/audit" className="text-reset text-decoration-none hover-purple">Հաշվետվություններ</a></li>
               <li><a href="#acts" className="text-reset text-decoration-none hover-purple">Իրավական ակտեր</a></li>
               <li><a href="#tariffs" className="text-reset text-decoration-none hover-purple">Սակագներ</a></li>
               <li><a href="#property" className="text-reset text-decoration-none hover-purple">Օտարվող գույք</a></li>
@@ -1909,6 +1920,8 @@ function App() {
           <Route path="/securities/evocainvest" element={<SiteLayout><EvocaInvest /><NewsBlock /></SiteLayout>} />
           <Route path="/evocasalary" element={<SiteLayout><EvocaSalary /></SiteLayout>} />
           <Route path="/evocatouch" element={<SiteLayout><EvocaTouch /></SiteLayout>} />
+          <Route path="/about/reports/audit" element={<SiteLayout><AuditReports /></SiteLayout>} />
+          <Route path="/about/shareholders" element={<SiteLayout><Shareholders /></SiteLayout>} />
           <Route path="/about/management" element={<SiteLayout><ManagementPage /></SiteLayout>} />
           <Route path="/about/management/:id" element={<SiteLayout><MemberPage /></SiteLayout>} />
         </Routes>
