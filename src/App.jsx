@@ -44,6 +44,7 @@ import AlienatedProperty from './AlienatedProperty';
 import CustomerRights from './CustomerRights';
 import ResidencyCriteria from './ResidencyCriteria';
 import Regulation from './Regulation';
+import PrivacyPolicy from './PrivacyPolicy';
 
 
 // --- 1. HEADER ---
@@ -1341,7 +1342,7 @@ export function EvocaFooter() {
               <li><a href="/customer-rights" className="text-reset text-decoration-none hover-purple">Հաճախորդի իրավունքները (Բողոքի ներկայացման կանոններ)</a></li>
               <li><a href="/residency-criteria" className="text-reset text-decoration-none hover-purple">Հաճախորդի ռեզիդենտության չափանիշներ</a></li>
               <li><a href="/regulation" className="text-reset text-decoration-none hover-purple">Կարգավորում</a></li>
-              <li><a href="#privacy" className="text-reset text-decoration-none hover-purple">Գաղտնիության քաղաքականություն</a></li>
+              <li><a href="/privacy-policy" className="text-reset text-decoration-none hover-purple">Գաղտնիության քաղաքականություն</a></li>
               <li><a href="#mediator" className="text-reset text-decoration-none hover-purple">Ֆին. հաշտարար</a></li>
               <li><a href="#crime" className="text-reset text-decoration-none hover-purple">Ֆինանսական հանցագործությունների կանխարգելում</a></li>
               <li><a href="#cardholders" className="text-reset text-decoration-none hover-purple">Հղումներ Բանկի քարտապանների համար</a></li>
@@ -1934,6 +1935,7 @@ function App() {
           <Route path="/customer-rights" element={<SiteLayout><CustomerRights /></SiteLayout>} />
           <Route path="/residency-criteria" element={<SiteLayout><ResidencyCriteria /></SiteLayout>} />
           <Route path="/regulation" element={<SiteLayout><Regulation /></SiteLayout>} />
+          <Route path="/privacy-policy" element={<SiteLayout><PrivacyPolicy /></SiteLayout>} />
         </Routes>
       </div>
     </Router>
