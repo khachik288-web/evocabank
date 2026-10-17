@@ -43,6 +43,7 @@ import LegalActs from './LegalActs';
 import AlienatedProperty from './AlienatedProperty';
 import CustomerRights from './CustomerRights';
 import ResidencyCriteria from './ResidencyCriteria';
+import Regulation from './Regulation';
 
 
 // --- 1. HEADER ---
@@ -1339,7 +1340,7 @@ export function EvocaFooter() {
             <ul className="list-unstyled text-muted small d-flex flex-column gap-2" style={{ fontSize: '13px' }}>
               <li><a href="/customer-rights" className="text-reset text-decoration-none hover-purple">Հաճախորդի իրավունքները (Բողոքի ներկայացման կանոններ)</a></li>
               <li><a href="/residency-criteria" className="text-reset text-decoration-none hover-purple">Հաճախորդի ռեզիդենտության չափանիշներ</a></li>
-              <li><a href="#reg" className="text-reset text-decoration-none hover-purple">Կարգավորում</a></li>
+              <li><a href="/regulation" className="text-reset text-decoration-none hover-purple">Կարգավորում</a></li>
               <li><a href="#privacy" className="text-reset text-decoration-none hover-purple">Գաղտնիության քաղաքականություն</a></li>
               <li><a href="#mediator" className="text-reset text-decoration-none hover-purple">Ֆին. հաշտարար</a></li>
               <li><a href="#crime" className="text-reset text-decoration-none hover-purple">Ֆինանսական հանցագործությունների կանխարգելում</a></li>
@@ -1932,6 +1933,7 @@ function App() {
           <Route path="/alienated-property" element={<AlienatedProperty />} />
           <Route path="/customer-rights" element={<SiteLayout><CustomerRights /></SiteLayout>} />
           <Route path="/residency-criteria" element={<SiteLayout><ResidencyCriteria /></SiteLayout>} />
+          <Route path="/regulation" element={<SiteLayout><Regulation /></SiteLayout>} />
         </Routes>
       </div>
     </Router>
