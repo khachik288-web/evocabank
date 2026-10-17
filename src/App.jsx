@@ -39,7 +39,7 @@ import EvocaTouch from './EvocaTouch';
 import { ManagementPage, MemberPage } from './Management';
 import Shareholders from './Shareholders';
 import AuditReports from './AuditReports';
-
+import LegalActs from './LegalActs';
 
 // --- 1. HEADER ---
 export function Header() {
@@ -1320,7 +1320,7 @@ export function EvocaFooter() {
               <li><a href="/about/management" className="text-reset text-decoration-none hover-purple">Ղեկավարություն</a></li>
               <li><a href="/about/shareholders" className="text-reset text-decoration-none hover-purple">Բաժնետերեր</a></li>
               <li><a href="/about/reports/audit" className="text-reset text-decoration-none hover-purple">Հաշվետվություններ</a></li>
-              <li><a href="#acts" className="text-reset text-decoration-none hover-purple">Իրավական ակտեր</a></li>
+              <li><a href="/about/legal-acts" className="text-reset text-decoration-none hover-purple">Իրավական ակտեր</a></li>
               <li><a href="#tariffs" className="text-reset text-decoration-none hover-purple">Սակագներ</a></li>
               <li><a href="#property" className="text-reset text-decoration-none hover-purple">Օտարվող գույք</a></li>
               <li><a href="#builders" className="text-reset text-decoration-none hover-purple">Կառուցապատողներ</a></li>
@@ -1924,6 +1924,7 @@ function App() {
           <Route path="/about/shareholders" element={<SiteLayout><Shareholders /></SiteLayout>} />
           <Route path="/about/management" element={<SiteLayout><ManagementPage /></SiteLayout>} />
           <Route path="/about/management/:id" element={<SiteLayout><MemberPage /></SiteLayout>} />
+          <Route path="/about/legal-acts" element={<SiteLayout><LegalActs /></SiteLayout>} />
         </Routes>
       </div>
     </Router>
