@@ -40,6 +40,9 @@ import { ManagementPage, MemberPage } from './Management';
 import Shareholders from './Shareholders';
 import AuditReports from './AuditReports';
 import LegalActs from './LegalActs';
+import AlienatedProperty from './AlienatedProperty';
+
+
 
 // --- 1. HEADER ---
 export function Header() {
@@ -1322,7 +1325,7 @@ export function EvocaFooter() {
               <li><a href="/about/reports/audit" className="text-reset text-decoration-none hover-purple">Հաշվետվություններ</a></li>
               <li><a href="/about/legal-acts" className="text-reset text-decoration-none hover-purple">Իրավական ակտեր</a></li>
               <li><a href="#tariffs" className="text-reset text-decoration-none hover-purple">Սակագներ</a></li>
-              <li><a href="#property" className="text-reset text-decoration-none hover-purple">Օտարվող գույք</a></li>
+              <li><a href="/alienated-property" className="text-reset text-decoration-none hover-purple">Օտարվող գույք</a></li>
               <li><a href="#builders" className="text-reset text-decoration-none hover-purple">Կառուցապատողներ</a></li>
               <li><a href="#partners" className="text-reset text-decoration-none hover-purple">Գործընկեր ավտոսրահներ</a></li>
               <li><a href="#archive" className="text-reset text-decoration-none hover-purple">Սակագների արխիվ</a></li>
@@ -1925,6 +1928,7 @@ function App() {
           <Route path="/about/management" element={<SiteLayout><ManagementPage /></SiteLayout>} />
           <Route path="/about/management/:id" element={<SiteLayout><MemberPage /></SiteLayout>} />
           <Route path="/about/legal-acts" element={<SiteLayout><LegalActs /></SiteLayout>} />
+          <Route path="/alienated-property" element={<AlienatedProperty />} />
         </Routes>
       </div>
     </Router>
