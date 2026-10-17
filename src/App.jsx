@@ -41,7 +41,7 @@ import Shareholders from './Shareholders';
 import AuditReports from './AuditReports';
 import LegalActs from './LegalActs';
 import AlienatedProperty from './AlienatedProperty';
-
+import CustomerRights from './CustomerRights';
 
 
 // --- 1. HEADER ---
@@ -1336,7 +1336,7 @@ export function EvocaFooter() {
           <Col lg={3} md={6}>
             <h6 className="fw-bold mb-3" style={{ fontSize: '15px' }}>Օգտակար հղումներ</h6>
             <ul className="list-unstyled text-muted small d-flex flex-column gap-2" style={{ fontSize: '13px' }}>
-              <li><a href="#rights" className="text-reset text-decoration-none hover-purple">Հաճախորդի իրավունքները (Բողոքի ներկայացման կանոններ)</a></li>
+              <li><a href="/customer-rights" className="text-reset text-decoration-none hover-purple">Հաճախորդի իրավունքները (Բողոքի ներկայացման կանոններ)</a></li>
               <li><a href="#residency" className="text-reset text-decoration-none hover-purple">Հաճախորդի ռեզիդենտության չափանիշներ</a></li>
               <li><a href="#reg" className="text-reset text-decoration-none hover-purple">Կարգավորում</a></li>
               <li><a href="#privacy" className="text-reset text-decoration-none hover-purple">Գաղտնիության քաղաքականություն</a></li>
@@ -1929,6 +1929,7 @@ function App() {
           <Route path="/about/management/:id" element={<SiteLayout><MemberPage /></SiteLayout>} />
           <Route path="/about/legal-acts" element={<SiteLayout><LegalActs /></SiteLayout>} />
           <Route path="/alienated-property" element={<AlienatedProperty />} />
+          <Route path="/customer-rights" element={<SiteLayout><CustomerRights /></SiteLayout>} />
         </Routes>
       </div>
     </Router>
