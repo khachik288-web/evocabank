@@ -45,6 +45,7 @@ import CustomerRights from './CustomerRights';
 import ResidencyCriteria from './ResidencyCriteria';
 import Regulation from './Regulation';
 import PrivacyPolicy from './PrivacyPolicy';
+import FinancialMediator from './FinancialMediator';
 
 
 // --- 1. HEADER ---
@@ -1343,7 +1344,7 @@ export function EvocaFooter() {
               <li><a href="/residency-criteria" className="text-reset text-decoration-none hover-purple">Հաճախորդի ռեզիդենտության չափանիշներ</a></li>
               <li><a href="/regulation" className="text-reset text-decoration-none hover-purple">Կարգավորում</a></li>
               <li><a href="/privacy-policy" className="text-reset text-decoration-none hover-purple">Գաղտնիության քաղաքականություն</a></li>
-              <li><a href="#mediator" className="text-reset text-decoration-none hover-purple">Ֆին. հաշտարար</a></li>
+              <li><a href="/financial-mediator" className="text-reset text-decoration-none hover-purple">Ֆին. հաշտարար</a></li>
               <li><a href="#crime" className="text-reset text-decoration-none hover-purple">Ֆինանսական հանցագործությունների կանխարգելում</a></li>
               <li><a href="#cardholders" className="text-reset text-decoration-none hover-purple">Հղումներ Բանկի քարտապանների համար</a></li>
             </ul>
@@ -1936,6 +1937,7 @@ function App() {
           <Route path="/residency-criteria" element={<SiteLayout><ResidencyCriteria /></SiteLayout>} />
           <Route path="/regulation" element={<SiteLayout><Regulation /></SiteLayout>} />
           <Route path="/privacy-policy" element={<SiteLayout><PrivacyPolicy /></SiteLayout>} />
+          <Route path="/financial-mediator" element={<SiteLayout><FinancialMediator /></SiteLayout>} />
         </Routes>
       </div>
     </Router>
