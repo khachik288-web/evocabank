@@ -1,0 +1,275 @@
+.crime-page {
+  position: relative;
+  width: 100%;
+  background-color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: #2b2b2b;
+  padding-bottom: 60px;
+}
+
+/* Ձախ սոց. ցանցերի բլոկ */
+.social-side-bar {
+  position: fixed;
+  left: 12px;
+  top: 280px;
+  display: flex;
+  flex-direction: column;
+  background: #f4f4f6;
+  border-radius: 6px;
+  padding: 6px 0;
+  z-index: 100;
+}
+
+.social-side-bar a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: #888888;
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.social-side-bar a:hover {
+  color: #7000ff;
+}
+
+.ig-icon {
+  font-size: 14px;
+}
+
+/* Կոնտեյներ */
+.crime-container {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+/* Breadcrumbs */
+.crime-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #666666;
+  margin-bottom: 25px;
+}
+
+.crumb-home {
+  text-decoration: none;
+  color: #666;
+}
+
+.crumb-separator {
+  color: #aaa;
+  font-size: 14px;
+}
+
+.crumb-current {
+  color: #333333;
+  font-weight: 500;
+}
+
+/* Hero բլոկ վերնագրի և նկարի համար */
+.crime-hero-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 35px;
+}
+
+.crime-hero-title-box {
+  flex: 1;
+}
+
+.crime-main-title {
+  font-size: 36px;
+  font-weight: 700;
+  color: #222222;
+  line-height: 1.25;
+  margin: 0;
+}
+
+.crime-hero-image-box {
+  flex: 1;
+  max-width: 450px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.crime-hero-image-box img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Տեքստային բաժիններ */
+.crime-section-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #7000ff;
+  margin-top: 32px;
+  margin-bottom: 16px;
+}
+
+.crime-subsection-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #7000ff;
+  margin-top: 26px;
+  margin-bottom: 12px;
+}
+
+.crime-p {
+  font-size: 15px;
+  line-height: 1.65;
+  color: #333333;
+  margin-bottom: 16px;
+}
+
+.purple-text {
+  color: #7000ff;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+/* Հղումներ */
+.purple-link {
+  color: #7000ff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.purple-link:hover {
+  text-decoration: underline;
+  color: #5500c8;
+}
+
+/* Մանուշակագույն կետերով ցուցակ */
+.purple-bullet-list {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.purple-bullet-list li {
+  position: relative;
+  padding-left: 24px;
+  font-size: 15px;
+  line-height: 1.65;
+  color: #333333;
+  margin-bottom: 10px;
+}
+
+.purple-bullet-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: -2px;
+  color: #7000ff;
+  font-size: 24px;
+}
+
+/* Փաստաթղթերի բաժին */
+.documents-section {
+  margin-top: 45px;
+  margin-bottom: 30px;
+}
+
+.docs-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 25px;
+}
+
+.docs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.doc-item-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background-color: #f7f7f9;
+  border-radius: 8px;
+  padding: 16px 24px;
+  text-decoration: none;
+  transition: background-color 0.2s, transform 0.15s;
+}
+
+.doc-item-card:hover {
+  background-color: #f0e8ff;
+  transform: translateX(3px);
+}
+
+.doc-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.doc-text {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.4;
+}
+
+/* Թարմացման ամսաթիվ */
+.crime-updated-info {
+  text-align: right;
+  font-size: 12px;
+  color: #999999;
+  margin-top: 40px;
+}
+
+/* Ադապտիվություն */
+@media (max-width: 992px) {
+  .social-side-bar {
+    display: none;
+  }
+
+  .crime-hero-section {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
+
+  .crime-hero-image-box {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .crime-main-title {
+    font-size: 26px;
+  }
+
+  .crime-section-title {
+    font-size: 18px;
+  }
+
+  .crime-subsection-title {
+    font-size: 16px;
+  }
+  
+  .doc-item-card {
+    padding: 12px 16px;
+  }
+  
+  .doc-text {
+    font-size: 13.5px;
+  }
+}
