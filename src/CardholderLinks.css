@@ -1,0 +1,161 @@
+.cardholder-page {
+  position: relative;
+  width: 100%;
+  background-color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: #2b2b2b;
+  padding-bottom: 60px;
+}
+
+/* Ձախ սոց. ցանցերի բլոկ */
+.social-side-bar {
+  position: fixed;
+  left: 12px;
+  top: 280px;
+  display: flex;
+  flex-direction: column;
+  background: #f4f4f6;
+  border-radius: 6px;
+  padding: 6px 0;
+  z-index: 100;
+}
+
+.social-side-bar a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: #888888;
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.social-side-bar a:hover {
+  color: #7000ff;
+}
+
+.ig-icon {
+  font-size: 14px;
+}
+
+/* Կոնտեյներ */
+.cardholder-container {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+/* Breadcrumbs */
+.cardholder-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #666666;
+  margin-bottom: 25px;
+}
+
+.crumb-home {
+  text-decoration: none;
+  color: #666;
+}
+
+.crumb-separator {
+  color: #aaa;
+  font-size: 14px;
+}
+
+.crumb-current {
+  color: #333333;
+  font-weight: 500;
+}
+
+/* Վերնագիր */
+.cardholder-main-title {
+  font-size: 36px;
+  font-weight: 700;
+  color: #222222;
+  line-height: 1.25;
+  margin-bottom: 35px;
+}
+
+/* Փաստաթղթեր բաժին */
+.documents-section {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.docs-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 25px;
+}
+
+.docs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.doc-item-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background-color: #f7f7f9;
+  border-radius: 8px;
+  padding: 16px 24px;
+  text-decoration: none;
+  transition: background-color 0.2s, transform 0.15s;
+}
+
+.doc-item-card:hover {
+  background-color: #f0e8ff;
+  transform: translateX(3px);
+}
+
+.doc-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.doc-text {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.4;
+}
+
+/* Թարմացման ամսաթիվ */
+.cardholder-updated-info {
+  text-align: right;
+  font-size: 12px;
+  color: #999999;
+  margin-top: 40px;
+}
+
+/* Ադապտիվություն */
+@media (max-width: 992px) {
+  .social-side-bar {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .cardholder-main-title {
+    font-size: 26px;
+  }
+  
+  .doc-item-card {
+    padding: 12px 16px;
+  }
+  
+  .doc-text {
+    font-size: 13.5px;
+  }
+}

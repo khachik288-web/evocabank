@@ -47,6 +47,8 @@ import Regulation from './Regulation';
 import PrivacyPolicy from './PrivacyPolicy';
 import FinancialMediator from './FinancialMediator';
 import FinancialCrimePrevention from './FinancialCrimePrevention';
+import CardholderLinks from './CardholderLinks';
+import EvocaOnlinePage from './EvocaOnlinePage';ц
 
 
 // --- 1. HEADER ---
@@ -1347,7 +1349,7 @@ export function EvocaFooter() {
               <li><a href="/privacy-policy" className="text-reset text-decoration-none hover-purple">Գաղտնիության քաղաքականություն</a></li>
               <li><a href="/financial-mediator" className="text-reset text-decoration-none hover-purple">Ֆին. հաշտարար</a></li>
               <li><a href="/financial-crime-prevention" className="text-reset text-decoration-none hover-purple">Ֆինանսական հանցագործությունների կանխարգելում</a></li>
-              <li><a href="#cardholders" className="text-reset text-decoration-none hover-purple">Հղումներ Բանկի քարտապանների համար</a></li>
+              <li><a href="/cardholder-links" className="text-reset text-decoration-none hover-purple">Հղումներ Բանկի քարտապանների համար</a></li>
             </ul>
           </Col>
 
@@ -1355,7 +1357,7 @@ export function EvocaFooter() {
           <Col lg={3} md={6}>
             <h6 className="fw-bold mb-3" style={{ fontSize: '15px' }}>Այլ հղումներ</h6>
             <ul className="list-unstyled text-muted small d-flex flex-column gap-2 mb-4" style={{ fontSize: '13px' }}>
-              <li><a href="#online" className="text-reset text-decoration-none hover-purple">EvocaONLINE</a></li>
+              <li><a href="/evoca-online" className="text-reset text-decoration-none hover-purple">EvocaONLINE</a></li>
               <li><a href="#boxes" className="text-reset text-decoration-none hover-purple">Պահատուփեր</a></li>
               <li><a href="#faq" className="text-reset text-decoration-none hover-purple">Հաճախ տրվող հարցեր</a></li>
               <li><a href="#announcements" className="text-reset text-decoration-none hover-purple">Հայտարարություններ</a></li>
@@ -1940,6 +1942,8 @@ function App() {
           <Route path="/privacy-policy" element={<SiteLayout><PrivacyPolicy /></SiteLayout>} />
           <Route path="/financial-mediator" element={<SiteLayout><FinancialMediator /></SiteLayout>} />
           <Route path="/financial-crime-prevention" element={<SiteLayout><FinancialCrimePrevention /></SiteLayout>} />
+          <Route path="/cardholder-links" element={<SiteLayout><CardholderLinks /></SiteLayout>} />
+          <Route path="/evoca-online" element={<SiteLayout><EvocaOnlinePage /></SiteLayout>} />
         </Routes>
       </div>
     </Router>
