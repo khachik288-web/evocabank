@@ -48,7 +48,8 @@ import PrivacyPolicy from './PrivacyPolicy';
 import FinancialMediator from './FinancialMediator';
 import FinancialCrimePrevention from './FinancialCrimePrevention';
 import CardholderLinks from './CardholderLinks';
-import EvocaOnlinePage from './EvocaOnlinePage';ц
+import EvocaOnlinePage from './EvocaOnlinePage';
+import SafeDepositBoxes from './SafeDepositBoxes';
 
 
 // --- 1. HEADER ---
@@ -1358,7 +1359,7 @@ export function EvocaFooter() {
             <h6 className="fw-bold mb-3" style={{ fontSize: '15px' }}>Այլ հղումներ</h6>
             <ul className="list-unstyled text-muted small d-flex flex-column gap-2 mb-4" style={{ fontSize: '13px' }}>
               <li><a href="/evoca-online" className="text-reset text-decoration-none hover-purple">EvocaONLINE</a></li>
-              <li><a href="#boxes" className="text-reset text-decoration-none hover-purple">Պահատուփեր</a></li>
+              <li><a href="/safe-deposit-boxes" className="text-reset text-decoration-none hover-purple">Պահատուփեր</a></li>
               <li><a href="#faq" className="text-reset text-decoration-none hover-purple">Հաճախ տրվող հարցեր</a></li>
               <li><a href="#announcements" className="text-reset text-decoration-none hover-purple">Հայտարարություններ</a></li>
               <li><a href="#dibrary" className="text-reset text-decoration-none hover-purple">Dibrary</a></li>
@@ -1944,6 +1945,7 @@ function App() {
           <Route path="/financial-crime-prevention" element={<SiteLayout><FinancialCrimePrevention /></SiteLayout>} />
           <Route path="/cardholder-links" element={<SiteLayout><CardholderLinks /></SiteLayout>} />
           <Route path="/evoca-online" element={<SiteLayout><EvocaOnlinePage /></SiteLayout>} />
+          <Route path="/safe-deposit-boxes" element={<SiteLayout><SafeDepositBoxes /></SiteLayout>} />
         </Routes>
       </div>
     </Router>
