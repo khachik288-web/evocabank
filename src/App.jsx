@@ -52,6 +52,7 @@ import EvocaOnlinePage from './EvocaOnlinePage';
 import SafeDepositBoxes from './SafeDepositBoxes';
 import Announcements from './Announcements';
 import Dibrary from './Dibrary';
+import Contact from './Contact';
 
 
 // --- 1. HEADER ---
@@ -1374,7 +1375,7 @@ export function EvocaFooter() {
               <li><a href="#faq" className="text-reset text-decoration-none hover-purple">Հաճախ տրվող հարցեր</a></li>
               <li><a href="/about/announcements" className="text-reset text-decoration-none hover-purple">Հայտարարություններ</a></li>
               <li><a href="/dibrary" className="text-reset text-decoration-none hover-purple">Dibrary</a></li>
-              <li><a href="#contact" className="text-reset text-decoration-none hover-purple">Հետադարձ կապ</a></li>
+              <li><a href="/contact" className="text-reset text-decoration-none hover-purple">Հետադարձ կապ</a></li>
             </ul>
 
             {/* Иконки соцсетей */}
@@ -1959,6 +1960,7 @@ function App() {
           <Route path="/about/announcements" element={<SiteLayout><Announcements /></SiteLayout>} />
           <Route path="/safe-deposit-boxes" element={<SiteLayout><SafeDepositBoxes /></SiteLayout>} />
           <Route path="/dibrary" element={<SiteLayout><Dibrary /></SiteLayout>} />
+          <Route path="/contact" element={<SiteLayout><Contact /></SiteLayout>} />
         </Routes>
       </div>
     </Router>
