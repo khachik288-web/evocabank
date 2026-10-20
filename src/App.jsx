@@ -53,6 +53,7 @@ import SafeDepositBoxes from './SafeDepositBoxes';
 import Announcements from './Announcements';
 import Dibrary from './Dibrary';
 import Contact from './Contact';
+import Builders from './Builders';
 
 
 // --- 1. HEADER ---
@@ -1346,7 +1347,7 @@ export function EvocaFooter() {
               <li><a href="/about/legal-acts" className="text-reset text-decoration-none hover-purple">Իրավական ակտեր</a></li>
               <li><a href="#tariffs" className="text-reset text-decoration-none hover-purple">Սակագներ</a></li>
               <li><a href="/alienated-property" className="text-reset text-decoration-none hover-purple">Օտարվող գույք</a></li>
-              <li><a href="#builders" className="text-reset text-decoration-none hover-purple">Կառուցապատողներ</a></li>
+              <li><a href="/builders" className="text-reset text-decoration-none hover-purple">Կառուցապատողներ</a></li>
               <li><a href="#partners" className="text-reset text-decoration-none hover-purple">Գործընկեր ավտոսրահներ</a></li>
               <li><a href="#archive" className="text-reset text-decoration-none hover-purple">Սակագների արխիվ</a></li>
             </ul>
@@ -1961,6 +1962,7 @@ function App() {
           <Route path="/safe-deposit-boxes" element={<SiteLayout><SafeDepositBoxes /></SiteLayout>} />
           <Route path="/dibrary" element={<SiteLayout><Dibrary /></SiteLayout>} />
           <Route path="/contact" element={<SiteLayout><Contact /></SiteLayout>} />
+          <Route path="/builders" element={<SiteLayout><Builders /></SiteLayout>} />
         </Routes>
       </div>
     </Router>
