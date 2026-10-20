@@ -54,6 +54,7 @@ import Announcements from './Announcements';
 import Dibrary from './Dibrary';
 import Contact from './Contact';
 import Builders from './Builders';
+import Dealerships from './Dealerships';
 
 
 // --- 1. HEADER ---
@@ -1348,7 +1349,7 @@ export function EvocaFooter() {
               <li><a href="#tariffs" className="text-reset text-decoration-none hover-purple">Սակագներ</a></li>
               <li><a href="/alienated-property" className="text-reset text-decoration-none hover-purple">Օտարվող գույք</a></li>
               <li><a href="/builders" className="text-reset text-decoration-none hover-purple">Կառուցապատողներ</a></li>
-              <li><a href="#partners" className="text-reset text-decoration-none hover-purple">Գործընկեր ավտոսրահներ</a></li>
+              <li><a href="/partner-dealerships" className="text-reset text-decoration-none hover-purple">Գործընկեր ավտոսրահներ</a></li>
               <li><a href="#archive" className="text-reset text-decoration-none hover-purple">Սակագների արխիվ</a></li>
             </ul>
           </Col>
@@ -1898,8 +1899,6 @@ function App() {
           <Route path="/" element={<SiteLayout><HomePage /></SiteLayout>} />
           <Route path="/business" element={<SiteLayout><Business /></SiteLayout>} />
           <Route path="/about" element={<SiteLayout><About /></SiteLayout>} />
-
-          {/* Страница "Անընդհատ ֆինանսավորումներ" — без общего Header/Footer сайта, у неё свои */}
           <Route path="/web-payment" element={<WebPayment />} />
           <Route path="/career" element={<SiteLayout><Career /></SiteLayout>} />
           <Route path="/news" element={<SiteLayout><News /></SiteLayout>} />
@@ -1963,6 +1962,7 @@ function App() {
           <Route path="/dibrary" element={<SiteLayout><Dibrary /></SiteLayout>} />
           <Route path="/contact" element={<SiteLayout><Contact /></SiteLayout>} />
           <Route path="/builders" element={<SiteLayout><Builders /></SiteLayout>} />
+          <Route path="/partner-dealerships" element={<SiteLayout><Dealerships /></SiteLayout>} />
         </Routes>
       </div>
     </Router>
