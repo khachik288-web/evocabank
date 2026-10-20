@@ -50,6 +50,8 @@ import FinancialCrimePrevention from './FinancialCrimePrevention';
 import CardholderLinks from './CardholderLinks';
 import EvocaOnlinePage from './EvocaOnlinePage';
 import SafeDepositBoxes from './SafeDepositBoxes';
+import Announcements from './Announcements';
+import Dibrary from './Dibrary';
 
 
 // --- 1. HEADER ---
@@ -57,6 +59,7 @@ export function Header() {
   const { pathname } = useLocation();
   const isAbout = pathname.startsWith('/about');
   const isReports = pathname.startsWith('/about/reports');
+  const isAnnouncements = pathname.startsWith('/about/announcements');
   const isLoans = pathname.startsWith('/loans');
   const isCards = pathname.startsWith('/cards');
   const isAccounts = pathname.startsWith('/accounts');
@@ -90,7 +93,15 @@ export function Header() {
   ].map((l) => ({ ...l }));
 
   const aboutLinks = ['Evoca-ի մասին', 'Սակագներ', 'Հաշվետվություններ', 'Հայտարարություններ'].map(
-    (label) => ({ label, path: label === 'Հաշվետվություններ' ? '/about/reports/audit' : '#' })
+    (label) => ({
+      label,
+      path:
+        label === 'Հաշվետվություններ'
+          ? '/about/reports/audit'
+          : label === 'Հայտարարություններ'
+          ? '/about/announcements'
+          : '#',
+    })
   );
   const mainLinks = isAbout ? aboutLinks : personalLinks;
 
@@ -146,7 +157,7 @@ export function Header() {
     { label: 'Էվոկա ֆինանսական խումբ', path: '#' },
   ];
 
-  const subNav = isReports ? reportsSubNav : isAbout ? aboutSubNav : isLoans ? loansSubNav : isCards ? cardsSubNav : isAccounts ? accountsSubNav : isTransfers ? transfersSubNav : isSecurities ? securitiesSubNav : null;
+  const subNav = isAnnouncements ? null : isReports ? reportsSubNav : isAbout ? aboutSubNav : isLoans ? loansSubNav : isCards ? cardsSubNav : isAccounts ? accountsSubNav : isTransfers ? transfersSubNav : isSecurities ? securitiesSubNav : null;
   return (
     <header className="w-full text-sm">
       {/* Top thin bar */}
@@ -230,7 +241,7 @@ export function Header() {
                   key={link.label}
                   to={link.path}
                   className={`no-underline hover:no-underline text-black ${
-                    (isReports ? link.path.startsWith('/about/reports') : isCards ? link.path === '/cards' : isAccounts ? link.path === '/accounts' : isTransfers ? link.path === '/transfers' : isSecurities ? link.path === '/securities' : i === 0) ? 'text-purple-700' : 'text-gray-800 hover:text-purple-700'
+                    (isAnnouncements ? link.path === '/about/announcements' : isReports ? link.path.startsWith('/about/reports') : isCards ? link.path === '/cards' : isAccounts ? link.path === '/accounts' : isTransfers ? link.path === '/transfers' : isSecurities ? link.path === '/securities' : i === 0) ? 'text-purple-700' : 'text-gray-800 hover:text-purple-700'
                   }`}
                 >
                   {link.label}
@@ -1361,8 +1372,8 @@ export function EvocaFooter() {
               <li><a href="/evoca-online" className="text-reset text-decoration-none hover-purple">EvocaONLINE</a></li>
               <li><a href="/safe-deposit-boxes" className="text-reset text-decoration-none hover-purple">Պահատուփեր</a></li>
               <li><a href="#faq" className="text-reset text-decoration-none hover-purple">Հաճախ տրվող հարցեր</a></li>
-              <li><a href="#announcements" className="text-reset text-decoration-none hover-purple">Հայտարարություններ</a></li>
-              <li><a href="#dibrary" className="text-reset text-decoration-none hover-purple">Dibrary</a></li>
+              <li><a href="/about/announcements" className="text-reset text-decoration-none hover-purple">Հայտարարություններ</a></li>
+              <li><a href="/dibrary" className="text-reset text-decoration-none hover-purple">Dibrary</a></li>
               <li><a href="#contact" className="text-reset text-decoration-none hover-purple">Հետադարձ կապ</a></li>
             </ul>
 
@@ -1918,7 +1929,7 @@ function App() {
           <Route path="/business/trade-finance/letter-of-credit" element={<SiteLayout><TradeCredit /></SiteLayout>} />
           <Route path="/business/digital" element={<SiteLayout><VPos /></SiteLayout>} />
           <Route path="/business/digital/pos" element={<SiteLayout><Pos /></SiteLayout>} />
-          <Route path="/business/trade-finance/collection" element={<SiteLayout><TradeCollection /></SiteLayout>} />\
+          <Route path="/business/trade-finance/collection" element={<SiteLayout><TradeCollection /></SiteLayout>} />
           <Route path="/business/digital/tariffs" element={<SiteLayout><DigitalTariffs /></SiteLayout>} />
           <Route path="/business/digital/request" element={<SiteLayout><TerminalRequest /></SiteLayout>} />
           <Route path="/business/digital/mpos" element={<SiteLayout><MPos /></SiteLayout>} />
@@ -1945,7 +1956,9 @@ function App() {
           <Route path="/financial-crime-prevention" element={<SiteLayout><FinancialCrimePrevention /></SiteLayout>} />
           <Route path="/cardholder-links" element={<SiteLayout><CardholderLinks /></SiteLayout>} />
           <Route path="/evoca-online" element={<SiteLayout><EvocaOnlinePage /></SiteLayout>} />
+          <Route path="/about/announcements" element={<SiteLayout><Announcements /></SiteLayout>} />
           <Route path="/safe-deposit-boxes" element={<SiteLayout><SafeDepositBoxes /></SiteLayout>} />
+          <Route path="/dibrary" element={<SiteLayout><Dibrary /></SiteLayout>} />
         </Routes>
       </div>
     </Router>
