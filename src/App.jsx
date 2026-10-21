@@ -55,7 +55,7 @@ import Dibrary from './Dibrary';
 import Contact from './Contact';
 import Builders from './Builders';
 import Dealerships from './Dealerships';
-
+import TariffsArchive from './TariffsArchive';
 
 // --- 1. HEADER ---
 export function Header() {
@@ -68,6 +68,7 @@ export function Header() {
   const isAccounts = pathname.startsWith('/accounts');
   const isTransfers = pathname.startsWith('/transfers');
   const isSecurities = pathname.startsWith('/securities');
+  const isTariffs = pathname.startsWith('/about/tariffs');
 
   const topLinks = [
     { label: 'Անհատ', path: '/' },
@@ -103,10 +104,20 @@ export function Header() {
           ? '/about/reports/audit'
           : label === 'Հայտարարություններ'
           ? '/about/announcements'
+          : label === 'Սակագներ'
+          ? '/about/tariffs/archive'
           : '#',
     })
   );
   const mainLinks = isAbout ? aboutLinks : personalLinks;
+
+  const tariffsSubNav = [
+    { label: 'Վարկեր ֆիզիկական անձանց', path: '#' },
+    { label: 'Վարկեր իրավաբանական անձանց', path: '#' },
+    { label: 'Միջնորդավճարների սակագները', path: '#' },
+    { label: 'Ավանդների սակագներ', path: '#' },
+    { label: 'Արխիվ', path: '/about/tariffs/archive' },
+  ];
 
   const loansSubNav = [
     { label: 'Վարկեր', path: '/loans' },
@@ -160,7 +171,7 @@ export function Header() {
     { label: 'Էվոկա ֆինանսական խումբ', path: '#' },
   ];
 
-  const subNav = isAnnouncements ? null : isReports ? reportsSubNav : isAbout ? aboutSubNav : isLoans ? loansSubNav : isCards ? cardsSubNav : isAccounts ? accountsSubNav : isTransfers ? transfersSubNav : isSecurities ? securitiesSubNav : null;
+  const subNav = isAnnouncements ? null : isReports ? reportsSubNav : isTariffs ? tariffsSubNav : isAbout ? aboutSubNav : isLoans ? loansSubNav : isCards ? cardsSubNav : isAccounts ? accountsSubNav : isTransfers ? transfersSubNav : isSecurities ? securitiesSubNav : null;
   return (
     <header className="w-full text-sm">
       {/* Top thin bar */}
@@ -243,8 +254,8 @@ export function Header() {
                 <Link
                   key={link.label}
                   to={link.path}
-                  className={`no-underline hover:no-underline text-black ${
-                    (isAnnouncements ? link.path === '/about/announcements' : isReports ? link.path.startsWith('/about/reports') : isCards ? link.path === '/cards' : isAccounts ? link.path === '/accounts' : isTransfers ? link.path === '/transfers' : isSecurities ? link.path === '/securities' : i === 0) ? 'text-purple-700' : 'text-gray-800 hover:text-purple-700'
+                  className={`no-underline hover:no-underline ${
+                    (isTariffs ? link.path.startsWith('/about/tariffs') : isAnnouncements ? link.path === '/about/announcements' : isReports ? link.path.startsWith('/about/reports') : isCards ? link.path === '/cards' : isAccounts ? link.path === '/accounts' : isTransfers ? link.path === '/transfers' : isSecurities ? link.path === '/securities' : i === 0) ? 'text-purple-700' : 'text-gray-800 hover:text-purple-700'
                   }`}
                 >
                   {link.label}
@@ -1350,7 +1361,7 @@ export function EvocaFooter() {
               <li><a href="/alienated-property" className="text-reset text-decoration-none hover-purple">Օտարվող գույք</a></li>
               <li><a href="/builders" className="text-reset text-decoration-none hover-purple">Կառուցապատողներ</a></li>
               <li><a href="/partner-dealerships" className="text-reset text-decoration-none hover-purple">Գործընկեր ավտոսրահներ</a></li>
-              <li><a href="#archive" className="text-reset text-decoration-none hover-purple">Սակագների արխիվ</a></li>
+              <li><a href="/about/tariffs/archive" className="text-reset text-decoration-none hover-purple">Սակագների արխիվ</a></li>
             </ul>
           </Col>
 
@@ -1963,6 +1974,7 @@ function App() {
           <Route path="/contact" element={<SiteLayout><Contact /></SiteLayout>} />
           <Route path="/builders" element={<SiteLayout><Builders /></SiteLayout>} />
           <Route path="/partner-dealerships" element={<SiteLayout><Dealerships /></SiteLayout>} />
+          <Route path="/about/tariffs/archive" element={<SiteLayout><TariffsArchive /></SiteLayout>} />
         </Routes>
       </div>
     </Router>
