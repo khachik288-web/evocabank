@@ -11,6 +11,7 @@ import News from './News';
 import Blog from './Blog';
 import Loans from './Loans';
 import Cards from './Cards';
+import CardDetail from './CardDetail';
 import CardsService from './CardsService';
 import { HistoryPage, InfoPage } from './LoanInfo';
 import CardsSocial from './CardsSocial';
@@ -267,7 +268,7 @@ export function Header() {
           <div className="mx-auto max-w-7xl overflow-x-auto px-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             <nav className="flex min-w-max items-stretch">
               {subNav.map((item) => {
-                const active = item.path !== '#' && pathname === item.path;
+                const active = item.path !== '#' && (pathname === item.path || (item.path === '/cards' && pathname.startsWith('/cards/') && !['/cards/social', '/cards/benefits'].includes(pathname)));
                 return (
                   <Link
                     key={item.label}
@@ -1912,6 +1913,7 @@ function App() {
           <Route path="/loans/info" element={<SiteLayout><InfoPage /></SiteLayout>} />
           <Route path="/cards/social" element={<SiteLayout><CardsSocial /></SiteLayout>} />
           <Route path="/cards/benefits" element={<SiteLayout><Benefits /></SiteLayout>} />
+          <Route path="/cards/:cardId" element={<SiteLayout><CardDetail /></SiteLayout>} />
           <Route path="/deposits" element={<DepositsPage />} />
           <Route path="/transfers" element={<SiteLayout><MoneyTransfers /></SiteLayout>} />
           <Route path="/transfers/payment-systems" element={<SiteLayout><PaymentSystems /></SiteLayout>} />

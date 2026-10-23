@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRight, Home } from 'lucide-react';
 import { FloatingActions } from './Loans';
+import { MC_GOLD_IMG, VISA_GOLD_IMG } from './CardDetail';
 import './Cards.css';
 
 const IMG = (id, ext = 'png') =>
@@ -82,6 +83,20 @@ const CARDS = [
       { value: '0.8%', label: L_ARCA },
       { pre: 'min 1,500 ֏', value: '1%', label: L_OTHER },
       { value: '5,000 ֏', label: L_ANNUAL },
+    ],
+  },
+  {
+    id: 'visa-gold',
+    cats: ['visa', 'premium'],
+    title: 'Visa Gold',
+    img: VISA_GOLD_IMG,
+    to: '/cards/visa-gold',
+    text: 'Նոր քարտերի թողարկումը դադարեցված է 25.11.2024 թվականից',
+    stats: [
+      { value: '0.2%', label: L_BANK },
+      { value: '0.8%', label: L_ARCA },
+      { pre: 'min 1,500 ֏', value: '1%', label: L_OTHER },
+      { value: '15,000 ֏', label: L_ANNUAL },
     ],
   },
   {
@@ -187,7 +202,8 @@ const CARDS = [
     id: 'mc-gold',
     cats: ['mastercard'],
     title: 'Mastercard Gold',
-    img: IMG('1714986482757'),
+    img: MC_GOLD_IMG,
+    to: '/cards/mastercard-gold',
     text: 'Ընդգծիր կարգավիճակդ քո Mastercard Gold քարտով:',
     stats: [
       { value: '0%', label: L_BANK, note: 'մինչև 2 մլն ֏' },
@@ -238,9 +254,15 @@ function CardRow({ card }) {
             {card.stats.map((s, i) => <Stat key={i} {...s} />)}
           </div>
         )}
-        <a href="#" onClick={(e) => e.preventDefault()} className="card-more">
-          Մանրամասն <ChevronRight size={16} />
-        </a>
+        {card.to ? (
+          <Link to={card.to} className="card-more">
+            Մանրամասն <ChevronRight size={16} />
+          </Link>
+        ) : (
+          <a href="#" onClick={(e) => e.preventDefault()} className="card-more">
+            Մանրամասն <ChevronRight size={16} />
+          </a>
+        )}
       </div>
     </article>
   );

@@ -56,9 +56,9 @@ export function TopDropdown({ label, items }) {
 
 export const ONLINE_REQUESTS = [
   { label: 'ՓՄԸ վարկավորում', href: '#' },
-  { label: 'Visa Infinite', href: '#' },
-  { label: 'MasterCard Gold', href: '#' },
-  { label: 'Visa Gold', href: '#' },
+  { label: 'Visa Infinite', href: '/cards' },
+  { label: 'MasterCard Gold', href: '/cards/mastercard-gold' },
+  { label: 'Visa Gold', href: '/cards/visa-gold' },
 ];
 
 export const FEEDBACK = [

@@ -1,0 +1,57 @@
+.cd-page { --p: #6a00db; background: #fff; color: #000; }
+.cd-wrap { max-width: 80rem; margin: 0 auto; padding: 0 1.5rem; }
+
+.cd-hero { background: linear-gradient(180deg, #fff 0%, #f1ecfa 100%); }
+.cd-hero-in { display: flex; align-items: center; justify-content: space-between; gap: 32px; min-height: 265px; padding-top: 32px; padding-bottom: 32px; }
+.cd-hero-text h1 { margin: 0 0 18px; font-size: 26px; font-weight: 800; }
+.cd-hero-text p { margin: 0; font-size: 13px; }
+.cd-hero-img { position: relative; width: 280px; max-width: 45%; margin-right: 6%; }
+.cd-hero-img img { display: block; width: 100%; height: auto; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,.12); }
+.cd-shadow { display: block; width: 80%; height: 18px; margin: 28px auto 0; background: rgba(0,0,0,.12); filter: blur(14px); border-radius: 50%; }
+
+.cd-toolbar { display: flex; align-items: center; gap: 36px; padding: 28px 0 40px; flex-wrap: wrap; }
+.cd-back { display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 18px; border: 0; border-radius: 999px; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,.18); font-size: 12px; font-weight: 700; cursor: pointer; }
+.cd-crumbs { display: flex; align-items: center; gap: 8px; font-size: 11px; color: #555; flex-wrap: wrap; }
+.cd-crumbs a { color: #555; text-decoration: none; }
+.cd-crumbs svg { color: #999; }
+.cd-crumbs .last { color: #000; }
+
+.cd-tabs { display: flex; gap: 40px; border-bottom: 1px solid #e3e3e3; margin-bottom: 36px; }
+.cd-tabs button { position: relative; padding: 14px 14px; border: 0; background: none; font-size: 12px; font-weight: 700; color: #444; cursor: pointer; }
+.cd-tabs button.on { color: var(--p); }
+.cd-tabs button.on::after { content: ''; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--p); }
+
+.cd-body { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; padding-bottom: 56px; align-items: start; }
+.cd-text p { margin: 0 0 24px; font-size: 13px; line-height: 1.6; color: #222; }
+.cd-text strong { color: var(--p); font-weight: 700; }
+
+.cd-stats { background: #fff; border-radius: 14px; box-shadow: 0 2px 16px rgba(0,0,0,.12); padding: 20px 0 8px; }
+.cd-cur { display: flex; gap: 10px; padding: 0 24px 14px; }
+.cd-cur span { width: 30px; height: 30px; border-radius: 50%; background: var(--p); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; }
+.cd-stat { display: grid; grid-template-columns: 150px 1fr; gap: 24px; align-items: center; padding: 14px 24px; border-top: 1px solid #ececec; }
+.cd-stat-v { display: flex; flex-direction: column; }
+.cd-stat-v small { font-size: 9px; color: #444; line-height: 1; }
+.cd-stat-v b { font-size: 22px; font-weight: 500; color: var(--p); line-height: 1.2; }
+.cd-stat-l { font-size: 12px; line-height: 1.5; color: #222; }
+
+.cd-banner { display: flex; align-items: center; justify-content: center; min-height: 320px; padding: 48px 24px; text-align: center; color: #fff; }
+.cd-banner h2 { max-width: 520px; margin: 0; font-size: 22px; line-height: 1.5; font-weight: 700; }
+.cd-banner.gold { background: linear-gradient(120deg, #c4a45c 0%, #a98a45 55%, #cdb06c 100%); }
+.cd-banner.purple { background: linear-gradient(135deg, #5a00bd 0%, #7a10ee 50%, #9b5cf5 100%); }
+
+.cd-other { padding: 28px 0 56px; }
+.cd-other h2 { margin: 0 0 28px; font-size: 20px; font-weight: 500; }
+.cd-other-row { display: flex; align-items: center; gap: 12px; }
+.cd-other-row > button { border: 0; background: none; color: var(--p); cursor: pointer; display: flex; padding: 4px; }
+.cd-other-viewport { flex: 1; overflow: hidden; }
+.cd-other-track { display: flex; transition: transform .45s ease; }
+.cd-other-item { display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 0 14px; color: #000; text-decoration: none; font-size: 13px; font-weight: 600; text-align: center; }
+.cd-other-item img { width: 100%; max-width: 220px; height: auto; }
+
+@media (max-width: 900px) {
+  .cd-body { grid-template-columns: 1fr; gap: 32px; }
+  .cd-hero-in { flex-direction: column; align-items: flex-start; }
+  .cd-hero-img { max-width: 70%; margin: 0; }
+  .cd-stat { grid-template-columns: 120px 1fr; gap: 14px; }
+  .cd-other-item { flex-basis: 50% !important; }
+}
