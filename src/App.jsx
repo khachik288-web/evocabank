@@ -56,6 +56,7 @@ import Contact from './Contact';
 import Builders from './Builders';
 import Dealerships from './Dealerships';
 import TariffsArchive from './TariffsArchive';
+import { TopDropdown, ONLINE_REQUESTS, FEEDBACK } from './HeaderDropdowns';
 
 // --- 1. HEADER ---
 export function Header() {
@@ -194,18 +195,8 @@ export function Header() {
           </nav>
  
           <div className="flex items-center gap-5 text-gray-600">
-            <a href="#" className="flex items-center gap-1 text-purple-700 no-underline hover:no-underline">
-              Առցանց հայտեր
-              <svg className="h-3 w-3" viewBox="0 0 24 24" fill="none">
-                <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" />
-              </svg>
-            </a>
-            <a href="#" className="flex items-center gap-1 text-purple-700 no-underline no-underline hover:no-underline">
-              Հետադարձ կապ
-              <svg className="h-3 w-3" viewBox="0 0 24 24" fill="none">
-                <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" />
-              </svg>
-            </a>
+            <TopDropdown label="Առցանց հայտեր" items={ONLINE_REQUESTS} />
+            <TopDropdown label="Հետադարձ կապ" items={FEEDBACK} />
  
             <button aria-label="location" className="hover:text-purple-700">
               <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">

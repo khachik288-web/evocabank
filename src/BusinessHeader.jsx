@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ChevronDown, MapPin, HelpCircle, Globe, Search, Menu, X } from 'lucide-react';
-import './BusinessHeader.css';
+import { TopDropdown, ONLINE_REQUESTS, FEEDBACK } from './HeaderDropdowns';
 
 const TOP = [['Անհատ', '/'], ['Բիզնես', '/business'], ['Ակնթարթային վճարումներ', '/web-payment'], ['Մեր մասին', '/about'], ['Նորություններ', '/news'], ['Բլոգ', '/blog'], ['Կարիերա', '/career']];
 // [название, путь] — путь '#' пока заглушка
@@ -23,15 +22,6 @@ const OTHER_TABS = [['Պահատուփեր', '/business/other'], ['Փոխանց�
 
 export default function BusinessHeader({ sub }) {
   const { pathname } = useLocation();
-  const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    const f = () => setScrolled(window.scrollY > 40);
-    f();
-    window.addEventListener('scroll', f, { passive: true });
-    return () => window.removeEventListener('scroll', f);
-  }, []);
 
   const title = sub || SUB[pathname] || 'Բիզնես վարկեր';
   const isAccounts = pathname.startsWith('/business/accounts');
@@ -41,44 +31,124 @@ export default function BusinessHeader({ sub }) {
   const isOther = pathname.startsWith('/business/other');
   const tabs = isOther ? OTHER_TABS : isDigital ? DIGITAL_TABS : isAccounts ? ACCOUNT_TABS : isSecurities ? SECURITIES_TABS : isTrade ? TRADE_TABS : null;
   const isActive = (p) => p !== '#' && (p === '/business/other' ? isOther : p === '/business/accounts' ? isAccounts : p === '/business/securities' ? isSecurities : p === '/business/trade-finance' ? isTrade : pathname === p);
+
   return (
-    <header className={`bh ${scrolled ? 'is-scrolled' : ''}`}>
-      <div className="bh-top">
-        <div className="bh-wrap bh-top-in">
-          <nav>{TOP.map(([l, p]) => <Link key={l} to={p} className={l === 'Բիզնես' ? 'on' : ''}>{l}</Link>)}</nav>
-          <div className="bh-top-r">
-            <a href="#" className="bh-link">Առցանց հայտեր <ChevronDown size={13} /></a>
-            <a href="#" className="bh-link">Հետադարձ կապ <ChevronDown size={13} /></a>
-            <span className="bh-icons">
-              <button aria-label="location"><MapPin size={14} fill="currentColor" /></button>
-              <button aria-label="help"><HelpCircle size={14} fill="currentColor" stroke="#fff" /></button>
-              <button aria-label="language"><Globe size={14} /></button>
-              <button aria-label="search"><Search size={14} /></button>
-              <button aria-label="menu"><Menu size={18} /></button>
-            </span>
+    <header className="w-full text-sm">
+      {/* Top thin bar */}
+      <div className="border-b border-gray-200 px-6">
+        <div className="mx-auto flex max-w-7xl items-center justify-between">
+          <nav className="flex items-center">
+            {TOP.map(([label, path]) => {
+              const active = label === 'Բիզնես';
+              return (
+                <Link
+                  key={label}
+                  to={path}
+                  className={`relative px-4 py-3 text-black no-underline hover:text-purple-700 hover:no-underline ${
+                    active
+                      ? 'text-purple-700 after:absolute after:left-0 after:right-0 after:-bottom-px after:h-0.5 after:bg-purple-700'
+                      : ''
+                  }`}
+                >
+                  {label}
+                </Link>
+              );
+            })}
+          </nav>
+
+          <div className="flex items-center gap-5 text-gray-600">
+            <TopDropdown label="Առցանց հայտեր" items={ONLINE_REQUESTS} />
+            <TopDropdown label="Հետադարձ կապ" items={FEEDBACK} />
+
+            <button aria-label="location" className="hover:text-purple-700">
+              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5.5z" />
+              </svg>
+            </button>
+            <button aria-label="help" className="hover:text-purple-700">
+              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M9.5 9a2.5 2.5 0 115 .5c0 1.5-2.5 1.5-2.5 3" />
+                <line x1="12" y1="17" x2="12" y2="17" />
+              </svg>
+            </button>
+            <button aria-label="language" className="hover:text-purple-700">
+              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M2 12h20M12 2a15 15 0 010 20 15 15 0 010-20z" />
+              </svg>
+            </button>
+            <button aria-label="search" className="hover:text-purple-700">
+              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="11" cy="11" r="7" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              </svg>
+            </button>
+            <button aria-label="menu" className="hover:text-purple-700">
+              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <line x1="3" y1="12" x2="21" y2="12" />
+                <line x1="3" y1="18" x2="21" y2="18" />
+              </svg>
+            </button>
           </div>
         </div>
       </div>
 
-      <div className="bh-main">
-        <div className="bh-wrap bh-main-in">
-          <Link to="/" className="bh-brand" aria-label="evoca">
-            <span className="bh-logo">e<b>v</b>oca</span>
-            <svg className="bh-mark" viewBox="0 0 48 48"><path d="M2 4h13l9 24 9-24h13L30 44H18z" fill="#6a00dc" /></svg>
-          </Link>
-          <nav className={`bh-nav ${open ? 'open' : ''}`} onClick={() => setOpen(false)}>
-            {MAIN.map(([l, p]) => <Link key={l} to={p} className={isActive(p) ? 'on' : ''}>{l}</Link>)}
-          </nav>
-          <a href="#" className="bh-pill">EvocaONLINE</a>
-          <button className="bh-burger" aria-label="menu" onClick={() => setOpen(!open)}>{open ? <X size={22} /> : <Menu size={22} />}</button>
+      {/* Main bar */}
+      <div className="px-6 py-4">
+        <div className="mx-auto flex max-w-7xl items-center justify-between">
+          <div className="flex items-center gap-10">
+            <Link to="/" className="no-underline hover:no-underline" aria-label="evoca">
+              <span className="text-2xl font-bold tracking-tight text-gray-800">
+                evoc<span className="text-purple-700">a</span>
+              </span>
+            </Link>
+            <nav className="flex items-center gap-7 font-medium">
+              {MAIN.map(([label, path]) => (
+                <Link
+                  key={label}
+                  to={path}
+                  className={`no-underline hover:no-underline ${
+                    isActive(path) ? 'text-purple-700' : 'text-gray-800 hover:text-purple-700'
+                  }`}
+                >
+                  {label}
+                </Link>
+              ))}
+            </nav>
+          </div>
+
+          <button className="bg-purple-700 px-6 py-2.5 font-semibold text-white hover:bg-purple-800">
+            EvocaONLINE
+          </button>
         </div>
       </div>
 
-      <div className="bh-sub"><div className="bh-wrap">
-        {tabs
-          ? tabs.map(([l, p]) => <Link key={l} to={p} className={pathname === p ? 'on' : ''}>{l}</Link>)
-          : <span>{title}</span>}
-      </div></div>
+      {/* Purple sub navigation */}
+      <div className="bg-[#6a00db]">
+        <div className="mx-auto max-w-7xl overflow-x-auto px-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <nav className="flex min-w-max items-stretch">
+            {tabs ? (
+              tabs.map(([label, path]) => (
+                <Link
+                  key={label}
+                  to={path}
+                  className={`whitespace-nowrap px-5 py-[19px] text-[15px] font-semibold text-white no-underline hover:bg-[#5a00bd] hover:no-underline ${
+                    pathname === path ? 'bg-[#5a00bd]' : ''
+                  }`}
+                >
+                  {label}
+                </Link>
+              ))
+            ) : (
+              <span className="whitespace-nowrap bg-[#5a00bd] px-5 py-[19px] text-[15px] font-semibold text-white">
+                {title}
+              </span>
+            )}
+          </nav>
+        </div>
+      </div>
     </header>
   );
 }
