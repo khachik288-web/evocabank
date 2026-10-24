@@ -1,8 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
 import { Container, Row, Col, Form } from 'react-bootstrap';
 import { FaFacebookF, FaInstagram, FaPinterestP, FaYoutube, FaLinkedinIn } from 'react-icons/fa';
 import './App.css';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from './firebase';
+import Reg from './reg';
+import LogOut from './logout';
+import ChatWidget from './chatWidget';
+import { initZegoService, destroyZegoService } from './zego';
 import Business from './busines';
 import WebPayment from './WebPayment';
 import About from './About';
@@ -198,6 +204,7 @@ export function Header() {
           <div className="flex items-center gap-5 text-gray-600">
             <TopDropdown label="Առցանց հայտեր" items={ONLINE_REQUESTS} />
             <TopDropdown label="Հետադարձ կապ" items={FEEDBACK} />
+            <Link to="/reg" className="text-gray-600 no-underline hover:text-purple-700">Մուտք</Link>
  
             <button aria-label="location" className="hover:text-purple-700">
               <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
@@ -1891,14 +1898,43 @@ function SiteLayout({ children }) {
   );
 }
 
+// Не пускает залогиненного юзера обратно на форму входа
+function RegGuard() {
+  const [checking, setChecking] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  useEffect(() => {
+    const unsub = onAuthStateChanged(auth, (user) => {
+      setIsLoggedIn(!!user);
+      setChecking(false);
+    });
+    return () => unsub();
+  }, []);
+  if (checking) return <div className="flex items-center justify-center min-h-screen"><p>Բեռնում է...</p></div>;
+  return isLoggedIn ? <Navigate to="/logout" replace /> : <Reg />;
+}
+
 // --- 13. ГЛАВНЫЙ КОМПОНЕНТ С МАРШРУТИЗАЦИЕЙ ---
 function App() {
+  // Zego (звонки) стартует один раз после логина и слушает входящие везде на сайте
+  useEffect(() => {
+    const unsub = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        initZegoService(user.uid, user.displayName || user.email?.split('@')[0] || 'User');
+      } else {
+        destroyZegoService();
+      }
+    });
+    return () => unsub();
+  }, []);
+
   return (
     <Router>
       <div className="evoca-app">
         <ResponsiveStyles />
         {/* Маршрутизация по страницам */}
         <Routes>
+          <Route path="/reg" element={<RegGuard />} />
+          <Route path="/logout" element={<LogOut />} />
           <Route path="/" element={<SiteLayout><HomePage /></SiteLayout>} />
           <Route path="/business" element={<SiteLayout><Business /></SiteLayout>} />
           <Route path="/about" element={<SiteLayout><About /></SiteLayout>} />
@@ -1969,6 +2005,7 @@ function App() {
           <Route path="/partner-dealerships" element={<SiteLayout><Dealerships /></SiteLayout>} />
           <Route path="/about/tariffs/archive" element={<SiteLayout><TariffsArchive /></SiteLayout>} />
         </Routes>
+        <ChatWidget />
       </div>
     </Router>
   );
