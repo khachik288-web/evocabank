@@ -3,99 +3,127 @@ import { useNavigate, Link } from "react-router-dom";
 import { db, auth } from "./firebase";
 import { ref, get } from "firebase/database";
 import { onAuthStateChanged, signOut } from "firebase/auth";
-
-const DEFAULT_AVATAR =
-  "https://img.magnific.com/premium-vector/gray-picture-person-with-gray-background_1197690-22.jpg?semt=ais_hybrid&w=740&q=80";
+import { LogOut as LogOutIcon, MessageCircle, Home, Mail, Phone, CalendarDays } from "lucide-react";
+import { useChatStore } from "./useChatStore";
 
 export default function LogOut() {
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [signingOut, setSigningOut] = useState(false);
   const navigate = useNavigate();
+  const setIsOpen = useChatStore((s) => s.setIsOpen);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (!user) {
-        // никто не залогинен — отправляем на регистрацию/вход
-        navigate("/reg");
+        navigate("/reg", { replace: true });
         return;
       }
-
-      const snapshot = await get(ref(db, `users/${user.uid}`));
-      if (snapshot.exists()) {
-        setUserData(snapshot.val());
+      // Данные из базы, а если их нет — из самого аккаунта Firebase
+      let data = {};
+      try {
+        const snapshot = await get(ref(db, `users/${user.uid}`));
+        if (snapshot.exists()) data = snapshot.val();
+      } catch (e) {
+        console.error(e);
       }
+      setUserData({
+        name: data.name || user.displayName || user.email?.split("@")[0] || "",
+        email: data.email || user.email || "",
+        phone: data.phone || "",
+        photoURL: data.photoURL || user.photoURL || "",
+        createdAt: data.createdAt || user.metadata?.creationTime || "",
+      });
       setLoading(false);
     });
-
-    // отписка при размонтировании компонента, чтобы не было утечки
     return () => unsubscribe();
   }, [navigate]);
 
   const handleLogOut = async () => {
+    setSigningOut(true);
     await signOut(auth);
-    navigate("/reg");
+    navigate("/reg", { replace: true });
   };
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <p className="text-slate-500">Բեռնում է...</p>
+      <div className="flex min-h-screen items-center justify-center bg-[#f8f9fc]">
+        <div className="h-10 w-10 animate-spin rounded-full border-4 border-purple-200 border-t-[#7000ff]" />
       </div>
     );
   }
 
+  const initial = (userData?.name || userData?.email || "?").charAt(0).toUpperCase();
+  const since = userData?.createdAt
+    ? new Date(userData.createdAt).toLocaleDateString("hy-AM", { year: "numeric", month: "long", day: "numeric" })
+    : "";
+
+  const rows = [
+    { icon: Mail, label: "Էլ. հասցե", value: userData?.email },
+    { icon: Phone, label: "Հեռախոսահամար", value: userData?.phone ? `+374 ${userData.phone}` : "" },
+    { icon: CalendarDays, label: "Գրանցման ամսաթիվ", value: since },
+  ].filter((r) => r.value);
+
   return (
-    <div className="min-h-screen bg-slate-50 flex items-center justify-center px-4 py-10 sm:py-16">
-      <div className="w-full max-w-[720px] bg-white border border-slate-200 rounded-2xl sm:rounded-3xl shadow-sm overflow-hidden flex flex-col sm:flex-row">
-        {/* Фото профиля — на мобиле сверху, невысокое; на десктопе слева, во всю высоту */}
-        <div className="w-full h-40 sm:h-auto sm:w-1/2 shrink-0">
-          <img
-            src={userData?.photoURL || DEFAULT_AVATAR}
-            alt="Profile"
-            className="w-full h-full object-cover"
-          />
-        </div>
+    <div className="min-h-screen bg-[#f8f9fc] px-4 py-8 sm:py-14">
+      <div className="mx-auto w-full max-w-[520px]">
+        <Link to="/" className="mb-5 inline-flex items-center gap-1.5 text-sm text-slate-500 no-underline hover:text-[#7000ff] hover:no-underline">
+          <Home size={16} /> Գլխավոր էջ
+        </Link>
 
-        <div className="w-full sm:w-1/2 flex flex-col justify-center p-6 sm:p-8 gap-5 sm:gap-6 bg-white">
-          {userData?.name && (
-            <div>
-              <label className="block text-xs text-slate-500 mb-1">Անուն</label>
-              <p className="text-slate-800 font-medium text-base sm:text-lg border-b border-slate-200 pb-2 truncate">
-                {userData.name}
-              </p>
+        <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+          {/* Шапка карточки */}
+          <div className="h-28 bg-gradient-to-r from-[#7000ff] to-[#a24dff] sm:h-32" />
+
+          <div className="px-6 pb-8 sm:px-8">
+            <div className="-mt-14 flex flex-col items-center text-center sm:-mt-16">
+              {userData?.photoURL ? (
+                <img
+                  src={userData.photoURL}
+                  alt="Profile"
+                  referrerPolicy="no-referrer"
+                  className="h-28 w-28 rounded-full border-4 border-white object-cover shadow-md sm:h-32 sm:w-32"
+                />
+              ) : (
+                <div className="flex h-28 w-28 items-center justify-center rounded-full border-4 border-white bg-purple-100 text-4xl font-bold text-[#7000ff] shadow-md sm:h-32 sm:w-32">
+                  {initial}
+                </div>
+              )}
+              <h1 className="mt-4 text-xl font-bold text-slate-800 sm:text-2xl">
+                {userData?.name || "Օգտատեր"}
+              </h1>
+              <p className="text-sm text-slate-400">Evoca հաճախորդ</p>
             </div>
-          )}
 
-          <div>
-            <label className="block text-xs text-slate-500 mb-3 sm:mb-4 sm:text-[20px]">
-              ձեր Տվյալները
-            </label>
-            <label className="block text-xs text-slate-500 mb-1">
-              Էլ. հասցե
-            </label>
-            <p className="text-slate-800 font-medium text-base sm:text-lg border-b border-slate-200 pb-2 truncate">
-              {userData?.email || "Нет данных"}
-            </p>
-          </div>
-
-          {userData?.phone && (
-            <div>
-              <label className="block text-xs text-slate-500 mb-1">
-                Հեռախոսահամար
-              </label>
-              <p className="text-slate-800 font-medium text-base sm:text-lg border-b border-slate-200 pb-2">
-                {userData.phone}
-              </p>
+            <div className="mt-6 divide-y divide-slate-100 rounded-2xl border border-slate-100">
+              {rows.map(({ icon: Icon, label, value }) => (
+                <div key={label} className="flex items-center gap-3 px-4 py-3">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-purple-50 text-[#7000ff]">
+                    <Icon size={18} />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-xs text-slate-400">{label}</p>
+                    <p className="truncate text-sm font-medium text-slate-800">{value}</p>
+                  </div>
+                </div>
+              ))}
             </div>
-          )}
 
-          <div className="mt-2 sm:mt-4">
-            <button
-              onClick={handleLogOut}
-              className="w-full bg-[#7000ff] hover:bg-[#5c00b3] active:bg-[#4b0094] text-white font-medium rounded-full py-3.5 sm:py-3 transition-colors"
-            >
-              Log Out
-            </button>
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <button
+                onClick={() => { setIsOpen(true); navigate("/"); }}
+                className="flex flex-1 items-center justify-center gap-2 rounded-full border border-[#7000ff] bg-white py-3 font-medium text-[#7000ff] hover:bg-purple-50"
+              >
+                <MessageCircle size={18} /> Բացել չատը
+              </button>
+              <button
+                onClick={handleLogOut}
+                disabled={signingOut}
+                className="flex flex-1 items-center justify-center gap-2 rounded-full bg-[#7000ff] py-3 font-medium text-white hover:bg-[#5c00b3] active:bg-[#4b0094] disabled:opacity-60"
+              >
+                <LogOutIcon size={18} /> {signingOut ? "Դուրս ենք գալիս..." : "Դուրս գալ"}
+              </button>
+            </div>
           </div>
         </div>
       </div>

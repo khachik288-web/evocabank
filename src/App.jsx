@@ -64,6 +64,7 @@ import Builders from './Builders';
 import Dealerships from './Dealerships';
 import TariffsArchive from './TariffsArchive';
 import { TopDropdown, ONLINE_REQUESTS, FEEDBACK } from './HeaderDropdowns';
+import MobileNav, { AuthLink } from './MobileNav';
 
 // --- 1. HEADER ---
 export function Header() {
@@ -183,7 +184,7 @@ export function Header() {
   return (
     <header className="w-full text-sm">
       {/* Top thin bar */}
-      <div className="border-b border-gray-200 px-6">
+      <div className="hidden border-b border-gray-200 px-6 lg:block">
         <div className="mx-auto flex max-w-7xl items-center justify-between">
           <nav className="flex items-center">
             {topLinks.map((link) => (
@@ -204,7 +205,7 @@ export function Header() {
           <div className="flex items-center gap-5 text-gray-600">
             <TopDropdown label="Առցանց հայտեր" items={ONLINE_REQUESTS} />
             <TopDropdown label="Հետադարձ կապ" items={FEEDBACK} />
-            <Link to="/reg" className="text-gray-600 no-underline hover:text-purple-700">Մուտք</Link>
+            <AuthLink className="text-gray-600 no-underline hover:text-purple-700 hover:no-underline" />
  
             <button aria-label="location" className="hover:text-purple-700">
               <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
@@ -242,13 +243,13 @@ export function Header() {
       </div>
  
       {/* Main bar */}
-      <div className="px-6 py-4">
+      <div className="px-4 py-3 sm:px-6 sm:py-4">
         <div className="mx-auto flex max-w-7xl items-center justify-between">
-          <div className="flex items-center gap-10">
+          <div className="flex items-center gap-4 lg:gap-10">
             <span className="text-2xl font-bold tracking-tight text-gray-800">
               evoc<span className="text-purple-700">a</span>
             </span>
-            <nav className="flex items-center gap-7 font-medium">
+            <nav className="hidden items-center gap-7 font-medium lg:flex">
               {mainLinks.map((link, i) => (
                 <Link
                   key={link.label}
@@ -263,9 +264,12 @@ export function Header() {
             </nav>
           </div>
  
-          <button className="bg-purple-700 px-6 py-2.5 font-semibold text-white hover:bg-purple-800">
-            EvocaONLINE
-          </button>
+          <div className="flex items-center gap-2">
+            <button className="hidden bg-purple-700 px-6 py-2.5 font-semibold text-white hover:bg-purple-800 sm:block">
+              EvocaONLINE
+            </button>
+            <MobileNav topLinks={topLinks} mainLinks={mainLinks} />
+          </div>
         </div>
       </div>
 
@@ -1435,7 +1439,7 @@ export function EvocaFooter() {
 
         {/* Фиксированный плавающий онлайн-чат внизу справа */}
         <div 
-          className="position-fixed bottom-0 end-0 m-4 p-3 rounded-4 shadow-lg text-white d-flex align-items-center gap-2"
+          className="position-fixed bottom-0 start-0 m-4 p-3 rounded-4 shadow-lg text-white d-none d-md-flex align-items-center gap-2"
           style={{ backgroundColor: '#7000ff', zIndex: 9999, cursor: 'pointer' }}
         >
           <span>💬</span>

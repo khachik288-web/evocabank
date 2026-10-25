@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { TopDropdown, ONLINE_REQUESTS, FEEDBACK } from './HeaderDropdowns';
+import MobileNav, { AuthLink } from './MobileNav';
 
 const TOP = [['Անհատ', '/'], ['Բիզնես', '/business'], ['Ակնթարթային վճարումներ', '/web-payment'], ['Մեր մասին', '/about'], ['Նորություններ', '/news'], ['Բլոգ', '/blog'], ['Կարիերա', '/career']];
 // [название, путь] — путь '#' пока заглушка
@@ -35,7 +36,7 @@ export default function BusinessHeader({ sub }) {
   return (
     <header className="w-full text-sm">
       {/* Top thin bar */}
-      <div className="border-b border-gray-200 px-6">
+      <div className="hidden border-b border-gray-200 px-6 lg:block">
         <div className="mx-auto flex max-w-7xl items-center justify-between">
           <nav className="flex items-center">
             {TOP.map(([label, path]) => {
@@ -59,6 +60,7 @@ export default function BusinessHeader({ sub }) {
           <div className="flex items-center gap-5 text-gray-600">
             <TopDropdown label="Առցանց հայտեր" items={ONLINE_REQUESTS} />
             <TopDropdown label="Հետադարձ կապ" items={FEEDBACK} />
+            <AuthLink className="text-gray-600 no-underline hover:text-purple-700 hover:no-underline" />
 
             <button aria-label="location" className="hover:text-purple-700">
               <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
@@ -96,15 +98,15 @@ export default function BusinessHeader({ sub }) {
       </div>
 
       {/* Main bar */}
-      <div className="px-6 py-4">
+      <div className="px-4 py-3 sm:px-6 sm:py-4">
         <div className="mx-auto flex max-w-7xl items-center justify-between">
-          <div className="flex items-center gap-10">
+          <div className="flex items-center gap-4 lg:gap-10">
             <Link to="/" className="no-underline hover:no-underline" aria-label="evoca">
               <span className="text-2xl font-bold tracking-tight text-gray-800">
                 evoc<span className="text-purple-700">a</span>
               </span>
             </Link>
-            <nav className="flex items-center gap-7 font-medium">
+            <nav className="hidden items-center gap-7 font-medium lg:flex">
               {MAIN.map(([label, path]) => (
                 <Link
                   key={label}
@@ -119,9 +121,15 @@ export default function BusinessHeader({ sub }) {
             </nav>
           </div>
 
-          <button className="bg-purple-700 px-6 py-2.5 font-semibold text-white hover:bg-purple-800">
-            EvocaONLINE
-          </button>
+          <div className="flex items-center gap-2">
+            <button className="hidden bg-purple-700 px-6 py-2.5 font-semibold text-white hover:bg-purple-800 sm:block">
+              EvocaONLINE
+            </button>
+            <MobileNav
+              topLinks={TOP.map(([label, path]) => ({ label, path }))}
+              mainLinks={MAIN.map(([label, path]) => ({ label, path }))}
+            />
+          </div>
         </div>
       </div>
 
