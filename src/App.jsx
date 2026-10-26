@@ -11,6 +11,7 @@ import ChatWidget from './chatWidget';
 import { initZegoService, destroyZegoService } from './zego';
 import Business from './busines';
 import WebPayment from './WebPayment';
+import PaymentCategory from './PaymentCategory';
 import About from './About';
 import Career from './Career';
 import News from './News';
@@ -1931,6 +1932,7 @@ function App() {
           <Route path="/business" element={<SiteLayout><Business /></SiteLayout>} />
           <Route path="/about" element={<SiteLayout><About /></SiteLayout>} />
           <Route path="/web-payment" element={<WebPayment />} />
+          <Route path="/web-payment/:slug" element={<PaymentCategory />} />
           <Route path="/career" element={<SiteLayout><Career /></SiteLayout>} />
           <Route path="/news" element={<SiteLayout><News /></SiteLayout>} />
           <Route path="/blog" element={<SiteLayout><Blog /></SiteLayout>} />

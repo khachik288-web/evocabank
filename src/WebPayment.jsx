@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { FaFacebookF, FaInstagram, FaYoutube, FaLinkedinIn, FaPinterestP } from 'react-icons/fa';
 
 // --- Header специально для страницы онлайн-оплаты (без общего Header сайта) ---
-function PaymentHeader() {
+export function PaymentHeader() {
   return (
     <header className="w-full bg-white border-b border-gray-200">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 sm:py-4">
@@ -34,7 +34,7 @@ function PaymentHeader() {
 }
 
 // --- Footer специально для страницы онлайн-оплаты (без общего Footer сайта) ---
-function PaymentFooter() {
+export function PaymentFooter() {
   return (
     <footer className="w-full bg-white border-t border-gray-100 pt-10 pb-6">
       <div className="mx-auto max-w-7xl px-6">
@@ -106,30 +106,37 @@ function PaymentFooter() {
 const PAYMENT_CATEGORIES = [
   {
     title: 'EVOCABANK',
+    slug: 'evocabank',
     image: 'https://resource.evoca.am/images/WebPayment/evoca.png',
   },
   {
     title: 'Միջազգային բջջային օպերատորներ',
+    slug: 'international-operators',
     image: 'https://resource.evoca.am/images/WebPayment/international.png',
   },
   {
     title: 'Կոմունալ վճարումներ',
+    slug: 'utilities',
     image: 'https://resource.evoca.am/images/WebPayment/utility.png',
   },
   {
     title: 'Ինտերնետ և TV',
+    slug: 'internet-tv',
     image: 'https://resource.evoca.am/images/WebPayment/internettv.png',
   },
   {
     title: 'ՃՈ վճարներ',
+    slug: 'traffic-fines',
     image: 'https://resource.evoca.am/images/WebPayment/roadpolice.png',
   },
   {
     title: 'Վարկային կազմակերպություններ',
+    slug: 'loan-organizations',
     image: 'https://resource.evoca.am/images/WebPayment/loan.png',
   },
   {
     title: 'Միջոցառումներ',
+    slug: 'events',
     image: 'https://resource.evoca.am/images/WebPayment/event.png',
   },
 ];
@@ -146,14 +153,14 @@ function WebPayment() {
 
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 mt-[70px]">
             {PAYMENT_CATEGORIES.map((cat) => (
-              <button
+              <Link
                 key={cat.title}
-                type="button"
-                className="flex flex-col items-center justify-center gap-6 rounded-2xl bg-white px-6 py-10 text-center shadow-sm transition-shadow hover:shadow-md"
+                to={`/web-payment/${cat.slug}`}
+                className="flex flex-col items-center justify-center gap-6 rounded-2xl bg-white px-6 py-10 text-center no-underline shadow-sm transition-shadow hover:no-underline hover:shadow-md"
               >
                 <img src={cat.image} alt={cat.title} className="h-20 w-20 object-contain" />
                 <span className="text-sm font-medium text-gray-800">{cat.title}</span>
-              </button>
+              </Link>
             ))}
           </div>
         </div>
