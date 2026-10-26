@@ -16,7 +16,8 @@ export function AuthLink({ className = '', style, onClick }) {
 
 // Бургер-меню для телефонов и планшетов (< 1024px)
 // topLinks / mainLinks: [{ label, path }]
-export default function MobileNav({ topLinks = [], mainLinks = [] }) {
+export default function MobileNav({ topLinks = [], mainLinks = [], variant = 'mobile' }) {
+  const isDesktop = variant === 'desktop';
   // меню открыто только на той странице, где его открыли — при переходе закрывается само
   const { pathname } = useLocation();
   const [openAt, setOpenAt] = useState(null);
@@ -33,15 +34,19 @@ export default function MobileNav({ topLinks = [], mainLinks = [] }) {
   const close = () => setOpen(false);
 
   return (
-    <div className="lg:hidden">
+    <div className={isDesktop ? '' : 'lg:hidden'}>
       <button
         type="button"
         aria-label="menu"
         aria-expanded={open}
         onClick={() => setOpen(true)}
-        className="flex h-10 w-10 items-center justify-center rounded-full text-gray-800 hover:bg-gray-100"
+        className={
+          isDesktop
+            ? 'flex items-center text-gray-600 hover:text-purple-700'
+            : 'flex h-10 w-10 items-center justify-center rounded-full text-gray-800 hover:bg-gray-100'
+        }
       >
-        <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+        <svg className={isDesktop ? 'h-4 w-4' : 'h-6 w-6'} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
           <line x1="3" y1="6" x2="21" y2="6" />
           <line x1="3" y1="12" x2="21" y2="12" />
           <line x1="3" y1="18" x2="21" y2="18" />

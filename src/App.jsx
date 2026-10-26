@@ -191,7 +191,7 @@ export function Header() {
   <Link
     key={link.label}
     to={link.path}
-    className={`relative px-4 py-3 text-black no-underline hover:text-purple-700 no-underline hover:no-underline ${
+    className={`relative px-2 py-3 text-[13px] text-black no-underline xl:px-4 xl:text-sm hover:text-purple-700 no-underline hover:no-underline ${
       isTopActive(link.path)
         ? 'text-purple-700 after:absolute after:left-0 after:right-0 after:-bottom-px after:h-0.5 after:bg-purple-700'
         : ''
@@ -202,24 +202,24 @@ export function Header() {
 ))}
           </nav>
  
-          <div className="flex items-center gap-5 text-gray-600">
+          <div className="flex shrink-0 items-center gap-3 whitespace-nowrap text-[13px] text-gray-600 xl:gap-5 xl:text-sm">
             <TopDropdown label="Առցանց հայտեր" items={ONLINE_REQUESTS} />
             <TopDropdown label="Հետադարձ կապ" items={FEEDBACK} />
             <AuthLink className="text-gray-600 no-underline hover:text-purple-700 hover:no-underline" />
  
-            <button aria-label="location" className="hover:text-purple-700">
+            <button aria-label="location" className="hidden hover:text-purple-700 2xl:block">
               <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5.5z" />
               </svg>
             </button>
-            <button aria-label="help" className="hover:text-purple-700">
+            <button aria-label="help" className="hidden hover:text-purple-700 2xl:block">
               <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="12" cy="12" r="10" />
                 <path d="M9.5 9a2.5 2.5 0 115 .5c0 1.5-2.5 1.5-2.5 3" />
                 <line x1="12" y1="17" x2="12" y2="17" />
               </svg>
             </button>
-            <button aria-label="language" className="hover:text-purple-700">
+            <button aria-label="language" className="hidden hover:text-purple-700 2xl:block">
               <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="12" cy="12" r="10" />
                 <path d="M2 12h20M12 2a15 15 0 010 20 15 15 0 010-20z" />
@@ -231,13 +231,7 @@ export function Header() {
                 <line x1="21" y1="21" x2="16.65" y2="16.65" />
               </svg>
             </button>
-            <button aria-label="menu" className="hover:text-purple-700">
-              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <line x1="3" y1="6" x2="21" y2="6" />
-                <line x1="3" y1="12" x2="21" y2="12" />
-                <line x1="3" y1="18" x2="21" y2="18" />
-              </svg>
-            </button>
+            <MobileNav variant="desktop" topLinks={topLinks} mainLinks={mainLinks} />
           </div>
         </div>
       </div>
@@ -245,11 +239,11 @@ export function Header() {
       {/* Main bar */}
       <div className="px-4 py-3 sm:px-6 sm:py-4">
         <div className="mx-auto flex max-w-7xl items-center justify-between">
-          <div className="flex items-center gap-4 lg:gap-10">
+          <div className="flex items-center gap-4 lg:gap-6 xl:gap-10">
             <span className="text-2xl font-bold tracking-tight text-gray-800">
               evoc<span className="text-purple-700">a</span>
             </span>
-            <nav className="hidden items-center gap-7 font-medium lg:flex">
+            <nav className="hidden items-center gap-3 text-[13px] font-medium lg:flex xl:gap-7 xl:text-sm">
               {mainLinks.map((link, i) => (
                 <Link
                   key={link.label}
@@ -265,7 +259,7 @@ export function Header() {
           </div>
  
           <div className="flex items-center gap-2">
-            <button className="hidden bg-purple-700 px-6 py-2.5 font-semibold text-white hover:bg-purple-800 sm:block">
+            <button className="hidden bg-purple-700 px-4 py-2.5 font-semibold text-white hover:bg-purple-800 sm:block xl:px-6">
               EvocaONLINE
             </button>
             <MobileNav topLinks={topLinks} mainLinks={mainLinks} />
@@ -582,7 +576,7 @@ function TiltCard({ card }) {
         <img
           src={card.img}
           alt={card.name}
-          className="w-[415px] max-w-full h-auto object-cover rounded-xl shadow-2xl"
+          className="w-full max-w-[415px] h-auto object-cover rounded-xl shadow-2xl"
         />
       </div>
       <div className="absolute -bottom-8 w-[80%] h-8 bg-black/10 blur-xl rounded-[100%] pointer-events-none"></div>

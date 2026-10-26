@@ -14,6 +14,9 @@ export const initiateCall = async (targetUser, callType) => {
 
   const zp = getZegoInstance();
   if (!zp) {
+    if (!import.meta.env.VITE_ZEGO_APP_ID || !import.meta.env.VITE_ZEGO_SERVER_SECRET) {
+      console.error("Zego: VITE_ZEGO_APP_ID / VITE_ZEGO_SERVER_SECRET пусты в .env (после правки перезапустите npm run dev)");
+    }
     console.error(
       "Zego-сервис не инициализирован. Проверьте, что initZegoService() " +
         "вызывается в App.jsx после логина."

@@ -6,7 +6,7 @@ import { FaFacebookF, FaInstagram, FaYoutube, FaLinkedinIn, FaPinterestP } from 
 function PaymentHeader() {
   return (
     <header className="w-full bg-white border-b border-gray-200">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 sm:py-4">
         <div className="flex items-center gap-4">
           <Link to="/" className="text-2xl font-bold tracking-tight text-gray-800 no-underline hover:no-underline">
             evoc<span className="text-purple-700">a</span>
@@ -14,8 +14,8 @@ function PaymentHeader() {
           <span className="hidden sm:inline text-gray-400 text-base">Online payment</span>
         </div>
 
-        <div className="flex items-center gap-6">
-          <a href="tel:+37410605555" className="text-gray-800 text-sm no-underline hover:no-underline hover:text-purple-700">
+        <div className="flex items-center gap-3 sm:gap-6">
+          <a href="tel:+37410605555" className="hidden whitespace-nowrap text-gray-800 text-sm sm:inline no-underline hover:no-underline hover:text-purple-700">
             +374 10 605555
           </a>
           <button aria-label="language" className="text-gray-500 hover:text-purple-700">
@@ -24,7 +24,7 @@ function PaymentHeader() {
               <path d="M2 12h20M12 2a15 15 0 010 20 15 15 0 010-20z" />
             </svg>
           </button>
-          <button className="rounded-full bg-purple-700 px-6 py-2.5 text-sm font-semibold text-white hover:bg-purple-800">
+          <button className="whitespace-nowrap rounded-full bg-purple-700 px-4 py-2 text-sm font-semibold text-white hover:bg-purple-800 sm:px-6 sm:py-2.5">
             Պատմություն
           </button>
         </div>
@@ -38,7 +38,7 @@ function PaymentFooter() {
   return (
     <footer className="w-full bg-white border-t border-gray-100 pt-10 pb-6">
       <div className="mx-auto max-w-7xl px-6">
-        <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
+        <div className="flex flex-col gap-8 md:flex-row md:flex-wrap md:items-start md:justify-between">
           <div>
             <h3 className="text-xl font-bold" style={{ color: '#7000ff' }}>
               evoca<span className="font-normal text-gray-800">BANK</span>
@@ -65,7 +65,7 @@ function PaymentFooter() {
             </a>
           </div>
 
-          <div className="flex flex-col items-center gap-2">
+          <div className="flex flex-col gap-2 md:items-center">
             <img
               src="https://api.qrserver.com/v1/create-qr-code/?size=90x90&data=https://evoca.am"
               alt="QR code"
@@ -73,7 +73,7 @@ function PaymentFooter() {
             />
           </div>
 
-          <div className="flex flex-col items-end gap-4">
+          <div className="flex flex-col gap-4 md:items-end">
             <div className="flex items-center gap-3">
               <a href="#fb" aria-label="Facebook" className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-purple-700 hover:text-white">
                 <FaFacebookF size={14} />

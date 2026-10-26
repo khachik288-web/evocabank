@@ -4,8 +4,8 @@ import { ZIM } from "zego-zim-web";
 // Ключи берутся из .env (VITE_ZEGO_APP_ID / VITE_ZEGO_SERVER_SECRET).
 // Секрет в клиентском коде — только для разработки; в продакшене токен
 // нужно генерировать на бэкенде (generateKitTokenForProduction).
-const ZEGO_APP_ID = Number(import.meta.env.VITE_ZEGO_APP_ID);
-const ZEGO_SERVER_SECRET = import.meta.env.VITE_ZEGO_SERVER_SECRET;
+const ZEGO_APP_ID = 774258292;
+const ZEGO_SERVER_SECRET = "f8c457a4c783f52d355b077e687ec6a5";
 
 // Единственный экземпляр Zego на всё приложение. Создаётся один раз
 // после логина и живёт, пока юзер не разлогинится — именно он "слушает"
