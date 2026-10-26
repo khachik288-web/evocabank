@@ -44,4 +44,20 @@ export const initiateCall = async (targetUser, callType) => {
     console.error("Ошибка при отправке звонка:", err);
     alert("Չհաջողվեց սկսել զանգը, փորձեք կրկին:");
   }
+
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({
+      audio: true,
+      video: callType === "video",
+    });
+    stream.getTracks().forEach((t) => t.stop()); // сразу освобождаем устройство
+  } catch (err) {
+    console.error("Нет доступа к микрофону/камере:", err);
+    alert(
+      callType === "video"
+        ? "Թույլատրեք մուտքը խոսափողին և տեսախցիկին (հասցեի դաշտի կողքի կողպեք)"
+        : "Թույլատրեք մուտքը խոսափողին (հասցեի դաշտի կողքի կողպեք)"
+    );
+    return;
+  }
 };

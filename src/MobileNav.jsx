@@ -92,6 +92,9 @@ export default function MobileNav({ topLinks = [], mainLinks = [], variant = 'mo
                   {l.label}
                 </Link>
               ))}
+              <Link to="/faq" className={item} style={color(pathname === '/faq')}>
+                Հաճախ տրվող հարցեր
+              </Link>
             </div>
 
             <div className="flex flex-col gap-3 border-t border-gray-200 p-5">

@@ -65,6 +65,7 @@ import Dealerships from './Dealerships';
 import TariffsArchive from './TariffsArchive';
 import { TopDropdown, ONLINE_REQUESTS, FEEDBACK } from './HeaderDropdowns';
 import MobileNav, { AuthLink } from './MobileNav';
+import Faq from './Faq';
 
 // --- 1. HEADER ---
 export function Header() {
@@ -212,13 +213,11 @@ export function Header() {
                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5.5z" />
               </svg>
             </button>
-            <button aria-label="help" className="hidden hover:text-purple-700 2xl:block">
-              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <Link to="/faq" aria-label="help" title="Հաճախ տրվող հարցեր" className="flex text-gray-600 hover:text-purple-700"><svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="12" cy="12" r="10" />
                 <path d="M9.5 9a2.5 2.5 0 115 .5c0 1.5-2.5 1.5-2.5 3" />
                 <line x1="12" y1="17" x2="12" y2="17" />
-              </svg>
-            </button>
+              </svg></Link>
             <button aria-label="language" className="hidden hover:text-purple-700 2xl:block">
               <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="12" cy="12" r="10" />
@@ -1432,13 +1431,7 @@ export function EvocaFooter() {
         </Container>
 
         {/* Фиксированный плавающий онлайн-чат внизу справа */}
-        <div 
-          className="position-fixed bottom-0 start-0 m-4 p-3 rounded-4 shadow-lg text-white d-none d-md-flex align-items-center gap-2"
-          style={{ backgroundColor: '#7000ff', zIndex: 9999, cursor: 'pointer' }}
-        >
-          <span>💬</span>
-          <span className="fw-bold small">Գրեք մեզ, մենք օնլայն ենք !</span>
-        </div>
+        
       </div>
     </footer>
   );
@@ -1932,6 +1925,7 @@ function App() {
         {/* Маршрутизация по страницам */}
         <Routes>
           <Route path="/reg" element={<RegGuard />} />
+          <Route path="/faq" element={<SiteLayout><Faq /></SiteLayout>} />
           <Route path="/logout" element={<LogOut />} />
           <Route path="/" element={<SiteLayout><HomePage /></SiteLayout>} />
           <Route path="/business" element={<SiteLayout><Business /></SiteLayout>} />

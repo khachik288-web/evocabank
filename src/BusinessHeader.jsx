@@ -67,13 +67,11 @@ export default function BusinessHeader({ sub }) {
                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5.5z" />
               </svg>
             </button>
-            <button aria-label="help" className="hidden hover:text-purple-700 2xl:block">
-              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <Link to="/faq" aria-label="help" title="Հաճախ տրվող հարցեր" className="flex text-gray-600 hover:text-purple-700"><svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="12" cy="12" r="10" />
                 <path d="M9.5 9a2.5 2.5 0 115 .5c0 1.5-2.5 1.5-2.5 3" />
                 <line x1="12" y1="17" x2="12" y2="17" />
-              </svg>
-            </button>
+              </svg></Link>
             <button aria-label="language" className="hidden hover:text-purple-700 2xl:block">
               <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="12" cy="12" r="10" />
