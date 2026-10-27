@@ -2,20 +2,32 @@
   "rules": {
     "users": {
       ".read": "auth != null",
-      "$uid": { ".write": "auth != null && auth.uid === $uid" }
+      "$uid": {
+        ".write": "auth != null && auth.uid === $uid"
+      }
     },
     "chats": {
       "public_group": {
         "messages": {
           ".read": "auth != null",
-          "$mid": { ".write": "auth != null && !data.exists() && newData.child('from').val() === auth.uid" }
+          "$mid": {
+            ".write": "auth != null && !data.exists() && newData.child('from').val() === auth.uid"
+          }
         }
       },
       "$chatId": {
         "messages": {
           ".read": "auth != null && $chatId.contains(auth.uid)",
-          "$mid": { ".write": "auth != null && $chatId.contains(auth.uid) && !data.exists() && newData.child('from').val() === auth.uid" }
+          "$mid": {
+            ".write": "auth != null && $chatId.contains(auth.uid) && !data.exists() && newData.child('from').val() === auth.uid"
+          }
         }
+      }
+    },
+    "locations": {
+      ".read": "auth != null",
+      "$uid": {
+        ".write": "auth != null && auth.uid === $uid"
       }
     }
   }

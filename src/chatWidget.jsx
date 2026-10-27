@@ -3,7 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { db, auth } from "./firebase";
 import { ref, onValue, push, query, limitToLast } from "firebase/database";
 import { onAuthStateChanged } from "firebase/auth";
-import { MessageCircle, X, ArrowLeft, Send, Users, Video, Phone } from "lucide-react";
+import { MessageCircle, X, ArrowLeft, Send, Users, Video, Phone, MapPin } from "lucide-react";
+import UserLocationModal from "./UserLocationModal";
+import { startLocationSharing, stopLocationSharing } from "./location";
 import { useChatStore } from "./useChatStore";
 import { initiateCall } from "./callUtils";
 
@@ -19,6 +21,7 @@ export default function ChatWidget() {
   const [users, setUsers] = useState([]);
   const [messages, setMessages] = useState([]);
   const [text, setText] = useState("");
+  const [locUser, setLocUser] = useState(null); // чью геолокацию смотрим
   const [lastFrom, setLastFrom] = useState({}); // chatId -> uid автора последнего сообщения
   const bottomRef = useRef(null);
   const navigate = useNavigate();
@@ -50,6 +53,13 @@ export default function ChatWidget() {
     });
     return () => unsubscribe();
   }, []);
+
+  // Пока пользователь вошёл — отправляем его позицию в базу (если разрешено)
+  useEffect(() => {
+    if (!myUid) return;
+    startLocationSharing();
+    return () => stopLocationSharing();
+  }, [myUid]);
 
   // Список пользователей нужен всегда (и для списка чатов, и для индикатора непрочитанных)
   useEffect(() => {
@@ -242,6 +252,14 @@ export default function ChatWidget() {
                     {isUnread && (
                       <span className="w-2.5 h-2.5 bg-blue-500 rounded-full shrink-0 ml-auto" />
                     )}
+                    <span
+                      role="button"
+                      title="Տեղադրություն"
+                      onClick={(e) => { e.stopPropagation(); setLocUser(user); }}
+                      className="ml-auto shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-[#7000ff] hover:bg-[#7000ff]/10"
+                    >
+                      <MapPin size={18} />
+                    </span>
                   </button>
                 );
               })}
@@ -297,6 +315,7 @@ export default function ChatWidget() {
               принят (см. zego.js / callUtils.js). */}
         </div>
       )}
+      {locUser && <UserLocationModal user={locUser} onClose={() => setLocUser(null)} />}
     </div>
   );
 }

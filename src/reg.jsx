@@ -3,6 +3,7 @@ import { Eye, EyeOff } from "lucide-react";
 import { db, auth, googleProvider } from "./firebase";
 import { ref, set } from "firebase/database";
 import { useNavigate } from "react-router-dom";
+import { askLocationPermission } from "./location";
 import { FcGoogle } from "react-icons/fc";
 import {
   signInWithPopup,
@@ -37,6 +38,7 @@ export default function Reg() {
         photoURL: user.photoURL,
       });
 
+      await askLocationPermission();
       navigate("/logout");
     } catch (err) {
       console.error(err);
@@ -62,6 +64,7 @@ export default function Reg() {
         photoURL: null,
       });
 
+      await askLocationPermission(); // системный запрос геолокации после регистрации
       navigate("/logout");
     } catch (err) {
       console.error(err);

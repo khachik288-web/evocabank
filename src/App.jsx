@@ -1356,7 +1356,6 @@ export function EvocaFooter() {
               <li><a href="/about/shareholders" className="text-reset text-decoration-none hover-purple">Բաժնետերեր</a></li>
               <li><a href="/about/reports/audit" className="text-reset text-decoration-none hover-purple">Հաշվետվություններ</a></li>
               <li><a href="/about/legal-acts" className="text-reset text-decoration-none hover-purple">Իրավական ակտեր</a></li>
-              <li><a href="#tariffs" className="text-reset text-decoration-none hover-purple">Սակագներ</a></li>
               <li><a href="/alienated-property" className="text-reset text-decoration-none hover-purple">Օտարվող գույք</a></li>
               <li><a href="/builders" className="text-reset text-decoration-none hover-purple">Կառուցապատողներ</a></li>
               <li><a href="/partner-dealerships" className="text-reset text-decoration-none hover-purple">Գործընկեր ավտոսրահներ</a></li>
@@ -1384,7 +1383,7 @@ export function EvocaFooter() {
             <ul className="list-unstyled text-muted small d-flex flex-column gap-2 mb-4" style={{ fontSize: '13px' }}>
               <li><a href="/evoca-online" className="text-reset text-decoration-none hover-purple">EvocaONLINE</a></li>
               <li><a href="/safe-deposit-boxes" className="text-reset text-decoration-none hover-purple">Պահատուփեր</a></li>
-              <li><a href="#faq" className="text-reset text-decoration-none hover-purple">Հաճախ տրվող հարցեր</a></li>
+              <li><a href="/faq" className="text-reset text-decoration-none hover-purple">Հաճախ տրվող հարցեր</a></li>
               <li><a href="/about/announcements" className="text-reset text-decoration-none hover-purple">Հայտարարություններ</a></li>
               <li><a href="/dibrary" className="text-reset text-decoration-none hover-purple">Dibrary</a></li>
               <li><a href="/contact" className="text-reset text-decoration-none hover-purple">Հետադարձ կապ</a></li>
