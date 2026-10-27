@@ -1,14 +1,8 @@
 import React, { useState } from 'react';
+import CareerSubNav from './CareerSubNav';
+import CareerApplyForm from './CareerApplyForm';
 
 const Career = () => {
-  const [activeTab, setActiveTab] = useState('Մշակույթ');
-
-  const tabs = [
-    'Մշակույթ',
-    'Առավելություններ',
-    'Հաճախ տրվող հարցեր',
-    'Ինչպես ընդունվել աշխատանքի Evocabank-ում'
-  ];
 
   // Данные видеороликов с обложками и названиями
   const videoData = [
@@ -63,20 +57,8 @@ const Career = () => {
 
   return (
     <div className="font-sans text-gray-800 bg-white">
-      {/* 1. Sub-navigation Menu */}
-      <div className="bg-[#600bb8] flex justify-center items-center py-4 px-4 overflow-x-auto shadow-md sticky top-0 z-50">
-        <div className="flex space-x-8 text-white font-semibold text-sm whitespace-nowrap">
-          {tabs.map((tab) => (
-            <span 
-              key={tab} 
-              onClick={() => setActiveTab(tab)}
-              className={`cursor-pointer transition-all duration-300 hover:text-purple-300 ${activeTab === tab ? 'text-white border-b-2 border-white pb-1' : 'text-purple-200'}`}
-            >
-              {tab}
-            </span>
-          ))}
-        </div>
-      </div>
+      {/* 1. Sub-navigation Menu: каждая вкладка — отдельная страница */}
+      <CareerSubNav />
 
       {/* 2. Hero Section */}
       <div className="relative w-full h-[60vh] min-h-[500px] overflow-hidden group">
@@ -285,68 +267,7 @@ const Career = () => {
       </div>
 
       {/* 6. Application Form */}
-      <div className="max-w-3xl mx-auto py-20 px-6">
-        <div className="text-center mb-10">
-          <h2 className="text-3xl font-bold text-[#600bb8] mb-4">Դառնալ թիմի անդամ</h2>
-          <p className="text-gray-600">
-            Եթե ցանկանում ես միանալ <span className="font-bold text-[#600bb8]">EvocaTEAM</span>-ին,<br/>
-            կարող ես ուղարկել դիմում՝ կցելով ինքնակենսագրականը:
-          </p>
-        </div>
-
-        <form className="space-y-6 flex flex-col items-center">
-          <div className="w-full">
-            <label className="block text-sm font-medium text-gray-700 mb-1">Անուն <span className="text-red-500">*</span></label>
-            <input type="text" className="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-[#600bb8] transition-all" />
-          </div>
-          <div className="w-full">
-            <label className="block text-sm font-medium text-gray-700 mb-1">Ազգանուն <span className="text-red-500">*</span></label>
-            <input type="text" className="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-[#600bb8] transition-all" />
-          </div>
-          <div className="w-full">
-            <label className="block text-sm font-medium text-gray-700 mb-1">Հեռախոսահամար <span className="text-red-500">*</span></label>
-            <div className="flex">
-              <span className="inline-flex items-center px-4 border border-r-0 border-gray-300 rounded-l-md bg-gray-50 text-gray-500 text-sm">
-                 🇦🇲 +374
-              </span>
-              <input type="text" className="w-full border border-gray-300 rounded-r-md p-3 focus:outline-none focus:ring-2 focus:ring-[#600bb8] transition-all" />
-            </div>
-          </div>
-          <div className="w-full">
-            <label className="block text-sm font-medium text-gray-700 mb-1">Էլ. հասցե</label>
-            <input type="email" className="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-[#600bb8] transition-all" />
-          </div>
-          <div className="w-full">
-            <label className="block text-sm font-medium text-gray-700 mb-1">Facebook սոց. կայքում անձնական էջի հղում</label>
-            <input type="text" className="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-[#600bb8] transition-all" />
-          </div>
-          <div className="w-full">
-            <label className="block text-sm font-medium text-gray-700 mb-1">LinkedIn սոց. կայքում անձնական էջի հղում</label>
-            <input type="text" className="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-[#600bb8] transition-all" />
-          </div>
-          <div className="w-full">
-            <label className="block text-sm font-medium text-gray-700 mb-1">Ուղեկցող նամակ</label>
-            <textarea rows="4" className="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-[#600bb8] transition-all"></textarea>
-          </div>
-          
-          <div className="w-full border border-dashed border-gray-300 rounded-md p-6 text-center cursor-pointer hover:bg-gray-50 transition-colors">
-             <span className="text-sm text-gray-600">Վերբեռնեք Ձեր ռեզյումեն <span className="text-red-500">*</span></span>
-             <p className="text-xs mt-2 text-gray-400">Կցել ֆայլը / ֆայլերը</p>
-          </div>
-
-          <div className="w-full border border-gray-300 rounded-md p-4 w-fit mx-auto mt-4">
-             <label className="block text-sm font-medium text-gray-700 mb-2">Ստուգման ծածկագիր <span className="text-red-500">*</span></label>
-             <input type="text" placeholder="Մուտքագրեք ծածկագիրը" className="border border-gray-300 rounded-md p-2 w-full mb-2" />
-             <div className="bg-gray-100 font-mono text-2xl tracking-widest text-center p-2 line-through font-bold border border-gray-200">
-               4F7EVA
-             </div>
-          </div>
-
-          <button type="button" className="bg-[#600bb8] hover:bg-[#4d0799] text-white font-bold py-4 px-12 rounded-full w-full md:w-auto mt-8 shadow-lg transform transition-transform duration-300 hover:scale-105">
-            Ես ուզում եմ աշխատել Evoca-ում :)
-          </button>
-        </form>
-      </div>
+      <CareerApplyForm />
     </div>
   );
 };

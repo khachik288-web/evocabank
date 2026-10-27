@@ -14,6 +14,9 @@ import WebPayment from './WebPayment';
 import PaymentCategory from './PaymentCategory';
 import About from './About';
 import Career from './Career';
+import CareerBenefits from './CareerBenefits';
+import CareerFaq from './CareerFaq';
+import CareerHowToHire from './CareerHowToHire';
 import News from './News';
 import Blog from './Blog';
 import Loans from './Loans';
@@ -210,10 +213,10 @@ export function Header() {
             <TopDropdown label="Հետադարձ կապ" items={FEEDBACK} />
             <AuthLink className="text-gray-600 no-underline hover:text-purple-700 hover:no-underline" />
  
-            <Link to="/branches" aria-label="location" title="Մասնաճյուղեր" className="flex text-black hover:text-purple-700"><svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+            <Link to="/branches" aria-label="location" title="Մասնաճյուղեր" className="flex text-gray-600 hover:text-purple-700"><svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5.5z" />
               </svg></Link>
-            <Link to="/faq" aria-label="help" title="Հաճախ տրվող հարցեր" className="flex text-black hover:text-purple-700"><svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <Link to="/faq" aria-label="help" title="Հաճախ տրվող հարցեր" className="flex text-gray-600 hover:text-purple-700"><svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="12" cy="12" r="10" />
                 <path d="M9.5 9a2.5 2.5 0 115 .5c0 1.5-2.5 1.5-2.5 3" />
                 <line x1="12" y1="17" x2="12" y2="17" />
@@ -1934,6 +1937,9 @@ function App() {
           <Route path="/web-payment" element={<WebPayment />} />
           <Route path="/web-payment/:slug" element={<PaymentCategory />} />
           <Route path="/career" element={<SiteLayout><Career /></SiteLayout>} />
+          <Route path="/career/benefits" element={<SiteLayout><CareerBenefits /></SiteLayout>} />
+          <Route path="/career/faq" element={<SiteLayout><CareerFaq /></SiteLayout>} />
+          <Route path="/career/how-we-hire" element={<SiteLayout><CareerHowToHire /></SiteLayout>} />
           <Route path="/news" element={<SiteLayout><News /></SiteLayout>} />
           <Route path="/blog" element={<SiteLayout><Blog /></SiteLayout>} />
           <Route path="/loans" element={<SiteLayout><Loans /></SiteLayout>} />
