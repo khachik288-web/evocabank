@@ -67,6 +67,7 @@ import TariffsArchive from './TariffsArchive';
 import { TopDropdown, ONLINE_REQUESTS, FEEDBACK } from './HeaderDropdowns';
 import MobileNav, { AuthLink } from './MobileNav';
 import Faq from './Faq';
+import Branches from './Branches';
 
 // --- 1. HEADER ---
 export function Header() {
@@ -209,12 +210,10 @@ export function Header() {
             <TopDropdown label="Հետադարձ կապ" items={FEEDBACK} />
             <AuthLink className="text-gray-600 no-underline hover:text-purple-700 hover:no-underline" />
  
-            <button aria-label="location" className="hidden hover:text-purple-700 2xl:block">
-              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+            <Link to="/branches" aria-label="location" title="Մասնաճյուղեր" className="flex text-black hover:text-purple-700"><svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5.5z" />
-              </svg>
-            </button>
-            <Link to="/faq" aria-label="help" title="Հաճախ տրվող հարցեր" className="flex text-gray-600 hover:text-purple-700"><svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              </svg></Link>
+            <Link to="/faq" aria-label="help" title="Հաճախ տրվող հարցեր" className="flex text-black hover:text-purple-700"><svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="12" cy="12" r="10" />
                 <path d="M9.5 9a2.5 2.5 0 115 .5c0 1.5-2.5 1.5-2.5 3" />
                 <line x1="12" y1="17" x2="12" y2="17" />
@@ -225,7 +224,7 @@ export function Header() {
                 <path d="M2 12h20M12 2a15 15 0 010 20 15 15 0 010-20z" />
               </svg>
             </button>
-            <button aria-label="search" className="hover:text-purple-700">
+            <button aria-label="search" className="hidden hover:text-purple-700 xl:block">
               <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="11" cy="11" r="7" />
                 <line x1="21" y1="21" x2="16.65" y2="16.65" />
@@ -1927,6 +1926,7 @@ function App() {
         <Routes>
           <Route path="/reg" element={<RegGuard />} />
           <Route path="/faq" element={<SiteLayout><Faq /></SiteLayout>} />
+          <Route path="/branches" element={<SiteLayout><Branches /></SiteLayout>} />
           <Route path="/logout" element={<LogOut />} />
           <Route path="/" element={<SiteLayout><HomePage /></SiteLayout>} />
           <Route path="/business" element={<SiteLayout><Business /></SiteLayout>} />

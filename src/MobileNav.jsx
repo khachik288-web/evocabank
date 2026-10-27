@@ -92,6 +92,9 @@ export default function MobileNav({ topLinks = [], mainLinks = [], variant = 'mo
                   {l.label}
                 </Link>
               ))}
+              <Link to="/branches" className={item} style={color(pathname === '/branches')}>
+                Մասնաճյուղեր և բանկոմատներ
+              </Link>
               <Link to="/faq" className={item} style={color(pathname === '/faq')}>
                 Հաճախ տրվող հարցեր
               </Link>
