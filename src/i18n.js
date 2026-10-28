@@ -169,6 +169,7 @@ const ROWS = [
   ['Բոլորը', 'Все', 'All'],
   ['Բաց մի թողեք', 'Не пропустите', "Don't miss"],
   ['Կարևոր', 'Важное', 'Important'],
+  ['','','Evoca Travel Card']
 ];
 
 const ru = {};
