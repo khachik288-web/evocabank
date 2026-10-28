@@ -1084,10 +1084,10 @@ function Partners() {
 function BestFromEvoca() {
 const { t } = useTranslation();
   const cards = [
-    { tag: t('Թվային քարտեր'), title: t('Evoca Digital քարտ'), desc: t('Evoca Digital քարտն արդեն հասանելի է EvocaTOUCH հավելվածով։')},
-    { tag: t('Նվեր քարտեր'), title: t('Evoca Gift Card'), desc: t('Գնիր Evoca Gift Card, և լավագույն նվերը կլինի քոնը:') },
-    { tag: t('Նոր հավելված'), title: t('EvocaTOUCH 2'), desc: t('EvocaTOUCH-ը պարզապես բանկային հավելված չէ։') },
-    { tag: t('Օնլայն վճարումներ'), title: t('Արագ online վճարումներ'), desc: t('Կատարիր քո ընթացիկ վճարումները Evocabank-ի online տերմինալի միջոցով։') },
+    { tag: 'Թվային քարտեր', title: 'Evoca Digital քարտ', desc: 'Evoca Digital քարտն արդեն հասանելի է EvocaTOUCH հավելվածով։' },
+    { tag: 'Նվեր քարտեր', title: 'Evoca Gift Card', desc: 'Գնիր Evoca Gift Card, և լավագույն նվերը կլինի քոնը:' },
+    { tag: 'Նոր հավելված', title: 'EvocaTOUCH 2', desc: 'EvocaTOUCH-ը պարզապես բանկային հավելված չէ։' },
+    { tag: 'Օնլայն վճարումներ', title: 'Արագ online վճարումներ', desc: 'Կատարիր քո ընթացիկ վճարումները Evocabank-ի online տերմինալի միջոցով։' },
   ];
 
   return (
@@ -1098,12 +1098,12 @@ const { t } = useTranslation();
         </h2>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 mt-[40px]">
           {cards.map((c) => (
-            <div key={c.title} className="rounded-2xl bg-white p-6 shadow-lg">
+            <div key={t(c.title)} className="rounded-2xl bg-white p-6 shadow-lg">
               <span className="mb-3 inline-block rounded bg-purple-50 px-2 py-1 text-xs font-medium text-purple-700">
-                {c.tag}
+                {t(c.tag)}
               </span>
               <h3 className="mb-2 text-lg font-bold text-gray-900">{c.title}</h3>
-              <p className="text-sm text-gray-500">{c.desc}</p>
+              <p className="text-sm text-gray-500">{t(c.desc)}</p>
             </div>
           ))}
         </div>
@@ -1114,9 +1114,9 @@ const { t } = useTranslation();
 
 // --- 9. NEWS SECTION ---
 const NEWS_DATA = [
-  { id: 1, tag: t('Կենսակերպ'), title: t('Դիլիջան, մենք գալիս ենք'), date: '11.09.2026', image: 'https://www.evoca.am/images-cache/news/1/17891134831451/439x320.png' },
-  { id: 2, tag: t('Կենսակերպ'), title: t('Evocabank-ը՝ Retro Fest-ի ֆինանսական գործընկեր'), date: '03.09.2026', image: 'https://www.evoca.am/images-cache/news/1/17884237814941/439x320.png' },
-  { id: 3, tag: t('Պրոդուկտներ'), title: t('Դեպի նոր ուսումնական տարի՝ մինչև 23% cashback-ով'), date: '21.08.2026', image: 'https://www.evoca.am/images-cache/news/1/17873217684586/439x320.png' },
+  { id: 1, tag: 'Կենսակերպ', title: 'Դիլիջան, մենք գալիս ենք', date: '11.09.2026', image: 'https://www.evoca.am/images-cache/news/1/17891134831451/439x320.png' },
+  { id: 2, tag: 'Կենսակերպ', title: 'Evocabank-ը՝ Retro Fest-ի ֆինանսական գործընկեր', date: '03.09.2026', image: 'https://www.evoca.am/images-cache/news/1/17884237814941/439x320.png' },
+  { id: 3, tag: 'Պրոդուկտներ', title: 'Դեպի նոր ուսումնական տարի՝ մինչև 23% cashback-ով', date: '21.08.2026', image: 'https://www.evoca.am/images-cache/news/1/17873217684586/439x320.png' },
 ];
 
 function NewsSection() {
