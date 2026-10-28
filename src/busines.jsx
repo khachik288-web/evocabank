@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { 
-  ChevronRight, 
-  Plus, 
-  Edit3, 
-  Trash2, 
-  Sparkles, 
-  Layers, 
+import { useTranslation } from 'react-i18next';
+import {
+  ChevronRight,
+  Plus,
+  Edit3,
+  Trash2,
+  Sparkles,
+  Layers,
   X
 } from 'lucide-react';
 
@@ -27,7 +28,7 @@ const DEFAULT_LOANS_DATA = [
     id: '2',
     image: 'https://www.evoca.am/images-cache/loans/1/17749381045652/415x261.png',
     title: 'Պարզ բիզնես վարկ',
-    description: 'Ստացեք Պարզ բիզնես վարկ\' անշարժ գույքի ապահովմամբ և ցածր տարեկան տոկոսադրույքով: Վարկի տրամադրման վերաբերյալ որոշումը կայացվում է ընդամենը 2-4 աշխատանքային օրվա ընթացքում:',
+    description: "Ստացեք Պարզ բիզնես վարկ' անշարժ գույքի ապահովմամբ և ցածր տարեկան տոկոսադրույքով: Վարկի տրամադրման վերաբերյալ որոշումը կայացվում է ընդամենը 2-4 աշխատանքային օրվա ընթացքում:",
     stats: [
       { label: 'Սահմանաչափ (կամ համարժեք արտարժույթ)', sublabel: 'մինչև', value: '50 մլն ֏' },
       { label: 'Մարման ժամկետ', sublabel: 'մինչև', value: '60 ամիս' },
@@ -117,7 +118,7 @@ const DEFAULT_LOANS_DATA = [
     description: 'Եթե ցանկանում եք իրականացնել էներգաարդյունավետ և էներգախնայող ներդրումներ բիզնեսի ծախսերը կրճատելու և արդյունավետությունը բարձրացնելու նպատակով, այս ֆինանսավորումը Ձեզ համար է:',
     stats: [
       { label: 'Սահմանաչափ (ներառյալ) առանց գրավի', sublabel: 'մինչև', value: '10 մլն. ֏' },
-      { label: 'Տարեկան անվանական տոկոսադրույքը վեּկ դեպքում (փաստացի տոկոսադրույքը մինչև 10%)', sublabel: '', value: '9.5%' },
+      { label: 'Տարեկան անվանական տոկոսադրույքը ՎԷԿ դեպքում (փաստացի տոկոսադրույքը մինչև 10%)', sublabel: '', value: '9.5%' },
       { label: 'Տարեկան անվանական տոկոսադրույքը ԵԱՆ դեպքում (փաստացի տոկոսադրույքը մինչև 10.75%)', sublabel: '', value: '10.25%' },
       { label: 'Մարման ժամկետ ՎԷԿ դեպքում', sublabel: 'Մինչև', value: '120 ամիս' }
     ],
@@ -176,14 +177,16 @@ export function LoanCard({
   onAction,
   className = ''
 }) {
+  const { t } = useTranslation();
+
   return (
     <div className={`py-10 border-b border-gray-200/80 last:border-b-0 text-[#212529] font-sans ${className}`}>
       <div className="flex flex-col md:flex-row items-stretch md:items-start gap-8 lg:gap-12">
         <div className="w-full md:w-[380px] lg:w-[415px] flex-shrink-0">
           <div className="relative rounded-2xl overflow-hidden bg-[#f4f5f8] aspect-[415/261] flex items-center justify-center group shadow-sm transition-transform duration-300 hover:shadow-md">
-            <img 
-              src={image} 
-              alt={title} 
+            <img
+              src={image}
+              alt={t(title)}
               className="w-full h-full object-cover rounded-2xl transition-transform duration-500 group-hover:scale-105"
               onError={(e) => {
                 e.target.onerror = null;
@@ -196,10 +199,10 @@ export function LoanCard({
         <div className="flex-1 flex flex-col justify-between self-stretch">
           <div>
             <h2 className="text-2xl lg:text-[28px] font-extrabold text-[#111111] tracking-tight mb-3 leading-snug">
-              {title}
+              {t(title)}
             </h2>
             <p className="text-[#6c757d] text-[14px] lg:text-[15px] leading-relaxed mb-6 font-normal max-w-4xl">
-              {description}
+              {t(description)}
             </p>
 
             {stats && stats.length > 0 && (
@@ -208,15 +211,15 @@ export function LoanCard({
                   <div key={idx} className="flex flex-col">
                     {stat.sublabel && (
                       <span className="text-[12px] text-[#868e96] font-medium leading-none mb-1">
-                        {stat.sublabel}
+                        {t(stat.sublabel)}
                       </span>
                     )}
                     <div className="text-[22px] lg:text-[26px] font-bold text-[#7B2CBF] leading-tight tracking-tight my-0.5">
-                      {stat.value}
+                      {t(stat.value)}
                     </div>
                     {stat.label && (
                       <span className="text-[12px] lg:text-[13px] text-[#6c757d] font-medium leading-snug">
-                        {stat.label}
+                        {t(stat.label)}
                       </span>
                     )}
                   </div>
@@ -236,7 +239,7 @@ export function LoanCard({
               }}
               className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full bg-[#f0e8f8] hover:bg-[#e4d4f4] text-[#7B2CBF] font-semibold text-[14px] transition-all duration-200 shadow-xs hover:shadow-sm group active:scale-95"
             >
-              <span>{buttonText}</span>
+              <span>{t(buttonText)}</span>
               <ChevronRight className="w-4 h-4 text-[#7B2CBF] transition-transform duration-200 group-hover:translate-x-0.5" />
             </a>
           </div>
@@ -247,6 +250,7 @@ export function LoanCard({
 }
 
 export default function Business() {
+  const { t } = useTranslation();
   const [loans, setLoans] = useState(DEFAULT_LOANS_DATA);
   const [editingCard, setEditingCard] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -290,10 +294,10 @@ export default function Business() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         <div className="mb-10 text-left border-b border-gray-100 pb-6">
           <h1 className="text-3xl sm:text-4xl font-extrabold text-[#111111] tracking-tight mb-2">
-            Բիզնես վարկեր
+            {t('Բիզնես վարկեր')}
           </h1>
           <p className="text-gray-500 text-sm sm:text-base">
-            Evocabank բիզնես ֆինանսավորման ծրագրեր և ճկուն վարկային ապրանքներ
+            {t('Evocabank բիզնես ֆինանսավորման ծրագրեր և ճկուն վարկային ապրանքներ')}
           </p>
         </div>
 
@@ -304,14 +308,14 @@ export default function Business() {
                 <button
                   onClick={() => handleOpenEdit(loan)}
                   className="p-1.5 rounded-md hover:bg-purple-100 text-purple-700 transition-colors"
-                  title="Խմբագրել"
+                  title={t('Խմբագրել')}
                 >
                   <Edit3 className="w-4 h-4" />
                 </button>
                 <button
                   onClick={() => handleDelete(loan.id)}
                   className="p-1.5 rounded-md hover:bg-red-100 text-red-600 transition-colors"
-                  title="Ջնջել"
+                  title={t('Ջնջել')}
                 >
                   <Trash2 className="w-4 h-4" />
                 </button>
@@ -324,7 +328,7 @@ export default function Business() {
                 stats={loan.stats}
                 buttonText={loan.buttonText}
                 buttonUrl={loan.buttonUrl}
-                onAction={() => alert(`Անցում՝ ${loan.title}`)}
+                onAction={() => alert(`${t('Մանրամասն')}: ${t(loan.title)}`)}
               />
             </div>
           ))}
@@ -332,12 +336,12 @@ export default function Business() {
           {loans.length === 0 && (
             <div className="py-20 text-center text-gray-400">
               <Layers className="w-12 h-12 mx-auto mb-3 text-gray-300" />
-              <p className="text-lg font-medium">Քարտեր չեն գտնվել</p>
+              <p className="text-lg font-medium">{t('Քարտեր չեն գտնվել')}</p>
               <button
                 onClick={handleReset}
                 className="mt-4 px-4 py-2 rounded-xl bg-purple-100 text-[#7B2CBF] text-sm font-semibold hover:bg-purple-200 transition-colors"
               >
-                Վերականգնել ցանկը
+                {t('Վերականգնել ցանկը')}
               </button>
             </div>
           )}
@@ -350,7 +354,7 @@ export default function Business() {
             <div className="flex items-center justify-between pb-4 border-b border-gray-100 mb-6">
               <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
                 <Sparkles className="w-5 h-5 text-purple-600" />
-                {editingCard ? 'Խմբագրել քարտը' : 'Ավելացնել նոր քարտ'}
+                {editingCard ? t('Խմբագրել քարտը') : t('Ավելացնել նոր քարտ')}
               </h3>
               <button
                 onClick={() => setIsModalOpen(false)}
@@ -363,7 +367,7 @@ export default function Business() {
             <form onSubmit={handleSave} className="space-y-5">
               <div>
                 <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1.5">
-                  Վերնագիր
+                  {t('Վերնագիր')}
                 </label>
                 <input
                   type="text"
@@ -376,7 +380,7 @@ export default function Business() {
 
               <div>
                 <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1.5">
-                  Նկարագրություն
+                  {t('Նկարագրություն')}
                 </label>
                 <textarea
                   rows={3}
@@ -392,13 +396,13 @@ export default function Business() {
                   onClick={() => setIsModalOpen(false)}
                   className="px-5 py-2.5 rounded-xl text-gray-600 hover:bg-gray-100 text-sm font-medium transition-colors"
                 >
-                  Չեղարկել
+                  {t('Չեղարկել')}
                 </button>
                 <button
                   type="submit"
                   className="px-6 py-2.5 rounded-xl bg-[#7B2CBF] hover:bg-[#6A24A6] text-white text-sm font-semibold shadow-sm transition-all"
                 >
-                  Պահպանել
+                  {t('Պահպանել')}
                 </button>
               </div>
             </form>
