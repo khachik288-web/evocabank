@@ -270,7 +270,17 @@ const ROWS = [
 
   //eli urish komponent
   ['Evoca Digital քարտն արդեն հասանելի է EvocaTOUCH հավելվածով։','Цифровая карта Evoca теперь доступна в приложении EvocaTOUCH.','The Evoca Digital card is now available via the EvocaTOUCH app.'],
-  ['','',''],
+  ['Գնիր Evoca Gift Card, և լավագույն նվերը կլինի քոնը:','Подарочная карта Эвока','Buy an Evoca Gift Card, and the best gift will be yours.'],
+  
+  // ['','',''],
+  // ['','',''],
+  // ['','',''],
+  // ['','',''],
+  // ['','',''],
+  // ['','',''],
+  // ['','',''],
+  // ['','',''],
+  // ['','',''],
   // ['','',''],
   // ['','',''],
   // ['','',''],
