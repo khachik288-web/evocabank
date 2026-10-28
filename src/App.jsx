@@ -295,6 +295,7 @@ export function Header() {
 }
 
 // --- 2. SLIDER ---
+//{t("Իրավական ակտեր")}
 function Slider() {
   const { t } = useTranslation();
   const slides = [
