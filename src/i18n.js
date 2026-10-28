@@ -201,6 +201,11 @@ const ROWS = [
   'Короткий номер телефона — 8444',
   'Short phone number: 8444'
 ],
+[
+  'Բարի գալուստ, Evocabank: Մենք սպասում ենք Ձեր զանգին...',
+  'Добро пожаловать в Evocabank․ Мы ждём вашего звонка…',
+  'Welcome to Evocabank! We are waiting for your call…'
+],
 ];
 
 const ru = {};
