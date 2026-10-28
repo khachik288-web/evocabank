@@ -1022,6 +1022,7 @@ const PARTNERS_DATA = [
 function Partners() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visibleCount, setVisibleCount] = useState(4);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const handleResize = () => {
@@ -1045,10 +1046,10 @@ function Partners() {
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-12 w-full">
         <div className="w-full lg:w-[380px] xl:w-[420px] shrink-0 text-center lg:text-left">
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4 lg:mb-6">
-            Գործընկերներ
+            {t('Գործընկերներ')}
           </h2>
           <p className="text-sm lg:text-[15px] text-gray-600 leading-relaxed mb-6 lg:mb-8">
-            Դարձեք Evocabank-ի Գործընկեր և եկեք միասին գնանք դեպի գունեղ նոր իրականություն:
+            {t('Դարձեք Evocabank-ի Գործընկեր և եկեք միասին գնանք դեպի գունեղ նոր իրականություն:')}
           </p>
         </div>
 

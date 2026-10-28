@@ -261,6 +261,12 @@ const ROWS = [
   ['Օնլայն և մոբայլ բանկինգ','Онлайн-банкинг и мобильный банкинг','Online and Mobile Banking'],
   ['Evocabank-ը արագ, պարզ և նորարար ծառայություններ մատուցող բանկ է, որն առանձնանում է տեղեկատվական նորագույն տեխնոլոգիաների ակտիվ կիրառմամբ:','Evocabank — это банк, предоставляющий быстрые, простые и инновационные услуги, отличающийся активным использованием новейших информационных технологий.','Evocabank is a bank that provides fast, simple, and innovative services, distinguished by its active use of the latest information technologies.'],
   ['Դառնալ հաճախորդ','Станьте клиентом','Become a customer'],
+
+
+  //urish komponent
+  ['Գործընկերներ','Партнеры','Partners'],
+  ['Դարձեք Evocabank-ի Գործընկեր և եկեք միասին գնանք դեպի գունեղ նոր իրականություն:','Станьте партнером Evocabank, и давайте вместе двигаться к новой, яркой реальности.','Become an Evocabank partner, and let’s move together toward a vibrant new reality.'],
+  // ['','',''],
   // ['','',''],
   // ['','',''],
   // ['','',''],
