@@ -785,9 +785,9 @@ function Calculator() {
           {activeTab === 'loan' && (
             <div className="animate-fade-in">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12">
-                <RangeInput label="Վարկի գումար" value={loanAmount} min={0} max={50000000} onChange={setLoanAmount} step={10000} />
-                <RangeInput label="Ժամկետ" value={loanTerm} min={1} max={1200} unit=" ամիս" onChange={setLoanTerm} />
-                <RangeInput label="Տարեկան տոկոսադրույք" value={loanRate} min={1} max={36} unit=" %" onChange={setLoanRate} />
+                <RangeInput  value={loanAmount} min={0} max={50000000} onChange={setLoanAmount} step={10000} />
+                <RangeInput  value={loanTerm} min={1} max={1200} unit=" ամիս" onChange={setLoanTerm} />
+                <RangeInput  value={loanRate} min={1} max={36} unit=" %" onChange={setLoanRate} />
 
                 <div className="mb-6">
                   <span className="text-gray-400 text-sm block mb-3">{t('Մարման ձև')}</span>
@@ -827,9 +827,9 @@ function Calculator() {
           {activeTab === 'deposit' && (
             <div className="animate-fade-in grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
               <div>
-                <RangeInput label="Ներդրվող գումար" value={depositAmount} min={0} max={50000000} onChange={setDepositAmount} step={10000} />
-                <RangeInput label="Տարեկան տոկոսադրույք" value={depositRate} min={1} max={36} unit=" %" onChange={setDepositRate} />
-                <RangeInput label="Ավանդի ժամկետ" value={depositTerm} min={91} max={1095} unit=" օր" onChange={setDepositTerm} />
+                <RangeInput value={depositAmount} min={0} max={50000000} onChange={setDepositAmount} step={10000} />
+                <RangeInput value={depositRate} min={1} max={36} unit=" %" onChange={setDepositRate} />
+                <RangeInput value={depositTerm} min={91} max={1095} unit=" օր" onChange={setDepositTerm} />
               </div>
 
               <div className="flex flex-col justify-center">
