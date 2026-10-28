@@ -592,7 +592,8 @@ function CardsShowcase() {
 
   const handleUp = () => setActiveIndex((prev) => (prev > 0 ? prev - 1 : CARDS_DATA.length - 1));
   const handleDown = () => setActiveIndex((prev) => (prev < CARDS_DATA.length - 1 ? prev + 1 : 0));
-
+  const { t } = useTranslation();
+  
   return (
     <section className="bg-[#f3f6fa] py-20 px-6 w-full overflow-hidden">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12 lg:gap-16">
@@ -758,7 +759,8 @@ function Calculator() {
   };
 
   const loanData = generateLoanSchedule();
-
+  const { t } = useTranslation();
+  
   return (
     <section className="bg-[#f8f9fc] py-16 px-4 font-sans">
       <div className="max-w-4xl mx-auto">
