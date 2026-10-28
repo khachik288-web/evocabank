@@ -480,6 +480,7 @@ function BiometricFaces() {
 }
 
 function Biometric() {
+  const { t } = useTranslation();
   return (
     <section className="mx-auto max-w-7xl px-6 py-20">
       <div className="flex flex-col items-center gap-12 md:flex-row md:items-center md:justify-center md:gap-20">
@@ -504,10 +505,10 @@ function Biometric() {
 
         <div className="max-w-md text-center md:text-left">
           <h2 className="mb-4 text-2xl font-semibold text-gray-900 md:text-3xl">
-            Դարձիր Evocabank-ի հաճախորդ բիոմետրիկ նույնականացմամբ
+            {t('Դարձիր Evocabank-ի հաճախորդ բիոմետրիկ նույնականացմամ')}
           </h2>
           <p className="mb-6 text-base text-gray-600">
-            Սկանավորիր QR կոդը, ներբեռնիր EvocaTOUCH հարմարավետ հավելվածը, ստեղծիր քո հաշիվը և ստացիր քարտ
+            {t('Սկանավորիր QR կոդը, ներբեռնիր EvocaTOUCH հարմարավետ հավելվածը, ստեղծիր քո հաշիվը և ստացիր քարտ')}
           </p>
 
           <div className="flex flex-col items-center gap-6 sm:flex-row sm:items-center md:items-start">
@@ -517,7 +518,7 @@ function Biometric() {
               className="h-32 w-32 object-contain"
             />
             <button className="rounded-full bg-purple-700 px-6 py-3 font-semibold text-white hover:bg-purple-800 transition-colors">
-              Իմանալ ավելին
+              {t('Իմանալ ավելին')}
             </button>
           </div>
         </div>

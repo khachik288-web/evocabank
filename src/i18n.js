@@ -211,6 +211,19 @@ const ROWS = [
   'Получи карту Visa Vision в любимом цвете и стиле и пользуйся множеством преимуществ',
   'This card with its numerous benefits will become your inseparable travel partner'
 ],
+
+
+
+[ 
+  '',
+  '',
+  'Become an Evocabank customer through biometric identification'
+],
+[ 
+  '',
+  'Станьте клиентом Evocabank с помощью биометрической идентификации',
+  'Become an Evocabank customer through biometric identification'
+],
 ];
 
 const ru = {};
