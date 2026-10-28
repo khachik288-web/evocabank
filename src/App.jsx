@@ -1178,13 +1178,10 @@ const EVOCA_REVIEWS_DATA = [
 ];
 
 function ReviewsSlider() {
-  const [currentIndex, setCurrentIndex] = useState(0);
   const { t } = useTranslation();
-  // Автопереключение слайдов каждые 5 секунд
-  const text = t(review.text);          // переведённый текст
-  const parts = text.split('Evocabank'); // подсветка бренда работает на любом языке
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  
+  // Автопереключение слайдов каждые 5 секунд
   useEffect(() => {
     if (!EVOCA_REVIEWS_DATA.length) return;
     const timer = setInterval(() => {
@@ -1196,6 +1193,9 @@ function ReviewsSlider() {
   const review = EVOCA_REVIEWS_DATA[currentIndex];
 
   if (!review) return null;
+
+  const text = t(review.text);
+  const parts = text.split('Evocabank');
 
   return (
     <section className="py-5 position-relative overflow-hidden" style={{ backgroundColor: '#f8f9fa' }}>
@@ -1213,9 +1213,9 @@ function ReviewsSlider() {
         <div className="d-flex align-items-center gap-3">
           <div style={{ fontSize: '40px', color: '#7000ff', fontWeight: 'bold' }}>&#8222;</div>
           <div className="review__bg-item animate-box review__bg-item--2 pa floating-hand">
-            <img 
-              src="https://www.evoca.am/img/reviews/hand1.png" 
-              alt="Hand thumbs up" 
+            <img
+              src="https://www.evoca.am/img/reviews/hand1.png"
+              alt="Hand thumbs up"
               style={{ maxHeight: '120px', objectFit: 'contain' }}
             />
           </div>
@@ -1237,20 +1237,20 @@ function ReviewsSlider() {
             {/* Текст отзыва с анимацией плавности */}
             <div style={{ minHeight: '120px', transition: 'all 0.4s ease-in-out' }}>
               <p className="fs-5 fw-medium text-dark lh-base mb-4">
-                {review.text.includes('Evocabank') ? (
+                {parts.length > 1 ? (
                   <>
-                    {review.text.split('Evocabank')[0]}
+                    {parts[0]}
                     <span style={{ color: '#7000ff', fontWeight: 'bold' }}>Evocabank</span>
-                    {review.text.split('Evocabank')[1]}
+                    {parts.slice(1).join('Evocabank')}
                   </>
                 ) : (
-                  review.text
+                  text
                 )}
               </p>
               <h6 className="fw-bold mb-1" style={{ color: '#222', fontSize: '18px' }}>
-                {review.author}
+                {t(review.author)}
               </h6>
-              <p className="text-muted small mb-0">{review.role}</p>
+              <p className="text-muted small mb-0">{t(review.role)}</p>
             </div>
 
             {/* Точки пагинации */}
