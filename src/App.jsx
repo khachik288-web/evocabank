@@ -786,7 +786,7 @@ function Calculator() {
             <div className="animate-fade-in">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12">
                 <RangeInput  value={loanAmount} min={0} max={50000000} onChange={setLoanAmount} step={10000} />
-                <RangeInput  value={loanTerm} min={1} max={1200} unit=" ամիս" onChange={setLoanTerm} />
+                <RangeInput  value={loanTerm} min={1} max={1200} unit={t("ամիս")} onChange={setLoanTerm} />
                 <RangeInput  value={loanRate} min={1} max={36} unit=" %" onChange={setLoanRate} />
 
                 <div className="mb-6">
