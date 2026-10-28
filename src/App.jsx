@@ -1321,6 +1321,7 @@ const REVIEWS = [
 
 
 //orinak
+//orinak
 export function EvocaFooter() {
   const { t } = useTranslation();
   return (
