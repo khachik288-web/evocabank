@@ -29,6 +29,15 @@
       "$uid": {
         ".write": "auth != null && auth.uid === $uid"
       }
+    },
+    "newsVotes": {
+      "$newsId": {
+        ".read": true,
+        "$uid": {
+          ".write": "auth != null && auth.uid === $uid",
+          ".validate": "newData.val() === 1 || newData.val() === -1"
+        }
+      }
     }
   }
 }

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ChevronRight } from 'lucide-react';
+import NewsVotes from './NewsVotes';
 
 // ---------- Картинки ----------
 const IMG = (id, size, ext = 'png') =>
@@ -81,6 +82,7 @@ const NEWS = {
   },
 };
 
+Object.entries(NEWS).forEach(([k, v]) => { v.id = k; });
 const ALL_NEWS = Object.values(NEWS);
 
 const CATEGORIES = [
@@ -148,6 +150,7 @@ const CatSquare = ({ cat }) => (
 
 // Обычная карточка (3 в ряд и сетка 2x2)
 const Card = ({ item, small = false }) => (
+  <div>
   <a href="#" className="group block no-underline">
     <div className="overflow-hidden">
       <img
@@ -166,6 +169,8 @@ const Card = ({ item, small = false }) => (
     </h3>
     <p className="mt-6 text-[17px] text-[#c9c9c9]">{item.date}</p>
   </a>
+  <NewsVotes id={item.id} />
+  </div>
 );
 
 // ---------- Страница ----------
@@ -234,6 +239,7 @@ function News() {
                   {NEWS.aua.text}
                 </p>
                 <p className="mt-14 text-[16px] text-[#333]">{NEWS.aua.date}</p>
+                <NewsVotes id="aua" />
               </div>
 
               <div className="relative -mb-10 lg:w-[780px] lg:shrink-0">
@@ -254,6 +260,7 @@ function News() {
 
             <div className="-mt-[10px] grid gap-y-14 lg:grid-cols-[616px_1fr] lg:gap-x-[123px]">
               {/* Большая карточка */}
+              <div>
               <a href="#" className="group relative block no-underline">
                 <span className="absolute -left-5 -top-5 z-0 hidden h-[90px] w-[90px] bg-[#f7e300] lg:block" />
                 <img
@@ -272,6 +279,8 @@ function News() {
                 </p>
                 <p className="mt-6 text-[17px] text-[#c9c9c9]">{NEWS.amx.date}</p>
               </a>
+              <NewsVotes id="amx" />
+              </div>
 
               {/* Сетка 2x2 */}
               <div className="grid content-start gap-x-[41px] gap-y-12 sm:grid-cols-2">
@@ -313,6 +322,7 @@ function News() {
                     {NEWS.block.text}
                   </p>
                   <p className="mt-14 text-[17px] text-[#888]">{NEWS.block.date}</p>
+                  <NewsVotes id="block" />
                 </div>
               </div>
             </div>
