@@ -296,6 +296,7 @@ export function Header() {
 
 // --- 2. SLIDER ---
 function Slider() {
+  const { t } = useTranslation();
   const slides = [
     {
       bg: 'bg-purple-700',
