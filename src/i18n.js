@@ -206,6 +206,11 @@ const ROWS = [
   'Добро пожаловать в Evocabank․ Мы ждём вашего звонка…',
   'Welcome to Evocabank! We are waiting for your call…'
 ],
+[
+  'Ձեռք բեր Visa Vision քարտը քո նախընտրած գույնով, դիզայնով ու ոճով և օգտվիր բազմաթիվ առավելություններից',
+  'Получи карту Visa Vision в любимом цвете и стиле и пользуйся множеством преимуществ',
+  'This card with its numerous benefits will become your inseparable travel partner'
+],
 ];
 
 const ru = {};
