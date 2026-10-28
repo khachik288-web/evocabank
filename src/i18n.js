@@ -225,6 +225,11 @@ const ROWS = [
   'Отсканируйте QR-код, скачайте наше удобное приложение EvocaTOUCH, создайте аккаунт и получите карту',
   'Scan the QR code, download our convenient EvocaTOUCH application, create your account and get a card'
 ],
+[
+  'Մանրամասն',
+  'Подробнее',
+  'Details'
+],
 ];
 
 const ru = {};

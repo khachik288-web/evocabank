@@ -648,7 +648,7 @@ function CardsShowcase() {
             {CARDS_DATA[activeIndex].name}
           </h2>
           <button className="bg-purple-700 hover:bg-purple-800 text-white font-semibold py-3 px-8 rounded-full transition-colors shadow-md">
-            Մանրամասն
+            {t('Մանրամասն')}
           </button>
         </div>
       </div>
