@@ -216,7 +216,7 @@ const ROWS = [
 
 
 [ 
-  'Դարձիր Evocabank-ի հաճախորդ բիոմետրիկ նույնականացմամբ',
+  'Դարձիր Evocabank-ի հաճախորդ բիոմետրիկ նույնականացմամ',
   'Станьте клиентом Evocabank с помощью биометрической идентификации',
   'Become an Evocabank customer through biometric identification'
 ],
