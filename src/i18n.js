@@ -282,6 +282,11 @@ const ROWS = [
   ['Դիլիջան, մենք գալիս ենք', 'Дилижан, мы едем', 'Dilijan, here we come'],
   ['Evocabank-ը՝ Retro Fest-ի ֆինանսական գործընկեր', 'Evocabank — финансовый партнёр Retro Fest', "Evocabank is Retro Fest's financial partner"],
   ['Դեպի նոր ուսումնական տարի՝ մինչև 23% cashback-ով', 'К новому учебному году — с кешбэком до 23%', 'Toward the new school year with up to 23% cashback'],
+
+
+  //news
+  ['Վերջին նորությունները', 'Последние новости', 'Latest news'],
+  ['Բոլոր նորությունները ›', 'Все новости ›', 'All news ›'],
   // ['','',''],
   // ['','',''],
   // ['','',''],

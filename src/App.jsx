@@ -1121,19 +1121,21 @@ const NEWS_DATA = [
 ];
 
 function NewsSection() {
+  const { t } = useTranslation();
+
   return (
     <section className="bg-[#eef2fb] py-16 px-6">
       <div className="mx-auto max-w-7xl">
         <div className="mb-10 flex flex-wrap items-center justify-between gap-4">
-          <h2 className="text-3xl font-bold text-gray-900 md:text-4xl">Վերջին նորությունները</h2>
-          <Link to="/news" className="font-semibold text-purple-700 no-underline hover:underline">Բոլոր նորությունները ›</Link>
+          <h2 className="text-3xl font-bold text-gray-900 md:text-4xl">{t('Վերջին նորությունները')}</h2>
+          <Link to="/news" className="font-semibold text-purple-700 no-underline hover:underline">{t('Բոլոր նորությունները ›')}</Link>
         </div>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {NEWS_DATA.map((item) => (
             <Link key={item.id} to="/news" className="overflow-hidden rounded-2xl bg-white shadow-sm p-4 block no-underline transition hover:-translate-y-1 hover:shadow-lg">
-              <img src={item.image} alt={item.title} className="h-48 w-full object-cover rounded-xl mb-4" />
-              <span className="text-xs font-semibold text-purple-700">{item.tag}</span>
-              <h3 className="text-lg font-bold my-2 text-gray-900">{item.title}</h3>
+              <img src={item.image} alt={t(item.title)} className="h-48 w-full object-cover rounded-xl mb-4" />
+              <span className="text-xs font-semibold text-purple-700">{t(item.tag)}</span>
+              <h3 className="text-lg font-bold my-2 text-gray-900">{t(item.title)}</h3>
               <span className="text-sm text-gray-400">{item.date}</span>
             </Link>
           ))}
