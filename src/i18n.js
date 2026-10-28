@@ -287,6 +287,33 @@ const ROWS = [
   //news
   ['Վերջին նորությունները', 'Последние новости', 'Latest news'],
   ['Բոլոր նորությունները ›', 'Все новости ›', 'All news ›'],
+
+
+  //urish blok
+    // отзывы
+  ['Բանկ, որ իր ռեբրենդինգի շքեղ միջոցառմամբ ու աշխատանքային ձևաչափով բանկային ոլորտում ամրապնդեց որակ և ճաշակ թելադրեց: Evocabank-ն առաջին իսկ վայրկյանից ստիպեց նորովի և ժամանակակից հայացքով',
+   'Банк, который своим роскошным мероприятием по ребрендингу и форматом работы укрепил качество и задал вкус в банковской сфере. Evocabank с первой же секунды заставил взглянуть по-новому, современным взглядом',
+   'A bank that, with its lavish rebranding event and way of working, strengthened quality and set the standard of taste in the banking sector. From the very first second, Evocabank made you look at things in a new and modern way'],
+  ['Հայաստանի իրականության մեջ բացառիկ հրաշք բանկ: Միայն այս հնարավորությունը ընձեռելով երիտասարդ ընտանիքներին` նման ցածր տոկոսով բնակարան ձեռք բերել, արժանի է մեծ հարգանքի: Շնորհակալ ենք, որ Դուք կաք:',
+   'Исключительно замечательный банк для армянской действительности. Уже за одну только возможность для молодых семей приобрести квартиру под такой низкий процент банк заслуживает большого уважения. Спасибо, что вы есть.',
+   'An exceptionally wonderful bank for Armenian reality. Just for giving young families the chance to buy an apartment at such a low interest rate, it deserves great respect. Thank you for being there.'],
+  ['Գերազանց սպասարկում, ընտիր ու հավես անձնակազմ Ազատության մասնաճյուղում: Վարկային բաժնից շատ շնորհակալ եմ, վարկս ձևակերպվեց առանց ավելորդ քաշքշուկների` հեշտ, արագ, որակով: Սպասարկման',
+   'Отличное обслуживание, прекрасный и классный персонал в филиале на Азатутюн. Большое спасибо кредитному отделу: мой кредит оформили без лишней суеты — легко, быстро, качественно. Обслуживание',
+   'Excellent service, wonderful and fun staff at the Azatutyun branch. Many thanks to the loan department: my loan was processed without any unnecessary hassle — easily, quickly and with quality. Service'],
+  ['Դեպի նոր իրականություն. ահա թե ուր ենք մենք շարժվում ամեն մի նախագիծ Evocabank-ի հետ հաջողությամբ ավարտելիս: Ավելի քան 5 տարի համագործակցելով` կարելի է ասել, որ միասին անցել ենք մի մեծ ճանապարհ` լի',
+   'К новой реальности: вот куда мы движемся, успешно завершая каждый проект вместе с Evocabank. Сотрудничая более 5 лет, можно сказать, что вместе мы прошли большой путь, полный',
+   'Toward a new reality: that is where we are heading with every project successfully completed with Evocabank. After more than 5 years of cooperation, we can say that together we have come a long way, full of'],
+  ['Լավագույն նորարարական և թվային բանկ` լավագույն ծառայություններով և անձնակազմով:',
+   'Лучший инновационный и цифровой банк с лучшими услугами и персоналом.',
+   'The best innovative and digital bank with the best services and staff.'],
+  ['Կամո Թովմասյան', 'Камо Товмасян', 'Kamo Tovmasyan'],
+  ['Սուսաննա Վանյան', 'Сусанна Ванян', 'Susanna Vanyan'],
+  ['Նունե Գևորգյան', 'Нуне Геворгян', 'Nune Gevorgyan'],
+  ['Արամ Ագարյան', 'Арам Агарян', 'Aram Agaryan'],
+  ['Էլեն Վարդանյան', 'Элен Варданян', 'Elen Vardanyan'],
+  ['KAMOBLOG մեդիա-հարթակի հիմնադիր, influencer', 'Основатель медиаплатформы KAMOBLOG, инфлюенсер', 'Founder of the KAMOBLOG media platform, influencer'],
+  ['Indigo Branding-ի հիմնադիր', 'Основатель Indigo Branding', 'Founder of Indigo Branding'],
+  ['Հաճախորդ', 'Клиент', 'Customer'],
   // ['','',''],
   // ['','',''],
   // ['','',''],

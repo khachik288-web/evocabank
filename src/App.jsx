@@ -1179,8 +1179,12 @@ const EVOCA_REVIEWS_DATA = [
 
 function ReviewsSlider() {
   const [currentIndex, setCurrentIndex] = useState(0);
-
+  const { t } = useTranslation();
   // Автопереключение слайдов каждые 5 секунд
+  const text = t(review.text);          // переведённый текст
+  const parts = text.split('Evocabank'); // подсветка бренда работает на любом языке
+
+  
   useEffect(() => {
     if (!EVOCA_REVIEWS_DATA.length) return;
     const timer = setInterval(() => {
