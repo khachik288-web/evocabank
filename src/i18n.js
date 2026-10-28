@@ -214,15 +214,16 @@ const ROWS = [
 
 
 
+
 [ 
-  '',
-  '',
+  'Դարձիր Evocabank-ի հաճախորդ բիոմետրիկ նույնականացմամբ',
+  'Станьте клиентом Evocabank с помощью биометрической идентификации',
   'Become an Evocabank customer through biometric identification'
 ],
 [ 
-  '',
-  'Станьте клиентом Evocabank с помощью биометрической идентификации',
-  'Become an Evocabank customer through biometric identification'
+  'Սկանավորիր QR կոդը, ներբեռնիր EvocaTOUCH հարմարավետ հավելվածը, ստեղծիր քո հաշիվը և ստացիր քարտ',
+  'Отсканируйте QR-код, скачайте наше удобное приложение EvocaTOUCH, создайте аккаунт и получите карту',
+  'Scan the QR code, download our convenient EvocaTOUCH application, create your account and get a card'
 ],
 ];
 
