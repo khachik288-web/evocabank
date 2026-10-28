@@ -177,6 +177,11 @@ const ROWS = [
   'Bring your salary to Evoca and get more...'
 ],
 [
+  'Evoca Աշխատավարձային Նախագիծ',
+  'Зарплатный проект Evoca',
+  'Evoca Salary Project'
+]
+[
   'Evoca Travel Card',
   'Evoca Travel Card',
   'Evoca Travel Card'
