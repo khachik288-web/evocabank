@@ -1102,7 +1102,7 @@ const { t } = useTranslation();
               <span className="mb-3 inline-block rounded bg-purple-50 px-2 py-1 text-xs font-medium text-purple-700">
                 {t(c.tag)}
               </span>
-              <h3 className="mb-2 text-lg font-bold text-gray-900">{c.title}</h3>
+              <h3 className="mb-2 text-lg font-bold text-gray-900">{t(c.title)}</h3>
               <p className="text-sm text-gray-500">{t(c.desc)}</p>
             </div>
           ))}
@@ -1135,7 +1135,7 @@ function NewsSection() {
               <img src={item.image} alt={t(item.title)} className="h-48 w-full object-cover rounded-xl mb-4" />
               <span className="text-xs font-semibold text-purple-700">{t(item.tag)}</span>
               <h3 className="text-lg font-bold my-2 text-gray-900">{t(item.title)}</h3>
-              <span className="text-sm text-gray-400">{item.date}</span>
+              <span className="text-sm text-gray-400">{t(item.date)}</span>
             </Link>
           ))}
         </div>
