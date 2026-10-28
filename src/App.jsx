@@ -1082,8 +1082,7 @@ function Partners() {
 
 // --- 8. BEST FROM EVOCA ---
 function BestFromEvoca() {
-  const { t } = useTranslation();
-
+const { t } = useTranslation();
   const cards = [
     { tag: t('Թվային քարտեր'), title: t('Evoca Digital քարտ'), desc: t('Evoca Digital քարտն արդեն հասանելի է EvocaTOUCH հավելվածով։')},
     { tag: t('Նվեր քարտեր'), title: t('Evoca Gift Card'), desc: t('Գնիր Evoca Gift Card, և լավագույն նվերը կլինի քոնը:') },
