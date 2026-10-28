@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export function TopDropdown({ label, items }) {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
 
@@ -24,7 +26,7 @@ export function TopDropdown({ label, items }) {
         onClick={() => setOpen((o) => !o)}
         className="flex items-center gap-1 text-purple-700 no-underline hover:no-underline"
       >
-        {label}
+        {t(label)}
         <svg
           className={`h-3 w-3 transition-transform ${open ? 'rotate-180' : ''}`}
           viewBox="0 0 24 24"
@@ -43,7 +45,7 @@ export function TopDropdown({ label, items }) {
                   href={it.href || '#'}
                   className="block whitespace-nowrap px-5 py-2 text-right text-[13px] font-medium text-gray-900 no-underline hover:text-purple-700 hover:no-underline"
                 >
-                  {it.label}
+                  {t(it.label)}
                 </a>
               </li>
             ))}

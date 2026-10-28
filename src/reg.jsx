@@ -10,8 +10,10 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
+import { useTranslation } from 'react-i18next';
 
 export default function Reg() {
+  const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
@@ -42,14 +44,14 @@ export default function Reg() {
       navigate("/logout");
     } catch (err) {
       console.error(err);
-      setError("Սխալ Google-ով մուտքի ժամանակ");
+      setError(t("Սխալ Google-ով մուտքի ժամանակ"));
     }
   };
 
   const handleRegister = async () => {
     setError("");
     if (!email || !password) {
-      setError("Լրացրեք էլ. հասցեն և գաղտնաբառը");
+      setError(t("Լրացրեք էլ. հասցեն և գաղտնաբառը"));
       return;
     }
 
@@ -86,15 +88,15 @@ export default function Reg() {
   const getErrorMessage = (code) => {
     switch (code) {
       case "auth/email-already-in-use":
-        return "Այս էլ. հասցեն արդեն գրանցված է";
+        return t("Այս էլ. հասցեն արդեն գրանցված է");
       case "auth/invalid-email":
-        return "Սխալ էլ. հասցե";
+        return t("Սխալ էլ. հասցե");
       case "auth/weak-password":
-        return "Գաղտնաբառը շատ թույլ է (նվազագույնը 6 նիշ)";
+        return t("Գաղտնաբառը շատ թույլ է (նվազագույնը 6 նիշ)");
       case "auth/invalid-credential":
-        return "Սխալ էլ. հասցե կամ գաղտնաբառ";
+        return t("Սխալ էլ. հասցե կամ գաղտնաբառ");
       default:
-        return "Ինչ-որ բան այն չէ, փորձեք կրկին";
+        return t("Ինչ-որ բան այն չէ, փորձեք կրկին");
     }
   };
 
@@ -113,7 +115,7 @@ export default function Reg() {
             {/* email */}
             <div>
               <label className="block text-xs text-slate-500 mb-1">
-                Էլ. հասցե
+                {t("Էլ. հասցե")}
               </label>
               <input
                 type="email"
@@ -126,7 +128,7 @@ export default function Reg() {
             {/* phone — опционально, только для профиля */}
             <div>
               <label className="block text-xs text-slate-500 mb-1">
-                Հեռախոսահամար (ոչ պարտադիր)
+                {t("Հեռախոսահամար (ոչ պարտադիր)")}
               </label>
               <div className="flex items-center border-b border-slate-200 pb-2 gap-2">
                 <span className="text-slate-600 text-sm">+374</span>
@@ -142,7 +144,7 @@ export default function Reg() {
             {/* parol */}
             <div>
               <label className="block text-xs text-slate-500 mb-1">
-                Գաղտնաբառ
+                {t("Գաղտնաբառ")}
               </label>
               <div className="flex items-center border-b border-slate-200 pb-2 gap-2">
                 <input
@@ -169,7 +171,7 @@ export default function Reg() {
               onClick={handleLogin}
               className="w-full bg-[#7000ff] hover:bg-[#5c00b3] active:bg-[#4b0094] text-white font-medium rounded-full py-3.5 sm:py-3 mt-2"
             >
-              Մուտք
+              {t("Մուտք")}
             </button>
 
             {/* googlov */}
@@ -179,7 +181,7 @@ export default function Reg() {
               className="w-full border border-[#7000ff] bg-white hover:bg-slate-50 active:bg-slate-100 text-[#7000ff] font-medium rounded-full py-3.5 sm:py-3 mt-2 flex items-center justify-center gap-2"
             >
               <FcGoogle size={20} />
-              <span>Մուտք Google-ով</span>
+              <span>{t("Մուտք Google-ով")}</span>
             </button>
 
             {/* registracia */}
@@ -188,7 +190,7 @@ export default function Reg() {
               onClick={handleRegister}
               className="w-full border border-[#7000ff] text-[#7000ff] font-medium rounded-full py-3.5 sm:py-3 bg-white active:bg-slate-50"
             >
-              Գրանցում
+              {t("Գրանցում")}
             </button>
           </form>
         </div>

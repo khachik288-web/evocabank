@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import LanguageSwitcher from './LanguageSwitcher';
 import { TopDropdown, ONLINE_REQUESTS, FEEDBACK } from './HeaderDropdowns';
 import MobileNav, { AuthLink } from './MobileNav';
+import { useTranslation } from 'react-i18next';
 
 const TOP = [['Անհատ', '/'], ['Բիզնես', '/business'], ['Ակնթարթային վճարումներ', '/web-payment'], ['Մեր մասին', '/about'], ['Նորություններ', '/news'], ['Բլոգ', '/blog'], ['Կարիերա', '/career']];
 // [название, путь] — путь '#' пока заглушка
@@ -22,6 +24,7 @@ const DIGITAL_TABS = [['V-POS Տերմինալ', '/business/digital'], ['POS Տ�
 const OTHER_TABS = [['Պահատուփեր', '/business/other'], ['Փոխանցումներ', '/business/other/transfers']];
 
 export default function BusinessHeader({ sub }) {
+  const { t } = useTranslation();
   const { pathname } = useLocation();
 
   const title = sub || SUB[pathname] || 'Բիզնես վարկեր';
@@ -51,7 +54,7 @@ export default function BusinessHeader({ sub }) {
                       : ''
                   }`}
                 >
-                  {label}
+                  {t(label)}
                 </Link>
               );
             })}
@@ -62,20 +65,15 @@ export default function BusinessHeader({ sub }) {
             <TopDropdown label="Հետադարձ կապ" items={FEEDBACK} />
             <AuthLink className="text-gray-600 no-underline hover:text-purple-700 hover:no-underline" />
 
-            <Link to="/branches" aria-label="location" title="Մասնաճյուղեր" className="flex text-gray-600 hover:text-purple-700"><svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+            <Link to="/branches" aria-label="location" title={t("Մասնաճյուղեր")} className="flex text-gray-600 hover:text-purple-700"><svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5.5z" />
               </svg></Link>
-            <Link to="/faq" aria-label="help" title="Հաճախ տրվող հարցեր" className="flex text-gray-600 hover:text-purple-700"><svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <Link to="/faq" aria-label="help" title={t("Հաճախ տրվող հարցեր")} className="flex text-gray-600 hover:text-purple-700"><svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="12" cy="12" r="10" />
                 <path d="M9.5 9a2.5 2.5 0 115 .5c0 1.5-2.5 1.5-2.5 3" />
                 <line x1="12" y1="17" x2="12" y2="17" />
               </svg></Link>
-            <button aria-label="language" className="hidden hover:text-purple-700 2xl:block">
-              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="12" cy="12" r="10" />
-                <path d="M2 12h20M12 2a15 15 0 010 20 15 15 0 010-20z" />
-              </svg>
-            </button>
+            <LanguageSwitcher compact />
             <button aria-label="search" className="hidden hover:text-purple-700 xl:block">
               <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="11" cy="11" r="7" />
@@ -109,7 +107,7 @@ export default function BusinessHeader({ sub }) {
                     isActive(path) ? 'text-purple-700' : 'text-gray-800 hover:text-purple-700'
                   }`}
                 >
-                  {label}
+                  {t(label)}
                 </Link>
               ))}
             </nav>
@@ -140,12 +138,12 @@ export default function BusinessHeader({ sub }) {
                     pathname === path ? 'bg-[#5a00bd]' : ''
                   }`}
                 >
-                  {label}
+                  {t(label)}
                 </Link>
               ))
             ) : (
               <span className="whitespace-nowrap bg-[#5a00bd] px-5 py-[19px] text-[15px] font-semibold text-white">
-                {title}
+                {t(title)}
               </span>
             )}
           </nav>

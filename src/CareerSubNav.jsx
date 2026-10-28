@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 // Вкладки раздела «Կարիերա»: каждая — отдельная страница со своим адресом
 export const CAREER_TABS = [
@@ -10,6 +11,7 @@ export const CAREER_TABS = [
 ];
 
 export default function CareerSubNav() {
+  const { t: tr } = useTranslation();
   const { pathname } = useLocation();
   return (
     <nav
@@ -36,7 +38,7 @@ export default function CareerSubNav() {
               onMouseEnter={(e) => { if (!active) e.currentTarget.style.background = '#5a00bd'; }}
               onMouseLeave={(e) => { if (!active) e.currentTarget.style.background = 'transparent'; }}
             >
-              {t.label}
+              {tr(t.label)}
             </Link>
           );
         })}

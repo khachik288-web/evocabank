@@ -69,11 +69,14 @@ import Dealerships from './Dealerships';
 import TariffsArchive from './TariffsArchive';
 import { TopDropdown, ONLINE_REQUESTS, FEEDBACK } from './HeaderDropdowns';
 import MobileNav, { AuthLink } from './MobileNav';
+import LanguageSwitcher from './LanguageSwitcher';
 import Faq from './Faq';
 import Branches from './Branches';
+import { useTranslation } from 'react-i18next';
 
 // --- 1. HEADER ---
 export function Header() {
+  const { t } = useTranslation();
   const { pathname } = useLocation();
   const isAbout = pathname.startsWith('/about');
   const isReports = pathname.startsWith('/about/reports');
@@ -203,7 +206,7 @@ export function Header() {
         : ''
     }`}
   >
-    {link.label}
+    {t(link.label)}
   </Link>
 ))}
           </nav>
@@ -213,20 +216,15 @@ export function Header() {
             <TopDropdown label="Հետադարձ կապ" items={FEEDBACK} />
             <AuthLink className="text-gray-600 no-underline hover:text-purple-700 hover:no-underline" />
  
-            <Link to="/branches" aria-label="location" title="Մասնաճյուղեր" className="flex text-gray-600 hover:text-purple-700"><svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+            <Link to="/branches" aria-label="location" title={t("Մասնաճյուղեր")} className="flex text-gray-600 hover:text-purple-700"><svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5.5z" />
               </svg></Link>
-            <Link to="/faq" aria-label="help" title="Հաճախ տրվող հարցեր" className="flex text-gray-600 hover:text-purple-700"><svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <Link to="/faq" aria-label="help" title={t("Հաճախ տրվող հարցեր")} className="flex text-gray-600 hover:text-purple-700"><svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="12" cy="12" r="10" />
                 <path d="M9.5 9a2.5 2.5 0 115 .5c0 1.5-2.5 1.5-2.5 3" />
                 <line x1="12" y1="17" x2="12" y2="17" />
               </svg></Link>
-            <button aria-label="language" className="hidden hover:text-purple-700 2xl:block">
-              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="12" cy="12" r="10" />
-                <path d="M2 12h20M12 2a15 15 0 010 20 15 15 0 010-20z" />
-              </svg>
-            </button>
+            <LanguageSwitcher compact />
             <button aria-label="search" className="hidden hover:text-purple-700 xl:block">
               <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="11" cy="11" r="7" />
@@ -254,7 +252,7 @@ export function Header() {
                     (isTariffs ? link.path.startsWith('/about/tariffs') : isAnnouncements ? link.path === '/about/announcements' : isReports ? link.path.startsWith('/about/reports') : isCards ? link.path === '/cards' : isAccounts ? link.path === '/accounts' : isTransfers ? link.path === '/transfers' : isSecurities ? link.path === '/securities' : i === 0) ? 'text-purple-700' : 'text-gray-800 hover:text-purple-700'
                   }`}
                 >
-                  {link.label}
+                  {t(link.label)}
                 </Link>
               ))}
             </nav>
@@ -284,7 +282,7 @@ export function Header() {
                       active ? 'bg-[#5a00bd]' : ''
                     }`}
                   >
-                    {item.label}
+                    {t(item.label)}
                   </Link>
                 );
               })}
@@ -1324,6 +1322,7 @@ const REVIEWS = [
 
 
 export function EvocaFooter() {
+  const { t } = useTranslation();
   return (
     <footer className="w-100 bg-white border-top text-dark pt-5">
       <Container>
@@ -1336,57 +1335,58 @@ export function EvocaFooter() {
               </h3>
             </div>
             <p className="text-muted small mb-4" style={{ fontSize: '13px', lineHeight: '1.6' }}>
-              ք. Երևան, 0010,<br />
-              Հանրապետության 44/2
+              {t("ք. Երևան, 0010,")}<br />
+              {t("Հանրապետության 44/2")}
             </p>
             <p className="text-muted small mb-4" style={{ fontSize: '12px', lineHeight: '1.5' }}>
-              <strong>Evocabank-ը վերահսկվում է Հայաստանի Հանրապետության Կենտրոնական բանկի կողմից</strong>
+              <strong>{t("Evocabank-ը վերահսկվում է Հայաստանի Հանրապետության Կենտրոնական բանկի կողմից")}</strong>
             </p>
             <p className="text-muted extra-small" style={{ fontSize: '11px' }}>
-              1990 - 2026, ԲՈԼՈՐ ԻՐԱՎՈՒՆՔՆԵՐԸ ՊԱՇՏՊԱՆՎԱԾ ԵՆ
+              {t("1990 - 2026, ԲՈԼՈՐ ԻՐԱՎՈՒՆՔՆԵՐԸ ՊԱՇՏՊԱՆՎԱԾ ԵՆ")}
             </p>
           </Col>
 
           {/* Колонках 2: Բանկի մասին */}
           <Col lg={3} md={6}>
-            <h6 className="fw-bold mb-3" style={{ fontSize: '15px' }}>Բանկի մասին</h6>
+            <h6 className="fw-bold mb-3" style={{ fontSize: '15px' }}>{t("Բանկի մասին")}</h6>
             <ul className="list-unstyled text-muted small d-flex flex-column gap-2" style={{ fontSize: '13px' }}>
-              <li><a href="/about" className="text-reset text-decoration-none hover-purple">Մեր մասին</a></li>
-              <li><a href="/about/management" className="text-reset text-decoration-none hover-purple">Ղեկավարություն</a></li>
-              <li><a href="/about/shareholders" className="text-reset text-decoration-none hover-purple">Բաժնետերեր</a></li>
-              <li><a href="/about/reports/audit" className="text-reset text-decoration-none hover-purple">Հաշվետվություններ</a></li>
-              <li><a href="/about/legal-acts" className="text-reset text-decoration-none hover-purple">Իրավական ակտեր</a></li>
-              <li><a href="/alienated-property" className="text-reset text-decoration-none hover-purple">Օտարվող գույք</a></li>
-              <li><a href="/builders" className="text-reset text-decoration-none hover-purple">Կառուցապատողներ</a></li>
-              <li><a href="/partner-dealerships" className="text-reset text-decoration-none hover-purple">Գործընկեր ավտոսրահներ</a></li>
-              <li><a href="/about/tariffs/archive" className="text-reset text-decoration-none hover-purple">Սակագների արխիվ</a></li>
+              <li><a href="/about" className="text-reset text-decoration-none hover-purple">{t("Մեր մասին")}</a></li>
+              <li><a href="/about/management" className="text-reset text-decoration-none hover-purple">{t("Ղեկավարություն")}</a></li>
+              <li><a href="/about/shareholders" className="text-reset text-decoration-none hover-purple">{t("Բաժնետերեր")}</a></li>
+              <li><a href="/about/reports/audit" className="text-reset text-decoration-none hover-purple">{t("Հաշվետվություններ")}</a></li>
+              <li><a href="/about/legal-acts" className="text-reset text-decoration-none hover-purple">{t("Իրավական ակտեր")}</a></li>
+              <li><a href="#tariffs" className="text-reset text-decoration-none hover-purple">{t("Սակագներ")}</a></li>
+              <li><a href="/alienated-property" className="text-reset text-decoration-none hover-purple">{t("Օտարվող գույք")}</a></li>
+              <li><a href="/builders" className="text-reset text-decoration-none hover-purple">{t("Կառուցապատողներ")}</a></li>
+              <li><a href="/partner-dealerships" className="text-reset text-decoration-none hover-purple">{t("Գործընկեր ավտոսրահներ")}</a></li>
+              <li><a href="/about/tariffs/archive" className="text-reset text-decoration-none hover-purple">{t("Սակագների արխիվ")}</a></li>
             </ul>
           </Col>
 
           {/* Колонках 3: Օգտակար հղումներ */}
           <Col lg={3} md={6}>
-            <h6 className="fw-bold mb-3" style={{ fontSize: '15px' }}>Օգտակար հղումներ</h6>
+            <h6 className="fw-bold mb-3" style={{ fontSize: '15px' }}>{t("Օգտակար հղումներ")}</h6>
             <ul className="list-unstyled text-muted small d-flex flex-column gap-2" style={{ fontSize: '13px' }}>
-              <li><a href="/customer-rights" className="text-reset text-decoration-none hover-purple">Հաճախորդի իրավունքները (Բողոքի ներկայացման կանոններ)</a></li>
-              <li><a href="/residency-criteria" className="text-reset text-decoration-none hover-purple">Հաճախորդի ռեզիդենտության չափանիշներ</a></li>
-              <li><a href="/regulation" className="text-reset text-decoration-none hover-purple">Կարգավորում</a></li>
-              <li><a href="/privacy-policy" className="text-reset text-decoration-none hover-purple">Գաղտնիության քաղաքականություն</a></li>
-              <li><a href="/financial-mediator" className="text-reset text-decoration-none hover-purple">Ֆին. հաշտարար</a></li>
-              <li><a href="/financial-crime-prevention" className="text-reset text-decoration-none hover-purple">Ֆինանսական հանցագործությունների կանխարգելում</a></li>
-              <li><a href="/cardholder-links" className="text-reset text-decoration-none hover-purple">Հղումներ Բանկի քարտապանների համար</a></li>
+              <li><a href="/customer-rights" className="text-reset text-decoration-none hover-purple">{t("Հաճախորդի իրավունքները (Բողոքի ներկայացման կանոններ)")}</a></li>
+              <li><a href="/residency-criteria" className="text-reset text-decoration-none hover-purple">{t("Հաճախորդի ռեզիդենտության չափանիշներ")}</a></li>
+              <li><a href="/regulation" className="text-reset text-decoration-none hover-purple">{t("Կարգավորում")}</a></li>
+              <li><a href="/privacy-policy" className="text-reset text-decoration-none hover-purple">{t("Գաղտնիության քաղաքականություն")}</a></li>
+              <li><a href="/financial-mediator" className="text-reset text-decoration-none hover-purple">{t("Ֆին. հաշտարար")}</a></li>
+              <li><a href="/financial-crime-prevention" className="text-reset text-decoration-none hover-purple">{t("Ֆինանսական հանցագործությունների կանխարգելում")}</a></li>
+              <li><a href="/cardholder-links" className="text-reset text-decoration-none hover-purple">{t("Հղումներ Բանկի քարտապանների համար")}</a></li>
             </ul>
           </Col>
 
           {/* Колонках 4: Այլ հղումներ, Соцсети и Приложения */}
           <Col lg={3} md={6}>
-            <h6 className="fw-bold mb-3" style={{ fontSize: '15px' }}>Այլ հղումներ</h6>
+            <h6 className="fw-bold mb-3" style={{ fontSize: '15px' }}>{t("Այլ հղումներ")}</h6>
             <ul className="list-unstyled text-muted small d-flex flex-column gap-2 mb-4" style={{ fontSize: '13px' }}>
               <li><a href="/evoca-online" className="text-reset text-decoration-none hover-purple">EvocaONLINE</a></li>
-              <li><a href="/safe-deposit-boxes" className="text-reset text-decoration-none hover-purple">Պահատուփեր</a></li>
-              <li><a href="/faq" className="text-reset text-decoration-none hover-purple">Հաճախ տրվող հարցեր</a></li>
-              <li><a href="/about/announcements" className="text-reset text-decoration-none hover-purple">Հայտարարություններ</a></li>
+              <li><a href="/safe-deposit-boxes" className="text-reset text-decoration-none hover-purple">{t("Պահատուփեր")}</a></li>
+              <li><a href="#faq" className="text-reset text-decoration-none hover-purple">{t("Հաճախ տրվող հարցեր")}</a></li>
+              <li><a href="/about/announcements" className="text-reset text-decoration-none hover-purple">{t("Հայտարարություններ")}</a></li>
               <li><a href="/dibrary" className="text-reset text-decoration-none hover-purple">Dibrary</a></li>
-              <li><a href="/contact" className="text-reset text-decoration-none hover-purple">Հետադարձ կապ</a></li>
+              <li><a href="/contact" className="text-reset text-decoration-none hover-purple">{t("Հետադարձ կապ")}</a></li>
             </ul>
 
             {/* Иконки соцсетей */}
@@ -1407,10 +1407,10 @@ export function EvocaFooter() {
             {/* Контакты */}
             <div className="small">
               <a href="#branches" className="d-block text-purple fw-bold mb-2 text-decoration-none" style={{ color: '#7000ff' }}>
-                Բանկի հասցեները և աշխատաժամերը
+                {t("Բանկի հասցեները և աշխատաժամերը")}
               </a>
               <a href="#contact" className="d-block text-purple fw-bold mb-3 text-decoration-none" style={{ color: '#7000ff' }}>
-                Կապ մեզ հետ
+                {t("Կապ մեզ հետ")}
               </a>
               <div className="fw-bold text-dark">+374 10 605555</div>
               <div className="fw-bold text-dark fs-5">8444</div>
@@ -1423,7 +1423,7 @@ export function EvocaFooter() {
       <div className="py-3 bg-light border-top position-relative">
         <Container className="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
           <p className="text-muted extra-small mb-0" style={{ fontSize: '10px', maxWidth: '700px' }}>
-            Հարգելի' այցելու, Կայքի որևէ տեղեկատվության վերաբերյալ տարբեր լեզուներում անհամապատասխանության, ինչպես նաև ռուսերեն և անգլերեն լեզուներով ոչ ամբողջական նյութ տեսնելու դեպքում խնդրում ենք առաջնորդվել հայերեն տարբերակով: "Էվոկաբանկ" ԲԲԸ-ն պատասխանատվություն չի կրում իր ինտերնետային կայքում հղված այլ անձանց ինտերնետային կայքերի բովանդակության ստույգության և արժանահավատության, այնտեղ տեղադրված գովազդների, ինչպես նաև երրորդ անձանց կողմից այդ կայքերում տեղադրված տեղեկատվության օգտագործման հնարավոր հետևանքների համար:
+            {t("Հարգելի' այցելու, Կայքի որևէ տեղեկատվության վերաբերյալ տարբեր լեզուներում անհամապատասխանության, ինչպես նաև ռուսերեն և անգլերեն լեզուներով ոչ ամբողջական նյութ տեսնելու դեպքում խնդրում ենք առաջնորդվել հայերեն տարբերակով: \"Էվոկաբանկ\" ԲԲԸ-ն պատասխանատվություն չի կրում իր ինտերնետային կայքում հղված այլ անձանց ինտերնետային կայքերի բովանդակության ստույգության և արժանահավատության, այնտեղ տեղադրված գովազդների, ինչպես նաև երրորդ անձանց կողմից այդ կայքերում տեղադրված տեղեկատվության օգտագործման հնարավոր հետևանքների համար:")}
           </p>
 
           <div className="d-flex align-items-center gap-3 opacity-75">

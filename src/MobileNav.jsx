@@ -2,14 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './firebase';
+import LanguageSwitcher from './LanguageSwitcher';
+import { useTranslation } from 'react-i18next';
 
 // Ссылка «Մուտք» (вход) / «Իմ էջը» (профиль) — зависит от того, залогинен ли юзер
 export function AuthLink({ className = '', style, onClick }) {
+  const { t } = useTranslation();
   const [user, setUser] = useState(null);
   useEffect(() => onAuthStateChanged(auth, setUser), []);
   return (
     <Link to={user ? '/logout' : '/reg'} onClick={onClick} className={className} style={style}>
-      {user ? 'Իմ էջը' : 'Մուտք'}
+      {user ? t('Իմ էջը') : t('Մուտք')}
     </Link>
   );
 }
@@ -17,6 +20,7 @@ export function AuthLink({ className = '', style, onClick }) {
 // Бургер-меню для телефонов и планшетов (< 1024px)
 // topLinks / mainLinks: [{ label, path }]
 export default function MobileNav({ topLinks = [], mainLinks = [], variant = 'mobile' }) {
+  const { t } = useTranslation();
   const isDesktop = variant === 'desktop';
   // меню открыто только на той странице, где его открыли — при переходе закрывается само
   const { pathname } = useLocation();
@@ -77,30 +81,31 @@ export default function MobileNav({ topLinks = [], mainLinks = [], variant = 'mo
             <div className="flex-1 overflow-y-auto px-5 pb-6">
               {mainLinks.length > 0 && (
                 <>
-                  <p className="mb-1 mt-4 text-xs uppercase tracking-wide text-gray-400">Ծառայություններ</p>
+                  <p className="mb-1 mt-4 text-xs uppercase tracking-wide text-gray-400">{t("Ծառայություններ")}</p>
                   {mainLinks.map((l) => (
                     <Link key={l.label} to={l.path} className={item} style={color(pathname === l.path)}>
-                      {l.label}
+                      {t(l.label)}
                     </Link>
                   ))}
                 </>
               )}
 
-              <p className="mb-1 mt-6 text-xs uppercase tracking-wide text-gray-400">Բաժիններ</p>
+              <p className="mb-1 mt-6 text-xs uppercase tracking-wide text-gray-400">{t("Բաժիններ")}</p>
               {topLinks.map((l) => (
                 <Link key={l.label} to={l.path} className={item} style={color(false)}>
-                  {l.label}
+                  {t(l.label)}
                 </Link>
               ))}
               <Link to="/branches" className={item} style={color(pathname === '/branches')}>
-                Մասնաճյուղեր և բանկոմատներ
+                {t("Մասնաճյուղեր և բանկոմատներ")}
               </Link>
               <Link to="/faq" className={item} style={color(pathname === '/faq')}>
-                Հաճախ տրվող հարցեր
+                {t("Հաճախ տրվող հարցեր")}
               </Link>
             </div>
 
             <div className="flex flex-col gap-3 border-t border-gray-200 p-5">
+              <LanguageSwitcher />
               <Link
                 to="/evoca-online"
                 style={{ color: '#fff', background: '#7000ff' }}

@@ -5,8 +5,10 @@ import { ref, get } from "firebase/database";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { LogOut as LogOutIcon, MessageCircle, Home, Mail, Phone, CalendarDays } from "lucide-react";
 import { useChatStore } from "./useChatStore";
+import { useTranslation } from 'react-i18next';
 
 export default function LogOut() {
+  const { t } = useTranslation();
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [signingOut, setSigningOut] = useState(false);
@@ -59,16 +61,16 @@ export default function LogOut() {
     : "";
 
   const rows = [
-    { icon: Mail, label: "Էլ. հասցե", value: userData?.email },
-    { icon: Phone, label: "Հեռախոսահամար", value: userData?.phone ? `+374 ${userData.phone}` : "" },
-    { icon: CalendarDays, label: "Գրանցման ամսաթիվ", value: since },
+    { icon: Mail, label: t("Էլ. հասցե"), value: userData?.email },
+    { icon: Phone, label: t("Հեռախոսահամար"), value: userData?.phone ? `+374 ${userData.phone}` : "" },
+    { icon: CalendarDays, label: t("Գրանցման ամսաթիվ"), value: since },
   ].filter((r) => r.value);
 
   return (
     <div className="min-h-screen bg-[#f8f9fc] px-4 py-8 sm:py-14">
       <div className="mx-auto w-full max-w-[520px]">
         <Link to="/" className="mb-5 inline-flex items-center gap-1.5 text-sm text-slate-500 no-underline hover:text-[#7000ff] hover:no-underline">
-          <Home size={16} /> Գլխավոր էջ
+          <Home size={16} /> {t("Գլխավոր էջ")}
         </Link>
 
         <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
@@ -90,9 +92,9 @@ export default function LogOut() {
                 </div>
               )}
               <h1 className="mt-4 text-xl font-bold text-slate-800 sm:text-2xl">
-                {userData?.name || "Օգտատեր"}
+                {userData?.name || t("Օգտատեր")}
               </h1>
-              <p className="text-sm text-slate-400">Evoca հաճախորդ</p>
+              <p className="text-sm text-slate-400">{t("Evoca հաճախորդ")}</p>
             </div>
 
             <div className="mt-6 divide-y divide-slate-100 rounded-2xl border border-slate-100">
@@ -114,14 +116,14 @@ export default function LogOut() {
                 onClick={() => { setIsOpen(true); navigate("/"); }}
                 className="flex flex-1 items-center justify-center gap-2 rounded-full border border-[#7000ff] bg-white py-3 font-medium text-[#7000ff] hover:bg-purple-50"
               >
-                <MessageCircle size={18} /> Բացել չատը
+                <MessageCircle size={18} /> {t("Բացել չատը")}
               </button>
               <button
                 onClick={handleLogOut}
                 disabled={signingOut}
                 className="flex flex-1 items-center justify-center gap-2 rounded-full bg-[#7000ff] py-3 font-medium text-white hover:bg-[#5c00b3] active:bg-[#4b0094] disabled:opacity-60"
               >
-                <LogOutIcon size={18} /> {signingOut ? "Դուրս ենք գալիս..." : "Դուրս գալ"}
+                <LogOutIcon size={18} /> {signingOut ? t("Դուրս ենք գալիս...") : t("Դուրս գալ")}
               </button>
             </div>
           </div>

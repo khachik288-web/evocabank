@@ -5,6 +5,7 @@ import "leaflet/dist/leaflet.css";
 import { ref, onValue } from "firebase/database";
 import { X, MapPin } from "lucide-react";
 import { db } from "./firebase";
+import { useTranslation } from 'react-i18next';
 
 const pin = L.divIcon({
   className: "",
@@ -15,6 +16,7 @@ const pin = L.divIcon({
 
 // Показывает местоположение пользователя на карте в реальном времени
 export default function UserLocationModal({ user, onClose }) {
+  const { t } = useTranslation();
   const elRef = useRef(null);
   const mapRef = useRef(null);
   const markerRef = useRef(null);
@@ -43,7 +45,7 @@ export default function UserLocationModal({ user, onClose }) {
   useEffect(() => () => { mapRef.current?.remove(); mapRef.current = null; }, []);
 
   const ago = loc ? Math.max(0, Math.round((Date.now() - loc.updatedAt) / 1000)) : 0;
-  const status = !loc ? "" : ago < 60 ? "հիմա առցանց" : `թարմացվել է ${Math.round(ago / 60)} րոպե առաջ`;
+  const status = !loc ? "" : ago < 60 ? t("հիմա առցանց") : t("թարմացվել է {{n}} րոպե առաջ", { n: Math.round(ago / 60) });
 
   return createPortal(
     <div
@@ -63,7 +65,7 @@ export default function UserLocationModal({ user, onClose }) {
         ) : (
           <div style={{ padding: "48px 24px", textAlign: "center", color: "#667" }}>
             <MapPin size={32} style={{ margin: "0 auto 12px", color: "#aaa" }} />
-            {loc === undefined ? "Բեռնվում է..." : "Օգտատերը դեռ չի կիսվել իր տեղադրությամբ"}
+            {loc === undefined ? t("Բեռնվում է...") : t("Օգտատերը դեռ չի կիսվել իր տեղադրությամբ")}
           </div>
         )}
       </div>

@@ -8,6 +8,7 @@ import UserLocationModal from "./UserLocationModal";
 import { startLocationSharing, stopLocationSharing } from "./location";
 import { useChatStore } from "./useChatStore";
 import { initiateCall } from "./callUtils";
+import { useTranslation } from 'react-i18next';
 
 function getChatId(uid1, uid2) {
   return [uid1, uid2].sort().join("_");
@@ -17,6 +18,7 @@ const DEFAULT_AVATAR =
   "https://img.magnific.com/premium-vector/gray-picture-person-with-gray-background_1197690-22.jpg?semt=ais_hybrid&w=740&q=80";
 
 export default function ChatWidget() {
+  const { t } = useTranslation();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [users, setUsers] = useState([]);
   const [messages, setMessages] = useState([]);
@@ -179,7 +181,7 @@ export default function ChatWidget() {
 
             <div className="flex-1 min-w-0">
               {view === "list" ? (
-                <p className="font-medium">Հաղորդագրություններ</p>
+                <p className="font-medium">{t("Հաղորդագրություններ")}</p>
               ) : (
                 <p className="font-medium truncate">{activeChat?.name}</p>
               )}
@@ -191,14 +193,14 @@ export default function ChatWidget() {
                 <button
                   onClick={() => initiateCall(targetUser, "audio")}
                   className="p-1.5 hover:bg-white/10 rounded-full text-white/90 transition-colors"
-                  title="Ձայնային զանգ"
+                  title={t("Ձայնային զանգ")}
                 >
                   <Phone size={16} />
                 </button>
                 <button
                   onClick={() => initiateCall(targetUser, "video")}
                   className="p-1.5 hover:bg-white/10 rounded-full text-white/90 transition-colors"
-                  title="Տեսազանգ"
+                  title={t("Տեսազանգ")}
                 >
                   <Video size={16} />
                 </button>
@@ -221,8 +223,8 @@ export default function ChatWidget() {
                   <Users size={20} />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <p className="text-sm font-semibold text-slate-800">Ընդհանուր Խումբ</p>
-                  <p className="text-xs text-slate-400">Գրեք բոլորին</p>
+                  <p className="text-sm font-semibold text-slate-800">{t("Ընդհանուր Խումբ")}</p>
+                  <p className="text-xs text-slate-400">{t("Գրեք բոլորին")}</p>
                 </div>
                 {unreadChats["public_group"] && (
                   <span className="w-2.5 h-2.5 bg-blue-500 rounded-full shrink-0 ml-auto" />
@@ -245,7 +247,7 @@ export default function ChatWidget() {
                     />
                     <div className="min-w-0 flex-1">
                       <p className="text-sm font-medium text-slate-800 truncate">
-                        {user.name || "Անանուն"}
+                        {user.name || t("Անանուն")}
                       </p>
                       <p className="text-xs text-slate-400 truncate">{user.email}</p>
                     </div>
@@ -254,7 +256,7 @@ export default function ChatWidget() {
                     )}
                     <span
                       role="button"
-                      title="Տեղադրություն"
+                      title={t("Տեղադրություն")}
                       onClick={(e) => { e.stopPropagation(); setLocUser(user); }}
                       className="ml-auto shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-[#7000ff] hover:bg-[#7000ff]/10"
                     >
@@ -297,7 +299,7 @@ export default function ChatWidget() {
                   value={text}
                   onChange={(e) => setText(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && handleSend()}
-                  placeholder="Գրեք հաղորդագրություն..."
+                  placeholder={t("Գրեք հաղորդագրություն...")}
                   className="flex-1 border border-slate-200 rounded-full px-3 py-1.5 outline-none text-sm"
                 />
                 <button

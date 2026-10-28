@@ -1,4 +1,5 @@
 import { getZegoInstance, ZegoUIKitPrebuilt } from "./zego";
+import i18n from "./i18n";
 
 /**
  * Запускает звонок через встроенный механизм Zego Call Invitation.
@@ -21,7 +22,7 @@ export const initiateCall = async (targetUser, callType) => {
       "Zego-сервис не инициализирован. Проверьте, что initZegoService() " +
         "вызывается в App.jsx после логина."
     );
-    alert("Զանգերի ֆունկցիան դեռ պատրաստ չէ, թարմացրեք էջը և փորձեք կրկին:");
+    alert(i18n.t("Զանգերի ֆունկցիան դեռ պատրաստ չէ, թարմացրեք էջը և փորձեք կրկին:"));
     return;
   }
 
@@ -38,26 +39,10 @@ export const initiateCall = async (targetUser, callType) => {
     });
 
     if (res?.errorInvitees?.length) {
-      alert("Օգտատերը հասանելի չէ (անցանց է կամ գոյություն չունի):");
+      alert(i18n.t("Օգտատերը հասանելի չէ (անցանց է կամ գոյություն չունի):"));
     }
   } catch (err) {
     console.error("Ошибка при отправке звонка:", err);
-    alert("Չհաջողվեց սկսել զանգը, փորձեք կրկին:");
-  }
-
-  try {
-    const stream = await navigator.mediaDevices.getUserMedia({
-      audio: true,
-      video: callType === "video",
-    });
-    stream.getTracks().forEach((t) => t.stop()); // сразу освобождаем устройство
-  } catch (err) {
-    console.error("Нет доступа к микрофону/камере:", err);
-    alert(
-      callType === "video"
-        ? "Թույլատրեք մուտքը խոսափողին և տեսախցիկին (հասցեի դաշտի կողքի կողպեք)"
-        : "Թույլատրեք մուտքը խոսափողին (հասցեի դաշտի կողքի կողպեք)"
-    );
-    return;
+    alert(i18n.t("Չհաջողվեց սկսել զանգը, փորձեք կրկին:"));
   }
 };

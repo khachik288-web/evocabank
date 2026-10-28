@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ChevronRight } from 'lucide-react';
 import NewsVotes from './NewsVotes';
+import { useTranslation } from 'react-i18next';
 
 // ---------- Картинки ----------
 const IMG = (id, size, ext = 'png') =>
@@ -175,6 +176,7 @@ const Card = ({ item, small = false }) => (
 
 // ---------- Страница ----------
 function News() {
+  const { t } = useTranslation();
   const [active, setActive] = useState('Գլխավոր');
   const filtered = ALL_NEWS.filter((n) => n.cat === active);
 
@@ -183,7 +185,7 @@ function News() {
       {/* Заголовок + категории */}
       <div className="mx-auto max-w-[1440px] px-4 pt-10 sm:px-6 xl:px-0">
         <h1 className="text-[32px] font-extrabold leading-tight text-[#1d0a4a]">
-          Նորություններ
+          {t('Նորություններ')}
         </h1>
 
         <div className="mt-8 mb-12 flex flex-wrap items-center gap-3">
@@ -199,7 +201,7 @@ function News() {
                     : 'bg-[#f2f2f2] text-[#333] hover:bg-[#e6e6e6]'
                 }`}
               >
-                {c}
+                {t(c)}
               </button>
             ))}
           </div>
@@ -208,7 +210,7 @@ function News() {
             onClick={() => setActive('Գլխավոր')}
             className="inline-flex items-center gap-2 rounded-full bg-[#efe9fb] px-6 py-[13px] text-[14px] font-bold text-[#6a0bd6] hover:bg-[#e4d9f8]"
           >
-            Բոլորը <ChevronRight size={16} />
+            {t('Բոլորը')} <ChevronRight size={16} />
           </button>
         </div>
       </div>
@@ -219,7 +221,7 @@ function News() {
           {filtered.length ? (
             filtered.map((n) => <Card key={n.title} item={n} />)
           ) : (
-            <p className="text-[#888]">Այս կատեգորիայում նորություններ դեռ չկան:</p>
+            <p className="text-[#888]">{t('Այս կատեգորիայում նորություններ դեռ չկան:')}</p>
           )}
         </div>
       ) : (
@@ -256,7 +258,7 @@ function News() {
 
           {/* ===== Блок 2: «Բաց մի թողեք» ===== */}
           <section className="mx-auto mt-16 max-w-[1440px] px-4 sm:px-6 xl:px-0">
-            <Ghost className="-ml-0 xl:-ml-[115px]">Բաց մի թողեք</Ghost>
+            <Ghost className="-ml-0 xl:-ml-[115px]">{t('Բաց մի թողեք')}</Ghost>
 
             <div className="-mt-[10px] grid gap-y-14 lg:grid-cols-[616px_1fr] lg:gap-x-[123px]">
               {/* Большая карточка */}
@@ -295,7 +297,7 @@ function News() {
           {/* ===== Блок 3: «Կարևոր» (картинка слева) ===== */}
           <section className="mt-16">
             <div className="mx-auto max-w-[1440px] px-4 sm:px-6 xl:px-0">
-              <Ghost className="-ml-0 xl:-ml-[115px]">Կարևոր</Ghost>
+              <Ghost className="-ml-0 xl:-ml-[115px]">{t('Կարևոր')}</Ghost>
             </div>
 
             <div

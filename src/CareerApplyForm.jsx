@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { RefreshCw, Upload, Mail, Globe, User } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const CHARS = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 const makeCaptcha = () => Array.from({ length: 5 }, () => CHARS[Math.floor(Math.random() * CHARS.length)]).join('');
@@ -31,6 +32,7 @@ function Field({ title, required, error, icon: Icon, children }) {
 
 // Форма «Դառնալ թիմի անդամ» — общая для всех страниц раздела «Կարիերա»
 export default function CareerApplyForm() {
+  const { t } = useTranslation();
   const [v, setV] = useState({ name: '', surname: '', phone: '', email: '', fb: '', li: '', letter: '', code: '' });
   const [file, setFile] = useState(null);
   const [captcha, setCaptcha] = useState(makeCaptcha);
@@ -61,9 +63,9 @@ export default function CareerApplyForm() {
   if (sent) {
     return (
       <section className="mx-auto max-w-3xl px-4 py-16 text-center sm:px-6">
-        <h2 style={{ color: '#6a00db', fontWeight: 700 }}>Շնորհակալություն</h2>
+        <h2 style={{ color: '#6a00db', fontWeight: 700 }}>{t('Շնորհակալություն')}</h2>
         <p style={{ color: '#555', marginTop: 12 }}>
-          Ձեր դիմումն ընդունված է: Մեր թիմը կապ կհաստատի Ձեզ հետ:
+          {t('Ձեր դիմումն ընդունված է: Մեր թիմը կապ կհաստատի Ձեզ հետ:')}
         </p>
       </section>
     );
@@ -72,7 +74,7 @@ export default function CareerApplyForm() {
   return (
     <section className="mx-auto max-w-3xl px-4 py-14 sm:px-6 sm:py-20">
       <h2 style={{ color: '#6a00db', fontWeight: 700, fontSize: 'clamp(1.5rem, 1.2rem + 1vw, 2rem)', marginBottom: 20 }}>
-        Դառնալ թիմի անդամ
+        {t('Դառնալ թիմի անդամ')}
       </h2>
       <p style={{ textAlign: 'center', color: '#444', lineHeight: 1.6, marginBottom: 32 }}>
         Եթե ցանկանում ես միանալ <strong style={{ color: '#6a00db' }}>EvocaTEAM</strong>-ին,
@@ -81,13 +83,13 @@ export default function CareerApplyForm() {
       </p>
 
       <form onSubmit={submit} noValidate>
-        <Field title="Անուն" required error={errors.name} icon={User}>
+        <Field title={t("Անուն")} required error={errors.name} icon={User}>
           <input style={pad(true)} value={v.name} onChange={set('name')} autoComplete="given-name" />
         </Field>
-        <Field title="Ազգանուն" required error={errors.surname} icon={User}>
+        <Field title={t("Ազգանուն")} required error={errors.surname} icon={User}>
           <input style={pad(true)} value={v.surname} onChange={set('surname')} autoComplete="family-name" />
         </Field>
-        <Field title="Հեռախոսահամար" required error={errors.phone}>
+        <Field title={t("Հեռախոսահամար")} required error={errors.phone}>
           <div style={{ display: 'flex' }}>
             <span style={{ ...input, width: 'auto', borderRight: 0, borderRadius: '4px 0 0 4px', background: '#fafafa', color: '#555', display: 'flex', alignItems: 'center', gap: 6 }}>
               🇦🇲 +374
@@ -95,20 +97,20 @@ export default function CareerApplyForm() {
             <input type="tel" style={{ ...input, borderRadius: '0 4px 4px 0' }} value={v.phone} onChange={set('phone')} autoComplete="tel-national" />
           </div>
         </Field>
-        <Field title="Էլ. հասցե" error={errors.email} icon={Mail}>
+        <Field title={t("Էլ. հասցե")} error={errors.email} icon={Mail}>
           <input type="email" style={pad(true)} value={v.email} onChange={set('email')} autoComplete="email" />
         </Field>
-        <Field title="Facebook սոց. կայքում անձնական էջի հղում" icon={Globe}>
+        <Field title={t("Facebook սոց. կայքում անձնական էջի հղում")} icon={Globe}>
           <input style={pad(true)} value={v.fb} onChange={set('fb')} />
         </Field>
-        <Field title="LinkedIn սոց. կայքում անձնական էջի հղում" icon={Globe}>
+        <Field title={t("LinkedIn սոց. կայքում անձնական էջի հղում")} icon={Globe}>
           <input style={pad(true)} value={v.li} onChange={set('li')} />
         </Field>
-        <Field title="Ուղեկցող նամակ">
+        <Field title={t("Ուղեկցող նամակ")}>
           <textarea rows={4} style={{ ...input, resize: 'vertical' }} value={v.letter} onChange={set('letter')} />
         </Field>
 
-        <Field title="Վերբեռնեք Ձեր ռեզյումեն" required error={errors.file}>
+        <Field title={t("Վերբեռնեք Ձեր ռեզյումեն")} required error={errors.file}>
           <button
             type="button"
             onClick={() => fileRef.current?.click()}
@@ -121,7 +123,7 @@ export default function CareerApplyForm() {
         </Field>
 
         <div style={{ marginBottom: 20 }}>
-          <label style={label}>Ստուգման ծածկագիր{star}</label>
+          <label style={label}>{t('Ստուգման ծածկագիր')}{star}</label>
           <div style={{ border: '1px solid #bbb', borderRadius: 4, padding: 14, maxWidth: 300 }}>
             <p style={{ margin: '0 0 6px', fontSize: 12, color: '#444' }}>Մուտքագրեք ծածկագիրը</p>
             <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
@@ -144,7 +146,7 @@ export default function CareerApplyForm() {
           type="submit"
           style={{ width: '100%', background: '#6a00db', color: '#fff', border: 0, borderRadius: 999, padding: '14px 24px', fontWeight: 600, cursor: 'pointer' }}
         >
-          Ես ուզում եմ աշխատել Evoca-ում :)
+          {t('Ես ուզում եմ աշխատել Evoca-ում :)')}
         </button>
       </form>
     </section>
