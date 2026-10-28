@@ -169,7 +169,18 @@ const ROWS = [
   ['Բոլորը', 'Все', 'All'],
   ['Բաց մի թողեք', 'Не пропустите', "Don't miss"],
   ['Կարևոր', 'Важное', 'Important'],
-  ['Բեր աշխատավարձդ Evoca: Տար շատ ավելին...','Эта карта с её многочисленными преимуществами станет твоим незаменимым спутником в путешествиях','This card with its numerous benefits will become your inseparable travel partner']
+
+
+  [
+    'Բեր աշխատավարձդ Evoca: Տար շատ ավելին...',
+    'Эта карта с её многочисленными преимуществами станет твоим незаменимым спутником в путешествиях',
+    'This card with its numerous benefits will become your inseparable travel partner'
+  ],
+  [
+  'Իմանալ ավելին',
+  'Узнать больше',
+  'Learn more'
+  ],
 ];
 
 const ru = {};

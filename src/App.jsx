@@ -365,11 +365,11 @@ function Slider() {
       <div className="relative z-10 mx-auto flex max-w-7xl flex-col items-center gap-10 px-6 py-16 md:flex-row md:justify-between">
         <div className="max-w-xl text-center md:text-left">
           <h1 className={`mb-4 text-3xl font-semibold md:text-4xl ${slide.textColor}`}>
-            {slide.title}
+            {t(slide.title)}
           </h1>
-          <p className={`mb-8 text-base ${slide.subTextColor}`}>{slide.text}</p>
+          <p className={`mb-8 text-base ${slide.subTextColor}`}>  {t(slide.text)}</p>
           <button className={`rounded-full px-6 py-3 font-semibold transition-colors ${slide.buttonClass}`}>
-            Իմանալ ավելին
+            {t('Իմանալ ավելին')}
           </button>
         </div>
 
