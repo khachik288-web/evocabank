@@ -255,6 +255,16 @@ const ROWS = [
   ['Ամսական վճար', 'Ежемесячный платёж', 'Monthly payment'],
   ['Ընդամենը', 'Итого', 'Total'],
   ['Հաշվիչներ','калькулятор','Calculators'],
+
+
+  //onlain banki komponent
+  ['Օնլայն և մոբայլ բանկինգ','Онлайн-банкинг и мобильный банкинг','Online and Mobile Banking'],
+  ['Evocabank-ը արագ, պարզ և նորարար ծառայություններ մատուցող բանկ է, որն առանձնանում է տեղեկատվական նորագույն տեխնոլոգիաների ակտիվ կիրառմամբ:','Evocabank — это банк, предоставляющий быстрые, простые и инновационные услуги, отличающийся активным использованием новейших информационных технологий.','Evocabank is a bank that provides fast, simple, and innovative services, distinguished by its active use of the latest information technologies.'],
+  ['Դառնալ հաճախորդ','Станьте клиентом','Become a customer'],
+  // ['','',''],
+  // ['','',''],
+  // ['','',''],
+  // ['','',''],
 ];
 
 const ru = {};
