@@ -764,7 +764,7 @@ function Calculator() {
   return (
     <section className="bg-[#f8f9fc] py-16 px-4 font-sans">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl font-bold text-gray-900 text-center mb-10">Հաշվիչներ</h2>
+        <h2 className="text-3xl font-bold text-gray-900 text-center mb-10">{t('Հաշվիչներ')}</h2>
 
         <div className="flex px-4">
           <button
