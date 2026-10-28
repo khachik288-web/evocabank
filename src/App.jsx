@@ -593,7 +593,7 @@ function CardsShowcase() {
   const handleUp = () => setActiveIndex((prev) => (prev > 0 ? prev - 1 : CARDS_DATA.length - 1));
   const handleDown = () => setActiveIndex((prev) => (prev < CARDS_DATA.length - 1 ? prev + 1 : 0));
   const { t } = useTranslation();
-  
+
   return (
     <section className="bg-[#f3f6fa] py-20 px-6 w-full overflow-hidden">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12 lg:gap-16">
@@ -771,13 +771,13 @@ function Calculator() {
             onClick={() => setActiveTab('loan')}
             className={`px-8 py-3 rounded-t-xl font-semibold transition-colors ${activeTab === 'loan' ? 'bg-white text-gray-900 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] relative z-10' : 'bg-transparent text-gray-500 hover:text-gray-700'}`}
           >
-            Վարկ
+            {t('Վարկ')}
           </button>
           <button
             onClick={() => setActiveTab('deposit')}
             className={`px-8 py-3 rounded-t-xl font-semibold transition-colors ${activeTab === 'deposit' ? 'bg-white text-gray-900 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] relative z-10' : 'bg-transparent text-gray-500 hover:text-gray-700'}`}
           >
-            Ավանդ
+            {t('Ավանդ')}
           </button>
         </div>
 
@@ -790,21 +790,21 @@ function Calculator() {
                 <RangeInput label="Տարեկան տոկոսադրույք" value={loanRate} min={1} max={36} unit=" %" onChange={setLoanRate} />
 
                 <div className="mb-6">
-                  <span className="text-gray-400 text-sm block mb-3">Մարման ձև</span>
+                  <span className="text-gray-400 text-sm block mb-3">{t('Մարման ձև')}</span>
                   <div className="flex gap-6">
                     <label className="flex items-center gap-2 cursor-pointer">
                       <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${loanType === 'differentiated' ? 'border-purple-700' : 'border-gray-300'}`}>
                         {loanType === 'differentiated' && <div className="w-2.5 h-2.5 bg-purple-700 rounded-full"></div>}
                       </div>
                       <input type="radio" className="hidden" checked={loanType === 'differentiated'} onChange={() => setLoanType('differentiated')} />
-                      <span className="text-gray-800 font-medium">Զսպանակաձև</span>
+                      <span className="text-gray-800 font-medium">{t('Զսպանակաձև')}</span>
                     </label>
                     <label className="flex items-center gap-2 cursor-pointer">
                       <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${loanType === 'annuity' ? 'border-purple-700' : 'border-gray-300'}`}>
                         {loanType === 'annuity' && <div className="w-2.5 h-2.5 bg-purple-700 rounded-full"></div>}
                       </div>
                       <input type="radio" className="hidden" checked={loanType === 'annuity'} onChange={() => setLoanType('annuity')} />
-                      <span className="text-gray-800 font-medium">Անուիտետ</span>
+                      <span className="text-gray-800 font-medium">{t('Անուիտետ')}</span>
                     </label>
                   </div>
                 </div>
@@ -812,13 +812,13 @@ function Calculator() {
 
               <div className="flex flex-col md:flex-row justify-between items-center mt-6 border-t border-gray-100 pt-6">
                 <p className="text-gray-400 text-xs text-center md:text-left mb-4 md:mb-0 max-w-sm">
-                  Բոլոր հաշվարկները կրում են մոտավոր բնույթ և չեն հանդիսանում հրապարակային առաջարկ:
+                  {t('Բոլոր հաշվարկները կրում են մոտավոր բնույթ և չեն հանդիսանում հրապարակային առաջարկ:')}
                 </p>
                 <button
                   onClick={() => setShowModal(true)}
                   className="bg-[#5c00b3] hover:bg-purple-800 text-white font-semibold py-3 px-10 rounded-full transition-colors w-full md:w-auto"
                 >
-                  Հաշվել
+                  {t('Հաշվել')}
                 </button>
               </div>
             </div>
@@ -834,27 +834,27 @@ function Calculator() {
 
               <div className="flex flex-col justify-center">
                 <div className="flex justify-between items-center py-4 border-b border-gray-100">
-                  <span className="text-gray-700 text-sm max-w-[200px]">Օրական կտրվածքով հաշվարկվող տոկոսագումար *</span>
+                  <span className="text-gray-700 text-sm max-w-[200px]">{t('Օրական կտրվածքով հաշվարկվող տոկոսագումար')} *</span>
                   <span className="font-bold text-gray-900">{formatMoney(dailyInterest, 2)}</span>
                 </div>
                 <div className="flex justify-between items-center py-4 border-b border-gray-100">
-                  <span className="text-gray-700 text-sm max-w-[200px]">Ավանդային պայմանագրի գործողության ընթացքում հաշվարկվող ընդհանուր տոկոսային եկամուտ</span>
+                  <span className="text-gray-700 text-sm max-w-[200px]">{t('Ավանդային պայմանագրի գործողության ընթացքում հաշվարկվող ընդհանուր տոկոսային եկամուտ')}</span>
                   <span className="font-bold text-gray-900">{formatMoney(totalGrossInterest, 2)}</span>
                 </div>
                 <div className="flex justify-between items-center py-4 border-b border-gray-100">
-                  <span className="text-gray-700 text-sm max-w-[200px]">Ավանդային պայմանագրի գործողության ընթացքում ավանդատուին փաստացի վճարվող զուտ տոկոսային եկամուտ</span>
+                  <span className="text-gray-700 text-sm max-w-[200px]">{t('Ավանդային պայմանագրի գործողության ընթացքում ավանդատուին փաստացի վճարվող զուտ տոկոսային եկամուտ')}</span>
                   <span className="font-bold text-gray-900">{formatMoney(netInterest, 2)}</span>
                 </div>
                 <div className="mt-4 flex items-start gap-2 text-gray-400 text-xs">
                   <svg className="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
-                  <p>Ներդրված ավանդի դիմաց ստացվող տոկոսագումարներն հարկվում են 10% եկամտային հարկի չափով</p>
+                  <p>{t('Ներդրված ավանդի դիմաց ստացվող տոկոսագումարներն հարկվում են 10% եկամտային հարկի չափով')}</p>
                 </div>
               </div>
 
               <div className="md:col-span-2 pt-6 border-t border-gray-100 mt-[-10px]">
-                <p className="text-gray-400 text-xs">Բոլոր հաշվարկները կրում են մոտավոր բնույթ և չեն հանդիսանում հրապարակային առաջարկ:</p>
+                <p className="text-gray-400 text-xs">{t('Բոլոր հաշվարկները կրում են մոտավոր բնույթ և չեն հանդիսանում հրապարակային առաջարկ:')}</p>
               </div>
             </div>
           )}
@@ -869,22 +869,22 @@ function Calculator() {
             </button>
 
             <div className="p-6 sm:p-8 pb-4">
-              <h3 className="text-2xl font-bold text-gray-800 mb-6">Վարկային հաշվիչի արդյունքներ</h3>
+              <h3 className="text-2xl font-bold text-gray-800 mb-6">{t('Վարկային հաշվիչի արդյունքներ')}</h3>
               <div className="grid grid-cols-2 sm:grid-cols-4 bg-[#f3f4f6] rounded-xl overflow-hidden mb-6">
                 <div className="p-4 border-r border-b sm:border-b-0 border-white">
-                  <span className="text-xs text-gray-500 block mb-1">Գումար</span>
+                  <span className="text-xs text-gray-500 block mb-1">{t('Գումար')}</span>
                   <span className="font-bold text-gray-900">{formatMoney(loanAmount)}</span>
                 </div>
                 <div className="p-4 border-r border-b sm:border-b-0 border-white">
-                  <span className="text-xs text-gray-500 block mb-1">Տարեկան տոկոսադրույք</span>
+                  <span className="text-xs text-gray-500 block mb-1">{t('Տարեկան տոկոսադրույք')}</span>
                   <span className="font-bold text-gray-900">{loanRate}%</span>
                 </div>
                 <div className="p-4 border-r border-white">
-                  <span className="text-xs text-gray-500 block mb-1">Վարկի ժամկետը</span>
+                  <span className="text-xs text-gray-500 block mb-1">{t('Վարկի ժամկետը')}</span>
                   <span className="font-bold text-gray-900">{loanTerm}</span>
                 </div>
                 <div className="p-4 bg-[#eceef1]">
-                  <span className="text-xs text-gray-500 block mb-1">Ողջ վճարումը</span>
+                  <span className="text-xs text-gray-500 block mb-1">{t('Ողջ վճարումը')}</span>
                   <span className="font-bold text-gray-900">{formatMoney(loanData.totalPayment, 2)}</span>
                 </div>
               </div>
@@ -894,10 +894,10 @@ function Calculator() {
               <table className="w-full text-left text-sm border-collapse">
                 <thead className="sticky top-0 bg-white shadow-[0_4px_2px_-2px_rgba(0,0,0,0.05)] z-10">
                   <tr>
-                    <th className="py-4 font-medium text-gray-600 border-b border-gray-200">Ամիս</th>
-                    <th className="py-4 font-medium text-gray-600 border-b border-gray-200">Տոկոսագումար</th>
-                    <th className="py-4 font-medium text-gray-600 border-b border-gray-200">Մասնակի մարում</th>
-                    <th className="py-4 font-medium text-gray-600 border-b border-gray-200">Ամսական վճար</th>
+                    <th className="py-4 font-medium text-gray-600 border-b border-gray-200">{t('Ամիս')}</th>
+                    <th className="py-4 font-medium text-gray-600 border-b border-gray-200">{t('Տոկոսագումար')}</th>
+                    <th className="py-4 font-medium text-gray-600 border-b border-gray-200">{t('Մասնակի մարում')}</th>
+                    <th className="py-4 font-medium text-gray-600 border-b border-gray-200">{t('Ամսական վճար')}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -915,7 +915,7 @@ function Calculator() {
 
             <div className="p-6 sm:p-8 pt-4 border-t border-gray-200 bg-white rounded-b-2xl">
               <div className="flex font-bold text-gray-900 text-sm">
-                <div className="w-1/4">Ընդամենը</div>
+                <div className="w-1/4">{t('Ընդամենը')}</div>
                 <div className="w-1/4 text-blue-900">{formatMoney(loanData.totalInterestPaid, 2)}</div>
                 <div className="w-1/4">{formatMoney(loanAmount)}</div>
                 <div className="w-1/4 text-blue-900">{formatMoney(loanData.totalPayment, 2)}</div>
