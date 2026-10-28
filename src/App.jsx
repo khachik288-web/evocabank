@@ -1082,20 +1082,22 @@ function Partners() {
 
 // --- 8. BEST FROM EVOCA ---
 function BestFromEvoca() {
+  const { t } = useTranslation();
+
   const cards = [
-    { tag: 'Թվային քարտեր', title: 'Evoca Digital քարտ', desc: 'Evoca Digital քարտն արդեն հասանելի է EvocaTOUCH հավելվածով։' },
-    { tag: 'Նվեր քարտեր', title: 'Evoca Gift Card', desc: 'Գնիր Evoca Gift Card, և լավագույն նվերը կլինի քոնը:' },
-    { tag: 'Նոր հավելված', title: 'EvocaTOUCH 2', desc: 'EvocaTOUCH-ը պարզապես բանկային հավելված չէ։' },
-    { tag: 'Օնլայն վճարումներ', title: 'Արագ online վճարումներ', desc: 'Կատարիր քո ընթացիկ վճարումները Evocabank-ի online տերմինալի միջոցով։' },
+    { tag: 'Թվային քարտեր', title: 'Evoca Digital քարտ', desc: t('Evoca Digital քարտն արդեն հասանելի է EvocaTOUCH հավելվածով։')},
+    { tag: 'Նվեր քարտեր', title: 'Evoca Gift Card', desc: t('Գնիր Evoca Gift Card, և լավագույն նվերը կլինի քոնը:') },
+    { tag: 'Նոր հավելված', title: 'EvocaTOUCH 2', desc: t('EvocaTOUCH-ը պարզապես բանկային հավելված չէ։') },
+    { tag: 'Օնլայն վճարումներ', title: 'Արագ online վճարումներ', desc: t('Կատարիր քո ընթացիկ վճարումները Evocabank-ի online տերմինալի միջոցով։') },
   ];
 
   return (
     <section className="relative overflow-hidden bg-purple-700 py-20">
       <div className="relative z-10 mx-auto max-w-7xl px-6">
         <h2 className="mb-8 text-2xl font-bold text-white md:text-4xl text-center md:text-left">
-          Լավագույնը Evocabank-ից
+          {t('Լավագույնը Evocabank-ից')}
         </h2>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 mt-[40px]">
           {cards.map((c) => (
             <div key={c.title} className="rounded-2xl bg-white p-6 shadow-lg">
               <span className="mb-3 inline-block rounded bg-purple-50 px-2 py-1 text-xs font-medium text-purple-700">

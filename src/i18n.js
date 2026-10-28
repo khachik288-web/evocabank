@@ -266,8 +266,11 @@ const ROWS = [
   //urish komponent
   ['Գործընկերներ','Партнеры','Partners'],
   ['Դարձեք Evocabank-ի Գործընկեր և եկեք միասին գնանք դեպի գունեղ նոր իրականություն:','Станьте партнером Evocabank, и давайте вместе двигаться к новой, яркой реальности.','Become an Evocabank partner, and let’s move together toward a vibrant new reality.'],
-  // ['','',''],
-  // ['','',''],
+  
+
+  //eli urish komponent
+  ['Evoca Digital քարտն արդեն հասանելի է EvocaTOUCH հավելվածով։','Цифровая карта Evoca теперь доступна в приложении EvocaTOUCH.','The Evoca Digital card is now available via the EvocaTOUCH app.'],
+  ['','',''],
   // ['','',''],
   // ['','',''],
   // ['','',''],
