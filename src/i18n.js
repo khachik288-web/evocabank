@@ -268,10 +268,20 @@ const ROWS = [
   ['Դարձեք Evocabank-ի Գործընկեր և եկեք միասին գնանք դեպի գունեղ նոր իրականություն:','Станьте партнером Evocabank, и давайте вместе двигаться к новой, яркой реальности.','Become an Evocabank partner, and let’s move together toward a vibrant new reality.'],
   
 
-  //eli urish komponent
-  ['Evoca Digital քարտն արդեն հասանելի է EvocaTOUCH հավելվածով։','Цифровая карта Evoca теперь доступна в приложении EvocaTOUCH.','The Evoca Digital card is now available via the EvocaTOUCH app.'],
-  ['Գնիր Evoca Gift Card, և լավագույն նվերը կլինի քոնը:','Подарочная карта Эвока','Buy an Evoca Gift Card, and the best gift will be yours.'],
-  
+  ['Լավագույնը Evocabank-ից', 'Лучшее от Evocabank', 'The best from Evocabank'],
+  ['Թվային քարտեր', 'Цифровые карты', 'Digital cards'],
+  ['Նվեր քարտեր', 'Подарочные карты', 'Gift cards'],
+  ['Նոր հավելված', 'Новое приложение', 'New app'],
+  ['Օնլայն վճարումներ', 'Онлайн-платежи', 'Online payments'],
+  ['Evoca Digital քարտ', 'Цифровая карта Evoca', 'Evoca Digital card'],
+  ['Evoca Gift Card', 'Подарочная карта Evoca', 'Evoca Gift Card'],
+  ['EvocaTOUCH 2', 'EvocaTOUCH 2', 'EvocaTOUCH 2'],
+  ['Արագ online վճարումներ', 'Быстрые онлайн-платежи', 'Fast online payments'],
+  ['EvocaTOUCH-ը պարզապես բանկային հավելված չէ։', 'EvocaTOUCH — это не просто банковское приложение.', 'EvocaTOUCH is not just a banking app.'],
+  ['Կատարիր քո ընթացիկ վճարումները Evocabank-ի online տերմինալի միջոցով։', 'Совершай свои текущие платежи через онлайн-терминал Evocabank.', "Make your regular payments through Evocabank's online terminal."],
+  ['Դիլիջան, մենք գալիս ենք', 'Дилижан, мы едем', 'Dilijan, here we come'],
+  ['Evocabank-ը՝ Retro Fest-ի ֆինանսական գործընկեր', 'Evocabank — финансовый партнёр Retro Fest', "Evocabank is Retro Fest's financial partner"],
+  ['Դեպի նոր ուսումնական տարի՝ մինչև 23% cashback-ով', 'К новому учебному году — с кешбэком до 23%', 'Toward the new school year with up to 23% cashback'],
   // ['','',''],
   // ['','',''],
   // ['','',''],
