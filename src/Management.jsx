@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link, useParams } from 'react-router-dom';
 import { MEMBERS } from './Managementdata';
 
@@ -13,6 +14,7 @@ import { MEMBERS } from './Managementdata';
    При hover треугольник становится фиолетовым, имя — фиолетовым.
 ---------------------------------------------------------------- */
 export function MemberCard({ id, photo, name, position }) {
+  const { t } = useTranslation();
   return (
     <Link
       to={`/about/management/${id}`}
@@ -37,7 +39,7 @@ export function MemberCard({ id, photo, name, position }) {
       <h3 className="mt-5 text-[15px] font-bold uppercase leading-snug text-black transition-colors group-hover:text-[#6a00db]">
         {name}
       </h3>
-      <p className="mt-2 text-[12px] leading-relaxed text-gray-600">{position}</p>
+      <p className="mt-2 text-[12px] leading-relaxed text-gray-600">{t(position)}</p>
     </Link>
   );
 }
@@ -55,17 +57,18 @@ function CardsGrid({ items }) {
 
 /* --- Страница «Ղեկավարություն» --- */
 export function ManagementPage() {
+  const { t } = useTranslation();
   const board = MEMBERS.filter((m) => m.group === 'board');
   const management = MEMBERS.filter((m) => m.group === 'management');
 
   return (
     <main className="mx-auto max-w-7xl px-6 py-10">
-      <h1 className="mb-10 font-bold text-gray-900">Ղեկավարություն</h1>
+      <h1 className="mb-10 font-bold text-gray-900">{t('Ղեկավարություն')}</h1>
 
-      <h2 className="mb-6 text-xl font-semibold text-gray-800">Բանկի խորհուրդ</h2>
+      <h2 className="mb-6 text-xl font-semibold text-gray-800">{t('Բանկի խորհուրդ')}</h2>
       <CardsGrid items={board} />
 
-      <h2 className="mb-6 mt-16 text-xl font-semibold text-gray-800">Բանկի վարչություն</h2>
+      <h2 className="mb-6 mt-16 text-xl font-semibold text-gray-800">{t('Բանկի վարչություն')}</h2>
       <CardsGrid items={management} />
     </main>
   );
@@ -73,8 +76,10 @@ export function ManagementPage() {
 
 /* строка "2019թ. - текст" -> <b>2019թ.</b> - текст */
 function Line({ text }) {
-  const m = text.match(/^(.{0,30}?)\s[-–]\s(.*)$/s);
-  if (!m) return <p className="mb-2 text-[14px] leading-relaxed text-gray-800">{text}</p>;
+  const { t } = useTranslation();
+  const translated = t(text);
+  const m = translated.match(/^(.{0,30}?)\s[-–]\s(.*)$/s);
+  if (!m) return <p className="mb-2 text-[14px] leading-relaxed text-gray-800">{translated}</p>;
   return (
     <p className="mb-2 text-[14px] leading-relaxed text-gray-800">
       <b>{m[1]}</b> - {m[2]}
@@ -83,25 +88,27 @@ function Line({ text }) {
 }
 
 function Section({ title, lines, text }) {
+  const { t } = useTranslation();
   return (
     <section className="mb-8">
-      <h4 className="mb-3 text-[15px] font-bold uppercase text-[#6a00db]">{title}</h4>
+      <h4 className="mb-3 text-[15px] font-bold uppercase text-[#6a00db]">{t(title)}</h4>
       {lines && lines.map((l, i) => <Line key={i} text={l} />)}
-      {text && <p className="text-[14px] leading-relaxed text-gray-800">{text}</p>}
+      {text && <p className="text-[14px] leading-relaxed text-gray-800">{t(text)}</p>}
     </section>
   );
 }
 
 /* --- Страница сотрудника: /about/management/:id --- */
 export function MemberPage() {
+  const { t } = useTranslation();
   const { id } = useParams();
   const m = MEMBERS.find((x) => x.id === id);
 
   if (!m) {
     return (
       <main className="mx-auto max-w-7xl px-6 py-20">
-        <p>Էջը չի գտնվել։</p>
-        <Link to="/about/management" className="text-purple-700">← Վերադառնալ</Link>
+        <p>{t('Էջը չի գտնվել։')}</p>
+        <Link to="/about/management" className="text-purple-700">{t('← Վերադառնալ')}</Link>
       </main>
     );
   }
@@ -112,7 +119,7 @@ export function MemberPage() {
         to="/about/management"
         className="mb-8 inline-flex items-center gap-2 rounded-full border border-gray-200 px-5 py-2 text-sm text-black no-underline shadow-sm hover:no-underline"
       >
-        ← Վերադառնալ
+        {t('← Վերադառնալ')}
       </Link>
 
       {/* flex-col на мобиле, row на десктопе */}
@@ -132,7 +139,7 @@ export function MemberPage() {
 
         <div className="min-w-0 flex-1">
           <h1 className="mb-2 font-bold uppercase text-gray-900">{m.name}</h1>
-          <p className="mb-8 text-sm text-gray-500">{m.position}</p>
+          <p className="mb-8 text-sm text-gray-500">{t(m.position)}</p>
 
           <Section title="Կրթություն" lines={m.education} />
           <Section title="Կարիերա" lines={m.career} />

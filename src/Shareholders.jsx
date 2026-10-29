@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { FaFacebookF, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
 
 const PHOTO = 'https://www.evoca.am/file_manager/Shareholders/Mareta%20Gevorkyan%20Evocabank.png';
@@ -78,10 +79,11 @@ function AccordionItem({ title, children }) {
 }
 
 function BulletList({ items }) {
+  const { t } = useTranslation();
   return (
     <ul className="mt-3 list-disc space-y-2 pl-6">
-      {items.map((t, i) => (
-        <li key={i}>{t}</li>
+      {items.map((item, i) => (
+        <li key={i}>{t(item)}</li>
       ))}
     </ul>
   );
@@ -100,6 +102,7 @@ function DocIcon() {
 }
 
 export default function Shareholders() {
+  const { t } = useTranslation();
   return (
     <main className="relative bg-white pb-20 text-gray-900">
       {/* Social bar */}
@@ -110,52 +113,50 @@ export default function Shareholders() {
       </div>
 
       <div className="mx-auto max-w-[900px] px-6 pt-4">
-        <h1 className="mb-12 text-[28px] font-normal tracking-wide text-gray-800">Բաժնետերեր</h1>
+        <h1 className="mb-12 text-[28px] font-normal tracking-wide text-gray-800">{t('Բաժնետերեր')}</h1>
 
         {/* Shareholder card */}
         <div className="flex flex-col gap-6 md:flex-row">
           <img
             src={PHOTO}
-            alt="Մարետա Գևորկյան"
+            alt={t('Մարետա Գևորկյան')}
             className="h-[254px] w-[204px] shrink-0 object-cover"
           />
           <div>
-            <h2 className="mb-5 text-[20px] font-semibold italic text-purple-700">Մարետա Գևորկյան</h2>
+            <h2 className="mb-5 text-[20px] font-semibold italic text-purple-700">{t('Մարետա Գևորկյան')}</h2>
             <p className="text-[15px] leading-[1.6] text-gray-800">
-              Մարետա Գևորկյանը միանձնյա տիրապետում է Evocabank-ի բաժնետոմսերի 100%-ին:
+              {t('Մարետա Գևորկյանը միանձնյա տիրապետում է Evocabank-ի բաժնետոմսերի 100%-ին:')}
               <br />
-              Նա ծնվել է Դիլիջանում, ավարտել Դիլիջանի միջնակարգ դպրոցը, այնուհետև՝ Երևանի պետական մանկավարժական ակադեմիան:
+              {t('Նա ծնվել է Դիլիջանում, ավարտել Դիլիջանի միջնակարգ դպրոցը, այնուհետև՝ Երևանի պետական մանկավարժական ակադեմիան:')}
               <br />
-              2008 թվականից բնակվելով Շվեյցարիայում՝ նա ակտիվորեն ներգրավված է բանկային, տարածքային զարգացման և սոցիալական նախաձեռնություններում՝ նպաստելով Հայաստանի կայուն զարգացմանը:
+              {t('2008 թվականից բնակվելով Շվեյցարիայում՝ նա ակտիվորեն ներգրավված է բանկային, տարածքային զարգացման և սոցիալական նախաձեռնություններում՝ նպաստելով Հայաստանի կայուն զարգացմանը:')}
               <br />
               <br />
-              <strong>Նշում.</strong> Բանկն անուղղակի նշանակալից մասնակից չունի:
+              <strong>{t('Նշում.')} </strong>{t('Բանկն անուղղակի նշանակալից մասնակից չունի.')}
             </p>
           </div>
         </div>
 
         {/* Info accordions */}
-        <h2 className="mb-6 mt-16 text-[20px] font-extrabold uppercase tracking-wide text-gray-900">
-          Անհրաժեշտ տեղեկատվություն
-        </h2>
+        <h2 className="mb-6 mt-16 text-[20px] font-extrabold uppercase tracking-wide text-gray-900">{t('Անհրաժեշտ տեղեկատվություն')}</h2>
 
-        <AccordionItem title="Ուշադրություն">
-          <p>{ATTENTION.intro}</p>
+        <AccordionItem title={t('Ուշադրություն')}>
+          <p>{t(ATTENTION.intro)}</p>
           <BulletList items={ATTENTION.bullets} />
         </AccordionItem>
 
-        <AccordionItem title="Տեղեկատվություն մեր կանոնադրական կապիտալի փոփոխության վերաբերյալ">
-          <p>{CAPITAL.intro}</p>
+        <AccordionItem title={t('Տեղեկատվություն մեր կանոնադրական կապիտալի փոփոխության վերաբերյալ')}>
+          <p>{t(CAPITAL.intro)}</p>
           <BulletList items={CAPITAL.bullets} />
         </AccordionItem>
 
-        <AccordionItem title="Տեղեկատվություն շահաբաժինների բաշխման վերաբերյալ">
+        <AccordionItem title={t('Տեղեկատվություն շահաբաժինների բաշխման վերաբերյալ')}>
           <BulletList items={DIVIDENDS} />
         </AccordionItem>
 
         {/* Documents */}
         <section className="mx-auto mt-14 max-w-[720px]">
-          <h3 className="mb-5 text-[19px] font-bold text-gray-900">Փաստաթղթեր</h3>
+          <h3 className="mb-5 text-[19px] font-bold text-gray-900">{t('Փաստաթղթեր')}</h3>
           <div className="flex flex-col gap-5">
             {DOCS.map((d) => (
               <a
@@ -164,7 +165,7 @@ export default function Shareholders() {
                 className="flex items-center gap-3 rounded bg-[#f5f3f8] px-3 py-3 text-[13px] font-semibold text-gray-900 no-underline transition-colors hover:bg-[#ece7f5] hover:no-underline"
               >
                 <DocIcon />
-                <span>{d}</span>
+                <span>{t(d)}</span>
               </a>
             ))}
           </div>

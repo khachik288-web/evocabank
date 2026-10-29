@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Phone, ArrowLeft, ArrowRight, Home, ChevronRight } from 'lucide-react';
 import './About.css';
@@ -64,22 +65,24 @@ const COLORS = [
 ];
 
 function Breadcrumbs() {
+  const { t } = useTranslation();
   return (
-    <nav className="ab-crumbs" aria-label="breadcrumb">
-      <Link to="/" aria-label="Գլխավոր">
+    <nav className="ab-crumbs" aria-label={t('breadcrumb')}>
+      <Link to="/" aria-label={t('Գլխավոր')}>
         <Home size={16} strokeWidth={1.6} />
       </Link>
       <ChevronRight size={12} />
-      <Link to="/about">Մեր մասին</Link>
+      <Link to="/about">{t('Մեր մասին')}</Link>
       <ChevronRight size={12} />
-      <Link to="/about">Evoca-ի մասին</Link>
+      <Link to="/about">{t("Evoca-ի մասին")}</Link>
       <ChevronRight size={12} />
-      <span>Ընդհանուր</span>
+      <span>{t('Ընդհանուր')}</span>
     </nav>
   );
 }
 
 function History() {
+  const { t } = useTranslation();
   const [idx, setIdx] = useState(0);
   const item = HISTORY[idx];
 
@@ -91,7 +94,7 @@ function History() {
           className="ab-tl-arrow ab-tl-arrow--left"
           onClick={() => setIdx((i) => Math.max(0, i - 1))}
           disabled={idx === 0}
-          aria-label="Նախորդ տարի"
+          aria-label={t('Նախորդ տարի')}
         >
           <ArrowLeft size={18} />
         </button>
@@ -115,7 +118,7 @@ function History() {
           className="ab-tl-arrow ab-tl-arrow--right"
           onClick={() => setIdx((i) => Math.min(HISTORY.length - 1, i + 1))}
           disabled={idx === HISTORY.length - 1}
-          aria-label="Հաջորդ տարի"
+          aria-label={t('Հաջորդ տարի')}
         >
           <ArrowRight size={18} />
         </button>
@@ -123,10 +126,10 @@ function History() {
 
       <div className="ab-history-card" key={item.year}>
         <div className="ab-history-text">
-          <p>{item.text}</p>
+          <p>{t(item.text)}</p>
         </div>
         <div className="ab-history-img">
-          <img src={item.img} alt={`Բանկի պատմությունը ${item.year}`} />
+          <img src={item.img} alt={t('Բանկի պատմությունը {{year}}', { year: item.year })} />
         </div>
       </div>
     </div>
@@ -134,13 +137,14 @@ function History() {
 }
 
 export default function About() {
+  const { t } = useTranslation();
   return (
     <div className="about-page">
       {/* ===== Заголовок страницы ===== */}
       <section className="ab-head">
         <div className="ab-wrap">
           <Breadcrumbs />
-          <h1 className="ab-h1">Ընդհանուր տեղեկատվություն</h1>
+          <h1 className="ab-h1">{t('Ընդհանուր տեղեկատվություն')}</h1>
         </div>
       </section>
 
@@ -148,18 +152,10 @@ export default function About() {
       <section className="ab-general">
         <div className="ab-wrap ab-general-grid">
           <div className="ab-general-text">
-            <p>
-              <span className="ab-purple">Evocabank</span>-ը արագ, պարզ և նորարար ծառայություններ
-              մատուցող բանկ է, որն առանձնանում է տեղեկատվական նորագույն տեխնոլոգիաների ակտիվ
-              կիրառմամբ:
-            </p>
-            <p>Մենք հատուկ ուշադրություն ենք դարձնում մոբայլ ծառայությունների զարգացմանը:</p>
-            <p>
-              Մենք աշխատում ենք mobile-first ֆորմատով՝ յուրաքանչյուր նոր ծառայություն
-              նախագծելիս՝ նախևառաջ հաշվի ենք առնելու դրա՝ հավելվածով օգտագործման
-              հարմարավետությունը:
-            </p>
-            <p>Աշխարհը թվային է դառնում, և մենք պատրաստ ենք դրան:</p>
+            <p>{t('Evocabank-ը արագ, պարզ և նորարար ծառայություններ մատուցող բանկ է, որն առանձնանում է տեղեկատվական նորագույն տեխնոլոգիաների ակտիվ կիրառմամբ:')}</p>
+            <p>{t('Մենք հատուկ ուշադրություն ենք դարձնում մոբայլ ծառայությունների զարգացմանը:')}</p>
+            <p>{t('Մենք աշխատում ենք mobile-first ֆորմատով՝ յուրաքանչյուր նոր ծառայություն նախագծելիս՝ նախևառաջ հաշվի ենք առնելու դրա՝ հավելվածով օգտագործման հարմարավետությունը:')}</p>
+            <p>{t('Աշխարհը թվային է դառնում, և մենք պատրաստ ենք դրան:')}</p>
           </div>
           <div className="ab-general-img">
             <img src={IMG_GENERAL} alt="Evoca" />
@@ -170,13 +166,10 @@ export default function About() {
       {/* ===== Видение ===== */}
       <section className="ab-vision">
         <div className="ab-wrap-wide">
-          <h2 className="ab-vision-title">Մեր տեսլականը</h2>
+          <h2 className="ab-vision-title">{t('Մեր տեսլականը')}</h2>
           <div className="ab-vision-row">
             <span className="ab-vision-line" />
-            <p>
-              Դառնալ գլոբալ ֆինտեխ գործընկեր, որը միավորում է լավագույն փորձն ու տեխնոլոգիական
-              նորարարությունները հարմարավետ և ճկուն ծառայություններ ապահովելու համար:
-            </p>
+            <p>{t('Դառնալ գլոբալ ֆինտեխ գործընկեր, որը միավորում է լավագույն փորձն ու տեխնոլոգիական նորարարությունները հարմարավետ և ճկուն ծառայություններ ապահովելու համար:')}</p>
           </div>
         </div>
       </section>
@@ -185,22 +178,18 @@ export default function About() {
       <div className="ab-narrow">
         {/* Миссия */}
         <section className="ab-block">
-          <h2 className="ab-h2">Մեր առաքելությունը</h2>
+          <h2 className="ab-h2">{t('Մեր առաքելությունը')}</h2>
           <div className="ab-mission">
             <img src={IMG_MISSION} alt="Evoca" />
             <div className="ab-mission-card">
-              <p>
-                Որպես human-first և խելացի ֆինտեխ ընկերություն՝ մենք հնարավորություն ենք տալիս
-                մարդկանց երազելու ավելի համարձակ, բիզնեսներին՝ բացահայտելու նոր հորիզոններ, և
-                հասարակությանը՝ կառուցելու ավելի լավ ապագա:
-              </p>
+              <p>{t('Որպես human-first և խելացի ֆինտեխ ընկերություն՝ մենք հնարավորություն ենք տալիս մարդկանց երազելու ավելի համարձակ, բիզնեսներին՝ բացահայտելու նոր հորիզոններ, և հասարակությանը՝ կառուցելու ավելի լավ ապագա:')}</p>
             </div>
           </div>
         </section>
 
         {/* История */}
         <section className="ab-block">
-          <h2 className="ab-h2">Բանկի պատմությունը</h2>
+          <h2 className="ab-h2">{t('Բանկի պատմությունը')}</h2>
           <History />
         </section>
       </div>
@@ -208,12 +197,12 @@ export default function About() {
       {/* ===== Ценности ===== */}
       <section className="ab-values">
         <div className="ab-narrow">
-          <h2 className="ab-h2">Արժեքներ և առաջնայնություններ</h2>
+          <h2 className="ab-h2">{t('Արժեքներ և առաջնայնություններ')}</h2>
           <div className="ab-values-grid">
             {VALUES.map((v) => (
               <div key={v.title} className="ab-value">
-                <h3>{v.title}</h3>
-                <p>{v.text}</p>
+                <h3>{t(v.title)}</h3>
+                <p>{t(v.text)}</p>
               </div>
             ))}
           </div>
@@ -223,16 +212,13 @@ export default function About() {
       {/* ===== CSR ===== */}
       <section className="ab-csr">
         <div className="ab-narrow">
-          <h2 className="ab-h2">Կորպորատիվ սոցիալական պատասխանատվություն</h2>
-          <p className="ab-csr-lead">
-            Բանկը շարունակաբար աջակցություն է ցուցաբերում հանրության տարբեր խմբերին և
-            հասարակական նախաձեռնություններին հետևյալ ոլորտներում՝
-          </p>
+          <h2 className="ab-h2">{t('Կորպորատիվ սոցիալական պատասխանատվություն')}</h2>
+          <p className="ab-csr-lead">{t('Բանկը շարունակաբար աջակցություն է ցուցաբերում հանրության տարբեր խմբերին և հասարակական նախաձեռնություններին հետևյալ ոլորտներում՝')}</p>
           <div className="ab-csr-grid">
-            {CSR_ITEMS.map((t) => (
-              <div key={t} className="ab-csr-item">
+            {CSR_ITEMS.map((item) => (
+              <div key={item} className="ab-csr-item">
                 <span className="ab-csr-dash" />
-                <p>{t}</p>
+                <p>{t(item)}</p>
               </div>
             ))}
           </div>
@@ -242,33 +228,20 @@ export default function About() {
       {/* ===== Бренд ===== */}
       <section className="ab-brand">
         <div className="ab-narrow">
-          <h2 className="ab-h2">Բանկի լոգոտիպը</h2>
-          <p className="ab-p">
-            Բանկի լոգոն կազմված է evolution՝ էվոլյուցիա բառի արմատից և նմանեցված է evoke՝
-            զարթեցնել բառին: Բառի երկրորդ տառը՝ V-ն, պատկերված է կորացված անկյուններով
-            հավասարակողմ եռանկյան տեսքով և նմանեցված է դեպի աջ և վեր ուղղված սլաքի տեսքով՝
-            խորհրդանշելով Բանկի ձգտումը դեպի առաջընթաց:
-          </p>
+          <h2 className="ab-h2">{t('Բանկի լոգոտիպը')}</h2>
+          <p className="ab-p">{t('Բանկի լոգոն կազմված է evolution՝ էվոլյուցիա բառի արմատից և նմանեցված է evoke՝ զարթեցնել բառին: Բառի երկրորդ տառը՝ V-ն, պատկերված է կորացված անկյուններով հավասարակողմ եռանկյան տեսքով և նմանեցված է դեպի աջ և վեր ուղղված սլաքի տեսքով՝ խորհրդանշելով Բանկի ձգտումը դեպի առաջընթաց:')}</p>
           <div className="ab-logo">
             <img src={IMG_LOGO} alt="Evocabank logo" />
           </div>
 
-          <h3 className="ab-h3">Բանկի բրենդբուքը</h3>
-          <p className="ab-p">
-            Բրենդբուքում կգտնեք Բանկի լոգոյի կիրառման կանոնները, բրենդային գույները,
-            տառատեսակները և բրենդի այլ կարևոր տարրերը:
-            <br />
-            Սա պարզապես ուղեցույց չէ, այլ ոգեշնչման աղբյուր՝ ուժեղ և ճանաչելի բրենդ
-            կառուցելու համար:
-          </p>
+          <h3 className="ab-h3">{t('Բանկի բրենդբուքը')}</h3>
+          <p className="ab-p">{t('Բրենդբուքում կգտնեք Բանկի լոգոյի կիրառման կանոնները, բրենդային գույները, տառատեսակները և բրենդի այլ կարևոր տարրերը: Սա պարզապես ուղեցույց չէ, այլ ոգեշնչման աղբյուր՝ ուժեղ և ճանաչելի բրենդ կառուցելու համար:')}</p>
           <a className="ab-brandbook" href="#brandbook" aria-label="Brandbook">
             <img src={IMG_BRANDBOOK} alt="Brandbook" />
           </a>
 
-          <h2 className="ab-h2 ab-h2--colors">Բանկի կորպորատիվ գույները</h2>
-          <p className="ab-p">
-            Բանկի կորպորատիվ գույներն են՝ սպիտակը, մոխրագույնը և մանուշակագույնը:
-          </p>
+          <h2 className="ab-h2 ab-h2--colors">{t('Բանկի կորպորատիվ գույները')}</h2>
+          <p className="ab-p">{t('Բանկի կորպորատիվ գույներն են՝ սպիտակը, մոխրագույնը և մանուշակագույնը:')}</p>
           <div className="ab-colors">
             {COLORS.map((c) => (
               <div key={c.text} className="ab-color-row">
@@ -279,7 +252,7 @@ export default function About() {
                     border: c.border ? '1px solid #d9d9d9' : 'none',
                   }}
                 />
-                <p>{c.text}</p>
+                <p>{t(c.text)}</p>
               </div>
             ))}
           </div>
@@ -299,19 +272,14 @@ export default function About() {
       {/* ===== ISO ===== */}
       <section className="ab-iso">
         <div className="ab-narrow">
-          <h2 className="ab-h2 ab-h2--iso">ISO27001:2026 միջազգային հավաստագիր</h2>
-          <p className="ab-p">Evocabank-ը ստացել է ISO27001:2026 միջազգային հավաստագիր</p>
-          <p className="ab-p">
-            Հավաստագիրը վկայում է Բանկում ֆինանսական պրոդուկտների և ծառայությունների,
-            տվյալների բազաների, տեղեկատվության մշակման և պահպանման օբյեկտների,
-            հաճախորդների և բանկային հիմնական գործընթացների վերաբերյալ ֆինանսական
-            տեղեկատվության անվտանգ կառավարման համակարգի առկայության մասին:
-          </p>
+          <h2 className="ab-h2 ab-h2--iso">{t('ISO27001:2026 միջազգային հավաստագիր')}</h2>
+          <p className="ab-p">{t('Evocabank-ը ստացել է ISO27001:2026 միջազգային հավաստագիր')}</p>
+          <p className="ab-p">{t('Հավաստագիրը վկայում է Բանկում ֆինանսական պրոդուկտների և ծառայությունների, տվյալների բազաների, տեղեկատվության մշակման և պահպանման օբյեկտների, հաճախորդների և բանկային հիմնական գործընթացների վերաբերյալ ֆինանսական տեղեկատվության անվտանգ կառավարման համակարգի առկայության մասին:')}</p>
         </div>
       </section>
 
       {/* Плавающая кнопка звонка (чат-плашка уже есть в футере) */}
-      <a href="tel:+37410605555" className="ab-call" aria-label="Զանգահարել">
+      <a href="tel:+37410605555" className="ab-call" aria-label={t('Զանգահարել')}>
         <Phone size={20} fill="currentColor" />
       </a>
     </div>
