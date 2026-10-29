@@ -4,6 +4,7 @@ import { FaFacebookF, FaInstagram, FaYoutube, FaLinkedinIn, FaPinterestP } from 
 
 // --- Header специально для страницы онлайн-оплаты (без общего Header сайта) ---
 export function PaymentHeader() {
+  const { t } = useTranslation();
   return (
     <header className="w-full bg-white border-b border-gray-200">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 sm:py-4">
@@ -25,7 +26,7 @@ export function PaymentHeader() {
             </svg>
           </button>
           <button className="whitespace-nowrap rounded-full bg-purple-700 px-4 py-2 text-sm font-semibold text-white hover:bg-purple-800 sm:px-6 sm:py-2.5">
-            Պատմություն
+            {t("Պատմություն")}
           </button>
         </div>
       </div>
@@ -35,6 +36,7 @@ export function PaymentHeader() {
 
 // --- Footer специально для страницы онлайн-оплаты (без общего Footer сайта) ---
 export function PaymentFooter() {
+  const { t } = useTranslation();
   return (
     <footer className="w-full bg-white border-t border-gray-100 pt-10 pb-6">
       <div className="mx-auto max-w-7xl px-6">
@@ -44,7 +46,7 @@ export function PaymentFooter() {
               evoca<span className="font-normal text-gray-800">BANK</span>
             </h3>
             <p className="mt-3 text-xs text-gray-500">
-              Բանկը վերահսկվում է ՀՀ ԿԲ-ի կողմից
+               {t('Բանկը վերահսկվում է ՀՀ ԿԲ-ի կողմից')}
             </p>
             <p className="mt-1 text-xs text-gray-400">
               Copyright &copy; 1990-2026 Evocabank
@@ -53,7 +55,7 @@ export function PaymentFooter() {
 
           <div className="text-sm text-gray-600">
             <p className="mb-0">ք. Երևան, 0010,</p>
-            <p>Հանրապետության 44/2</p>
+            <p>{t('Հանրապետության 44/2')}</p>
           </div>
 
           <div className="text-sm">
@@ -143,13 +145,14 @@ const PAYMENT_CATEGORIES = [
 
 // --- Основная страница "Անընդհատ ֆինանսավորումներ" (онлайн-оплата) ---
 function WebPayment() {
+  const { t } = useTranslation();
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       <PaymentHeader />
 
       <main className="flex-1">
         <div className="mx-auto max-w-5xl px-6 py-16">
-          <h1 className="mb-10 text-center text-3xl font-bold text-gray-900">Գլխավոր</h1>
+          <h1 className="mb-10 text-center text-3xl font-bold text-gray-900">{t('Գլխավոր')}</h1>
 
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 mt-[70px]">
             {PAYMENT_CATEGORIES.map((cat) => (
@@ -159,7 +162,7 @@ function WebPayment() {
                 className="flex flex-col items-center justify-center gap-6 rounded-2xl bg-white px-6 py-10 text-center no-underline shadow-sm transition-shadow hover:no-underline hover:shadow-md"
               >
                 <img src={cat.image} alt={cat.title} className="h-20 w-20 object-contain" />
-                <span className="text-sm font-medium text-gray-800">{cat.title}</span>
+                <span className="text-sm font-medium text-gray-800">{t(cat.title)}</span>
               </Link>
             ))}
           </div>
