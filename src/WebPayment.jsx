@@ -55,7 +55,7 @@ export function PaymentFooter() {
           </div>
 
           <div className="text-sm text-gray-600">
-            <p className="mb-0">ք. Երևան, 0010,</p>
+            <p className="mb-0">{t("ք. Երևան, 0010,")}</p>
             <p>{t('Հանրապետության 44/2')}</p>
           </div>
 
