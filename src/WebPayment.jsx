@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaFacebookF, FaInstagram, FaYoutube, FaLinkedinIn, FaPinterestP } from 'react-icons/fa';
+import { useTranslation } from 'react-i18next';
 
 // --- Header специально для страницы онлайн-оплаты (без общего Header сайта) ---
 export function PaymentHeader() {
