@@ -19,6 +19,7 @@ import CareerFaq from './CareerFaq';
 import CareerHowToHire from './CareerHowToHire';
 import News from './News';
 import LikedNews from './LikedNews';
+import NewsArticle from './NewsArticle';
 import Blog from './Blog';
 import Loans from './Loans';
 import Cards from './Cards';
@@ -303,6 +304,7 @@ function Slider() {
     {
       bg: 'bg-purple-700',
       title: 'Evoca Աշխատավարձային Նախագիծ',
+      to: '/evocasalary',
       text: 'Բեր աշխատավարձդ Evoca: Ստացիր շատ ավելին...',
       textColor: 'text-white',
       subTextColor: 'text-purple-100',
@@ -312,6 +314,7 @@ function Slider() {
     {
       bg: 'bg-gray-200',
       title: 'Evoca Travel Card',
+      to: '/cards/travel',
       text: 'Այս քարտն իր բազմաթիվ առավելություններով կդառնա քո ճամփորդական անբաժան ընկերը',
       textColor: 'text-gray-900',
       subTextColor: 'text-gray-600',
@@ -321,6 +324,7 @@ function Slider() {
     {
       bg: 'bg-black',
       title: 'Կարճ հեռախոսահամարով՝ 8444',
+      to: '/news/short-number',
       text: 'Բարի գալուստ, Evocabank: Մենք սպասում ենք Ձեր զանգին...',
       textColor: 'text-white',
       subTextColor: 'text-gray-300',
@@ -330,6 +334,7 @@ function Slider() {
     {
       bg: 'bg-gray-800',
       title: 'Visa Vision',
+      to: '/cards/visa-vision',
       text: 'Ձեռք բեր Visa Vision քարտը քո նախընտրած գույնով, դիզայնով ու ոճով և օգտվիր բազմաթիվ առավելություններից',
       textColor: 'text-white',
       subTextColor: 'text-gray-300',
@@ -369,9 +374,9 @@ function Slider() {
             {t(slide.title)}
           </h1>
           <p className={`mb-8 text-base ${slide.subTextColor}`}>  {t(slide.text)}</p>
-          <button className={`rounded-full px-6 py-3 font-semibold transition-colors ${slide.buttonClass}`}>
+          <Link to={slide.to} className={`inline-block rounded-full px-6 py-3 font-semibold no-underline transition-colors hover:no-underline ${slide.buttonClass}`}>
             {t('Իմանալ ավելին')}
-          </button>
+          </Link>
         </div>
 
         <div className="w-full max-w-md">
@@ -1956,6 +1961,7 @@ function App() {
           <Route path="/career/faq" element={<SiteLayout><CareerFaq /></SiteLayout>} />
           <Route path="/career/how-we-hire" element={<SiteLayout><CareerHowToHire /></SiteLayout>} />
           <Route path="/news" element={<SiteLayout><News /></SiteLayout>} />
+          <Route path="/news/:slug" element={<SiteLayout><NewsArticle /></SiteLayout>} />
           <Route path="/liked-news" element={<SiteLayout><LikedNews /></SiteLayout>} />
           <Route path="/blog" element={<SiteLayout><Blog /></SiteLayout>} />
           <Route path="/loans" element={<SiteLayout><Loans /></SiteLayout>} />

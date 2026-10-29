@@ -55,3 +55,9 @@
   .cd-stat { grid-template-columns: 120px 1fr; gap: 14px; }
   .cd-other-item { flex-basis: 50% !important; }
 }
+
+/* карты без таблицы тарифов (Visa Vision и др.) — одна узкая колонка по центру */
+.cd-body--single { grid-template-columns: minmax(0, 640px); justify-content: center; }
+.cd-text ul { margin: 0 0 24px; padding-left: 20px; font-size: 13px; line-height: 2; color: #222; }
+.cd-text li::marker { color: var(--p); }
+.cd-inline-img { display: block; max-width: 100%; width: 260px; margin: 0 auto 24px; border-radius: 12px; box-shadow: 0 2px 16px rgba(0,0,0,.12); }
