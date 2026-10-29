@@ -523,9 +523,9 @@ function Biometric() {
               alt="QR code"
               className="h-32 w-32 object-contain"
             />
-            <button className="rounded-full bg-purple-700 px-6 py-3 font-semibold text-white hover:bg-purple-800 transition-colors">
+            <Link to="/evocatouch" className="inline-block rounded-full bg-purple-700 px-6 py-3 font-semibold text-white no-underline hover:bg-purple-800 hover:text-white hover:no-underline transition-colors">
               {t('Իմանալ ավելին')}
-            </button>
+            </Link>
           </div>
         </div>
       </div>
