@@ -1,9 +1,6 @@
-import React, { useState } from 'react';
-import { Link, useNavigate, useParams, useLocation, Navigate } from 'react-router-dom';
+import React, { useState, useRef } from 'react';
+import { Link, useNavigate, useParams, Navigate } from 'react-router-dom';
 import { ArrowLeft, ChevronRight, ChevronLeft, Home } from 'lucide-react';
-import BusinessHeader from './BusinessHeader';
-import OnlineBanner from './OnlineBanner';
-import { DEFAULT_LOANS_DATA } from './busines';
 import './CardDetail.css';
 
 const L_BANK = 'Կանխիկացում բանկի կանխիկացման կետերում';
@@ -16,7 +13,7 @@ const mcGoldImg = 'https://www.evoca.am/images-cache/cards/1/17149865321136/415x
 export const MC_GOLD_IMG = mcGoldImg;
 export const VISA_GOLD_IMG = 'https://www.evoca.am/images-cache/cards/1/17149865646885/415x261.png';
 
-// Динамический словарь карт и бизнес-кредитов
+// slug -> данные страницы карты. Новые карты добавляются сюда.
 export const CARD_DETAILS = {
   'mastercard-gold': {
     title: 'Mastercard Gold',
@@ -25,7 +22,7 @@ export const CARD_DETAILS = {
     crumb: ['Mastercard', 'Mastercard Gold'],
     paragraphs: [
       [['b', 'Mastercard Gold քարտը'], ' Mastercard միջազգային վճարահաշվարկային համակարգի ', ['b', 'պրեմիում դասի չիպային քարտ'], ' է, որն ունի դրամական միջոցների անվտանգության ապահովման բարձր մակարդակ և օժտված է ժամանակակից տեխնոլոգիաներով:'],
-      [['b', 'Mastercard Gold քարտը'], ' կընդգծի քո կարգավիճակը և անմոռանալի կդարձնի քո բոլոր ճանապարհորդությունները. Հաշված րոպեների ընթացքում դու կկարողանաս ', ['b', 'նախապես գնել քո ավիատոմսը, ամրագրել հյուրանոցային համար կամ վարձել ավտոմեքենա'], ' վճարելով ', ['b', 'Mastercard Gold քարտով'], ':'],
+      [['b', 'Mastercard Gold քարտը'], ' կընդգծի քո կարգավիճակը և անմոռանալի կդարձնի քո բոլոր ճանապարհորդությունները: Հաշված րոպեների ընթացքում դու կկարողանաս ', ['b', 'նախապես գնել քո ավիատոմսը, ամրագրել հյուրանոցային համար կամ վարձել ավտոմեքենա'], ' վճարելով ', ['b', 'Mastercard Gold քարտով'], ':'],
       ['Քո դրամական միջոցներն օրվա բոլոր ժամերին, աշխարհի ցանկացած կետում հասանելի կլինեն քեզ: Դու կկարողանաս բանկոմատի միջոցով ', ['b', 'քո Mastercard Gold քարտից'], ' գումար կանխիկացնել և անկանխիկ վճարումներ կատարել աշխարհի բոլոր այն սպասարկման և առևտրի կետերում, որտեղ փակցված կլինի Mastercard Gold տարբերանշանը:'],
       ['Քարտը կարող ես պատվիրել և ստանալ առանց Բանկ այցելելու: ', ['b', 'EvocaTOUCH'], ' հավելվածի միջոցով պարզ քայլերի հաջորդականությամբ կկարողանաս պատվիրել՝ նշելով այն հասցեն, որտեղից կցանկանաս ստանալ քարտը: Կարևորելով մեր հաճախորդների ժամանակը՝ առաքման անվճար ծառայության միջոցով կտրամադրենք քո քարտը Հայաստանի ցանկացած կետում:'],
     ],
@@ -48,6 +45,8 @@ export const CARD_DETAILS = {
       [['b', 'Նոր քարտերի թողարկումը դադարեցված է 25.11.2024 թվականից:']],
       ['Visa Gold քարտը Visa International միջազգային վճարահաշվարկային համակարգի պրեմիում դասի չիպային քարտ է, որն ապահովում է Ձեր հարմարավետությունն ու ընդգծում Ձեր կարգավիճակը:'],
       ['Աշխարհի ցանկացած կետում Ձեր ֆինանսական միջոցները 24/7 սկզբունքով հասանելի կլինեն: Դուք կկարողանաք բանկոմատի միջոցով Evoca Visa Gold քարտից գումար կանխիկացնել և անկանխիկ վճարումներ կատարել աշխարհի բոլոր այն սպասարկման և առևտրի կետերում, որտեղ փակցված կլինի Visa տարբերանշանը:'],
+      [['b', 'Evoca Visa Gold'], ' քարտն օժտված է դրամական միջոցների անվտանգության ապահովման բարձր մակարդակով: Այն միջազգային payWave տեխնոլոգիայով աշխատող չիպային քարտ է, որի շնորհիվ սպասարկման կետերում անկանխիկ վճարումներ կատարելիս քարտը հատուկ վճարային տերմինալների մեջ տեղադրելու անհրաժեշտություն չի առաջանում:'],
+      ['Սա նվազեցնում է քարտի հնարավոր կեղծման ռիսկը՝ ցանկացած վճարում դարձնելով պարզ, արագ և հեշտ: Պարզապես մոտեցրեք քարտը հատուկ վճարային տերմինալներին, և գործարքը կհաստատվի հաշված վայրկյանների ընթացքում:'],
     ],
     stats: [
       { value: '0.2%', label: L_BANK },
@@ -60,24 +59,6 @@ export const CARD_DETAILS = {
     bannerClass: 'purple',
   },
 };
-
-// Автоматически добавляем бизнес-кредиты из DEFAULT_LOANS_DATA в единый словарь деталлок
-DEFAULT_LOANS_DATA.forEach((loan) => {
-  CARD_DETAILS[loan.id] = {
-    title: loan.title,
-    subtitle: loan.subtitle || loan.description,
-    img: loan.image,
-    crumb: loan.crumb || ['Бизнес', 'Вклады', loan.title],
-    paragraphs: loan.paragraphs || [[loan.description]],
-    stats: loan.stats.map(s => ({
-      value: s.value,
-      label: s.label,
-      pre: s.sublabel
-    })),
-    banner: loan.banner || 'Evocabank — Ваш надежный финансовый партнер в бизнесе.',
-    bannerClass: loan.bannerClass || 'purple'
-  };
-});
 
 const IMG = (id, ext = 'png') => `https://www.evoca.am/images-cache/cards/1/${id}/415x261.${ext}`;
 const OTHER_CARDS = [
@@ -103,24 +84,20 @@ function OtherCards({ exclude }) {
   return (
     <section className="cd-other">
       <div className="cd-wrap">
-        <h2>Այլ վարկեր</h2>
+        <h2>Այլ քարտեր</h2>
         <div className="cd-other-row">
-          <button type="button" aria-label="prev" onClick={() => setI((v) => (v <= 0 ? max : v - 1))} className="cursor-pointer">
-            <ChevronLeft size={22} />
-          </button>
+          <button type="button" aria-label="prev" onClick={() => setI((v) => (v <= 0 ? max : v - 1))}><ChevronLeft size={22} /></button>
           <div className="cd-other-viewport">
             <div className="cd-other-track" style={{ transform: `translateX(-${i * (100 / visible)}%)` }}>
               {list.map((c) => (
-                <Link to="/business" key={c.name} className="cd-other-item" style={{ flex: `0 0 ${100 / visible}%` }}>
+                <Link to="/cards" key={c.name} className="cd-other-item" style={{ flex: `0 0 ${100 / visible}%` }}>
                   <img src={c.img} alt={c.name} />
                   <span>{c.name}</span>
                 </Link>
               ))}
             </div>
           </div>
-          <button type="button" aria-label="next" onClick={() => setI((v) => (v >= max ? 0 : v + 1))} className="cursor-pointer">
-            <ChevronRight size={22} />
-          </button>
+          <button type="button" aria-label="next" onClick={() => setI((v) => (v >= max ? 0 : v + 1))}><ChevronRight size={22} /></button>
         </div>
       </div>
     </section>
@@ -129,113 +106,75 @@ function OtherCards({ exclude }) {
 
 export default function CardDetail() {
   const { cardId } = useParams();
-  const location = useLocation();
   const navigate = useNavigate();
   const [tab, setTab] = useState('about');
-
-  // Если переданы стейтом новые данные из карточки — используем их, иначе берем из словаря по id
-  const passedItem = location.state?.item;
-  const d = passedItem ? {
-    title: passedItem.title,
-    subtitle: passedItem.description,
-    img: passedItem.image,
-    crumb: passedItem.crumb || ['Բիզնես', 'Վարկեր', passedItem.title],
-    paragraphs: passedItem.paragraphs || [[passedItem.description]],
-    stats: passedItem.stats?.map(s => ({ value: s.value, label: s.label, pre: s.sublabel })) || [],
-    banner: passedItem.banner || 'Evocabank — Ձեր վստահելի գործընկերը բիզնեսում:',
-    bannerClass: 'purple'
-  } : CARD_DETAILS[cardId];
-
-  if (!d) return <Navigate to="/business" replace />;
+  const d = CARD_DETAILS[cardId];
+  if (!d) return <Navigate to="/cards" replace />;
 
   return (
-    <main className="cd-page bg-white min-h-screen text-[#212529]">
-      <BusinessHeader />
-
-      <section className="cd-hero bg-[#f4f5f8] py-12 px-4 sm:px-6 lg:px-8">
-        <div className="cd-wrap cd-hero-in max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
-          <div className="cd-hero-text max-w-2xl">
-            <h1 className="text-3xl sm:text-4xl font-extrabold text-[#111] mb-4">{d.title}</h1>
-            <p className="text-gray-600 text-base sm:text-lg leading-relaxed">{d.subtitle}</p>
+    <main className="cd-page">
+      <section className="cd-hero">
+        <div className="cd-wrap cd-hero-in">
+          <div className="cd-hero-text">
+            <h1>{d.title}</h1>
+            <p>{d.subtitle}</p>
           </div>
-          <div className="cd-hero-img relative">
-            <img src={d.img} alt={d.title} className="max-w-md w-full h-auto object-cover rounded-2xl shadow-md" />
+          <div className="cd-hero-img">
+            <img src={d.img} alt={d.title} />
             <i className="cd-shadow" />
           </div>
         </div>
       </section>
 
-      <div className="cd-wrap max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <div className="cd-toolbar flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
-          <button
-            type="button"
-            className="cd-back inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors cursor-pointer text-sm font-semibold"
-            onClick={() => navigate(-1)}
-          >
+      <div className="cd-wrap">
+        <div className="cd-toolbar">
+          <button type="button" className="cd-back" onClick={() => navigate('/cards')}>
             <ArrowLeft size={18} /> Վերադառնալ
           </button>
-          <nav className="cd-crumbs flex items-center gap-1.5 text-xs sm:text-sm text-gray-500">
-            <Link to="/" aria-label="Home" className="hover:text-purple-700"><Home size={14} /></Link>
-            <ChevronRight size={12} />
-            <Link to="/business" className="hover:text-purple-700">Բիզնես</Link>
-            <ChevronRight size={12} />
-            <Link to="/business" className="hover:text-purple-700">Վարկեր</Link>
-            <ChevronRight size={12} />
-            <Link to="/business" className="hover:text-purple-700">Բիզնես վարկեր</Link>
+          <nav className="cd-crumbs">
+            <Link to="/" aria-label="Home"><Home size={14} /></Link>
+            <ChevronRight size={11} />
+            <Link to="/">Անհատ</Link>
+            <ChevronRight size={11} />
+            <Link to="/cards">Քարտեր</Link>
+            <ChevronRight size={11} />
+            <Link to="/cards">Քարտեր</Link>
             {d.crumb.map((c, i) => (
-              <React.Fragment key={c + i}>
-                <ChevronRight size={12} />
-                <span className={i === d.crumb.length - 1 ? 'font-semibold text-gray-900' : ''}>{c}</span>
+              <React.Fragment key={c}>
+                <ChevronRight size={11} />
+                <span className={i === d.crumb.length - 1 ? 'last' : ''}>{c}</span>
               </React.Fragment>
             ))}
           </nav>
         </div>
 
-        <div className="cd-tabs flex gap-8 border-b border-gray-200 mb-8">
-          <button
-            type="button"
-            className={`pb-3 text-base font-bold transition-colors cursor-pointer border-b-2 ${tab === 'about' ? 'border-purple-700 text-purple-700' : 'border-transparent text-gray-500 hover:text-gray-900'}`}
-            onClick={() => setTab('about')}
-          >
-            Վարկի մասին
-          </button>
-          <button
-            type="button"
-            className={`pb-3 text-base font-bold transition-colors cursor-pointer border-b-2 ${tab === 'tariffs' ? 'border-purple-700 text-purple-700' : 'border-transparent text-gray-500 hover:text-gray-900'}`}
-            onClick={() => setTab('tariffs')}
-          >
-            Պայմաններ
-          </button>
+        <div className="cd-tabs">
+          <button type="button" className={tab === 'about' ? 'on' : ''} onClick={() => setTab('about')}>Քարտի մասին</button>
+          <button type="button" className={tab === 'tariffs' ? 'on' : ''} onClick={() => setTab('tariffs')}>Սակագներ և դրույքներ</button>
         </div>
 
-        <div className="cd-body grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
-          <div className="cd-text lg:col-span-2 space-y-4 text-gray-700 text-base leading-relaxed">
+        <div className="cd-body">
+          <div className="cd-text">
             {tab === 'about' ? (
-              d.paragraphs.map((p, i) => (
-                <p key={i} className="mb-3">
-                  <Rich parts={p} />
-                </p>
-              ))
+              d.paragraphs.map((p, i) => <p key={i}><Rich parts={p} /></p>)
             ) : (
-              <p>Սակագները, դրույքները և մանրամասն պայմանները ներկայացված են աջ կողմի աղյուսակում:</p>
+              <p>Սակագները և դրույքները ներկայացված են աջ կողմի աղյուսակում:</p>
             )}
           </div>
 
-          <aside className="cd-stats bg-[#f9f9fb] p-6 rounded-2xl border border-gray-100 shadow-xs space-y-6">
-            <div className="cd-cur flex gap-3 text-purple-700 font-bold text-lg pb-4 border-b border-gray-200">
-              {['֏', '$', '€', '₽'].map((c) => (
-                <span key={c} className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-sm">{c}</span>
-              ))}
+          <aside className="cd-stats">
+            <div className="cd-cur">
+              {['֏', '$', '€', '₽'].map((c) => <span key={c}>{c}</span>)}
             </div>
             {d.stats.map((s, i) => (
-              <div className="cd-stat flex flex-col" key={i}>
-                <div className="cd-stat-v flex items-baseline gap-2">
-                  {s.pre && <small className="text-xs text-gray-500 font-medium">{s.pre}</small>}
-                  <b className="text-2xl font-extrabold text-[#7B2CBF]">{s.value}</b>
+              <div className="cd-stat" key={i}>
+                <div className="cd-stat-v">
+                  {s.pre && <small>{s.pre}</small>}
+                  <b>{s.value}</b>
                 </div>
-                <div className="cd-stat-l text-sm text-gray-600 font-medium mt-1">
+                <div className="cd-stat-l">
                   {s.label}
-                  {s.note && <><br /><span className="text-xs text-gray-400">{s.note}</span></>}
+                  {s.note && <><br />{s.note}</>}
                 </div>
               </div>
             ))}
@@ -243,15 +182,11 @@ export default function CardDetail() {
         </div>
       </div>
 
-      <section className={`cd-banner ${d.bannerClass} bg-[#7B2CBF] text-white py-12 px-4 sm:px-6 lg:px-8 text-center my-12`}>
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold leading-snug">{d.banner}</h2>
-        </div>
+      <section className={`cd-banner ${d.bannerClass}`}>
+        <h2>{d.banner}</h2>
       </section>
 
       <OtherCards exclude={d.title} />
-
-      <OnlineBanner />
     </main>
   );
 }
