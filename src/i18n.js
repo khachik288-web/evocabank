@@ -541,6 +541,32 @@ const ROWS = [
   ['Էջը չի գտնվել։', 'Страница не найдена.', 'Page not found.'],
   ['← Վերադառնալ', '← Назад', '← Go back'],
   ['Կրթություն', 'Образование', 'Education'],
+
+  // About: история банка
+  ['Բանկի պատմությունը {{year}}', 'История банка, {{year}}', 'Bank history, {{year}}'],
+  ['Բովանդակությունը շուտով կհրապարակվի:', 'Содержание будет опубликовано в ближайшее время.', 'Content will be published soon.'],
+  ['Բանկը բացեց նոր «Աղափնյակ» մասնաճյուղը, կնքեց նոր միջազգային համագործակցության պայմանագրեր, մասնակցեց միջազգային կոնֆերանսների, արժանացավ հեղինակավոր մրցանակների և կյանքի կոչեց Երևանը գունավորող street art-երը:', 'Банк открыл новый филиал «Агапнюк», заключил новые договоры о международном сотрудничестве, принял участие в международных конференциях, получил престижные награды и воплотил в жизнь street art проекты, раскрасившие Ереван.', 'The bank opened the new Aghapnyak branch, signed new international cooperation agreements, took part in international conferences, received prestigious awards, and brought to life street art projects that colored Yerevan.'],
+  ['Evocabank-ը responsAbility-ից ներգրավեց 4 մլն ԱՄՆ դոլար՝ Հայաստանում ՄՓՄՁ-ների ֆինանսավորման համար, իսկ EIB Global-ի հետ միավորեց ուժերը՝ 12 միլիոն եվրո վարկային միջոցներով փոքր բիզնեսի զարգացմանը նպաստելու նպատակով:', 'Evocabank привлёк от responsAbility 4 млн долларов США для финансирования МСП в Армении, а совместно с EIB Global объединил усилия, предоставив 12 млн евро кредитных средств для развития малого бизнеса.', 'Evocabank raised USD 4 million from responsAbility to finance SMEs in Armenia, and joined forces with EIB Global with EUR 12 million in credit funds to support small business development.'],
+  ['Evocabank-ն ավարտեց իր պարտատոմսերի տեղաբաշխումը՝ 2 մլրդ ՀՀ դրամ և 10 մլն ԱՄՆ դոլար ընդհանուր ծավալով, արժանացավ «Օրինապահ հարկ վճարող» հավաստագրին և ստացավ նոր միջազգային վարկանիշ Fitch Ratings-ից:', 'Evocabank завершил размещение облигаций общим объёмом 2 млрд драмов РА и 10 млн долларов США, получил сертификат «Законопослушный налогоплательщик» и новый международный рейтинг от Fitch Ratings.', 'Evocabank completed the placement of its bonds with a total volume of AMD 2 billion and USD 10 million, received the “Law-abiding taxpayer” certificate, and obtained a new international rating from Fitch Ratings.'],
+
+  // About: ценности
+  ['Human-first', 'Human-first', 'Human-first'],
+  ['Առաջին տեղում միշտ մարդիկ են՝ մեր հաճախորդները, էքսպերտների թիմը և հասարակությունը: Չէ՞ որ աշխարհում ամեն ինչ արվում է մարդկանց կողմից մարդկանց համար:', 'На первом месте всегда люди: наши клиенты, команда экспертов и общество. Ведь в мире всё делается людьми для людей.', 'People always come first: our customers, our team of experts, and society. After all, everything in the world is done by people for people.'],
+  ['Նորարարություն', 'Инновации', 'Innovation'],
+  ['Նորարարությունը մեր ԴՆԹ-ի մասն է, իսկ փոփոխությունն այսօր միակ հաստատունն է: Մենք բաց ենք և պատրաստակամ զարգանալու համար:', 'Инновации — часть нашей ДНК, а перемены сегодня — единственная константа. Мы открыты и готовы развиваться.', 'Innovation is part of our DNA, and change is the only constant today. We are open and ready to grow.'],
+  ['Դրական ազդեցություն', 'Позитивное влияние', 'Positive impact'],
+  ['Մենք ձգտում ենք ունենալ դրական ազդեցություն և նպաստել աշխարհին ավելի լավը դարձնելուն:', 'Мы стремимся оказывать позитивное влияние и способствовать тому, чтобы мир стал лучше.', 'We strive to have a positive impact and help make the world a better place.'],
+
+  // About: CSR
+  ['Նորագույն տեխնոլոգիաների զարգացում, նորարար նախաձեռնություններ, startup-եր,', 'Развитие новейших технологий, инновационные инициативы, стартапы,', 'Development of cutting-edge technologies, innovative initiatives, startups,'],
+  ['Երիտասարդության կրթական, գիտական և մշակութային նախաձեռնություններ,', 'Образовательные, научные и культурные инициативы молодёжи,', 'Educational, scientific, and cultural initiatives of young people,'],
+  ['Հասարակական կարևոր նշանակություն ունեցող նախաձեռնություններ,', 'Инициативы, имеющие важное общественное значение,', 'Initiatives of important public significance,'],
+  ['Հասարակության առավել խոցելի խմբեր, մասնավորապես՝ ծնողազուրկ կամ հատուկ խնամքի տակ գտնվող երեխաներ:', 'Наиболее уязвимые группы общества, в частности дети-сироты или дети, находящиеся под особой опекой.', 'The most vulnerable groups in society, in particular orphaned children or children in special care.'],
+
+  // About: цвета
+  ['Սպիտակը խորհրդանշում է նորը:', 'Белый символизирует новое.', 'White symbolizes the new.'],
+  ['Մոխրագույնը խորհրդանշում է նորագույն տեխնոլոգիաների կիրառումը:', 'Серый символизирует применение новейших технологий.', 'Gray symbolizes the use of cutting-edge technologies.'],
+  ['Մանուշակագույնը երիտասարդության, ստեղծարարության և նորարարության գույնն է:', 'Фиолетовый — цвет молодости, творчества и инноваций.', 'Purple is the color of youth, creativity, and innovation.'],
   // ['','',''],
   // ['','',''],
   // ['','',''],
