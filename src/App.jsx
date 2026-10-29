@@ -18,6 +18,7 @@ import CareerBenefits from './CareerBenefits';
 import CareerFaq from './CareerFaq';
 import CareerHowToHire from './CareerHowToHire';
 import News from './News';
+import LikedNews from './LikedNews';
 import Blog from './Blog';
 import Loans from './Loans';
 import Cards from './Cards';
@@ -1955,6 +1956,7 @@ function App() {
           <Route path="/career/faq" element={<SiteLayout><CareerFaq /></SiteLayout>} />
           <Route path="/career/how-we-hire" element={<SiteLayout><CareerHowToHire /></SiteLayout>} />
           <Route path="/news" element={<SiteLayout><News /></SiteLayout>} />
+          <Route path="/liked-news" element={<SiteLayout><LikedNews /></SiteLayout>} />
           <Route path="/blog" element={<SiteLayout><Blog /></SiteLayout>} />
           <Route path="/loans" element={<SiteLayout><Loans /></SiteLayout>} />
           <Route path="/loans/history" element={<SiteLayout><HistoryPage /></SiteLayout>} />

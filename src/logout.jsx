@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { db, auth } from "./firebase";
 import { ref, get } from "firebase/database";
 import { onAuthStateChanged, signOut } from "firebase/auth";
-import { LogOut as LogOutIcon, MessageCircle, Home, Mail, Phone, CalendarDays } from "lucide-react";
+import { LogOut as LogOutIcon, MessageCircle, Home, Mail, Phone, CalendarDays, ThumbsUp } from "lucide-react";
 import { useChatStore } from "./useChatStore";
 import { useTranslation } from 'react-i18next';
 
@@ -111,7 +111,17 @@ export default function LogOut() {
               ))}
             </div>
 
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+            <Link
+              to="/liked-news"
+              className="mt-6 flex items-center gap-3 rounded-2xl border border-slate-100 px-4 py-3 text-slate-800 no-underline hover:bg-purple-50 hover:no-underline"
+            >
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-purple-50 text-[#7000ff]">
+                <ThumbsUp size={18} />
+              </div>
+              <span className="text-sm font-medium">{t("Հավանած նորություններ")}</span>
+            </Link>
+
+            <div className="mt-3 flex flex-col gap-3 sm:flex-row">
               <button
                 onClick={() => { setIsOpen(true); navigate("/"); }}
                 className="flex flex-1 items-center justify-center gap-2 rounded-full border border-[#7000ff] bg-white py-3 font-medium text-[#7000ff] hover:bg-purple-50"
