@@ -20,6 +20,7 @@ import CareerHowToHire from './CareerHowToHire';
 import News from './News';
 import LikedNews from './LikedNews';
 import NewsArticle from './NewsArticle';
+import LoanDetail from './LoanDetail';
 import Blog from './Blog';
 import Loans from './Loans';
 import Cards from './Cards';
@@ -1920,6 +1921,7 @@ function App() {
           <Route path="/logout" element={<LogOut />} />
           <Route path="/" element={<SiteLayout><HomePage /></SiteLayout>} />
           <Route path="/business" element={<SiteLayout><Business /></SiteLayout>} />
+          <Route path="/business/loans/:id" element={<SiteLayout><LoanDetail /></SiteLayout>} />
           <Route path="/about" element={<SiteLayout><About /></SiteLayout>} />
           <Route path="/web-payment" element={<WebPayment />} />
           <Route path="/web-payment/:slug" element={<PaymentCategory />} />
