@@ -1533,23 +1533,38 @@ function FlagRUB() {
   );
 }
 
+
+const TABS = [
+  { id: 'cash', label: 'Կանխիկ' },
+  { id: 'nonCash', label: 'Անկանխիկ' },
+  { id: 'gold', label: 'Ոսկու փոխարժեք' },
+  { id: 'ruble', label: 'Ռուբլու կանխիկ մուտք' },
+];
+ 
+const CURRENCIES = [
+  { code: 'USD', Flag: FlagUSD },
+  { code: 'EUR', Flag: FlagEUR },
+  { code: 'RUB', Flag: FlagRUB },
+];
+ 
 function CurrencyExchange() {
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState('nonCash'); // 'cash' | 'nonCash' | 'gold' | 'ruble'
-  
+ 
   // Состояния для калькулятора валют
   const [fromAmount, setFromAmount] = useState('1000');
   const [fromCurr, setFromCurr] = useState('AMD');
   const [toCurr, setToCurr] = useState('USD');
-
+ 
   const rates = activeTab === 'cash' ? CURRENCY_RATES.cash : CURRENCY_RATES.nonCash;
-
+ 
   // Расчет конвертации
   const calculateResult = () => {
     const amount = parseFloat(fromAmount);
     if (isNaN(amount) || amount <= 0) return '0';
-
+ 
     if (fromCurr === toCurr) return amount.toString();
-
+ 
     // AMD в валюту
     if (fromCurr === 'AMD' && rates[toCurr]) {
       return (amount / rates[toCurr].sell).toFixed(2);
@@ -1563,134 +1578,85 @@ function CurrencyExchange() {
       const amdValue = amount * rates[fromCurr].buy;
       return (amdValue / rates[toCurr].sell).toFixed(2);
     }
-
+ 
     return '0';
   };
-
+ 
+  const tabClass = (id) =>
+    `px-5 py-3 text-sm font-semibold rounded-t-2xl transition-all ${
+      activeTab === id
+        ? 'bg-white text-gray-900 shadow-[0_-4px_12px_rgba(0,0,0,0.03)] border-t border-x border-gray-100 relative z-10'
+        : 'text-gray-400 hover:text-purple-700 bg-transparent'
+    }`;
+ 
+  const updatedDate = activeTab === 'ruble' ? '10.07.26' : '23.09.26';
+ 
   return (
     <section className="bg-white py-16 px-4 sm:px-6 w-full font-sans">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
-        
+ 
         {/* ЛЕВАЯ ЧАСТЬ: Дисклеймер, Вкладки и Курсы */}
         <div className="flex-1 w-full">
           {/* Дисклеймер */}
           <p className="text-gray-800 text-sm sm:text-[15px] leading-relaxed font-medium mb-8 max-w-3xl">
-            20,000 ԱՄՆ դոլարից ավել կամ դրան համարժեք այլ արտարժույթի փոխարկման դեպքում գործարքը հաստատվում է Բանկի հայեցողությամբ և Բանկի կողմից որոշված փոխարժեքով: 100,000 դրամ կամ դրան համարժեք արտարժույթից ավելի փոխանակման գործարքների իրականացման համար անհրաժեշտ է ներկայացնել անձը հաստատող փաստաթուղթ:
+            {t('20,000 ԱՄՆ դոլարից ավել կամ դրան համարժեք այլ արտարժույթի փոխարկման դեպքում գործարքը հաստատվում է Բանկի հայեցողությամբ և Բանկի կողմից որոշված փոխարժեքով: 100,000 դրամ կամ դրան համարժեք արտարժույթից ավելի փոխանակման գործարքների իրականացման համար անհրաժեշտ է ներկայացնել անձը հաստատող փաստաթուղթ:')}
           </p>
-
+ 
           {/* Навигация Табов */}
           <div className="flex flex-wrap items-center gap-2 border-b border-gray-100">
-            <button
-              onClick={() => setActiveTab('cash')}
-              className={`px-5 py-3 text-sm font-semibold rounded-t-2xl transition-all ${
-                activeTab === 'cash'
-                  ? 'bg-white text-gray-900 shadow-[0_-4px_12px_rgba(0,0,0,0.03)] border-t border-x border-gray-100 relative z-10'
-                  : 'text-gray-400 hover:text-purple-700 bg-transparent'
-              }`}
-            >
-              Կանխիկ
-            </button>
-            <button
-              onClick={() => setActiveTab('nonCash')}
-              className={`px-5 py-3 text-sm font-semibold rounded-t-2xl transition-all ${
-                activeTab === 'nonCash'
-                  ? 'bg-white text-gray-900 shadow-[0_-4px_12px_rgba(0,0,0,0.03)] border-t border-x border-gray-100 relative z-10'
-                  : 'text-gray-400 hover:text-purple-700 bg-transparent'
-              }`}
-            >
-              Անկանխիկ
-            </button>
-            <button
-              onClick={() => setActiveTab('gold')}
-              className={`px-5 py-3 text-sm font-semibold rounded-t-2xl transition-all ${
-                activeTab === 'gold'
-                  ? 'bg-white text-gray-900 shadow-[0_-4px_12px_rgba(0,0,0,0.03)] border-t border-x border-gray-100 relative z-10'
-                  : 'text-gray-400 hover:text-purple-700 bg-transparent'
-              }`}
-            >
-              Ոսկու փոխարժեք
-            </button>
-            <button
-              onClick={() => setActiveTab('ruble')}
-              className={`px-5 py-3 text-sm font-semibold rounded-t-2xl transition-all ${
-                activeTab === 'ruble'
-                  ? 'bg-white text-gray-900 shadow-[0_-4px_12px_rgba(0,0,0,0.03)] border-t border-x border-gray-100 relative z-10'
-                  : 'text-gray-400 hover:text-purple-700 bg-transparent'
-              }`}
-            >
-              Ռուբլու կանխիկ մուտք
-            </button>
+            {TABS.map((tab) => (
+              <button
+                key={tab.id}
+                type="button"
+                onClick={() => setActiveTab(tab.id)}
+                className={tabClass(tab.id)}
+              >
+                {t(tab.label)}
+              </button>
+            ))}
           </div>
-
+ 
           {/* Карточка с курсами и калькулятором */}
           <div className="bg-white rounded-2xl rounded-tl-none border border-gray-100 shadow-[0_10px_30px_rgba(0,0,0,0.04)] p-6 sm:p-8">
-            
+ 
             {/* РЕЖИМ 1 И 2: КАНХИК И АНКАНХИК */}
             {(activeTab === 'cash' || activeTab === 'nonCash') && (
               <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-                
+ 
                 {/* Таблица курсов */}
                 <div className="md:col-span-6 border-r-0 md:border-r border-gray-100 pr-0 md:pr-6">
                   <div className="grid grid-cols-3 text-xs text-gray-400 font-medium pb-3 border-b border-gray-100">
-                    <div>Արժույթ</div>
-                    <div className="text-center">Առք</div>
-                    <div className="text-center">Վաճառք</div>
+                    <div>{t('Արժույթ')}</div>
+                    <div className="text-center">{t('Առք')}</div>
+                    <div className="text-center">{t('Վաճառք')}</div>
                   </div>
-
-                  {/* USD */}
-                  <div className="grid grid-cols-3 items-center py-3.5 border-b border-gray-50 text-sm">
-                    <div className="flex items-center gap-2.5 font-bold text-gray-800">
-                      <FlagUSD />
-                      <span>USD</span>
+ 
+                  {CURRENCIES.map(({ code, Flag }) => (
+                    <div
+                      key={code}
+                      className="grid grid-cols-3 items-center py-3.5 border-b border-gray-50 text-sm"
+                    >
+                      <div className="flex items-center gap-2.5 font-bold text-gray-800">
+                        <Flag />
+                        <span>{code}</span>
+                      </div>
+                      <div className="flex items-center justify-center gap-1 font-bold text-gray-900">
+                        <span className="text-red-500 text-xs">▼</span>
+                        <span>{rates[code].buy}</span>
+                      </div>
+                      <div className="flex items-center justify-center gap-1 font-bold text-gray-900">
+                        <span className="text-emerald-500 text-xs">▲</span>
+                        <span>{rates[code].sell}</span>
+                      </div>
                     </div>
-                    <div className="flex items-center justify-center gap-1 font-bold text-gray-900">
-                      <span className="text-red-500 text-xs">▼</span>
-                      <span>{rates.USD.buy}</span>
-                    </div>
-                    <div className="flex items-center justify-center gap-1 font-bold text-gray-900">
-                      <span className="text-emerald-500 text-xs">▲</span>
-                      <span>{rates.USD.sell}</span>
-                    </div>
-                  </div>
-
-                  {/* EUR */}
-                  <div className="grid grid-cols-3 items-center py-3.5 border-b border-gray-50 text-sm">
-                    <div className="flex items-center gap-2.5 font-bold text-gray-800">
-                      <FlagEUR />
-                      <span>EUR</span>
-                    </div>
-                    <div className="flex items-center justify-center gap-1 font-bold text-gray-900">
-                      <span className="text-red-500 text-xs">▼</span>
-                      <span>{rates.EUR.buy}</span>
-                    </div>
-                    <div className="flex items-center justify-center gap-1 font-bold text-gray-900">
-                      <span className="text-emerald-500 text-xs">▲</span>
-                      <span>{rates.EUR.sell}</span>
-                    </div>
-                  </div>
-
-                  {/* RUB */}
-                  <div className="grid grid-cols-3 items-center py-3.5 border-b border-gray-50 text-sm">
-                    <div className="flex items-center gap-2.5 font-bold text-gray-800">
-                      <FlagRUB />
-                      <span>RUB</span>
-                    </div>
-                    <div className="flex items-center justify-center gap-1 font-bold text-gray-900">
-                      <span className="text-red-500 text-xs">▼</span>
-                      <span>{rates.RUB.buy}</span>
-                    </div>
-                    <div className="flex items-center justify-center gap-1 font-bold text-gray-900">
-                      <span className="text-emerald-500 text-xs">▲</span>
-                      <span>{rates.RUB.sell}</span>
-                    </div>
-                  </div>
+                  ))}
                 </div>
-
+ 
                 {/* Калькулятор конвертации */}
                 <div className="md:col-span-6 flex flex-col gap-4">
                   {/* Поле "У меня есть" */}
                   <div className="flex flex-col gap-1">
-                    <label className="text-xs text-gray-400">Ունեմ</label>
+                    <label className="text-xs text-gray-400">{t('Ունեմ')}</label>
                     <div className="flex items-center justify-between border border-gray-200 rounded-xl px-4 py-2.5 bg-white focus-within:border-purple-600 transition-colors">
                       <input
                         type="number"
@@ -1710,10 +1676,10 @@ function CurrencyExchange() {
                       </select>
                     </div>
                   </div>
-
+ 
                   {/* Поле "Я получу" */}
                   <div className="flex flex-col gap-1">
-                    <label className="text-xs text-gray-400">Կստանամ</label>
+                    <label className="text-xs text-gray-400">{t('Կստանամ')}</label>
                     <div className="flex items-center justify-between border border-gray-200 rounded-xl px-4 py-2.5 bg-white">
                       <input
                         type="text"
@@ -1736,13 +1702,13 @@ function CurrencyExchange() {
                 </div>
               </div>
             )}
-
-            {/* РЕЖИМ 3: РՈՒԲԼՈՒ ԿԱՆԽԻԿ ՄՈՒՏՔ */}
+ 
+            {/* РЕЖИМ 3: РУБЛЬ */}
             {activeTab === 'ruble' && (
               <div className="py-2">
                 <div className="grid grid-cols-2 text-xs text-gray-400 font-medium pb-3 border-b border-gray-100">
-                  <div>Արժույթ</div>
-                  <div>Սակագին</div>
+                  <div>{t('Արժույթ')}</div>
+                  <div>{t('Սակագին')}</div>
                 </div>
                 <div className="grid grid-cols-2 items-center py-4 border-b border-gray-50 text-base">
                   <div className="font-bold text-gray-900">RUB</div>
@@ -1750,14 +1716,14 @@ function CurrencyExchange() {
                 </div>
               </div>
             )}
-
-            {/* РЕЖИМ 4: ՈՍԿՈՒ ՓՈԽԱՐԺԵՔ */}
+ 
+            {/* РЕЖИМ 4: ЗОЛОТО */}
             {activeTab === 'gold' && (
               <div className="py-2">
                 <div className="grid grid-cols-3 text-xs text-gray-400 font-medium pb-3 border-b border-gray-100">
-                  <div>Տեսակ</div>
-                  <div className="text-center">Առք</div>
-                  <div className="text-center">Վաճառք</div>
+                  <div>{t('Տեսակ')}</div>
+                  <div className="text-center">{t('Առք')}</div>
+                  <div className="text-center">{t('Վաճառք')}</div>
                 </div>
                 {CURRENCY_RATES.gold.map((g, idx) => (
                   <div key={idx} className="grid grid-cols-3 items-center py-4 border-b border-gray-50 text-sm">
@@ -1768,50 +1734,54 @@ function CurrencyExchange() {
                 ))}
               </div>
             )}
-
+ 
             {/* Подвал карточки */}
             <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mt-6 pt-4 border-t border-gray-100 text-xs">
               <span className="text-gray-400">
-                Թարմացվել է` {activeTab === 'ruble' ? '10.07.26' : '23.09.26'}
+                {t('Թարմացվել է՝ {{date}}', { date: updatedDate })}
               </span>
               {(activeTab === 'cash' || activeTab === 'nonCash') && (
-                <button className="text-purple-700 font-bold hover:underline">
-                  Այլ արտարժույթներ
+                <button type="button" className="text-purple-700 font-bold hover:underline">
+                  {t('Այլ արտարժույթներ')}
                 </button>
               )}
             </div>
           </div>
         </div>
-
-        {/* ПРАВАЯ ЧАСТЬ: Наша локация / Адреса */}
+ 
+        {/* ПРАВАЯ ЧАСТЬ: Адреса */}
         <div className="w-full lg:w-80 shrink-0">
-          <h3 className="text-2xl font-bold text-gray-900 mb-2">Մեր հասցեները</h3>
+          <h3 className="text-2xl font-bold text-gray-900 mb-2">{t('Մեր հասցեները')}</h3>
           <p className="text-xs text-gray-500 leading-relaxed mb-6">
-            Բանկի հասցեները, աշխատաժամերը, բանկոմատները
+            {t('Բանկի հասցեները, աշխատաժամերը, բանկոմատները')}
           </p>
-
-          {/* Графика карты с маркером */}
+ 
+          {/* Карта с маркером */}
           <div className="relative w-full flex justify-center items-center py-4 mb-6">
-            {/* Иллюстрация сложенной карты */}
-            <div>
+            <div className="relative">
               <img src="https://www.evoca.am/img/addresses.png" alt="" />
-
-              {/* Фиолетовый пин Evocabank */}
-              <div className="relative z-10 flex flex-col items-center animate-bounce">
-                <div className="w-12 h-12 bg-purple-700 rounded-full rounded-bl-none rotate-45 flex items-center justify-center shadow-lg border-2 border-white">
-                  <span className="text-white font-black text-lg -rotate-45 transform">v</span>
+ 
+              {/* Фиолетовый пин Evocabank — поверх карты */}
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div className="animate-bounce">
+                  <div className="w-12 h-12 bg-purple-700 rounded-full rounded-bl-none rotate-45 flex items-center justify-center shadow-lg border-2 border-white">
+                    <span className="text-white font-black text-lg -rotate-45 transform">v</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-
-          {/* Кнопка "Смотреть на карте" */}
-          <button className="w-full bg-[#f3ebfc] hover:bg-[#e9d8fa] text-purple-700 font-bold py-3.5 px-6 rounded-full transition-colors text-sm flex items-center justify-center gap-2" href="/branches">
-            <span>Դիտել քարտեզը</span>
+ 
+          {/* Кнопка-ссылка "Смотреть на карте" (Link вместо button с href) */}
+          <Link
+            to="/branches"
+            className="w-full bg-[#f3ebfc] hover:bg-[#e9d8fa] text-purple-700 font-bold py-3.5 px-6 rounded-full transition-colors text-sm flex items-center justify-center gap-2"
+          >
+            <span>{t('Դիտել քարտեզը')}</span>
             <span className="text-base">›</span>
-          </button>
+          </Link>
         </div>
-
+ 
       </div>
     </section>
   );
