@@ -86,6 +86,22 @@ export const CARDS = [
     stats: [],
   },
   {
+    id: 'arca-classic',
+    cats: ['arca'],
+    title: 'Arca Classic',
+    img: IMG('17149865475676'),
+    text: 'ԱրՔա Classic քարտը ԱրՔա վճարային համակարգի դասական քարտ է՝ հարմար ամենօրյա վճարումների համար:',
+    stats: [],
+  },
+  {
+    id: 'arca-unionpay',
+    cats: ['arca', 'unionpay'],
+    title: 'Arca UnionPay Co-badge',
+    img: IMG('17404717113297'),
+    text: 'ԱրՔա և UnionPay համակցված քարտը՝ վճարումներ Հայաստանում և աշխարհում մեկ քարտով:',
+    stats: [],
+  },
+  {
     id: 'evoca-gift',
     cats: ['gift', 'arca'],
     title: 'Evoca Gift Card',

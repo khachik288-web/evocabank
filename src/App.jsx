@@ -535,14 +535,14 @@ function Biometric() {
 
 // --- 4. CARDS SHOWCASE ---
 const CARDS_DATA = [
-  { id: 1, name: 'Visa Classic', img: 'https://www.evoca.am/images-cache/cards/1/1714986642953/415x261.png' },
-  { id: 2, name: 'Mastercard Standard', img: 'https://www.evoca.am/images-cache/cards/1/17404717644263/415x261.png' },
-  { id: 3, name: 'Visa Digital', img: 'https://www.evoca.am/images-cache/cards/1/17881574661708/415x261.png' },
-  { id: 4, name: 'Arca Classic', img: 'https://www.evoca.am/images-cache/cards/1/17149865475676/415x261.png' },
-  { id: 5, name: 'Arca UnionPay Co-badge', img: 'https://www.evoca.am/images-cache/cards/1/17404717113297/415x261.png' },
-  { id: 6, name: 'Wilco Visa Infinite', img: 'https://www.evoca.am/images-cache/cards/1/17404717289057/415x261.png' },
-  { id: 7, name: 'Evoca Gift Card', img: 'https://www.evoca.am/images-cache/cards/1/17149865646885/415x261.png' },
-  { id: 8, name: 'Digital Gift Card', img: 'https://www.evoca.am/images-cache/cards/1/17815131185095/415x261.png' },
+  { id: 1, slug: 'visa-classic', name: 'Visa Classic', img: 'https://www.evoca.am/images-cache/cards/1/1714986642953/415x261.png' },
+  { id: 2, slug: 'mc-standard', name: 'Mastercard Standard', img: 'https://www.evoca.am/images-cache/cards/1/17404717644263/415x261.png' },
+  { id: 3, slug: 'visa-digital', name: 'Visa Digital', img: 'https://www.evoca.am/images-cache/cards/1/17881574661708/415x261.png' },
+  { id: 4, slug: 'arca-classic', name: 'Arca Classic', img: 'https://www.evoca.am/images-cache/cards/1/17149865475676/415x261.png' },
+  { id: 5, slug: 'arca-unionpay', name: 'Arca UnionPay Co-badge', img: 'https://www.evoca.am/images-cache/cards/1/17404717113297/415x261.png' },
+  { id: 6, slug: 'wilco', name: 'Wilco Visa Infinite', img: 'https://www.evoca.am/images-cache/cards/1/17404717289057/415x261.png' },
+  { id: 7, slug: 'evoca-gift', name: 'Evoca Gift Card', img: 'https://www.evoca.am/images-cache/cards/1/17149865646885/415x261.png' },
+  { id: 8, slug: 'digital-gift', name: 'Digital Gift Card', img: 'https://www.evoca.am/images-cache/cards/1/17815131185095/415x261.png' },
 ];
 
 function TiltCard({ card }) {
@@ -654,9 +654,9 @@ function CardsShowcase() {
           <h2 className="text-3xl font-bold text-gray-800 mb-6 transition-all duration-300">
             {CARDS_DATA[activeIndex].name}
           </h2>
-          <button className="bg-purple-700 hover:bg-purple-800 text-white font-semibold py-3 px-8 rounded-full transition-colors shadow-md">
+          <Link to={`/cards/${CARDS_DATA[activeIndex].slug}`} className="inline-block bg-purple-700 hover:bg-purple-800 text-white hover:text-white no-underline hover:no-underline font-semibold py-3 px-8 rounded-full transition-colors shadow-md">
             {t('Մանրամասն')}
-          </button>
+          </Link>
         </div>
       </div>
     </section>

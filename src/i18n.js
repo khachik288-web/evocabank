@@ -644,6 +644,8 @@ const ROWS = [
   ['Այսուհետ **Evocabank**-ի հաճախորդներն ավելի հեշտ ու արագ կարող են կապ հաստատել Բանկի հետ՝ պարզապես հավաքելով **8444** քաղաքային կամ բջջային հեռախոսներից:', 'Отныне клиенты **Evocabank** могут связаться с банком проще и быстрее — просто набрав **8444** с городского или мобильного телефона.', 'From now on, **Evocabank** customers can contact the bank more easily and quickly — simply by dialing **8444** from landline or mobile phones.'],
   ['Հիշեցնենք նաև, որ **Evocabank**-ի հետ կարող եք նաև կապ հաստատել **+37410605555** հեռախոսահամարով: Իսկ արտասահմանից զանգահարելիս՝ գործում է միայն **+37410605555** հեռախոսահամարը:', 'Напомним, что с **Evocabank** можно также связаться по номеру **+37410605555**. При звонке из-за границы действует только номер **+37410605555**.', 'We also remind you that you can contact **Evocabank** at **+37410605555**. When calling from abroad, only the number **+37410605555** works.'],
   ['Այլ նորություններ', 'Другие новости', 'Other news'],
+  ['ԱրՔա Classic քարտը ԱրՔա վճարային համակարգի դասական քարտ է՝ հարմար ամենօրյա վճարումների համար:', 'Карта АрКа Classic — классическая карта платёжной системы АрКа, удобная для ежедневных платежей.', 'The ArCa Classic card is a classic card of the ArCa payment system, convenient for everyday payments.'],
+  ['ԱրՔա և UnionPay համակցված քարտը՝ վճարումներ Հայաստանում և աշխարհում մեկ քարտով:', 'Комбинированная карта АрКа и UnionPay — платежи в Армении и по всему миру одной картой.', 'The combined ArCa and UnionPay card — payments in Armenia and worldwide with a single card.'],
 
   // About: история банка
   ['Բանկի պատմությունը {{year}}', 'История банка, {{year}}', 'Bank history, {{year}}'],
