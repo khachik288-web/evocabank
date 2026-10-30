@@ -1006,9 +1006,6 @@ function OnlineBankingBanner() {
             {t('Evocabank-ը արագ, պարզ և նորարար ծառայություններ մատուցող բանկ է, որն առանձնանում է տեղեկատվական նորագույն տեխնոլոգիաների ակտիվ կիրառմամբ:')}
           </p>
 
-          <button className="bg-white text-[#5c00b3] px-8 max-[550px]:px-6 py-3.5 max-[550px]:py-3 rounded-full font-bold max-[550px]:text-sm shadow-lg hover:bg-gray-100 transition-colors mb-10 max-[550px]:mb-8 w-max max-[550px]:w-full">
-            {t('Դառնալ հաճախորդ')}
-          </button>
         </div>
       </div>
     </section>
