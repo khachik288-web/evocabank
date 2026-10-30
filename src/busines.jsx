@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import {
   ChevronRight,
   Plus,
@@ -10,7 +11,7 @@ import {
   X
 } from 'lucide-react';
 
-const DEFAULT_LOANS_DATA = [
+export const DEFAULT_LOANS_DATA = [
   {
     id: '1',
     image: 'https://www.evoca.am/images-cache/loans/1/17721008940374/415x261.png',
@@ -251,6 +252,7 @@ export function LoanCard({
 
 export default function Business() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [loans, setLoans] = useState(DEFAULT_LOANS_DATA);
   const [editingCard, setEditingCard] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -327,8 +329,8 @@ export default function Business() {
                 description={loan.description}
                 stats={loan.stats}
                 buttonText={loan.buttonText}
-                buttonUrl={loan.buttonUrl}
-                onAction={() => alert(`${t('Մանրամասն')}: ${t(loan.title)}`)}
+                buttonUrl={`/business/loans/${loan.id}`}
+                onAction={() => navigate(`/business/loans/${loan.id}`)}
               />
             </div>
           ))}
