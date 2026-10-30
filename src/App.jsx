@@ -1806,7 +1806,7 @@ function CurrencyExchange() {
           </div>
 
           {/* Кнопка "Смотреть на карте" */}
-          <button className="w-full bg-[#f3ebfc] hover:bg-[#e9d8fa] text-purple-700 font-bold py-3.5 px-6 rounded-full transition-colors text-sm flex items-center justify-center gap-2">
+          <button className="w-full bg-[#f3ebfc] hover:bg-[#e9d8fa] text-purple-700 font-bold py-3.5 px-6 rounded-full transition-colors text-sm flex items-center justify-center gap-2" href="/branches">
             <span>Դիտել քարտեզը</span>
             <span className="text-base">›</span>
           </button>
