@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+// Заглушка-файл: скачивается как .txt без всякого сервера (data-URL).
+// Когда появятся настоящие PDF — положи их в public/files/ и поставь href: '/files/имя.pdf' (+ file: 'имя.pdf').
+const stub = (name, title) => ({
+  href: `data:text/plain;charset=utf-8,${encodeURIComponent(`${title}\n\nEvocabank — тестовый документ.`)}`,
+  file: name,
+});
+
 // href: подставь реальные ссылки на PDF (например '/files/tariffs/rub-gbp-chf-2024.pdf')
 const ARCHIVE = [
   {
@@ -13,7 +20,7 @@ const ARCHIVE = [
           {
             label:
               'Կանխիկ մուտքի համար Բանկի կողմից սահմանված դրույքաչափեր (ՌԴ ռուբլի RUB, Բրիտանական ֆունտ GBP, Շվեյցարական ֆրանկ CHF)',
-            href: '#',
+            ...stub('cash-rates-2024.txt', 'Կանխիկ մուտքի համար Բանկի կողմից սահմանված դրույքաչափեր'),
           },
         ],
       },
@@ -27,7 +34,7 @@ const ARCHIVE = [
 ];
 
 const FILES = [
-  { id: 1, label: 'Տեղեկատվական ամփոփագիր (Վարկային պրոդուկտներ) 07.04.2026', href: '#' },
+  { id: 1, label: 'Տեղեկատվական ամփոփագիր (Վարկային պրոդուկտներ) 07.04.2026', ...stub('loan-summary-07-04-2026.txt', 'Տեղեկատվական ամփոփագիր (Վարկային պրոդուկտներ) 07.04.2026') },
 ];
 
 function Item({ item, open, onToggle }) {
@@ -48,7 +55,7 @@ function Item({ item, open, onToggle }) {
                 <h3 className="ta-year">{y.year}</h3>
                 {y.docs.map((d) => (
                   <p key={d.label}>
-                    <a href={d.href} target="_blank" rel="noreferrer">{d.label}</a>
+                    <a href={d.href} download={d.file}>{d.label}</a>
                   </p>
                 ))}
               </div>
@@ -154,7 +161,7 @@ export default function TariffsArchive() {
         <section className="ta-docs">
           <h2>Փաստաթղթեր</h2>
           {FILES.map((f) => (
-            <a key={f.id} href={f.href} target="_blank" rel="noreferrer" className="ta-file">
+            <a key={f.id} href={f.href} download={f.file} className="ta-file">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
                 <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
                 <path d="M14 3v5h5" />
