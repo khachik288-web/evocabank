@@ -76,6 +76,8 @@ import LanguageSwitcher from './LanguageSwitcher';
 import Faq from './Faq';
 import Branches from './Branches';
 import { useTranslation } from 'react-i18next';
+import Karucvacq from './Karucvacq';
+
 
 // --- 1. HEADER ---
 export function Header() {
@@ -1996,6 +1998,7 @@ function App() {
           <Route path="/builders" element={<SiteLayout><Builders /></SiteLayout>} />
           <Route path="/partner-dealerships" element={<SiteLayout><Dealerships /></SiteLayout>} />
           <Route path="/about/tariffs/archive" element={<SiteLayout><TariffsArchive /></SiteLayout>} />
+          <Route path="/about/karucvacq" element={<SiteLayout><Karucvacq /></SiteLayout>} />
         </Routes>
         <ChatWidget />
       </div>
