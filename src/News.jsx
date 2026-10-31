@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
 import NewsVotes from './NewsVotes';
 import { useTranslation } from 'react-i18next';
@@ -47,35 +48,43 @@ const Bracket = ({ pos, color }) => {
 };
 
 // Категория с цветной полоской слева (в карточках)
-const CatBar = ({ cat }) => (
+const CatBar = ({ cat }) => {
+  const { t } = useTranslation();
+  return (
   <div className="flex items-center">
     <span
       className="mr-4 inline-block h-[26px] w-1"
       style={{ background: CAT_COLOR[cat] || '#6a0bd6' }}
     />
-    <span className="text-[13px] font-bold text-[#1d0a4a]">{cat}</span>
+    <span className="text-[13px] font-bold text-[#1d0a4a]">{t(cat)}</span>
   </div>
-);
+  );
+};
 
 // Категория с цветным квадратом (в больших блоках)
-const CatSquare = ({ cat }) => (
+const CatSquare = ({ cat }) => {
+  const { t } = useTranslation();
+  return (
   <div className="flex items-center">
     <span
       className="mr-4 inline-block h-6 w-9"
       style={{ background: CAT_COLOR[cat] || '#6a0bd6' }}
     />
-    <span className="text-[17px] font-bold text-[#1d0a4a]">{cat}</span>
+    <span className="text-[17px] font-bold text-[#1d0a4a]">{t(cat)}</span>
   </div>
-);
+  );
+};
 
 // Обычная карточка (3 в ряд и сетка 2x2)
-const Card = ({ item, small = false }) => (
+const Card = ({ item, small = false }) => {
+  const { t } = useTranslation();
+  return (
   <div>
-  <a href="#" className="group block no-underline">
+  <Link to={`/news/${item.id}`} className="group block no-underline">
     <div className="overflow-hidden">
       <img
         src={item.img}
-        alt={item.title}
+        alt={t(item.title)}
         className={`w-full object-cover transition-transform duration-500 group-hover:scale-105 ${
           small ? 'aspect-[450/295]' : 'aspect-[438/328]'
         }`}
@@ -85,13 +94,14 @@ const Card = ({ item, small = false }) => (
       <CatBar cat={item.cat} />
     </div>
     <h3 className="mt-5 line-clamp-2 text-[18px] font-medium leading-[26px] text-[#111]">
-      {item.title}
+      {t(item.title)}
     </h3>
     <p className="mt-6 text-[17px] text-[#c9c9c9]">{item.date}</p>
-  </a>
+  </Link>
   <NewsVotes id={item.id} />
   </div>
-);
+  );
+};
 
 // ---------- Страница ----------
 function News() {
@@ -153,11 +163,13 @@ function News() {
             <div className="mx-auto flex max-w-[1440px] flex-col gap-10 px-4 sm:px-6 lg:flex-row lg:justify-between xl:px-0">
               <div className="pb-10 lg:w-[480px] lg:pt-2">
                 <CatSquare cat={NEWS.aua.cat} />
-                <h2 className="mt-14 text-[32px] font-bold leading-[48px] text-[#111] xl:text-[36px]">
-                  {NEWS.aua.title}
-                </h2>
+                <Link to="/news/aua" className="block no-underline hover:no-underline">
+                  <h2 className="mt-14 text-[32px] font-bold leading-[48px] text-[#111] xl:text-[36px]">
+                    {t(NEWS.aua.title)}
+                  </h2>
+                </Link>
                 <p className="mt-6 text-[16px] leading-[30px] text-[#222]">
-                  {NEWS.aua.text}
+                  {t(NEWS.aua.text)}
                 </p>
                 <p className="mt-14 text-[16px] text-[#333]">{NEWS.aua.date}</p>
                 <NewsVotes id="aua" />
@@ -166,11 +178,13 @@ function News() {
               <div className="relative -mb-10 lg:w-[780px] lg:shrink-0">
                 <Bracket pos="tl" color="#a6f000" />
                 <Bracket pos="bl" color="#a6f000" />
-                <img
-                  src={NEWS.aua.img}
-                  alt={NEWS.aua.title}
-                  className="relative z-10 aspect-[780/585] w-full object-cover"
-                />
+                <Link to="/news/aua">
+                  <img
+                    src={NEWS.aua.img}
+                    alt={t(NEWS.aua.title)}
+                    className="relative z-10 aspect-[780/585] w-full object-cover"
+                  />
+                </Link>
               </div>
             </div>
           </section>
@@ -182,24 +196,24 @@ function News() {
             <div className="-mt-[10px] grid gap-y-14 lg:grid-cols-[616px_1fr] lg:gap-x-[123px]">
               {/* Большая карточка */}
               <div>
-              <a href="#" className="group relative block no-underline">
+              <Link to="/news/amx" className="group relative block no-underline">
                 <span className="absolute -left-5 -top-5 z-0 hidden h-[90px] w-[90px] bg-[#f7e300] lg:block" />
                 <img
                   src={NEWS.amx.img}
-                  alt={NEWS.amx.title}
+                  alt={t(NEWS.amx.title)}
                   className="relative z-10 aspect-[616/462] w-full object-cover"
                 />
                 <div className="mt-6">
                   <CatBar cat={NEWS.amx.cat} />
                 </div>
                 <h3 className="mt-6 text-[24px] font-bold leading-[34px] text-[#111]">
-                  {NEWS.amx.title}
+                  {t(NEWS.amx.title)}
                 </h3>
                 <p className="mt-6 text-[16px] leading-[30px] text-[#222]">
-                  {NEWS.amx.text}
+                  {t(NEWS.amx.text)}
                 </p>
                 <p className="mt-6 text-[17px] text-[#c9c9c9]">{NEWS.amx.date}</p>
-              </a>
+              </Link>
               <NewsVotes id="amx" />
               </div>
 
@@ -229,18 +243,20 @@ function News() {
                   <Bracket pos="br" color="#6a0bd6" />
                   <img
                     src={NEWS.block.img}
-                    alt={NEWS.block.title}
+                    alt={t(NEWS.block.title)}
                     className="relative z-10 h-auto w-full object-cover lg:h-[518px]"
                   />
                 </div>
 
                 <div className="pb-10 lg:w-[500px] lg:pt-2">
                   <CatSquare cat={NEWS.block.cat} />
-                  <h2 className="mt-14 text-[32px] font-bold leading-[48px] text-[#111]">
-                    {NEWS.block.title}
-                  </h2>
+                  <Link to="/news/block" className="block no-underline hover:no-underline">
+                    <h2 className="mt-14 text-[32px] font-bold leading-[48px] text-[#111]">
+                      {t(NEWS.block.title)}
+                    </h2>
+                  </Link>
                   <p className="mt-6 text-[16px] leading-[30px] text-[#222]">
-                    {NEWS.block.text}
+                    {t(NEWS.block.text)}
                   </p>
                   <p className="mt-14 text-[17px] text-[#888]">{NEWS.block.date}</p>
                   <NewsVotes id="block" />
