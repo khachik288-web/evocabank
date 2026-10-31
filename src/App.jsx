@@ -185,7 +185,7 @@ export function Header() {
 
   const aboutSubNav = [
     { label: 'Ընդհանուր', path: '/about' },
-    { label: 'Կառուցվածք', path: '#' },
+    { label: 'Կառուցվածք', path: '/about/karucvacq' },
     { label: 'Բաժնետերեր', path: '/about/shareholders' },
     { label: 'Ղեկավարություն', path: '/about/management' },
     { label: 'Գործընկերներ', path: '#' },
