@@ -174,16 +174,17 @@ export default function Shareholders() {
         <section className="mx-auto mt-14 max-w-[720px]">
           <h3 className="mb-5 text-[19px] font-bold text-gray-900">{t('Փաստաթղթեր')}</h3>
           <div className="flex flex-col gap-5">
-            {DOCS.map((d) => (
-              <a
-                key={d}
-                href="#"
-                className="flex items-center gap-3 rounded bg-[#f5f3f8] px-3 py-3 text-[13px] font-semibold text-gray-900 no-underline transition-colors hover:bg-[#ece7f5] hover:no-underline"
-              >
-                <DocIcon />
-                <span>{t(d)}</span>
-              </a>
-            ))}
+              {DOCS.map((d) => (
+  <a
+    key={d.file}
+    href={d.href}
+    download={d.file}
+    className="..."
+  >
+    <DocIcon />
+    <span>{t(d.title)}</span>
+  </a>
+))}             
           </div>
         </section>
       </div>
