@@ -44,7 +44,23 @@ const DIVIDENDS = [
   '2022թ. փաստացի ստացված զուտ շահույթից 571 մլն. դրամ վճարվել է մեր մասնակիցներին, իսկ մնացած մասը՝ թողնվել մեր տրամադրության տակ՝ որպես չբաշխված շահույթ:',
 ];
 
-const DOCS = ['Կանոնադրություն', 'Բանկային գործունեության լիցենզիա', 'Բանկի Գրանցման վկայականը'];
+const DOCS = [
+  {
+    title: 'Կանոնադրություն',
+    href: '/files/charter.pdf',
+    file: 'charter.pdf'
+  },
+  {
+    title: 'Բանկային գործունեության լիցենզիա',
+    href: '/files/license.pdf',
+    file: 'license.pdf'
+  },
+  {
+    title: 'Բանկի Գրանցման վկայականը',
+    href: '/files/registration.pdf',
+    file: 'registration.pdf'
+  }
+];
 
 function Chevron({ open }) {
   return (
