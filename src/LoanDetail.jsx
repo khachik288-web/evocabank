@@ -3,10 +3,12 @@ import { Link, useNavigate, useParams, Navigate } from 'react-router-dom';
 import { ArrowLeft, ChevronRight, ChevronLeft, Home } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { DEFAULT_LOANS_DATA } from './busines';
+import { LOANS } from './Loans';
 import OnlineBanner from './OnlineBanner';
 import './CardDetail.css';
 
-// Общий шаблон страницы бизнес-продукта /business/loans/:id (те же стили, что у CardDetail).
+// Общий шаблон страницы кредита: /business/loans/:id (kind="business") и /loans/:id (kind="personal").
+// Те же стили, что у CardDetail.
 // 3 варианта текста — выбирается по номеру карточки; {{title}} подставляется автоматически.
 const VARIANTS = [
   [
@@ -22,25 +24,66 @@ const VARIANTS = [
     'Դիմումը կարող եք ներկայացնել Բանկի ցանկացած մասնաճյուղում կամ թողնել հայտ մեր կայքում:',
   ],
 ];
+// Тексты для физлиц (/loans/:id)
+const VARIANTS_PERSONAL = [
+  [
+    '**{{title}}** վարկատեսակը մշակված է Evocabank-ի ֆիզիկական անձ հաճախորդների համար՝ Ձեր պլաններն ու երազանքները արագ և հարմար իրականացնելու նպատակով:',
+    'Վարկը տրամադրվում է ճկուն պայմաններով, թափանցիկ սակագներով և արագ քննարկման ժամկետներով: Վարկի գումարը, ժամկետը և տոկոսադրույքը որոշվում են՝ հաշվի առնելով Ձեր ֆինանսական հնարավորությունները:',
+  ],
+  [
+    'Evocabank-ի **{{title}}** ծրագրի շնորհիվ կարող եք արագ ստանալ անհրաժեշտ ֆինանսավորումը՝ առանց ավելորդ բյուրոկրատիայի:',
+    'Մեր մասնագետները կօգնեն ընտրել Ձեզ առավել հարմար պայմանները և կուղեկցեն դիմումի ձևակերպման բոլոր փուլերում:',
+  ],
+  [
+    'Ընտրելով **{{title}}**՝ Դուք ստանում եք հուսալի գործընկեր և մատչելի պայմաններ՝ Ձեր անձնական նպատակներն իրականացնելու համար:',
+    'Դիմումը կարող եք ներկայացնել Բանկի ցանկացած մասնաճյուղում կամ EvocaTOUCH հավելվածի միջոցով:',
+  ],
+];
 const CLOSING = 'Լրացուցիչ տեղեկությունների համար զանգահարեք կարճ համարով՝ **8444**, կամ այցելեք Բանկի ցանկացած մասնաճյուղ:';
+
+// Приводим оба источника данных к одному виду
+const PERSONAL = LOANS.map((l) => ({
+  id: l.id,
+  title: l.title,
+  description: l.text,
+  image: l.img,
+  stats: l.stats.map((s) => ({ sublabel: s.pre, value: s.value, label: s.label })),
+}));
+const KINDS = {
+  business: {
+    list: DEFAULT_LOANS_DATA,
+    variants: VARIANTS,
+    base: '/business/loans',
+    back: '/business',
+    crumbs: [['Բիզնես', '/business'], ['Բիզնես վարկեր', '/business']],
+  },
+  personal: {
+    list: PERSONAL,
+    variants: VARIANTS_PERSONAL,
+    base: '/loans',
+    back: '/loans',
+    crumbs: [['Անհատ', '/'], ['Վարկեր', '/loans'], ['Վարկեր', '/loans']],
+  },
+};
 
 function Rich({ text }) {
   return text.split('**').map((p, i) => (i % 2 ? <strong key={i}>{p}</strong> : <React.Fragment key={i}>{p}</React.Fragment>));
 }
 
-export default function LoanDetail() {
+export default function LoanDetail({ kind = 'business' }) {
+  const cfg = KINDS[kind];
   const { t } = useTranslation();
   const { id } = useParams();
   const navigate = useNavigate();
   const [tab, setTab] = useState('about');
   const [i, setI] = useState(0);
-  const loan = DEFAULT_LOANS_DATA.find((l) => l.id === id);
-  if (!loan) return <Navigate to="/business" replace />;
+  const loan = cfg.list.find((l) => l.id === id);
+  if (!loan) return <Navigate to={cfg.back} replace />;
 
   const stats = loan.stats || [];
   const hasStats = stats.length > 0;
-  const paragraphs = [loan.description, ...VARIANTS[(Number(id) || 0) % VARIANTS.length], CLOSING];
-  const others = DEFAULT_LOANS_DATA.filter((l) => l.id !== id);
+  const paragraphs = [loan.description, ...cfg.variants[(Math.max(0, cfg.list.findIndex((l) => l.id === id))) % cfg.variants.length], CLOSING];
+  const others = cfg.list.filter((l) => l.id !== id);
   const visible = 4;
   const max = Math.max(0, others.length - visible);
 
@@ -61,15 +104,17 @@ export default function LoanDetail() {
 
       <div className="cd-wrap">
         <div className="cd-toolbar">
-          <button type="button" className="cd-back" onClick={() => navigate('/business')}>
+          <button type="button" className="cd-back" onClick={() => navigate(cfg.back)}>
             <ArrowLeft size={18} /> {t('Վերադառնալ')}
           </button>
           <nav className="cd-crumbs">
-            <Link to="/business" aria-label="Home"><Home size={14} /></Link>
-            <ChevronRight size={11} />
-            <Link to="/business">{t('Բիզնես')}</Link>
-            <ChevronRight size={11} />
-            <Link to="/business">{t('Բիզնես վարկեր')}</Link>
+            <Link to="/" aria-label="Home"><Home size={14} /></Link>
+            {cfg.crumbs.map(([label, to], k) => (
+              <React.Fragment key={k}>
+                <ChevronRight size={11} />
+                <Link to={to}>{t(label)}</Link>
+              </React.Fragment>
+            ))}
             <ChevronRight size={11} />
             <span className="last">{t(loan.title)}</span>
           </nav>
@@ -113,7 +158,7 @@ export default function LoanDetail() {
             <div className="cd-other-viewport">
               <div className="cd-other-track" style={{ transform: `translateX(-${i * (100 / visible)}%)` }}>
                 {others.map((l) => (
-                  <Link to={`/business/loans/${l.id}`} key={l.id} className="cd-other-item" style={{ flex: `0 0 ${100 / visible}%` }}>
+                  <Link to={`${cfg.base}/${l.id}`} key={l.id} className="cd-other-item" style={{ flex: `0 0 ${100 / visible}%` }}>
                     <img src={l.image} alt={t(l.title)} />
                     <span>{t(l.title)}</span>
                   </Link>
