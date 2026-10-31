@@ -179,7 +179,7 @@ export default function Shareholders() {
     key={d.file}
     href={d.href}
     download={d.file}
-    className="..."
+    className="flex gap-[10px] bc-[#D3D3D3] w-[600px] h-[35px]"
   >
     <DocIcon />
     <span>{t(d.title)}</span>
