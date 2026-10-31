@@ -1921,7 +1921,8 @@ function App() {
           <Route path="/logout" element={<LogOut />} />
           <Route path="/" element={<SiteLayout><HomePage /></SiteLayout>} />
           <Route path="/business" element={<SiteLayout><Business /></SiteLayout>} />
-          <Route path="/business/loans/:id" element={<SiteLayout><LoanDetail /></SiteLayout>} />
+          <Route path="/business/loans/:id" element={<SiteLayout><LoanDetail kind="business" /></SiteLayout>} />
+          <Route path="/loans/:id" element={<SiteLayout><LoanDetail kind="personal" /></SiteLayout>} />
           <Route path="/about" element={<SiteLayout><About /></SiteLayout>} />
           <Route path="/web-payment" element={<WebPayment />} />
           <Route path="/web-payment/:slug" element={<PaymentCategory />} />
