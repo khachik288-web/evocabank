@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRight, Home, Phone } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const PURPLE = '#6a00db';
 const IMG = (id, ext = 'jpg') =>
@@ -17,7 +18,7 @@ const FILTERS = [
   { key: 'online', label: 'Օնլայն վարկեր' },
 ];
 
-const LOANS = [
+export const LOANS = [
   {
     id: 'unsecured',
     cats: ['unsecured'],
@@ -213,32 +214,34 @@ const LOANS = [
 ];
 
 function Stat({ pre, value, label }) {
+  const { t } = useTranslation();
   return (
     <div className="flex flex-col justify-end">
-      {pre && <span className="text-[11px] leading-tight text-gray-800">{pre}</span>}
+      {pre && <span className="text-[11px] leading-tight text-gray-800">{t(pre)}</span>}
       <span
         className="text-[28px] font-medium leading-tight whitespace-nowrap"
         style={{ color: PURPLE }}
       >
-        {value}
+        {t(value)}
       </span>
-      <span className="mt-2 text-[11px] leading-tight text-gray-800">{label}</span>
+      <span className="mt-2 text-[11px] leading-tight text-gray-800">{t(label)}</span>
     </div>
   );
 }
 
 function LoanCard({ loan }) {
+  const { t } = useTranslation();
   return (
     <article className="flex flex-col gap-6 border-b border-gray-200 py-12 last:border-b-0 md:flex-row md:gap-[72px]">
       <img
         src={loan.img}
-        alt={loan.title}
+        alt={t(loan.title)}
         loading="lazy"
         className="h-[261px] w-full flex-none rounded-lg object-cover md:w-[415px]"
       />
       <div className="min-w-0 flex-1">
-        <h2 className="mb-4 text-[26px] font-extrabold leading-snug text-black">{loan.title}</h2>
-        <p className="mb-5 max-w-[760px] text-[14px] leading-relaxed text-gray-800">{loan.text}</p>
+        <h2 className="mb-4 text-[26px] font-extrabold leading-snug text-black">{t(loan.title)}</h2>
+        <p className="mb-5 max-w-[760px] text-[14px] leading-relaxed text-gray-800">{t(loan.text)}</p>
 
         {loan.stats.length > 0 && (
           <div className="mb-6 grid grid-cols-2 items-end gap-x-6 gap-y-5 lg:grid-cols-4">
@@ -248,14 +251,13 @@ function LoanCard({ loan }) {
           </div>
         )}
 
-        <a
-          href="#"
-          onClick={(e) => e.preventDefault()}
+        <Link
+          to={`/loans/${loan.id}`}
           className="inline-flex items-center gap-3 rounded-full px-[30px] py-[14px] text-[14px] font-semibold no-underline hover:no-underline"
           style={{ background: '#ece6f8', color: PURPLE, marginTop: loan.stats.length ? 0 : 24 }}
         >
-          Մանրամասն <ChevronRight size={16} />
-        </a>
+          {t('Մանրամասն')} <ChevronRight size={16} />
+        </Link>
       </div>
     </article>
   );
@@ -277,6 +279,7 @@ export function FloatingActions() {
 }
 
 export default function Loans() {
+  const { t } = useTranslation();
   const [filter, setFilter] = useState('all');
   const list = filter === 'all' ? LOANS : LOANS.filter((l) => l.cats.includes(filter));
 
@@ -289,14 +292,14 @@ export default function Loans() {
             <Home size={16} />
           </Link>
           <ChevronRight size={12} className="text-gray-400" />
-          <Link to="/" className="text-gray-800 no-underline hover:no-underline">Անհատ</Link>
+          <Link to="/" className="text-gray-800 no-underline hover:no-underline">{t('Անհատ')}</Link>
           <ChevronRight size={12} className="text-gray-400" />
-          <Link to="/loans" className="text-gray-800 no-underline hover:no-underline">Վարկեր</Link>
+          <Link to="/loans" className="text-gray-800 no-underline hover:no-underline">{t('Վարկեր')}</Link>
           <ChevronRight size={12} className="text-gray-400" />
-          <span>Վարկեր</span>
+          <span>{t('Վարկեր')}</span>
         </nav>
 
-        <h1 className="mt-16 mb-12 text-[40px] font-extrabold">Վարկեր</h1>
+        <h1 className="mt-16 mb-12 text-[40px] font-extrabold">{t('Վարկեր')}</h1>
 
         {/* Filter chips */}
         <div className="mb-16 flex flex-wrap gap-x-5 gap-y-4">
@@ -314,7 +317,7 @@ export default function Loans() {
                     : { background: '#f1f1f1', color: '#222' }
                 }
               >
-                {f.label}
+                {t(f.label)}
               </button>
             );
           })}
@@ -330,7 +333,7 @@ export default function Loans() {
       {/* Дата обновления */}
       <div className="border-y border-gray-200">
         <div className="mx-auto max-w-7xl px-6 py-4 text-right text-[12px] text-gray-500">
-          Թարմացվել է՝ 04/09/2026 17:45
+          {t('Թարմացվել է՝')} 04/09/2026 17:45
         </div>
       </div>
 
