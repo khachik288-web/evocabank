@@ -77,6 +77,24 @@ export const NEWS = {
     date: '10.02.2026',
     img: IMG('17707319421286', '438x328'),
   },
+  fincomm: {
+    cat: 'Կենսակերպ',
+    title: 'Evocabank-ը՝ FinComm Armenia 2026-ի գլխավոր գործընկեր',
+    date: '08.10.2026',
+    img: IMG('17915391966329', '439x320'),
+  },
+  trf: {
+    cat: 'Կենսակերպ',
+    title: 'Evocabank-ը՝ TRF 2026-ի ֆինանսական գործընկեր',
+    date: '06.10.2026',
+    img: IMG('17912685600228', '439x320'),
+  },
+  ukforum: {
+    cat: 'Կենսակերպ',
+    title: 'Evocabank-ը՝ Armenia-UK Business Forum-ի գլխավոր գործընկեր',
+    date: '06.10.2026',
+    img: IMG('17913736819959', '439x320', 'jpg'),
+  },
 };
 
 Object.entries(NEWS).forEach(([k, v]) => { v.id = k; });

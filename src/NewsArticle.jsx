@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useNavigate, useParams, Navigate } from 'react-router-dom';
 import { ArrowLeft, ChevronRight, Home } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
@@ -25,6 +25,24 @@ export const ARTICLES = {
   },
 };
 
+// Общий текст для всех новостей, у которых нет своей записи в ARTICLES.
+// Хочешь уникальный текст — добавь запись в ARTICLES выше (ключ = id новости из newsData.js).
+const GENERIC_BODY = [
+  '**Evocabank**-ը շարունակում է իր գործունեությունը՝ ուղղված հաճախորդների հարմարավետությանը, նորարարությանը և հասարակության զարգացմանը:',
+  'Այս նորության վերաբերյալ առավել մանրամասն տեղեկությունը շուտով կհրապարակվի մեր կայքում և սոցիալական ցանցերի էջերում:',
+  'Հետևեք մեր նորություններին՝ առաջինը տեղեկանալու Բանկի նոր նախաձեռնություններին, ծառայություններին և ձեռքբերումներին:',
+];
+
+function getArticle(slug) {
+  if (ARTICLES[slug]) return ARTICLES[slug];
+  const n = NEWS[slug];
+  if (!n) return null;
+  const ids = Object.keys(NEWS);
+  const start = ids.indexOf(slug);
+  const more = [1, 2, 3].map((k) => ids[(start + k) % ids.length]); // 3 соседние новости
+  return { cat: n.cat, title: n.title, lead: n.text, date: n.date, img: n.img, body: GENERIC_BODY, more };
+}
+
 function Rich({ text }) {
   return text.split('**').map((p, i) => (i % 2 ? <strong key={i} className="font-bold text-[#6a0bd6]">{p}</strong> : <React.Fragment key={i}>{p}</React.Fragment>));
 }
@@ -33,7 +51,8 @@ export default function NewsArticle() {
   const { t } = useTranslation();
   const { slug } = useParams();
   const navigate = useNavigate();
-  const a = ARTICLES[slug];
+  useEffect(() => { window.scrollTo(0, 0); }, [slug]);
+  const a = getArticle(slug);
   if (!a) return <Navigate to="/news" replace />;
 
   return (
@@ -67,11 +86,11 @@ export default function NewsArticle() {
               <span className="text-[14px] font-bold text-[#1d0a4a]">{t(a.cat)}</span>
             </div>
             <h1 className="mt-8 break-words" style={{ fontSize: 28, fontWeight: 700, lineHeight: "38px", color: "#111", margin: "32px 0 0" }}>{t(a.title)}</h1>
-            <p className="mt-5 text-[14px] leading-[24px] text-[#333]">{t(a.lead)}</p>
+            {a.lead && <p className="mt-5 text-[14px] leading-[24px] text-[#333]">{t(a.lead)}</p>}
             <p className="mt-10 text-[13px] text-[#888]">{a.date}</p>
           </div>
           <div className="min-w-0 lg:w-[62%]">
-            <img src={a.img} alt={a.title} className="h-full max-h-[420px] w-full bg-black object-contain" />
+            <img src={a.img} alt={t(a.title)} className="h-full max-h-[420px] w-full bg-black object-contain" />
           </div>
         </section>
 
@@ -92,8 +111,8 @@ export default function NewsArticle() {
           {a.more.map((id) => {
             const n = NEWS[id];
             return (
-              <Link key={id} to="/news" className="block" style={{ color: "#111", textDecoration: "none" }}>
-                <img src={n.img} alt={n.title} className="aspect-[3/2] w-full object-cover" />
+              <Link key={id} to={`/news/${id}`} className="block" style={{ color: "#111", textDecoration: "none" }}>
+                <img src={n.img} alt={t(n.title)} className="aspect-[3/2] w-full object-cover" />
                 <h3 className="line-clamp-3" style={{ fontSize: 13, fontWeight: 700, lineHeight: "18px", color: "#111", margin: "12px 0 0" }}>{t(n.title)}</h3>
                 <p style={{ fontSize: 12, color: "#c9c9c9", margin: "8px 0 0" }}>{n.date}</p>
               </Link>
