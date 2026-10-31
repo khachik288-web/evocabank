@@ -47,18 +47,18 @@ const DIVIDENDS = [
 const DOCS = [
   {
     title: 'Կանոնադրություն',
-    href: '/files/charter.pdf',
-    file: 'charter.pdf'
+    href: '/public/datark.txt',
+    file: 'datark.txt'
   },
   {
     title: 'Բանկային գործունեության լիցենզիա',
-    href: '/files/license.pdf',
-    file: 'license.pdf'
+    href: '/public/datark.txt',
+    file: 'datark.txt'
   },
   {
     title: 'Բանկի Գրանցման վկայականը',
-    href: '/files/registration.pdf',
-    file: 'registration.pdf'
+    href: '/public/datark.txt',
+    file: 'datark.txt'
   }
 ];
 
