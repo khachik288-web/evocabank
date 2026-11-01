@@ -30,6 +30,7 @@ import { HistoryPage, InfoPage } from './LoanInfo';
 import CardsSocial from './CardsSocial';
 import Benefits from './Benefits';
 import DepositsPage from './DepositsPage';
+import DepositDetailPage from './DepositDetailPage';
 import BusinessHeader from './BusinessHeader';
 import Avandner from './Avandner';
 import Accounts from './Accounts';
@@ -1945,6 +1946,7 @@ function App() {
           <Route path="/cards/benefits" element={<SiteLayout><Benefits /></SiteLayout>} />
           <Route path="/cards/:cardId" element={<SiteLayout><CardDetail /></SiteLayout>} />
           <Route path="/deposits" element={<DepositsPage />} />
+          <Route path="/deposits/:id" element={<SiteLayout><DepositDetailPage /></SiteLayout>} />
           <Route path="/transfers" element={<SiteLayout><MoneyTransfers /></SiteLayout>} />
           <Route path="/transfers/payment-systems" element={<SiteLayout><PaymentSystems /></SiteLayout>} />
           <Route path="/accounts" element={<SiteLayout><SavingsAccount /></SiteLayout>} />
@@ -1999,7 +2001,6 @@ function App() {
           <Route path="/partner-dealerships" element={<SiteLayout><Dealerships /></SiteLayout>} />
           <Route path="/about/tariffs/archive" element={<SiteLayout><TariffsArchive /></SiteLayout>} />
           <Route path="/about/karucvacq" element={<SiteLayout><Karucvacq /></SiteLayout>} />
-          <Route path="/deposits/:id" element={<SiteLayout><DepositDetailPage /></SiteLayout>} />
         </Routes>
         <ChatWidget />
       </div>
