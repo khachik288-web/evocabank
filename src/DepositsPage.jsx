@@ -1,35 +1,34 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import './DepositsPage.css';
 import { Header } from './App';
-
-// Картинки из вашего запроса:
-const IMG_CLASSIC = "https://www.evoca.am/images-cache/deposits/1/1613390220029/415x261.jpg";
-const IMG_CHILD = "https://www.evoca.am/images-cache/deposits/1/16133900414285/415x261.jpg";
-const IMG_ONLINE = "https://www.evoca.am/images-cache/deposits/1/16133900122121/415x261.jpg";
+import { DEPOSITS } from './depositsData';
 
 // Переиспользуемый компонент карточки (аналогично структуре из busines.jsx)
-const DepositCard = ({ image, title, description, stats, buttonText }) => {
+const DepositCard = ({ image, title, description, stats, buttonText, onDetails }) => {
+  const { t } = useTranslation();
   return (
     <div className="deposit-card">
       <div className="deposit-card-image">
-        <img src={image} alt={title} />
+        <img src={image} alt={t(title)} />
       </div>
       <div className="deposit-card-content">
-        <h2 className="deposit-card-title">{title}</h2>
-        <p className="deposit-card-description">{description}</p>
-        
+        <h2 className="deposit-card-title">{t(title)}</h2>
+        <p className="deposit-card-description">{t(description)}</p>
+
         <div className="deposit-card-stats">
           {stats.map((stat, idx) => (
             <div key={idx} className="stat-item">
-              <span className="stat-label">{stat.label}</span>
+              <span className="stat-label">{t(stat.label)}</span>
               <span className="stat-value">{stat.value}</span>
-              <span className="stat-sub">{stat.sub}</span>
+              <span className="stat-sub">{t(stat.sub)}</span>
             </div>
           ))}
         </div>
 
-        <button className="deposit-card-btn">
-          {buttonText || 'Մանրամասն'} &rsaquo;
+        <button className="deposit-card-btn" onClick={onDetails}>
+          {t(buttonText || 'Մանրամասն')} &rsaquo;
         </button>
       </div>
     </div>
@@ -37,47 +36,13 @@ const DepositCard = ({ image, title, description, stats, buttonText }) => {
 };
 
 export default function DepositsPage() {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('deposits'); // 'deposits' | 'info'
   const [openAccordion, setOpenAccordion] = useState(null);
 
   const toggleAccordion = (index) => {
     setOpenAccordion(openAccordion === index ? null : index);
   };
-
-  const depositsData = [
-    {
-      image: IMG_CLASSIC,
-      title: "Դասական ավանդ",
-      description: "Ձեր անհոգ ապագայի համար առաջարկում ենք ավելացնել Ձեր խնայողությունները՝ ներդնելով Դասական ավանդ՝ կայուն և բարձր եկամտաբերությամբ:",
-      stats: [
-        { label: "Սկսած", value: "100,000 ֏", sub: "Գումար" },
-        { label: "Մինչև", value: "31-1,825 օր", sub: "Ժամկետ" },
-        { label: "Մինչև", value: "10.5% ֏", sub: "Տոկոսադրույք" },
-        { label: "Սկսած", value: "100,000 ֏", sub: "Համալրման հնարավորություն" }
-      ]
-    },
-    {
-      image: IMG_CHILD,
-      title: "Մանկական ավանդ",
-      description: "Ձեր երեխայի անհոգ ապագայի համար առաջարկում ենք ներդնել «Մանկական» ավանդ: «Մանկական» ժամկետային ավանդն ընդունվում ենք ֆիզիկական անձանցից՝ երեխաների անունով ներդնելու պայմանով:",
-      stats: [
-        { label: "Սկսած", value: "100,000 ֏", sub: "Գումար" },
-        { label: "Մինչև", value: "18 լրանալը", sub: "Ժամկետ" },
-        { label: "Մինչև", value: "9.5% ֏", sub: "Տոկոսադրույք" },
-        { label: "Սկսած", value: "40,000 ֏", sub: "Համալրման հնարավորություն" }
-      ]
-    },
-    {
-      image: IMG_ONLINE,
-      title: "Ավանդ Evoca Online",
-      description: "Ցանկանու՞մ եք ներդնել ավանդ բարձր տոկոսադրույքով, բայց չունե՞ք ժամանակ: Ձևակերպե՞ք EvocaONLINE ավանդ՝ առանց բանկ այցելելու: Իսկ մենք բոլոր փաստաթղթերը կուղարկենք Ձեր էլ. հասցեին:",
-      stats: [
-        { label: "Սկսած", value: "100,000 ֏", sub: "Գումար" },
-        { label: "Մինչև", value: "31-1,825 օր", sub: "Ժամկետ" },
-        { label: "Մինչև", value: "10.75% ֏", sub: "Տոկոսադրույք" }
-      ]
-    }
-  ];
 
   const accordionItems = [
     {
@@ -146,13 +111,14 @@ export default function DepositsPage() {
           <div className="tab-page-deposits">
             <h1 className="page-title">Ավանդներ</h1>
             <div className="cards-list">
-              {depositsData.map((dep, index) => (
-                <DepositCard 
-                  key={index}
+              {DEPOSITS.map((dep) => (
+                <DepositCard
+                  key={dep.id}
                   image={dep.image}
                   title={dep.title}
                   description={dep.description}
                   stats={dep.stats}
+                  onDetails={() => navigate(`/deposits/${dep.id}`)}
                 />
               ))}
             </div>
