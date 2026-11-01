@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import './DepositsPage.css';
 import { Header } from './App';
 import { DEPOSITS } from './depositsData';
+import { onDownload } from './downloadFile';
 
 // Переиспользуемый компонент карточки (аналогично структуре из busines.jsx)
 const DepositCard = ({ image, title, description, stats, buttonText, onDetails }) => {
