@@ -108,7 +108,7 @@ export default function Bonds() {
       <h2 className="dp-h2s">Փաստաթղթեր</h2>
       <ul className="dp-files">
         {FILES.map((f) => (
-          <li key={f}><a className="dp-file" href="#"><FileDown size={26} strokeWidth={1.5} />{f}</a></li>
+          <li key={f}><a className="dp-file" href="#" onClick={onDownload(f)}><FileDown size={26} strokeWidth={1.5} />{f}</a></li>
         ))}
       </ul>
     </PlainPage>
