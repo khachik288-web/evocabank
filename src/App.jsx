@@ -1378,7 +1378,6 @@ export function EvocaFooter() {
               <li><a href="/about/shareholders" className="text-reset text-decoration-none hover-purple">{t("Բաժնետերեր")}</a></li>
               <li><a href="/about/reports/audit" className="text-reset text-decoration-none hover-purple">{t("Հաշվետվություններ")}</a></li>
               <li><a href="/about/legal-acts" className="text-reset text-decoration-none hover-purple">{t("Իրավական ակտեր")}</a></li>
-              <li><a href="#tariffs" className="text-reset text-decoration-none hover-purple">{t("Սակագներ")}</a></li>
               <li><a href="/alienated-property" className="text-reset text-decoration-none hover-purple">{t("Օտարվող գույք")}</a></li>
               <li><a href="/builders" className="text-reset text-decoration-none hover-purple">{t("Կառուցապատողներ")}</a></li>
               <li><a href="/partner-dealerships" className="text-reset text-decoration-none hover-purple">{t("Գործընկեր ավտոսրահներ")}</a></li>
