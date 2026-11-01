@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaFacebookF, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
+import { onDownload } from './downloadFile';
 
 const PHOTO = 'https://www.evoca.am/file_manager/Shareholders/Mareta%20Gevorkyan%20Evocabank.png';
 
