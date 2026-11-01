@@ -139,7 +139,7 @@ function DocumentsBlock({ title }) {
       <h3 className="mb-5 text-[24px] font-extrabold">Փաստաթղթեր</h3>
       <a
         href="#"
-        onClick={(e) => e.preventDefault()}
+        onClick={onDownload(title)}
         className="flex items-center gap-4 rounded-md px-3 py-4 text-[16px] font-bold text-black no-underline hover:no-underline"
         style={{ background: '#f6f4f9' }}
       >
