@@ -1999,6 +1999,7 @@ function App() {
           <Route path="/partner-dealerships" element={<SiteLayout><Dealerships /></SiteLayout>} />
           <Route path="/about/tariffs/archive" element={<SiteLayout><TariffsArchive /></SiteLayout>} />
           <Route path="/about/karucvacq" element={<SiteLayout><Karucvacq /></SiteLayout>} />
+          <Route path="/deposits/:id" element={<SiteLayout><DepositDetailPage /></SiteLayout>} />
         </Routes>
         <ChatWidget />
       </div>
