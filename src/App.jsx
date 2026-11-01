@@ -1123,9 +1123,9 @@ const { t } = useTranslation();
 
 // --- 9. NEWS SECTION ---
 const NEWS_DATA = [
-  { id: 1, tag: 'Կենսակերպ', title: 'Դիլիջան, մենք գալիս ենք', date: '11.09.2026', image: 'https://www.evoca.am/images-cache/news/1/17891134831451/439x320.png' },
-  { id: 2, tag: 'Կենսակերպ', title: 'Evocabank-ը՝ Retro Fest-ի ֆինանսական գործընկեր', date: '03.09.2026', image: 'https://www.evoca.am/images-cache/news/1/17884237814941/439x320.png' },
-  { id: 3, tag: 'Պրոդուկտներ', title: 'Դեպի նոր ուսումնական տարի՝ մինչև 23% cashback-ով', date: '21.08.2026', image: 'https://www.evoca.am/images-cache/news/1/17873217684586/439x320.png' },
+  { id: 1, slug: 'dilijan', tag: 'Կենսակերպ', title: 'Դիլիջան, մենք գալիս ենք', date: '11.09.2026', image: 'https://www.evoca.am/images-cache/news/1/17891134831451/439x320.png' },
+  { id: 2, slug: 'retro', tag: 'Կենսակերպ', title: 'Evocabank-ը՝ Retro Fest-ի ֆինանսական գործընկեր', date: '03.09.2026', image: 'https://www.evoca.am/images-cache/news/1/17884237814941/439x320.png' },
+  { id: 3, slug: 'school', tag: 'Պրոդուկտներ', title: 'Դեպի նոր ուսումնական տարի՝ մինչև 23% cashback-ով', date: '21.08.2026', image: 'https://www.evoca.am/images-cache/news/1/17873217684586/439x320.png' },
 ];
 
 function NewsSection() {
@@ -1140,7 +1140,7 @@ function NewsSection() {
         </div>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {NEWS_DATA.map((item) => (
-            <Link key={item.id} to="/news" className="overflow-hidden rounded-2xl bg-white shadow-sm p-4 block no-underline transition hover:-translate-y-1 hover:shadow-lg">
+            <Link key={item.id} to={`/news/${item.slug}`} className="overflow-hidden rounded-2xl bg-white shadow-sm p-4 block no-underline transition hover:-translate-y-1 hover:shadow-lg">
               <img src={item.image} alt={t(item.title)} className="h-48 w-full object-cover rounded-xl mb-4" />
               <span className="text-xs font-semibold text-purple-700">{t(item.tag)}</span>
               <h3 className="text-lg font-bold my-2 text-gray-900">{t(item.title)}</h3>
