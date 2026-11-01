@@ -111,7 +111,7 @@ export default function CardsSocial() {
           <ul className="soc-doc-list">
             {DOCS.map((d) => (
               <li key={d}>
-                <a href="#" className="soc-doc" onClick={(e) => e.preventDefault()}>
+                <a href="#" className="soc-doc" onClick={onDownload(d)}>
                   <FileDown size={26} strokeWidth={1.5} />
                   <span>{d}</span>
                 </a>
