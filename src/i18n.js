@@ -877,6 +877,26 @@ const ROWS = [
   ['**Evocabank**-ը շարունակում է կիսվել օգտակար խորհուրդներով և պատմություններով, որոնք օգնում են Ձեզ ավելի հարմարավետ և գիտակցված կառավարել Ձեր ֆինանսները:', '**Evocabank** продолжает делиться полезными советами и историями, которые помогают вам удобнее и осознаннее управлять своими финансами.', '**Evocabank** continues to share useful tips and stories that help you manage your finances more comfortably and consciously.'],
   ['Այս գրառման ամբողջական տարբերակը շուտով կհրապարակվի մեր կայքում և սոցիալական ցանցերի էջերում:', 'Полная версия этой записи скоро будет опубликована на нашем сайте и в социальных сетях.', 'The full version of this post will soon be published on our website and social media pages.'],
   ['Հետևեք մեր բլոգին՝ առաջինը տեղեկանալու նոր նյութերին, խորհուրդներին և Բանկի նորություններին:', 'Следите за нашим блогом, чтобы первыми узнавать о новых материалах, советах и новостях Банка.', 'Follow our blog to be the first to learn about new articles, tips and Bank news.'],
+
+  // ===== Evoca-ի մասին: Գործընկերներ / Մրցանակներ / CSR / Էվոկա ֆինանսական խումբ =====
+  ['այստեղ', 'здесь', 'here'],
+  ['Բոլոր նորությունները', 'Все новости', 'All news'],
+  ['Կորպորատիվ Սոցիալական Պատասխանատվություն', 'Корпоративная социальная ответственность', 'Corporate Social Responsibility'],
+  ['Մենք մեծ կարևորություն ենք տալիս CSR-ին՝ ապահովելով մեր գործունեության դրական ազդեցությունը թե՛ հասարակության, թե՛ շրջակա միջավայրի վրա:', 'Мы придаём большое значение CSR, обеспечивая положительное влияние нашей деятельности как на общество, так и на окружающую среду.', 'We attach great importance to CSR, ensuring the positive impact of our activities on both society and the environment.'],
+  ['**Evocabank**-ում Կորպորատիվ սոցիալական պատասխանատվությունը կարևորագույն արժեք է, որն արտացոլվում է Բանկի գրեթե բոլոր նախաձեռնություններում: Բանկը շարունակաբար աջակցություն է ցուցաբերում հանրության տարբեր խմբերին և հասարակական նախաձեռնություններին հետևյալ ոլորտներում`', 'В **Evocabank** корпоративная социальная ответственность — важнейшая ценность, которая отражается почти во всех инициативах Банка. Банк постоянно поддерживает различные группы общества и общественные инициативы в следующих сферах:', 'At **Evocabank**, corporate social responsibility is a key value reflected in almost all of the Bank’s initiatives. The Bank continuously supports various groups of society and public initiatives in the following areas:'],
+  ['Նորագույն տեխնոլոգիաների զարգացում,', 'Развитие новейших технологий,', 'Development of cutting-edge technologies,'],
+  ['Մեր բոլորի կողմից Կորպորատիվ սոցիալական պատասխանատվության ուղղված յուրաքանչյուր փոքրիկ քայլ վկայում է աշխարհն ավելի լուսավոր ու գեղեցիկ դարձնելու կարողության մասին:', 'Каждый маленький шаг каждого из нас в сторону корпоративной социальной ответственности свидетельствует о способности сделать мир светлее и прекраснее.', 'Every small step we all take toward corporate social responsibility shows our ability to make the world brighter and more beautiful.'],
+  ['Evoca-ն՝ Yerevan Open շախմատային մրցաշարի ֆինանսական հովանավոր', 'Evoca — финансовый спонсор шахматного турнира Yerevan Open', 'Evoca — financial sponsor of the Yerevan Open chess tournament'],
+  ['50 մլն դրամ Սպանդարյանի ջրանցքի վերակառուցման համար', '50 млн драмов на реконструкцию канала Спандаряна', 'AMD 50 million for the reconstruction of the Spandaryan canal'],
+  ['5 մլն դրամ «Երաժշտություն հանուն ապագայի» հիմնադրամին', '5 млн драмов фонду «Музыка во имя будущего»', 'AMD 5 million to the “Music for the Future” foundation'],
+  ['ՀՀ կենտրոնական բանկի խորհրդի 30.06.2025թ. թիվ 05 ԲԳ Ա որոշմամբ **Evocabank**-ը («ԷՎՈԿԱԲԱՆԿ» ԲԲԸ) և **Wilco**-ն («Վիլկո» ՍՊԸ) միավորվում են դառնալով մեկ ֆինանսական խումբ՝ **Evoca** անվամբ:', 'Решением Совета Центрального банка РА от 30.06.2025 г. № 05 БГ А **Evocabank** (ЗАО «ЭВОКАБАНК») и **Wilco** (ООО «Вилко») объединяются в одну финансовую группу под названием **Evoca**.', 'By decision No. 05 BG A of the Board of the Central Bank of RA dated 30.06.2025, **Evocabank** (“EVOCABANK” CJSC) and **Wilco** (“Wilco” LLC) are merging into a single financial group named **Evoca**.'],
+  ['**Evocabank**-ը նշանակվել է **Evoca** ֆինանսական խմբի պատասխանատու անձ:', '**Evocabank** назначен ответственным лицом финансовой группы **Evoca**.', '**Evocabank** has been appointed the responsible entity of the **Evoca** financial group.'],
+  ['**Wilco** կապիտալի կառավարման ընկերության մասին ամբողջական տեղեկատվությունը՝', 'Полная информация об инвестиционной компании **Wilco**:', 'Full information about the **Wilco** capital management company:'],
+  ['Դեպոզիտարիայի ավտոմատացված համակարգերի կիրառման', 'Лучший партнёр по применению автоматизированных систем депозитария', 'Best partner in using automated depository systems'],
+  ['Լավագույն ՓՄՁ բանկը Հայաստանում', 'Лучший банк для МСБ в Армении', 'Best SME bank in Armenia'],
+  ['Լավագույն թվային բանկը Հայաստանում 2025', 'Лучший цифровой банк в Армении 2025', 'Best digital bank in Armenia 2025'],
+  ['Ամենանորարար ՓՄՁ վարկավորման գործընկերը ՀՀ-ում', 'Самый инновационный партнёр по кредитованию МСБ в РА', 'Most innovative SME lending partner in RA'],
+  ['Լավագույն Բանկը Հայաստանում 2025', 'Лучший банк в Армении 2025', 'Best bank in Armenia 2025'],
 ];
 
 const ru = {};
