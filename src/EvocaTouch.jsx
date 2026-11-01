@@ -87,7 +87,8 @@ export default function EvocaTouch() {
           <div className="pt-8 space-y-4">
             <h3 className="text-2xl font-bold text-gray-900">Փաստաթղթեր</h3>
             <a 
-              href="#download" 
+              href="#"
+              onClick={onDownload('Համալիր բանկային ծառայությունների մատուցման պայմաններ')}
               className="flex items-center gap-3 p-4 bg-purple-50/60 border border-purple-200 rounded-xl hover:bg-purple-100 transition-colors w-full max-w-xl group"
             >
 

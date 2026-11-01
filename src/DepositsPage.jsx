@@ -155,7 +155,7 @@ export default function DepositsPage() {
               <h2 className="docs-title">Փաստաթղթեր</h2>
               <div className="docs-list">
                 {documentsData.map((doc, idx) => (
-                  <div className="doc-item" key={idx}>
+                  <div className="doc-item" key={idx} onClick={onDownload(doc)} role="button" tabIndex={0}>
                     <div className="doc-icon">📄</div>
                     <span className="doc-name">{doc}</span>
                   </div>
