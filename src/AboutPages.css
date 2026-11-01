@@ -1,0 +1,119 @@
+/* =====================================================
+   «Մեր մասին → Evoca-ի մասին»: Partners / Awards / CSR / Financial group
+   ===================================================== */
+.ap-page { color: #1b1b1b; font-family: 'Noto Sans Armenian', 'Montserrat', system-ui, sans-serif; }
+.ap-wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+.ap-crumbs { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 22px 0 6px; font-size: 11px; color: #444; }
+.ap-crumbs a { color: #222; text-decoration: none; }
+.ap-crumbs a:hover { color: #6a00db; }
+.ap-crumbs span:last-child { color: #6a00db; }
+
+.ap-title { margin: 34px 0 34px; font-size: 28px; font-weight: 800; color: #1b1b1b; }
+.ap-title--soft { font-weight: 500; font-size: 24px; margin: 42px 0 30px; color: #333; }
+
+/* ----- share rail ----- */
+.ap-share { display: flex; flex-direction: column; gap: 14px; align-items: center; align-self: flex-start;
+  background: #f1f1f1; border-radius: 6px; padding: 12px 10px; position: sticky; top: 20px; }
+.ap-share a { color: #8a8a8a; display: flex; transition: color .2s; }
+.ap-share a:hover { color: #6a00db; }
+
+.ap-article { display: flex; gap: 40px; align-items: flex-start; margin: 10px 0 40px; }
+.ap-text { flex: 1; max-width: 640px; font-size: 13px; line-height: 1.85; color: #333; }
+.ap-text p { margin: 0 0 18px; }
+.ap-text strong { color: #6a00db; }
+.ap-text .ap-link { color: #6a00db; text-decoration: underline; }
+.ap-bullets { list-style: none; padding: 0; margin: 0 0 22px; }
+.ap-bullets li { position: relative; padding-left: 28px; margin-bottom: 14px; }
+.ap-bullets li::before { content: ''; position: absolute; left: 6px; top: 9px; width: 6px; height: 6px; border-radius: 50%; background: #6a00db; }
+
+.ap-updated { max-width: 1100px; margin: 0 auto; padding: 18px 24px; border-top: 1px solid #ece6f8; text-align: right; font-size: 11px; color: #8a8a8a; }
+
+/* ----- Partners ----- */
+.ap-partners { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid #e8dcf7; border-left: 1px solid #e8dcf7; margin-bottom: 70px; }
+.ap-partner { display: flex; align-items: center; justify-content: center; min-height: 186px; padding: 24px;
+  border-right: 1px solid #e8dcf7; border-bottom: 1px solid #e8dcf7; background: #fff; }
+.ap-partner img { max-width: 100%; max-height: 150px; object-fit: contain; display: block; }
+.ap-partner.is-hand { padding: 0; }
+.ap-partner.is-hand img { max-height: 100%; height: 100%; width: auto; }
+
+/* ----- Awards ----- */
+.ap-page--awards { background: #fff; }
+.ap-awards { position: relative; margin-top: 10px; padding: 48px 24px 90px; overflow: hidden;
+  background: linear-gradient(180deg, #f4f4f6 0%, #f4f2fb 60%, #f1ecfb 100%); border-top-left-radius: 0; }
+.ap-awards::after { content: ''; position: absolute; right: -10%; bottom: -120px; width: 70%; height: 320px; border-radius: 50%; background: #efe9fb; z-index: 0; }
+.ap-awards-grid { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px;
+  max-width: 860px; margin: 0 0 0 auto; margin-right: max(24px, calc((100% - 1100px) / 2 + 80px)); }
+.ap-award { background: #fff; border-radius: 12px; box-shadow: 0 4px 22px rgba(60, 20, 120, .08); padding: 22px 24px 18px; min-height: 200px;
+  display: flex; flex-direction: column; transition: transform .2s, box-shadow .2s; }
+.ap-award:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(106, 0, 219, .16); }
+.ap-award-year { font-size: 28px; font-weight: 800; color: #6a00db; line-height: 1; }
+.ap-award-title { margin: 14px 0 0; font-size: 17px; font-weight: 600; line-height: 1.8; color: #1b1b1b; flex: 1; }
+.ap-award-foot { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; margin-top: 18px; font-size: 13px; color: #222; }
+.ap-award-foot img { max-height: 52px; max-width: 120px; object-fit: contain; }
+
+/* декоративные фигуры слева (вместо картинок-украшений) */
+.ap-deco { position: absolute; z-index: 1; pointer-events: none; display: block; }
+.ap-deco-wreath { left: 3%; top: 190px; width: 240px; height: 240px; border-radius: 50%;
+  background: radial-gradient(circle, transparent 54%, rgba(246, 206, 70, .55) 55% 58%, transparent 59%),
+    radial-gradient(circle, rgba(246, 206, 70, .5) 1.6px, transparent 2px) 0 0 / 14px 14px;
+  -webkit-mask: radial-gradient(circle, transparent 38%, #000 39%); mask: radial-gradient(circle, transparent 38%, #000 39%); }
+.ap-deco-tri { left: 6%; top: 40px; width: 70px; height: 56px; background: linear-gradient(135deg, #e145e8, #7a3cf0); clip-path: polygon(0 0, 100% 30%, 20% 100%); }
+.ap-deco-zig { left: 1%; top: 640px; width: 90px; height: 60px; background: linear-gradient(135deg, #8d6bff, #6a00db); clip-path: polygon(0 0, 70% 0, 100% 50%, 30% 50%, 100% 100%, 20% 100%, 0 70%); opacity: .8; }
+.ap-deco-dot { left: 0; top: 880px; width: 140px; height: 160px;
+  background: radial-gradient(circle, #cfc8e2 2px, transparent 2.5px) 0 0 / 18px 18px; opacity: .7; }
+
+/* ----- CSR hero ----- */
+.ap-hero { display: flex; margin: 24px 0 56px; min-height: 290px; }
+.ap-hero-text { flex: 0 0 44%; padding: 48px 40px; background: linear-gradient(180deg, #f4f4f4, #f6effe); border-bottom-left-radius: 110px; display: flex; flex-direction: column; justify-content: center; }
+.ap-hero-text h1 { margin: 0 0 22px; font-size: 24px; font-weight: 700; line-height: 1.55; color: #1b1b1b; }
+.ap-hero-text p { margin: 0; font-size: 12px; line-height: 1.9; color: #444; }
+.ap-hero-img { flex: 1; min-width: 0; }
+.ap-hero-img img { display: block; width: 100%; height: 100%; max-height: 410px; object-fit: cover; }
+
+/* ----- CSR news ----- */
+.ap-latest { background: #eef5fc; padding: 56px 0 80px; margin-top: 30px; }
+.ap-latest-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 42px; }
+.ap-latest-head h2 { margin: 0; font-size: 26px; font-weight: 800; color: #1b1b1b; }
+.ap-pill { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 999px; background: #e3dcf7; color: #6a00db;
+  font-size: 12px; font-weight: 700; text-decoration: none; transition: background .2s; }
+.ap-pill:hover { background: #d6caf3; }
+.ap-latest-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.ap-news { display: block; background: #fff; border-radius: 12px; overflow: hidden; text-decoration: none; color: inherit;
+  box-shadow: 0 4px 18px rgba(30, 60, 120, .08); transition: transform .2s, box-shadow .2s; }
+.ap-news:hover { transform: translateY(-4px); box-shadow: 0 10px 26px rgba(30, 60, 120, .16); }
+.ap-news img { display: block; width: 100%; aspect-ratio: 439 / 320; object-fit: cover; }
+.ap-news-body { padding: 18px 20px 22px; }
+.ap-news-cat { display: flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 700; color: #1b1b1b; }
+.ap-news-cat i { display: inline-block; width: 4px; height: 16px; background: #a6f000; }
+.ap-news h3 { margin: 16px 0 18px; font-size: 14px; font-weight: 700; line-height: 1.5; color: #111; min-height: 63px; }
+.ap-news time { font-size: 11px; color: #c4c4c4; }
+
+/* ----- Financial group ----- */
+.ap-group-img { margin: 10px auto 60px; max-width: 760px; }
+.ap-group-img img { display: block; width: 100%; height: auto; }
+
+/* ----- Responsive ----- */
+@media (max-width: 992px) {
+  .ap-awards-grid { margin-right: auto; margin-left: auto; }
+  .ap-deco-wreath, .ap-deco-zig, .ap-deco-dot { display: none; }
+  .ap-hero { flex-direction: column; }
+  .ap-hero-text { flex: none; border-bottom-left-radius: 70px; padding: 32px 26px; }
+  .ap-hero-img img { max-height: 340px; }
+  .ap-latest-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 767px) {
+  .ap-wrap { padding: 0 14px; }
+  .ap-partners { grid-template-columns: repeat(2, 1fr); }
+  .ap-partner { min-height: 130px; padding: 14px; }
+  .ap-awards { padding: 32px 14px 60px; }
+  .ap-awards-grid { grid-template-columns: 1fr; gap: 22px; }
+  .ap-article { flex-direction: column; gap: 18px; }
+  .ap-share { flex-direction: row; position: static; padding: 8px 12px; }
+  .ap-latest-grid { grid-template-columns: 1fr; }
+  .ap-latest-head h2 { font-size: 22px; }
+  .ap-title { font-size: 24px; margin: 24px 0; }
+}
+@media (max-width: 480px) {
+  .ap-partners { grid-template-columns: 1fr; }
+}
