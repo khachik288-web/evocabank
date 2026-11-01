@@ -140,13 +140,10 @@ const CSR_LIST = [
   'Հասարակական կարևոր նշանակություն ունեցող նախաձեռնություններ,',
   'Հասարակության առավել խոցելի խմբեր, մասնավորապես՝ ծնողազուրկ կամ հատուկ խնամքի տակ գտնվող երեխաներ:',
 ];
-// ВНИМАНИЕ: картинки CSR-новостей я не смог получить — стоят временные картинки из newsData.
-// Замени img на реальные ссылки (как на evoca.am) и, если нужно, добавь to: '/news/<id>'.
-const CSR_NEWS = [
-  { title: 'Evoca-ն՝ Yerevan Open շախմատային մրցաշարի ֆինանսական հովանավոր', date: '18.12.2025', img: NEWS.aua?.img },
-  { title: '50 մլն դրամ Սպանդարյանի ջրանցքի վերակառուցման համար', date: '24.12.2025', img: NEWS.amx?.img },
-  { title: '5 մլն դրամ «Երաժշտություն հանուն ապագայի» հիմնադրամին', date: '13.12.2024', img: NEWS.sme?.img },
-];
+// CSR-новости берутся из newsData.js (csrchess, csrcanal, csrmusic) — клик ведёт на /news/<id>.
+// ВНИМАНИЕ: картинки этих трёх новостей в newsData.js временные — замени на реальные.
+const CSR_IDS = ['csrchess', 'csrcanal', 'csrmusic'];
+const CSR_NEWS = CSR_IDS.map((id) => ({ id, ...NEWS[id] }));
 
 export function Csr() {
   const { t } = useTranslation();
@@ -183,7 +180,7 @@ export function Csr() {
           </div>
           <div className="ap-latest-grid">
             {CSR_NEWS.map((n) => (
-              <Link to="/news" key={n.title} className="ap-news">
+              <Link to={`/news/${n.id}`} key={n.id} className="ap-news">
                 <img src={n.img} alt={t(n.title)} loading="lazy" />
                 <div className="ap-news-body">
                   <div className="ap-news-cat"><i />CSR</div>
