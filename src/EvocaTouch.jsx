@@ -2,6 +2,7 @@ import React from 'react';
 import { Home, ChevronRight } from 'lucide-react';
 import OnlineBanner from './OnlineBanner';
 import CardsSocial from './CardsSocial';
+import { onDownload } from './downloadFile';
 
 export default function EvocaTouch() {
   return (
