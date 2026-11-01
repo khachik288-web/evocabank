@@ -2,6 +2,7 @@ import React from 'react';
 import { FileDown } from 'lucide-react';
 import { TradePage, NumTable } from './TradeParts';
 import { PH } from './SecurityParts';
+import { onDownload } from './downloadFile';
 
 const Bullets = ({ items }) => <ul>{items.map((t) => <li key={t}>{t}</li>)}</ul>;
 
