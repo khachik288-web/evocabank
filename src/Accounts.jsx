@@ -5,6 +5,7 @@ import { ChevronDown, ChevronRight, Home } from 'lucide-react';
 import './Avandner.css';
 import './Accounts.css';
 import OnlineBanner from './OnlineBanner';
+import { onDownload } from './downloadFile';
 
 export const ACC_HERO = 'https://www.evoca.am/images-cache/menu/1/16116367969264/780x585.jpg';
 
