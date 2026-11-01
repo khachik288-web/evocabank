@@ -20,6 +20,7 @@ import CareerHowToHire from './CareerHowToHire';
 import News from './News';
 import LikedNews from './LikedNews';
 import NewsArticle from './NewsArticle';
+import BlogArticle from './BlogArticle';
 import LoanDetail from './LoanDetail';
 import Blog from './Blog';
 import Loans from './Loans';
@@ -1937,6 +1938,7 @@ function App() {
           <Route path="/news/:slug" element={<SiteLayout><NewsArticle /></SiteLayout>} />
           <Route path="/liked-news" element={<SiteLayout><LikedNews /></SiteLayout>} />
           <Route path="/blog" element={<SiteLayout><Blog /></SiteLayout>} />
+          <Route path="/blog/:slug" element={<SiteLayout><BlogArticle /></SiteLayout>} />
           <Route path="/loans" element={<SiteLayout><Loans /></SiteLayout>} />
           <Route path="/loans/history" element={<SiteLayout><HistoryPage /></SiteLayout>} />
           <Route path="/cards" element={<SiteLayout><Cards /></SiteLayout>} />
