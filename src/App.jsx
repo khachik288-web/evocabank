@@ -21,6 +21,7 @@ import News from './News';
 import LikedNews from './LikedNews';
 import NewsArticle from './NewsArticle';
 import BlogArticle from './BlogArticle';
+import { Partners as AboutPartners, Awards as AboutAwards, Csr as AboutCsr, FinancialGroup as AboutFinancialGroup } from './AboutPages';
 import LoanDetail from './LoanDetail';
 import Blog from './Blog';
 import Loans from './Loans';
@@ -190,10 +191,10 @@ export function Header() {
     { label: 'Կառուցվածք', path: '/about/karucvacq' },
     { label: 'Բաժնետերեր', path: '/about/shareholders' },
     { label: 'Ղեկավարություն', path: '/about/management' },
-    { label: 'Գործընկերներ', path: '#' },
-    { label: 'Մրցանակներ', path: '#' },
-    { label: 'CSR', path: '#' },
-    { label: 'Էվոկա ֆինանսական խումբ', path: '#' },
+    { label: 'Գործընկերներ', path: '/about/partners' },
+    { label: 'Մրցանակներ', path: '/about/awards' },
+    { label: 'CSR', path: '/about/csr' },
+    { label: 'Էվոկա ֆինանսական խումբ', path: '/about/financial-group' },
   ];
 
   const subNav = isAnnouncements ? null : isReports ? reportsSubNav : isTariffs ? tariffsSubNav : isAbout ? aboutSubNav : isLoans ? loansSubNav : isCards ? cardsSubNav : isAccounts ? accountsSubNav : isTransfers ? transfersSubNav : isSecurities ? securitiesSubNav : null;
@@ -1378,7 +1379,7 @@ export function EvocaFooter() {
               <li><a href="/about/shareholders" className="text-reset text-decoration-none hover-purple">{t("Բաժնետերեր")}</a></li>
               <li><a href="/about/reports/audit" className="text-reset text-decoration-none hover-purple">{t("Հաշվետվություններ")}</a></li>
               <li><a href="/about/legal-acts" className="text-reset text-decoration-none hover-purple">{t("Իրավական ակտեր")}</a></li>
-              <li><a href="/tariffs" className="text-reset text-decoration-none hover-purple">{t("Սակագներ")}</a></li>
+              <li><a href="#tariffs" className="text-reset text-decoration-none hover-purple">{t("Սակագներ")}</a></li>
               <li><a href="/alienated-property" className="text-reset text-decoration-none hover-purple">{t("Օտարվող գույք")}</a></li>
               <li><a href="/builders" className="text-reset text-decoration-none hover-purple">{t("Կառուցապատողներ")}</a></li>
               <li><a href="/partner-dealerships" className="text-reset text-decoration-none hover-purple">{t("Գործընկեր ավտոսրահներ")}</a></li>
@@ -2003,12 +2004,15 @@ function App() {
           <Route path="/partner-dealerships" element={<SiteLayout><Dealerships /></SiteLayout>} />
           <Route path="/about/tariffs/archive" element={<SiteLayout><TariffsArchive /></SiteLayout>} />
           <Route path="/about/karucvacq" element={<SiteLayout><Karucvacq /></SiteLayout>} />
+          <Route path="/about/partners" element={<SiteLayout><AboutPartners /></SiteLayout>} />
+          <Route path="/about/awards" element={<SiteLayout><AboutAwards /></SiteLayout>} />
+          <Route path="/about/csr" element={<SiteLayout><AboutCsr /></SiteLayout>} />
+          <Route path="/about/financial-group" element={<SiteLayout><AboutFinancialGroup /></SiteLayout>} />
         </Routes>
         <ChatWidget />
       </div>
     </Router>
   );
 }
-
 
 export default App;
