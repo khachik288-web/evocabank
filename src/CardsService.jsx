@@ -5,6 +5,7 @@ import { FaFacebookF, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
 import { FloatingActions } from './Loans';
 import OnlineBanner from './OnlineBanner';
 import './CardsService.css';
+import { onDownload } from './downloadFile';
 
 const ISSUE_POINTS = [
   'Բանկը հաճախորդներին տրամադրում է Հաշվարկային կամ Վարկային՝ «ArCa» լոգոյով, «Visa», «Mastercard» և «UnionPay» միջազգային վճարային համակարգերի քարտեր։',
