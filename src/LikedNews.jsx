@@ -64,7 +64,7 @@ export default function LikedNews() {
           <div className="mt-10 grid gap-x-[55px] gap-y-14 md:grid-cols-2 lg:grid-cols-3">
             {items.map((item) => (
               <div key={item.id}>
-                <a href="#" className="group block no-underline">
+                <Link to={`/news/${item.id}`} className="group block no-underline">
                   <div className="overflow-hidden">
                     <img
                       src={item.img}
@@ -83,7 +83,7 @@ export default function LikedNews() {
                     {t(item.title)}
                   </h3>
                   <p className="mt-6 text-[17px] text-[#c9c9c9]">{item.date}</p>
-                </a>
+                </Link>
                 {/* повторный клик по лайку снимает его — новость пропадёт из списка */}
                 <NewsVotes id={item.id} />
               </div>
