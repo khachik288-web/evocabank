@@ -132,7 +132,7 @@ export default function CardsService() {
             <ul className="svc-doc-list">
               {DOCS.map((d) => (
                 <li key={d}>
-                  <a href="#" className="svc-doc" onClick={(e) => e.preventDefault()}>
+                  <a href="#" className="svc-doc" onClick={onDownload(d)}>
                     <FileDown size={26} strokeWidth={1.5} />
                     <span>{d}</span>
                   </a>
