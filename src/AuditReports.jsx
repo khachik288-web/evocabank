@@ -46,7 +46,7 @@ export default function AuditReports({ title = 'Աուդիտորական եզր�
               <h2 className="mb-6 text-[22px] font-bold text-gray-900">{year}</h2>
               <a
                 href="#"
-                onClick={(e) => e.preventDefault()}
+                onClick={onDownload(`${year} ${title}`)}
                 className="flex items-center gap-4 rounded bg-[#f5f3f8] px-3 py-3 text-[13px] font-semibold text-gray-900 no-underline transition-colors hover:bg-[#ece7f5] hover:no-underline"
               >
                 <DocIcon />
