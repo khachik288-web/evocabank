@@ -1,136 +1,127 @@
-import React from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate, useParams, Navigate } from 'react-router-dom';
+import { ArrowLeft, ChevronRight, ChevronLeft, Home } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import './DepositsPage.css';
-import './DepositDetailPage.css';
-import { Header } from './App';
-import { DEPOSITS, getDepositById } from './depositsData';
+import { DEPOSITS } from './depositsData';
+import OnlineBanner from './OnlineBanner';
+import './CardDetail.css';
 
-// Одна страница для всех вкладов: меняются только картинка, заголовок
-// (и краткие показатели) выбранной карточки. Остальной текст общий.
+// Общий шаблон страницы вклада: /deposits/:id.
+// Та же схема и те же стили (cd-*), что у LoanDetail / CardDetail.
+// Меняются только картинка, заголовок, описание и показатели выбранной карточки.
+const TEXT = [
+  'Ավանդը հուսալի և շահավետ միջոց է Ձեր խնայողությունները պահպանելու և ավելացնելու համար: Ընտրեք Ձեզ հարմար գումարը և ժամկետը, և Բանկը կապահովի կայուն եկամտաբերություն ամբողջ ժամանակահատվածում:',
+  'Ավանդը կարող եք ձևակերպել Բանկի ցանկացած մասնաճյուղում կամ EvocaTOUCH հավելվածի միջոցով՝ առանց ավելորդ թղթաբանության:',
+  'Ֆիզիկական անձանց ավանդները երաշխավորվում են համաձայն ՀՀ օրենքի:',
+];
+const CLOSING = 'Լրացուցիչ տեղեկությունների համար զանգահարեք կարճ համարով՝ **8444**, կամ այցելեք Բանկի ցանկացած մասնաճյուղ:';
+
+const BASE = '/deposits';
+const CRUMBS = [['Անհատ', '/'], ['Ավանդներ', BASE]];
+
+function Rich({ text }) {
+  return text.split('**').map((p, i) => (i % 2 ? <strong key={i}>{p}</strong> : <React.Fragment key={i}>{p}</React.Fragment>));
+}
+
 export default function DepositDetailPage() {
+  const { t } = useTranslation();
   const { id } = useParams();
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const [tab, setTab] = useState('about');
+  const [i, setI] = useState(0);
 
-  const deposit = getDepositById(id);
+  const deposit = DEPOSITS.find((d) => d.id === id);
+  if (!deposit) return <Navigate to={BASE} replace />;
 
-  if (!deposit) {
-    return (
-      <div className="evoca-container">
-        <Header />
-        <main className="evoca-main-content">
-          <h1 className="page-title">{t('Էջը չի գտնվել։')}</h1>
-          <button className="deposit-card-btn" onClick={() => navigate('/deposits')}>
-            {t('← Վերադառնալ')}
-          </button>
-        </main>
-      </div>
-    );
-  }
-
-  const others = DEPOSITS.filter((d) => d.id !== deposit.id);
-
-  const conditions = [
-    'Ավանդը կարող է ներդրվել Բանկի գրասենյակներում կամ EvocaTOUCH և EvocaONLINE համակարգերով:',
-    'Ավանդի ներդրման համար անհրաժեշտ է անձը հաստատող փաստաթուղթ և սոցիալական քարտ:',
-    'Տոկոսագումարները հաշվարկվում են օրական կտրվածքով և վճարվում են պայմանագրով սահմանված կարգով:',
-    'Ֆիզիկական անձանց ավանդները երաշխավորվում են համաձայն ՀՀ օրենքի:',
-    'Ավանդի գումարի վերադարձը կատարվում է Ավանդային պայմանագրի վերջին օրը:',
-  ];
+  // {label:'Սկսած', value, sub:'Գումար'} → маленькая подпись сверху + значение + название
+  const stats = (deposit.stats || []).map((s) => ({ sublabel: s.label, value: s.value, label: s.sub }));
+  const paragraphs = [deposit.description, ...TEXT, CLOSING];
+  const others = DEPOSITS.filter((d) => d.id !== id);
+  const visible = 4;
+  const max = Math.max(0, others.length - visible);
 
   return (
-    <div className="evoca-container">
-      <Header />
+    <main className="cd-page">
+      <section className="cd-hero">
+        <div className="cd-wrap cd-hero-in">
+          <div className="cd-hero-text">
+            <h1>{t(deposit.title)}</h1>
+            <p>{t(deposit.description)}</p>
+          </div>
+          <div className="cd-hero-img">
+            <img src={deposit.image} alt={t(deposit.title)} />
+            <i className="cd-shadow" />
+          </div>
+        </div>
+      </section>
 
-      <div className="sub-purple-bar">
-        <div className="tabs-wrapper">
-          <button className="tab-btn active" onClick={() => navigate('/deposits')}>
-            {t('Ավանդներ')}
+      <div className="cd-wrap">
+        <div className="cd-toolbar">
+          <button type="button" className="cd-back" onClick={() => navigate(BASE)}>
+            <ArrowLeft size={18} /> {t('Վերադառնալ')}
           </button>
+          <nav className="cd-crumbs">
+            <Link to="/" aria-label="Home"><Home size={14} /></Link>
+            {CRUMBS.map(([label, to], k) => (
+              <React.Fragment key={k}>
+                <ChevronRight size={11} />
+                <Link to={to}>{t(label)}</Link>
+              </React.Fragment>
+            ))}
+            <ChevronRight size={11} />
+            <span className="last">{t(deposit.title)}</span>
+          </nav>
+        </div>
+
+        <div className="cd-tabs">
+          <button type="button" className={tab === 'about' ? 'on' : ''} onClick={() => setTab('about')}>{t('Ավանդի մասին')}</button>
+          <button type="button" className={tab === 'tariffs' ? 'on' : ''} onClick={() => setTab('tariffs')}>{t('Սակագներ և դրույքներ')}</button>
+        </div>
+
+        <div className="cd-body">
+          <div className="cd-text">
+            {tab === 'about' ? (
+              paragraphs.map((p, k) => <p key={k}><Rich text={t(p)} /></p>)
+            ) : (
+              <p>{t('Սակագները և դրույքները ներկայացված են աջ կողմի աղյուսակում:')}</p>
+            )}
+          </div>
+
+          <aside className="cd-stats">
+            {stats.map((s, k) => (
+              <div className="cd-stat" key={k}>
+                <div className="cd-stat-v">
+                  {s.sublabel && <small>{t(s.sublabel)}</small>}
+                  <b>{t(s.value)}</b>
+                </div>
+                <div className="cd-stat-l">{t(s.label)}</div>
+              </div>
+            ))}
+          </aside>
         </div>
       </div>
 
-      <div className="breadcrumbs">
-        <span>🏠</span> &rsaquo; <span>{t('Անհատ')}</span> &rsaquo;{' '}
-        <span onClick={() => navigate('/deposits')}>{t('Ավանդներ')}</span> &rsaquo;
-        <span className="current"> {t(deposit.title)}</span>
-      </div>
-
-      <main className="evoca-main-content deposit-detail">
-        <button className="deposit-back-btn" onClick={() => navigate('/deposits')}>
-          ‹ {t('Վերադառնալ')}
-        </button>
-
-        {/* Hero: картинка + заголовок выбранной карточки */}
-        <section className="deposit-hero">
-          <div className="deposit-hero-image">
-            <img src={deposit.image} alt={t(deposit.title)} />
-          </div>
-          <div className="deposit-hero-info">
-            <h1 className="deposit-hero-title">{t(deposit.title)}</h1>
-            <p className="deposit-hero-desc">{t(deposit.description)}</p>
-
-            <div className="deposit-card-stats">
-              {deposit.stats.map((stat, idx) => (
-                <div key={idx} className="stat-item">
-                  <span className="stat-label">{t(stat.label)}</span>
-                  <span className="stat-value">{stat.value}</span>
-                  <span className="stat-sub">{t(stat.sub)}</span>
-                </div>
-              ))}
-            </div>
-
-            <button className="deposit-card-btn deposit-apply-btn">
-              {t('Ձևակերպել ավանդ')}
-            </button>
-          </div>
-        </section>
-
-        {/* Общий блок для всех вкладов */}
-        <section className="deposit-section">
-          <h2 className="deposit-section-title">{t('Ավանդի մասին')}</h2>
-          <p className="deposit-section-text">
-            {t('Ավանդը հուսալի և շահավետ միջոց է Ձեր խնայողությունները պահպանելու և ավելացնելու համար: Ընտրեք Ձեզ հարմար գումարը և ժամկետը, և Բանկը կապահովի կայուն եկամտաբերություն ամբողջ ժամանակահատվածում:')}
-          </p>
-          <p className="deposit-section-text">
-            {t('Ավանդը կարող եք ձևակերպել Բանկի ցանկացած մասնաճյուղում կամ EvocaTOUCH հավելվածի միջոցով՝ առանց ավելորդ թղթաբանության:')}
-          </p>
-        </section>
-
-        <section className="deposit-section">
-          <h2 className="deposit-section-title">{t('Ավանդի պայմաններ')}</h2>
-          <ol className="info-list">
-            {conditions.map((c, i) => (
-              <li key={i}>{t(c)}</li>
-            ))}
-          </ol>
-        </section>
-
-        <section className="deposit-section deposit-contact">
-          <p>{t('Լրացուցիչ տեղեկությունների համար զանգահարեք կարճ համարով՝ **8444**, կամ այցելեք Բանկի ցանկացած մասնաճյուղ:').replace(/\*\*/g, '')}</p>
-        </section>
-
-        {/* Другие вклады */}
-        <section className="deposit-section">
-          <h2 className="deposit-section-title">{t('Այլ ավանդներ')}</h2>
-          <div className="deposit-others">
-            {others.map((d) => (
-              <div
-                key={d.id}
-                className="deposit-other-card"
-                onClick={() => {
-                  navigate(`/deposits/${d.id}`);
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }}
-              >
-                <img src={d.image} alt={t(d.title)} />
-                <span>{t(d.title)}</span>
+      <section className="cd-other">
+        <div className="cd-wrap">
+          <h2>{t('Այլ ավանդներ')}</h2>
+          <div className="cd-other-row">
+            <button type="button" aria-label="prev" onClick={() => setI((v) => (v <= 0 ? max : v - 1))}><ChevronLeft size={22} /></button>
+            <div className="cd-other-viewport">
+              <div className="cd-other-track" style={{ transform: `translateX(-${i * (100 / visible)}%)` }}>
+                {others.map((d) => (
+                  <Link to={`${BASE}/${d.id}`} key={d.id} className="cd-other-item" style={{ flex: `0 0 ${100 / visible}%` }}>
+                    <img src={d.image} alt={t(d.title)} />
+                    <span>{t(d.title)}</span>
+                  </Link>
+                ))}
               </div>
-            ))}
+            </div>
+            <button type="button" aria-label="next" onClick={() => setI((v) => (v >= max ? 0 : v + 1))}><ChevronRight size={22} /></button>
           </div>
-        </section>
-      </main>
-    </div>
+        </div>
+      </section>
+
+      <OnlineBanner />
+    </main>
   );
 }
