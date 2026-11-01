@@ -6,6 +6,7 @@ import './Accounts.css';
 import './PersonalAccounts.css';
 import OnlineBanner from './OnlineBanner';
 import { List, H4, Hero, Share, Accordion, FatcaAccordion } from './Accounts';
+import { onDownload } from './downloadFile';
 
 /* ---------- Картинки ---------- */
 const IMG_SAVINGS = 'https://www.evoca.am/images-cache/menu/1/17906902726456/780x585.png';
