@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Home, ChevronRight, ChevronDown } from 'lucide-react';
 import { FaFacebookF, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
 import News from './News';
@@ -154,9 +155,9 @@ export default function EvocaSalary() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center mb-8">
             <h2 className="text-2xl lg:text-3xl font-bold text-gray-900">Վերջին նորությունները</h2>
-            <button className="px-6 py-2.5 bg-purple-100 text-purple-700 rounded-full font-medium hover:bg-purple-200 transition-colors flex items-center gap-2">
+            <Link to="/news" className="px-6 py-2.5 bg-purple-100 text-purple-700 rounded-full font-medium hover:bg-purple-200 transition-colors flex items-center gap-2 no-underline">
               Բոլոր նորությունները <ChevronRight className="w-4 h-4" />
-            </button>
+            </Link>
           </div>
           <News />
         </div>
