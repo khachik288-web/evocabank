@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ChevronRight, Home, FileDown } from 'lucide-react';
 import { FaFacebookF, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
 import { FloatingActions } from './Loans';
+import { onDownload } from './downloadFile';
 
 const PURPLE = '#6a00db';
 const FORMULA = (n) => `https://www.evoca.am/file_manager/formula-${n}.jpg`;
