@@ -5,6 +5,7 @@ import { FaFacebookF, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
 import { FloatingActions } from './Loans';
 import OnlineBanner from './OnlineBanner';
 import './CardsSocial.css';
+import { onDownload } from './downloadFile';
 
 const HERO_IMG = 'https://www.evoca.am/images-cache/menu/1/17218011250749/780x585.jpg';
 
