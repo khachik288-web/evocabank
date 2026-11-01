@@ -1,6 +1,7 @@
 import React from 'react';
 import { FileDown } from 'lucide-react';
 import { PlainPage, List, Accordion, Soon, useIsPersonal } from './SecurityParts';
+import { onDownload } from './downloadFile';
 
 const ROWS = [
   ['Անվանական արժեք', '10,000 ՀՀ դրամ', '100 ԱՄՆ դոլար'],
