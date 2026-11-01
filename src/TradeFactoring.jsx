@@ -54,7 +54,7 @@ export default function TradeFactoring() {
       <h2 className="dp-h2s">Փաստաթղթեր</h2>
       <ul className="dp-files">
         <li>
-          <a className="dp-file" href="#"><FileDown size={26} strokeWidth={1.5} />Տեղեկատվական ամփոփագիր (Վարկային պրոդուկտներ) 07.04.2026</a>
+          <a className="dp-file" href="#" onClick={onDownload('Տեղեկատվական ամփոփագիր (Վարկային պրոդուկտներ) 07.04.2026')}><FileDown size={26} strokeWidth={1.5} />Տեղեկատվական ամփոփագիր (Վարկային պրոդուկտներ) 07.04.2026</a>
         </li>
       </ul>
     </TradePage>

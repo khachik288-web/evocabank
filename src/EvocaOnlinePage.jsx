@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './EvocaOnlinePage.css';
+import { onDownload } from './downloadFile';
 
 export default function EvocaOnlinePage() {
   const [openAccordion, setOpenAccordion] = useState(null);
@@ -154,7 +155,7 @@ export default function EvocaOnlinePage() {
 
           <div className="docs-list">
             {documents.map((doc) => (
-              <a key={doc.id} href={doc.url} className="doc-item-card">
+              <a key={doc.id} href="#" onClick={onDownload(doc.title)} className="doc-item-card">
                 <div className="doc-icon">
                   <svg width="24" height="28" viewBox="0 0 24 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M14 0H2C0.9 0 0 0.9 0 2V26C0 27.1 0.9 28 2 28H22C23.1 28 24 27.1 24 26V10L14 0Z" fill="#F0E8FF"/>

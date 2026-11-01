@@ -91,7 +91,7 @@ export default function Bonds() {
           </p>
           <div className="dp-docs3">
             {DOC_CARDS.map(([a, b, badge]) => (
-              <a key={b} href="#" className="dp-doccard">
+              <a key={b} href="#" onClick={onDownload(`${a} ${b}`)} className="dp-doccard">
                 <span>{a}<br />{b}</span>
                 <DocIcon badge={badge} />
               </a>
