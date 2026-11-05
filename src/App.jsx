@@ -80,12 +80,14 @@ import Faq from './Faq';
 import Branches from './Branches';
 import { useTranslation } from 'react-i18next';
 import Karucvacq from './Karucvacq';
+import SearchModal from './SearchModal';
 
 
 // --- 1. HEADER ---
 export function Header() {
   const { t } = useTranslation();
   const { pathname } = useLocation();
+  const [searchOpen, setSearchOpen] = useState(false);
   const isAbout = pathname.startsWith('/about');
   const isReports = pathname.startsWith('/about/reports');
   const isAnnouncements = pathname.startsWith('/about/announcements');
@@ -233,7 +235,7 @@ export function Header() {
                 <line x1="12" y1="17" x2="12" y2="17" />
               </svg></Link>
             <LanguageSwitcher compact />
-            <button aria-label="search" className="hidden hover:text-purple-700 xl:block">
+            <button aria-label="search" title={t("Որոնում")} onClick={() => setSearchOpen(true)} className="hidden hover:text-purple-700 xl:block">
               <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="11" cy="11" r="7" />
                 <line x1="21" y1="21" x2="16.65" y2="16.65" />
@@ -298,6 +300,7 @@ export function Header() {
           </div>
         </div>
       )}
+      <SearchModal open={searchOpen} onClose={() => setSearchOpen(false)} />
     </header>
   )
 }
