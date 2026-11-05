@@ -73,6 +73,7 @@ import Contact from './Contact';
 import Builders from './Builders';
 import Dealerships from './Dealerships';
 import TariffsArchive from './TariffsArchive';
+import TariffsLoansPersonal from './TariffsLoansPersonal';
 import { TopDropdown, ONLINE_REQUESTS, FEEDBACK } from './HeaderDropdowns';
 import MobileNav, { AuthLink } from './MobileNav';
 import LanguageSwitcher from './LanguageSwitcher';
@@ -133,14 +134,14 @@ export function Header() {
           : label === 'Հայտարարություններ'
           ? '/about/announcements'
           : label === 'Սակագներ'
-          ? '/about/tariffs/archive'
+          ? '/about/tariffs/loans'
           : '#',
     })
   );
   const mainLinks = isAbout ? aboutLinks : personalLinks;
 
   const tariffsSubNav = [
-    { label: 'Վարկեր ֆիզիկական անձանց', path: '#' },
+    { label: 'Վարկեր ֆիզիկական անձանց', path: '/about/tariffs/loans' },
     { label: 'Վարկեր իրավաբանական անձանց', path: '#' },
     { label: 'Միջնորդավճարների սակագները', path: '#' },
     { label: 'Ավանդների սակագներ', path: '#' },
@@ -283,7 +284,7 @@ export function Header() {
           <div className="mx-auto max-w-7xl overflow-x-auto px-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             <nav className="flex min-w-max items-stretch">
               {subNav.map((item) => {
-                const active = item.path !== '#' && (pathname === item.path || (item.path === '/cards' && pathname.startsWith('/cards/') && !['/cards/social', '/cards/benefits'].includes(pathname)));
+                const active = item.path !== '#' && (pathname === item.path || (item.path === '/about/tariffs/loans' && pathname.startsWith('/about/tariffs/loans')) || (item.path === '/cards' && pathname.startsWith('/cards/') && !['/cards/social', '/cards/benefits'].includes(pathname)));
                 return (
                   <Link
                     key={item.label}
@@ -2005,6 +2006,8 @@ function App() {
           <Route path="/contact" element={<SiteLayout><Contact /></SiteLayout>} />
           <Route path="/builders" element={<SiteLayout><Builders /></SiteLayout>} />
           <Route path="/partner-dealerships" element={<SiteLayout><Dealerships /></SiteLayout>} />
+          <Route path="/about/tariffs/loans" element={<SiteLayout><TariffsLoansPersonal /></SiteLayout>} />
+          <Route path="/about/tariffs/loans/:slug" element={<SiteLayout><TariffsLoansPersonal /></SiteLayout>} />
           <Route path="/about/tariffs/archive" element={<SiteLayout><TariffsArchive /></SiteLayout>} />
           <Route path="/about/karucvacq" element={<SiteLayout><Karucvacq /></SiteLayout>} />
           <Route path="/about/partners" element={<SiteLayout><AboutPartners /></SiteLayout>} />
