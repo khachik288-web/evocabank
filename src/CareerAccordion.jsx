@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronDown, ChevronUp } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 // [текст](url): внутренние ссылки (начинаются с "/") идут через роутер
 function rich(text) {
@@ -26,10 +27,11 @@ function rich(text) {
 }
 
 function Body({ paragraphs }) {
+  const { t } = useTranslation();
   return (
     <div style={{ color: '#333', fontSize: 15, lineHeight: 1.7 }}>
       {paragraphs.map((p, i) => (
-        <p key={i} style={{ margin: i === 0 ? 0 : '12px 0 0' }}>{rich(p)}</p>
+        <p key={i} style={{ margin: i === 0 ? 0 : '12px 0 0' }}>{rich(t(p))}</p>
       ))}
     </div>
   );
@@ -39,6 +41,7 @@ function Body({ paragraphs }) {
 // variant="steps" — нумерованные шаги с пунктирным соединителем
 export default function CareerAccordion({ items, variant = 'faq', defaultOpen = 0 }) {
   const [open, setOpen] = useState(defaultOpen);
+  const { t } = useTranslation();
 
   if (variant === 'steps') {
     return (
@@ -59,7 +62,7 @@ export default function CareerAccordion({ items, variant = 'faq', defaultOpen = 
                       {i + 1}
                     </span>
                   </span>
-                  <span style={{ flex: 1, padding: '20px 20px', fontSize: 17, fontWeight: 500, color: '#222' }}>{it.title}</span>
+                  <span style={{ flex: 1, padding: '20px 20px', fontSize: 17, fontWeight: 500, color: '#222' }}>{t(it.title)}</span>
                   <span style={{ padding: '0 20px', display: 'flex', alignItems: 'center', color: '#6a00db' }}>
                     {isOpen ? <ChevronUp size={22} /> : <ChevronDown size={22} />}
                   </span>
@@ -100,7 +103,7 @@ export default function CareerAccordion({ items, variant = 'faq', defaultOpen = 
               style={{ display: 'flex', width: '100%', alignItems: 'center', gap: 14, background: 'none', border: 0, padding: '16px 20px', cursor: 'pointer', textAlign: 'left' }}
             >
               <span style={{ color: '#7000ff', display: 'flex' }}>{isOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}</span>
-              <span style={{ fontSize: 15, fontWeight: 700, color: isOpen ? '#000' : '#666' }}>{it.title}</span>
+              <span style={{ fontSize: 15, fontWeight: 700, color: isOpen ? '#000' : '#666' }}>{t(it.title)}</span>
             </button>
             {isOpen && (
               <div style={{ padding: '0 20px 20px 54px' }}>

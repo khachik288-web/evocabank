@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import CareerSubNav from './CareerSubNav';
 import CareerApplyForm from './CareerApplyForm';
 
 const Career = () => {
+  const { t } = useTranslation();
 
   // Данные видеороликов с обложками и названиями
   const videoData = [
@@ -69,18 +71,18 @@ const Career = () => {
         />
         {/* Floating White Card */}
         <div className="absolute bottom-10 left-10 md:left-32 bg-white/95 backdrop-blur-sm p-8 md:p-12 rounded-lg shadow-2xl max-w-lg">
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">Մշակույթ</h1>
+          <h1 className="text-3xl font-bold text-gray-900 mb-4">{t('Մշակույթ')}</h1>
           <p className="text-gray-600 leading-relaxed">
-            Evoca-ում աշխատելը հաճելի է։ Առօրյան լցված է նորարարություններով։ Այստեղ տաղանդները անընդհատ զարգանում են ու կատարելագործվում։
+            {t('Evoca-ում աշխատելը հաճելի է։ Առօրյան լցված է նորարարություններով։ Այստեղ տաղանդները անընդհատ զարգանում են ու կատարելագործվում։')}
           </p>
         </div>
       </div>
 
       {/* 3. Why work at Evoca */}
       <div className="max-w-5xl mx-auto px-6 py-20 text-center flex flex-col items-center">
-        <h2 className="text-2xl font-bold mb-4">Ինչու՞ աշխատել Evoca-ում</h2>
+        <h2 className="text-2xl font-bold mb-4">{t('Ինչու՞ աշխատել Evoca-ում')}</h2>
         <p className="text-gray-600 mb-10 max-w-3xl">
-          Բացահայտի՛ր, թե ինչն է Evoca-ն դարձնում այդքան յուրահատուկ։ Աշխատակիցներն ուրախ են, մոտիվացված, իսկ առավելությունների մեծ փաթեթն օգնում է հոգ տանել իրենց և ընտանիքների մասին։
+          {t('Բացահայտի՛ր, թե ինչն է Evoca-ն դարձնում այդքան յուրահատուկ։ Աշխատակիցներն ուրախ են, մոտիվացված, իսկ առավելությունների մեծ փաթեթն օգնում է հոգ տանել իրենց և ընտանիքների մասին։')}
         </p>
         <div className="relative overflow-hidden rounded-xl shadow-xl transition-transform duration-500 hover:scale-105">
           <img 
@@ -124,9 +126,9 @@ const Career = () => {
         </div>
 
         {/* Заголовок и описание */}
-        <h2 className="text-3xl font-bold mb-3 tracking-wide">Մշակույթ</h2>
+        <h2 className="text-3xl font-bold mb-3 tracking-wide">{t('Մշակույթ')}</h2>
         <p className="mb-14 max-w-3xl mx-auto text-purple-100 text-sm md:text-base leading-relaxed px-4">
-          Evoca-ում մենք ոչ միայն անում ենք այն, ինչ սիրում ենք, այլ նաև կյանքից վերցնում ենք ամեն ինչ: Անընդհատ սովորում ենք, մեր փորձը կիսում ենք գործընկերների հետ, սպորտով ենք զբաղվում և հանգստանում: Միացեք մեզ!
+          {t('Evoca-ում մենք ոչ միայն անում ենք այն, ինչ սիրում ենք, այլ նաև կյանքից վերցնում ենք ամեն ինչ: Անընդհատ սովորում ենք, մեր փորձը կիսում ենք գործընկերների հետ, սպորտով ենք զբաղվում և հանգստանում: Միացեք մեզ!')}
         </p>
 
         {/* Главный контейнер 3D слайдера */}
@@ -240,28 +242,28 @@ const Career = () => {
 
       {/* 5. Team Quotes Section */}
       <div className="py-20 bg-gray-50 text-center px-6">
-        <h2 className="text-3xl font-bold mb-12 text-gray-800">Հարցրու՛ մեր թիմին. «Ինչպիսի՞ն է Evoca-ն՝ 3 բառով»</h2>
+        <h2 className="text-3xl font-bold mb-12 text-gray-800">{t('Հարցրու՛ մեր թիմին. «Ինչպիսի՞ն է Evoca-ն՝ 3 բառով»')}</h2>
         <div className="flex flex-wrap justify-center gap-8 max-w-6xl mx-auto">
           {/* Quote Card 1 */}
           <div className="bg-purple-50 p-8 rounded-lg w-80 text-left relative shadow-sm hover:shadow-lg transition-shadow duration-300">
             <div className="absolute top-4 right-4 text-6xl text-[#600bb8] opacity-20">"</div>
-            <h3 className="text-xl font-bold text-[#600bb8] mb-8 leading-snug">Թրենդային<br/>Պահանջված<br/>Ուրախ</h3>
-            <p className="text-sm font-semibold">Հարություն Սահակյան</p>
-            <p className="text-xs text-gray-500">Անվտանգության մասնագետ</p>
+            <h3 className="text-xl font-bold text-[#600bb8] mb-8 leading-snug">{t('Թրենդային')}<br/>{t('Պահանջված')}<br/>{t('Ուրախ')}</h3>
+            <p className="text-sm font-semibold">{t('Հարություն Սահակյան')}</p>
+            <p className="text-xs text-gray-500">{t('Անվտանգության մասնագետ')}</p>
           </div>
           {/* Quote Card 2 */}
           <div className="bg-purple-50 p-8 rounded-lg w-80 text-left relative shadow-sm hover:shadow-lg transition-shadow duration-300">
             <div className="absolute top-4 right-4 text-6xl text-[#600bb8] opacity-20">"</div>
-            <h3 className="text-xl font-bold text-[#600bb8] mb-8 leading-snug">Դինամիկ<br/>Պրպտող<br/>Զարգացող</h3>
-            <p className="text-sm font-semibold">Լիլիթ Գաբոյան</p>
-            <p className="text-xs text-gray-500">Գլխավոր ֆինանսական տնօրեն</p>
+            <h3 className="text-xl font-bold text-[#600bb8] mb-8 leading-snug">{t('Դինամիկ')}<br/>{t('Պրպտող')}<br/>{t('Զարգացող')}</h3>
+            <p className="text-sm font-semibold">{t('Լիլիթ Գաբոյան')}</p>
+            <p className="text-xs text-gray-500">{t('Գլխավոր ֆինանսական տնօրեն')}</p>
           </div>
           {/* Quote Card 3 */}
           <div className="bg-purple-50 p-8 rounded-lg w-80 text-left relative shadow-sm hover:shadow-lg transition-shadow duration-300">
             <div className="absolute top-4 right-4 text-6xl text-[#600bb8] opacity-20">"</div>
-            <h3 className="text-xl font-bold text-[#600bb8] mb-8 leading-snug">Կրեատիվ<br/>Նորարար<br/>Մանուշակագույն</h3>
-            <p className="text-sm font-semibold">Ալլա Զաքարյան</p>
-            <p className="text-xs text-gray-500">Վճարային գործիքների մասնագետ</p>
+            <h3 className="text-xl font-bold text-[#600bb8] mb-8 leading-snug">{t('Կրեատիվ')}<br/>{t('Նորարար')}<br/>{t('Մանուշակագույն')}</h3>
+            <p className="text-sm font-semibold">{t('Ալլա Զաքարյան')}</p>
+            <p className="text-xs text-gray-500">{t('Վճարային գործիքների մասնագետ')}</p>
           </div>
         </div>
       </div>
