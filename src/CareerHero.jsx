@@ -1,7 +1,9 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 // Баннер страницы с белой карточкой поверх картинки
 export default function CareerHero({ image, title, text }) {
+  const { t } = useTranslation();
   return (
     <section style={{ position: 'relative', width: '100%', minHeight: 'clamp(300px, 34vw, 440px)', overflow: 'hidden', background: '#f1d9f4' }}>
       <img
@@ -20,9 +22,9 @@ export default function CareerHero({ image, title, text }) {
           }}
         >
           <h1 style={{ margin: 0, fontWeight: 700, color: '#161616', fontSize: 'clamp(1.5rem, 1.1rem + 1.4vw, 2.1rem)', lineHeight: 1.25 }}>
-            {title}
+            {t(title)}
           </h1>
-          {text && <p style={{ margin: '16px 0 0', color: '#555', lineHeight: 1.65, fontSize: 15 }}>{text}</p>}
+          {text && <p style={{ margin: '16px 0 0', color: '#555', lineHeight: 1.65, fontSize: 15 }}>{t(text)}</p>}
         </div>
       </div>
     </section>
