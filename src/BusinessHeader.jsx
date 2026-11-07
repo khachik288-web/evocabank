@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import LanguageSwitcher from './LanguageSwitcher';
 import { TopDropdown, ONLINE_REQUESTS, FEEDBACK } from './HeaderDropdowns';
 import MobileNav, { AuthLink } from './MobileNav';
 import { useTranslation } from 'react-i18next';
+import SearchModal from './SearchModal';
 
 const TOP = [['Անհատ', '/'], ['Բիզնես', '/business'], ['Ակնթարթային վճարումներ', '/web-payment'], ['Մեր մասին', '/about'], ['Նորություններ', '/news'], ['Բլոգ', '/blog'], ['Կարիերա', '/career']];
 // [название, путь] — путь '#' пока заглушка
@@ -26,6 +27,7 @@ const OTHER_TABS = [['Պահատուփեր', '/business/other'], ['Փոխանց�
 export default function BusinessHeader({ sub }) {
   const { t } = useTranslation();
   const { pathname } = useLocation();
+  const [searchOpen, setSearchOpen] = useState(false);
 
   const title = sub || SUB[pathname] || 'Բիզնես վարկեր';
   const isAccounts = pathname.startsWith('/business/accounts');
@@ -74,7 +76,7 @@ export default function BusinessHeader({ sub }) {
                 <line x1="12" y1="17" x2="12" y2="17" />
               </svg></Link>
             <LanguageSwitcher compact />
-            <button aria-label="search" className="hidden hover:text-purple-700 xl:block">
+            <button aria-label="search" title={t("Որոնում")} onClick={() => setSearchOpen(true)} className="hidden hover:text-purple-700 xl:block">
               <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="11" cy="11" r="7" />
                 <line x1="21" y1="21" x2="16.65" y2="16.65" />
@@ -149,6 +151,7 @@ export default function BusinessHeader({ sub }) {
           </nav>
         </div>
       </div>
+      <SearchModal open={searchOpen} onClose={() => setSearchOpen(false)} />
     </header>
   );
 }
