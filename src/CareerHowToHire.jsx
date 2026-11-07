@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import CareerSubNav from './CareerSubNav';
 import CareerHero from './CareerHero';
 import CareerAccordion from './CareerAccordion';
@@ -40,6 +41,7 @@ const STEPS = [
 ];
 
 export default function CareerHowToHire() {
+  const { t } = useTranslation();
   return (
     <div style={{ background: '#fff' }}>
       <CareerSubNav />
@@ -50,7 +52,7 @@ export default function CareerHowToHire() {
 
       <section className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
         <h2 style={{ textAlign: 'center', fontWeight: 500, color: '#222', fontSize: 'clamp(1.25rem, 1.05rem + 0.8vw, 1.6rem)', marginBottom: 40 }}>
-          Աշխատանքի ընդունվելու փուլեր
+          {t('Աշխատանքի ընդունվելու փուլեր')}
         </h2>
         <CareerAccordion items={STEPS} variant="steps" defaultOpen={-1} />
       </section>

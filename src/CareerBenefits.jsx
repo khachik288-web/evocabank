@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import CareerSubNav from './CareerSubNav';
 import CareerHero from './CareerHero';
 import CareerApplyForm from './CareerApplyForm';
@@ -18,6 +19,7 @@ const BENEFITS = [
 ];
 
 export default function CareerBenefits() {
+  const { t } = useTranslation();
   return (
     <div style={{ background: '#fff' }}>
       <CareerSubNav />
@@ -29,7 +31,7 @@ export default function CareerBenefits() {
 
       <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20">
         <h2 style={{ fontWeight: 500, color: '#222', fontSize: 'clamp(1.4rem, 1.1rem + 1vw, 2rem)', paddingBottom: 20, borderBottom: '1px solid #eee', marginBottom: 40 }}>
-          Մեր առավելությունները
+          {t('Մեր առավելությունները')}
         </h2>
 
         <div className="grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
@@ -37,13 +39,13 @@ export default function CareerBenefits() {
             <article key={b.id} style={{ textAlign: 'center' }}>
               <img
                 src={IMG(b.id)}
-                alt={b.title}
+                alt={t(b.title)}
                 width={120}
                 height={120}
                 loading="lazy"
                 style={{ display: 'block', margin: '0 auto 18px', objectFit: 'contain' }}
               />
-              <p style={{ margin: 0, color: '#333', fontSize: 15, lineHeight: 1.9 }}>{b.title}</p>
+              <p style={{ margin: 0, color: '#333', fontSize: 15, lineHeight: 1.9 }}>{t(b.title)}</p>
             </article>
           ))}
         </div>

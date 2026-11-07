@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import CareerSubNav from './CareerSubNav';
 import CareerHero from './CareerHero';
 import CareerAccordion from './CareerAccordion';
@@ -26,6 +27,7 @@ const QUESTIONS = [
 ];
 
 export default function CareerFaq() {
+  const { t } = useTranslation();
   return (
     <div style={{ background: '#fff' }}>
       <CareerSubNav />
@@ -35,9 +37,9 @@ export default function CareerFaq() {
       />
 
       <section className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
-        <h2 style={{ fontWeight: 600, color: '#333', fontSize: 20, marginBottom: 10 }}>Հարցերի ցանկ</h2>
+        <h2 style={{ fontWeight: 600, color: '#333', fontSize: 20, marginBottom: 10 }}>{t('Հարցերի ցանկ')}</h2>
         <p style={{ color: '#555', lineHeight: 1.65, marginBottom: 32 }}>
-          Բացահայտի՛ր, թե ինչն է Evoca-ն դարձնում այդքան յուրահատուկ։ Աշխատակիցներն ուրախ են, մոտիվացված, իսկ առավելությունների մեծ փաթեթն օգնում է հոգ տանել իրենց և ընտանիքների մասին:
+          {t('Բացահայտի՛ր, թե ինչն է Evoca-ն դարձնում այդքան յուրահատուկ։ Աշխատակիցներն ուրախ են, մոտիվացված, իսկ առավելությունների մեծ փաթեթն օգնում է հոգ տանել իրենց և ընտանիքների մասին:')}
         </p>
         <CareerAccordion items={QUESTIONS} variant="faq" defaultOpen={0} />
       </section>

@@ -46,12 +46,12 @@ export default function CareerApplyForm() {
   const submit = (e) => {
     e.preventDefault();
     const er = {};
-    if (!v.name.trim()) er.name = 'Լրացրեք անունը';
-    if (!v.surname.trim()) er.surname = 'Լրացրեք ազգանունը';
-    if (v.phone.replace(/\D/g, '').length < 8) er.phone = 'Մուտքագրեք վավեր հեռախոսահամար';
-    if (v.email && !/^\S+@\S+\.\S+$/.test(v.email)) er.email = 'Սխալ էլ. հասցե';
-    if (!file) er.file = 'Կցեք ռեզյումեն';
-    if (v.code.trim().toUpperCase() !== captcha) er.code = 'Սխալ ծածկագիր';
+    if (!v.name.trim()) er.name = t('Լրացրեք անունը');
+    if (!v.surname.trim()) er.surname = t('Լրացրեք ազգանունը');
+    if (v.phone.replace(/\D/g, '').length < 8) er.phone = t('Մուտքագրեք վավեր հեռախոսահամար');
+    if (v.email && !/^\S+@\S+\.\S+$/.test(v.email)) er.email = t('Սխալ էլ. հասցե');
+    if (!file) er.file = t('Կցեք ռեզյումեն');
+    if (v.code.trim().toUpperCase() !== captcha) er.code = t('Սխալ ծածկագիր');
     setErrors(er);
     if (Object.keys(er).length) {
       if (er.code) setCaptcha(makeCaptcha());
@@ -77,9 +77,7 @@ export default function CareerApplyForm() {
         {t('Դառնալ թիմի անդամ')}
       </h2>
       <p style={{ textAlign: 'center', color: '#444', lineHeight: 1.6, marginBottom: 32 }}>
-        Եթե ցանկանում ես միանալ <strong style={{ color: '#6a00db' }}>EvocaTEAM</strong>-ին,
-        <br />
-        կարող ես ուղարկել դիմում՝ կցելով ինքնակենսագրականը:
+        {t('Եթե ցանկանում ես միանալ **EvocaTEAM**-ին, կարող ես ուղարկել դիմում՝ կցելով ինքնակենսագրականը:').split('**').map((s, i) => (i % 2 ? <strong key={i} style={{ color: '#6a00db' }}>{s}</strong> : s))}
       </p>
 
       <form onSubmit={submit} noValidate>
@@ -116,7 +114,7 @@ export default function CareerApplyForm() {
             onClick={() => fileRef.current?.click()}
             style={{ ...input, display: 'flex', justifyContent: 'space-between', alignItems: 'center', border: '1px dashed #cfcfd8', padding: '24px 18px', cursor: 'pointer', fontSize: 13, color: '#555' }}
           >
-            <span>{file ? file.name : 'Կցել ֆայլը / ֆայլերը'}</span>
+            <span>{file ? file.name : t('Կցել ֆայլը / ֆայլերը')}</span>
             <Upload size={16} />
           </button>
           <input ref={fileRef} type="file" accept=".pdf,.doc,.docx" hidden onChange={(e) => setFile(e.target.files?.[0] || null)} />
@@ -125,7 +123,7 @@ export default function CareerApplyForm() {
         <div style={{ marginBottom: 20 }}>
           <label style={label}>{t('Ստուգման ծածկագիր')}{star}</label>
           <div style={{ border: '1px solid #bbb', borderRadius: 4, padding: 14, maxWidth: 300 }}>
-            <p style={{ margin: '0 0 6px', fontSize: 12, color: '#444' }}>Մուտքագրեք ծածկագիրը</p>
+            <p style={{ margin: '0 0 6px', fontSize: 12, color: '#444' }}>{t('Մուտքագրեք ծածկագիրը')}</p>
             <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
               <input style={input} value={v.code} onChange={set('code')} autoComplete="off" />
               <button type="button" aria-label="refresh captcha" onClick={() => setCaptcha(makeCaptcha())} style={{ background: 'none', border: 0, cursor: 'pointer', color: '#444' }}>
