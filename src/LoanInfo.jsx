@@ -4,6 +4,7 @@ import { ChevronRight, Home, FileDown } from 'lucide-react';
 import { FaFacebookF, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
 import { FloatingActions } from './Loans';
 import { onDownload } from './downloadFile';
+import { useTranslation } from 'react-i18next';
 
 const PURPLE = '#6a00db';
 const FORMULA = (n) => `https://www.evoca.am/file_manager/formula-${n}.jpg`;
@@ -35,7 +36,8 @@ function Italic({ text, k }) {
 }
 
 function Inline({ text }) {
-  return text.split('**').map((seg, i) =>
+  const { t } = useTranslation();
+  return t(text).split('**').map((seg, i) =>
     i % 2 === 1 ? <strong key={i}><Italic text={seg} k={i} /></strong> : <Italic key={i} text={seg} k={i} />
   );
 }
@@ -44,6 +46,7 @@ function Inline({ text }) {
    Таблицы
 ---------------------------------------------------------------- */
 function DataTable({ head, rows, caption, numbered = true, widths }) {
+  const { t } = useTranslation();
   const cell = 'border border-[#ead9ff] px-3.5 py-3 align-middle text-[13px] leading-6';
   const renderCell = (c) => {
     const lines = Array.isArray(c) ? c : [c];
@@ -52,7 +55,7 @@ function DataTable({ head, rows, caption, numbered = true, widths }) {
         {/^[\w.-]+@[\w.-]+$/.test(l) ? (
           <a href={`mailto:${l}`} className="font-medium underline" style={{ color: PURPLE }}>{l}</a>
         ) : (
-          l
+          t(l)
         )}
         {i < lines.length - 1 && <br />}
       </React.Fragment>
@@ -60,14 +63,14 @@ function DataTable({ head, rows, caption, numbered = true, widths }) {
   };
   return (
     <div className="my-8">
-      {caption && <p className="mb-4 text-center text-[15px] font-bold">{caption}</p>}
+      {caption && <p className="mb-4 text-center text-[15px] font-bold">{t(caption)}</p>}
       <div className="overflow-x-auto rounded-lg shadow-[0_2px_12px_rgba(106,0,219,0.12)]">
         <table className="w-full border-collapse bg-white">
           <thead>
             <tr>
               {numbered && <th className={`${cell} w-12`} />}
               {head.map((h, i) => (
-                <th key={i} className={`${cell} text-left font-bold`} style={widths ? { width: widths[i] } : undefined}>{h}</th>
+                <th key={i} className={`${cell} text-left font-bold`} style={widths ? { width: widths[i] } : undefined}>{t(h)}</th>
               ))}
             </tr>
           </thead>
@@ -91,16 +94,17 @@ function DataTable({ head, rows, caption, numbered = true, widths }) {
    Рендер блоков контента
 ---------------------------------------------------------------- */
 function Blocks({ blocks }) {
+  const { t } = useTranslation();
   return blocks.map((b, i) => {
     const [type, val, extra] = b;
     switch (type) {
       case 'h2':
-        return <h2 key={i} className="mb-5 mt-14 text-[34px] font-normal leading-tight text-[#2b2b2b]">{val}</h2>;
+        return <h2 key={i} className="mb-5 mt-14 text-[34px] font-normal leading-tight text-[#2b2b2b]">{t(val)}</h2>;
       case 'q':
         return (
           <div key={i} className="mb-6 mt-8 flex items-start gap-4 pl-5">
             <span className="mt-[11px] h-2.5 w-2.5 flex-none rounded-full" style={{ background: PURPLE }} />
-            <strong className="text-[16px] leading-7">{val}</strong>
+            <strong className="text-[16px] leading-7">{t(val)}</strong>
           </div>
         );
       case 'b':
@@ -135,9 +139,10 @@ function Blocks({ blocks }) {
 }
 
 function DocumentsBlock({ title }) {
+  const { t } = useTranslation();
   return (
     <div className="mb-16 mt-14 pl-0 md:pl-12">
-      <h3 className="mb-5 text-[24px] font-extrabold">Փաստաթղթեր</h3>
+      <h3 className="mb-5 text-[24px] font-extrabold">{t('Փաստաթղթեր')}</h3>
       <a
         href="#"
         onClick={onDownload(title)}
@@ -145,7 +150,7 @@ function DocumentsBlock({ title }) {
         style={{ background: '#f6f4f9' }}
       >
         <FileDown size={32} strokeWidth={1.4} style={{ color: PURPLE }} />
-        {title}
+        {t(title)}
       </a>
     </div>
   );
@@ -155,20 +160,21 @@ function DocumentsBlock({ title }) {
    Общий шаблон страницы (breadcrumbs, h1, соц. иконки, дата, плавающие кнопки)
 ---------------------------------------------------------------- */
 function InfoLayout({ title, updated, children }) {
+  const { t } = useTranslation();
   return (
     <main className="bg-white text-black">
       <div className="mx-auto max-w-7xl px-6">
         <nav className="flex items-center gap-2 pt-8 text-[12px] text-gray-800">
           <Link to="/" aria-label="Home" className="text-gray-500 no-underline"><Home size={16} /></Link>
           <ChevronRight size={12} className="text-gray-400" />
-          <Link to="/" className="text-gray-800 no-underline hover:no-underline">Անհատ</Link>
+          <Link to="/" className="text-gray-800 no-underline hover:no-underline">{t('Անհատ')}</Link>
           <ChevronRight size={12} className="text-gray-400" />
-          <Link to="/loans" className="text-gray-800 no-underline hover:no-underline">Վարկեր</Link>
+          <Link to="/loans" className="text-gray-800 no-underline hover:no-underline">{t('Վարկեր')}</Link>
           <ChevronRight size={12} className="text-gray-400" />
-          <span>{title}</span>
+          <span>{t(title)}</span>
         </nav>
 
-        <h1 className="mb-10 mt-14 text-[38px] font-normal text-[#2b2b2b] lg:ml-[170px]">{title}</h1>
+        <h1 className="mb-10 mt-14 text-[38px] font-normal text-[#2b2b2b] lg:ml-[170px]">{t(title)}</h1>
 
         <div className="lg:grid lg:grid-cols-[170px_minmax(0,1fr)]">
           <aside className="hidden lg:block">
@@ -185,7 +191,7 @@ function InfoLayout({ title, updated, children }) {
 
       <div className="border-y border-gray-200">
         <div className="mx-auto max-w-7xl px-6 py-4 text-right text-[12px] text-gray-500">
-          Թարմացվել է՝ {updated}
+          {t('Թարմացվել է՝')} {updated}
         </div>
       </div>
 
@@ -355,7 +361,7 @@ const FLOATING = [
   ['p', SEASONAL], ['p', UNAVAILABLE],
 
   ['b', 'ՀՀ դրամով երկրորդային՝'],
-  ['p', 'Փոփոխուն բաղադրիչի հաշվարկման հիմք է հանդիսանում ՀՀ ԿԲ կողմից հրապարակված ֆիզիկական անձանցից մինչև 1 տարի ժամկետով (բացառությամբ ցպահանջ ավանդների) ներգրավված ՀՀ դրամով ավանդների տոկոսադրույքները: Ֆիզիկական անձանցից մինչև 1 տարի ժամկետով (բացառությամբ ցպահանջ ավանդների) ներգրավված ՀՀ դրամով ավանդների տոկոսադրույքների վերաբերյալ տեղեկատվության աղբյուր կարող են հանդիսանալ ՀՀ ԿԲ պաշտոնական կայքի համապատասխան հրապարակումները՝ հետևյալ հղմամբ՝ ' + CBA_DEPOSITS + ':'],
+  ['p', 'Փոփոխուն բաղադրիչի հաշվարկման հիմք է հանդիսանում ՀՀ ԿԲ կողմից հրապարակված ֆիզիկական անձանցից մինչև 1 տարի ժամկետով (բացառությամբ ցպահանջ ավանդների) ներգրավված ՀՀ դրամով ավանդների տոկոսադրույքները: Ֆիզիկական անձանցից մինչև 1 տարի ժամկետով (բացառությամբ ցպահանջ ավանդների) ներգրավված ՀՀ դրամով ավանդների տոկոսադրույքների վերաբերյալ տեղեկատվության աղբյուր կարող են հանդիսանալ ՀՀ ԿԲ պաշտոնական կայքի համապատասխան հրապարակումները՝ հետևյալ հղմամբ՝ https://www.cba.am/am/SitePages/statmonetaryfinancial.aspx:'],
   ['p', 'Երկրորդային փոփոխուն բաղադրիչի փոփոխման ամսաթվերն են յուրաքանչյուր տարվա փետրվարի 1-ը և օգոստոսի 1-ը: Փետրվարի 1-ի համար երկրորդային ցուցանիշը հաշվարկվում է նախորդ տարվա հունիսից մինչև նախորդ տարվա նոյեմբերը ներառյալ ժամանակահատվածի համար հրապարակված տոկոսադրույքների միջին թվաբանականը: Օգոստոսի 1-ի համար երկրորդային ցուցանիշը հաշվարկվում է նախորդ տարվա դեկտեմբերից մինչև տվյալ տարվա մայիսը ներառյալ ժամանակահատվածի համար հրապարակված տոկոսադրույքների միջին թվաբանականը:'],
 
   ['b', 'ԱՄՆ դոլարով հիմնական՝'],
@@ -363,7 +369,7 @@ const FLOATING = [
   ['p', SEASONAL],
 
   ['b', 'ԱՄՆ դոլարով երկրորդային՝'],
-  ['p', 'փոփոխուն բաղադրիչի հաշվարկման հիմք է հանդիսանում ՀՀ ԿԲ կողմից հրապարակված ֆիզիկական անձանցից մինչև 1 տարի ժամկետով ԱՄՆ դոլարով ներգրավված ավանդների տոկոսադրույքները: Ֆիզիկական անձանցից մինչև 1 տարի ժամկետով ԱՄՆ դոլարով ավանդների տոկոսադրույքների վերաբերյալ տեղեկատվության աղբյուր կարող են հանդիսանալ ՀՀ ԿԲ պաշտոնական կայքի համապատասխան հրապարակումները՝ հետևյալ հղմամբ՝ ' + CBA_DEPOSITS + ':'],
+  ['p', 'փոփոխուն բաղադրիչի հաշվարկման հիմք է հանդիսանում ՀՀ ԿԲ կողմից հրապարակված ֆիզիկական անձանցից մինչև 1 տարի ժամկետով ԱՄՆ դոլարով ներգրավված ավանդների տոկոսադրույքները: Ֆիզիկական անձանցից մինչև 1 տարի ժամկետով ԱՄՆ դոլարով ավանդների տոկոսադրույքների վերաբերյալ տեղեկատվության աղբյուր կարող են հանդիսանալ ՀՀ ԿԲ պաշտոնական կայքի համապատասխան հրապարակումները՝ հետևյալ հղմամբ՝ https://www.cba.am/am/SitePages/statmonetaryfinancial.aspx:'],
   ['p', SEASONAL + ' ' + UNAVAILABLE],
 
   ['b', 'Եվրոյով հիմնական՝'],
