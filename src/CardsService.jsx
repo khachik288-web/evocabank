@@ -6,6 +6,7 @@ import { FloatingActions } from './Loans';
 import OnlineBanner from './OnlineBanner';
 import './CardsService.css';
 import { onDownload } from './downloadFile';
+import { useTranslation } from 'react-i18next';
 
 const ISSUE_POINTS = [
   'Բանկը հաճախորդներին տրամադրում է Հաշվարկային կամ Վարկային՝ «ArCa» լոգոյով, «Visa», «Mastercard» և «UnionPay» միջազգային վճարային համակարգերի քարտեր։',
@@ -23,23 +24,29 @@ const ISSUE_POINTS = [
   'Եթե Հաճախորդը Վճարային քարտը պատվիրելուց հետո 30 օրացուցային օրվա ընթացքում չի դիմում Բանկ Վճարային քարտը ստանալու համար, ապա Բանկը կարող է ոչնչացնել Վճարային քարտը՝ փակելով քարտային հաշիվը, և չվերադարձնել գանձված միջնորդավճարները։',
 ];
 
-// У пунктов без points пока нет текста — показывается заглушка. Добавь points: [...] чтобы заполнить.
+// Временный общий текст для пунктов, у которых пока нет собственного содержимого (замени на настоящий points: [...]).
+const PLACEHOLDER_POINTS = [
+  'Սույն բաժնի վերաբերյալ մանրամասն տեղեկատվությունը սահմանվում է Բանկի կողմից հաստատված Վճարային քարտերի տրամադրման և սպասարկման պայմաններով և գործող սակագներով։',
+  'Քարտի հետ կապված ցանկացած հարցի դեպքում կարող եք դիմել Բանկի ցանկացած մասնաճյուղ կամ զանգահարել կարճ համարով՝ 8444։',
+  'Ձեր քարտային գործառնությունների անվտանգությունն ապահովելու նպատակով խորհուրդ ենք տալիս երբեք չհայտնել քարտի PIN ծածկագիրը և CVV կոդը երրորդ անձանց։',
+];
+
 const ACCORDION = [
   { title: 'Քարտի տրամադրում և ակտիվացում', points: ISSUE_POINTS },
-  { title: 'Վճարային քարտի վճարներ և գանձումներ' },
-  { title: 'Վճարային Քարտի օգտագործման, պահպանման և անվտանգության կանոնները' },
-  { title: 'Վճարային Քարտի օգտագործումը' },
-  { title: 'Արտարժույթով արտահայտված գործառնությունների կատարում' },
-  { title: 'Վճարային Քարտի առգրավում/բռնագանձում' },
-  { title: 'Վճարային Քարտի բլոկավորում/ապաբլոկավորում' },
-  { title: 'Վճարային Քարտի վերաթողարկում' },
-  { title: 'Քարտային գործառնությունների բողոքարկում' },
-  { title: 'Քարտային հաշվի վերաբերյալ տեղեկատվության և Քաղվածքի տրամադրում' },
-  { title: 'Վճարային Քարտի փակում' },
-  { title: 'Օտարերկրյա Հաշիվների Հարկման Համապատասխանության ակտի (FATCA) ծանուցում' },
-  { title: 'Քարտային գործառնությունների մոնիտորինգ և անվտանգություն' },
-  { title: 'Քարտի թոքենացում և մոբայլ (NFC) վճարումներ' },
-  { title: 'Հնարավոր զեղծարարություններից խուսափելու համար։' },
+  { title: 'Վճարային քարտի վճարներ և գանձումներ', points: PLACEHOLDER_POINTS },
+  { title: 'Վճարային Քարտի օգտագործման, պահպանման և անվտանգության կանոնները', points: PLACEHOLDER_POINTS },
+  { title: 'Վճարային Քարտի օգտագործումը', points: PLACEHOLDER_POINTS },
+  { title: 'Արտարժույթով արտահայտված գործառնությունների կատարում', points: PLACEHOLDER_POINTS },
+  { title: 'Վճարային Քարտի առգրավում/բռնագանձում', points: PLACEHOLDER_POINTS },
+  { title: 'Վճարային Քարտի բլոկավորում/ապաբլոկավորում', points: PLACEHOLDER_POINTS },
+  { title: 'Վճարային Քարտի վերաթողարկում', points: PLACEHOLDER_POINTS },
+  { title: 'Քարտային գործառնությունների բողոքարկում', points: PLACEHOLDER_POINTS },
+  { title: 'Քարտային հաշվի վերաբերյալ տեղեկատվության և Քաղվածքի տրամադրում', points: PLACEHOLDER_POINTS },
+  { title: 'Վճարային Քարտի փակում', points: PLACEHOLDER_POINTS },
+  { title: 'Օտարերկրյա Հաշիվների Հարկման Համապատասխանության ակտի (FATCA) ծանուցում', points: PLACEHOLDER_POINTS },
+  { title: 'Քարտային գործառնությունների մոնիտորինգ և անվտանգություն', points: PLACEHOLDER_POINTS },
+  { title: 'Քարտի թոքենացում և մոբայլ (NFC) վճարումներ', points: PLACEHOLDER_POINTS },
+  { title: 'Հնարավոր զեղծարարություններից խուսափելու համար։', points: PLACEHOLDER_POINTS },
 ];
 
 const DOCS = [
@@ -68,20 +75,21 @@ const DOCS = [
 ];
 
 function AccItem({ item, open, onToggle }) {
+  const { t } = useTranslation();
   return (
     <div className={`svc-item${open ? ' is-open' : ''}`}>
       <button type="button" className="svc-head" onClick={onToggle} aria-expanded={open}>
         <ChevronDown size={18} className="svc-chev" />
-        <span>{item.title}</span>
+        <span>{t(item.title)}</span>
       </button>
       <div className="svc-panel">
         <div>
           {item.points ? (
             <ol className="svc-list">
-              {item.points.map((p, i) => <li key={i}>{p}</li>)}
+              {item.points.map((p, i) => <li key={i}>{t(p)}</li>)}
             </ol>
           ) : (
-            <p className="svc-soon">Տեղեկատվությունը շուտով կհրապարակվի։</p>
+            <p className="svc-soon">{t('Տեղեկատվությունը շուտով կհրապարակվի։')}</p>
           )}
         </div>
       </div>
@@ -90,6 +98,7 @@ function AccItem({ item, open, onToggle }) {
 }
 
 export default function CardsService() {
+  const { t } = useTranslation();
   const [openIdx, setOpenIdx] = useState(0);
 
   return (
@@ -98,11 +107,11 @@ export default function CardsService() {
         <nav className="svc-crumbs">
           <Link to="/" aria-label="Home"><Home size={16} /></Link>
           <ChevronRight size={12} />
-          <Link to="/">Անհատ</Link>
+          <Link to="/">{t('Անհատ')}</Link>
           <ChevronRight size={12} />
-          <Link to="/cards">Քարտեր</Link>
+          <Link to="/cards">{t('Քարտեր')}</Link>
           <ChevronRight size={12} />
-          <span>Քարտերի տրամադրում և սպասարկում</span>
+          <span>{t('Քարտերի տրամադրում և սպասարկում')}</span>
         </nav>
 
         <div className="svc-body">
@@ -113,8 +122,8 @@ export default function CardsService() {
           </div>
 
           <div className="svc-content">
-            <h1 className="svc-title">Քարտերի տրամադրում և սպասարկում</h1>
-            <h2 className="svc-heading">Անհրաժեշտ տեղեկատվություն</h2>
+            <h1 className="svc-title">{t('Քարտերի տրամադրում և սպասարկում')}</h1>
+            <h2 className="svc-heading">{t('Անհրաժեշտ տեղեկատվություն')}</h2>
 
             <div className="svc-acc">
               {ACCORDION.map((item, i) => (
@@ -129,13 +138,13 @@ export default function CardsService() {
           </div>
 
           <section className="svc-docs">
-            <h2>Փաստաթղթեր</h2>
+            <h2>{t('Փաստաթղթեր')}</h2>
             <ul className="svc-doc-list">
               {DOCS.map((d) => (
                 <li key={d}>
                   <a href="#" className="svc-doc" onClick={onDownload(d)}>
                     <FileDown size={26} strokeWidth={1.5} />
-                    <span>{d}</span>
+                    <span>{t(d)}</span>
                   </a>
                 </li>
               ))}
@@ -147,7 +156,7 @@ export default function CardsService() {
 
       <OnlineBanner />
 
-      <div className="svc-updated"><div>Թարմացվել է՝ 02/09/2026 14:33</div></div>
+      <div className="svc-updated"><div>{t('Թարմացվել է՝')} 02/09/2026 14:33</div></div>
 
       <FloatingActions />
     </main>

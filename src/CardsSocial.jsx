@@ -6,6 +6,7 @@ import { FloatingActions } from './Loans';
 import OnlineBanner from './OnlineBanner';
 import './CardsSocial.css';
 import { onDownload } from './downloadFile';
+import { useTranslation } from 'react-i18next';
 
 const HERO_IMG = 'https://www.evoca.am/images-cache/menu/1/17218011250749/780x585.jpg';
 
@@ -37,6 +38,7 @@ const DOCS = [
 ];
 
 export default function CardsSocial() {
+  const { t } = useTranslation();
   return (
     <main className="soc-page">
       <div className="soc-wrap">
@@ -44,25 +46,23 @@ export default function CardsSocial() {
         <nav className="soc-crumbs">
           <Link to="/" aria-label="Home"><Home size={16} /></Link>
           <ChevronRight size={12} />
-          <Link to="/">Անհատ</Link>
+          <Link to="/">{t('Անհատ')}</Link>
           <ChevronRight size={12} />
-          <Link to="/cards">Քարտեր</Link>
+          <Link to="/cards">{t('Քարտեր')}</Link>
           <ChevronRight size={12} />
-          <span>Սոցիալական ապահովության վճարային քարտեր</span>
+          <span>{t('Սոցիալական ապահովության վճարային քարտեր')}</span>
         </nav>
 
         {/* Hero */}
         <section className="soc-hero">
           <div className="soc-hero-text">
-            <h1 className="soc-hero-title">Սոցիալական ապահովության վճարային քարտեր</h1>
+            <h1 className="soc-hero-title">{t('Սոցիալական ապահովության վճարային քարտեր')}</h1>
             <p className="soc-hero-desc">
-              Կենսաթոշակառուներին առաջարկում ենք ARCA կենսաթոշակային վճարային քարտեր՝ միայն
-              կենսաթոշակների գումարների սպասարկման նպատակով: Քարտերը տրամադրում ենք Սոցիալական
-              ապահովության պետական ծառայության հետ 2011թ. հուլիսի 21-ին կնքած պայմանագրի համաձայն:
+              {t('Կենսաթոշակառուներին առաջարկում ենք ARCA կենսաթոշակային վճարային քարտեր՝ միայն կենսաթոշակների գումարների սպասարկման նպատակով: Քարտերը տրամադրում ենք Սոցիալական ապահովության պետական ծառայության հետ 2011թ. հուլիսի 21-ին կնքած պայմանագրի համաձայն:')}
             </p>
           </div>
           <div className="soc-hero-img">
-            <img src={HERO_IMG} alt="Սոցիալական ապահովության վճարային քարտ" loading="lazy" />
+            <img src={HERO_IMG} alt={t('Սոցիալական ապահովության վճարային քարտ')} loading="lazy" />
           </div>
         </section>
 
@@ -75,46 +75,42 @@ export default function CardsSocial() {
           </div>
 
           <div className="soc-content">
-            <p className="soc-p">Քարտերը տրամադրում ենք մեր կողմից հաստատված Կենսաթոշակային քարտերի տրամադրման և սպասարկման սակագների համաձայն:</p>
-            <p className="soc-p">Քարտի ստացման դիմում կարող եք ներկայացնել Ձեր Գլխամասային գրասենյակ կամ Ձայնագրության մասնաճյուղ:</p>
+            <p className="soc-p">{t('Քարտերը տրամադրում ենք մեր կողմից հաստատված Կենսաթոշակային քարտերի տրամադրման և սպասարկման սակագների համաձայն:')}</p>
+            <p className="soc-p">{t('Քարտի ստացման դիմում կարող եք ներկայացնել Ձեր Գլխամասային գրասենյակ կամ Ձայնագրության մասնաճյուղ:')}</p>
             <p className="soc-p">
-              Վճարային քարտերի տրամադրումը, սպասարկումը և օգտագործումը վերաբերվող մանրամասն
-              տեղեկատվությունը կարող եք ծանոթանալ <Link to="/cardsservice" className="soc-link">այստեղ</Link>:
+              {t('Վճարային քարտերի տրամադրումը, սպասարկումը և օգտագործումը վերաբերվող մանրամասն տեղեկատվությունը կարող եք ծանոթանալ')}{' '}<Link to="/cardsservice" className="soc-link">{t('այստեղ')}</Link>{t(':')}
             </p>
 
-            <h2 className="soc-h2">Վճարային քարտերով կատարվող գործառնություններ</h2>
+            <h2 className="soc-h2">{t('Վճարային քարտերով կատարվող գործառնություններ')}</h2>
             <ul className="soc-list">
-              {TRANSACTIONS.map((p, i) => <li key={i}>{p}</li>)}
+              {TRANSACTIONS.map((p, i) => <li key={i}>{t(p)}</li>)}
             </ul>
 
             <p className="soc-note">
-              <b>Նշում.</b> Քարտային հաշվով կատարվող դրամական շարժը վերահսկելու նպատակով ակտիվացրեք
-              SMS-տեղեկացում ծառայությունը (դուք կարող եք դիմում գրել և իրականացնել SMS
-              տեղեկացումների ծառայությունից): Օնլայն վճարումներ իրականացնելիս կարող եք օգտվել
-              3D Secure ծառայությունից:
+              <b>{t('Նշում.')}</b> {t('Քարտային հաշվով կատարվող դրամական շարժը վերահսկելու նպատակով ակտիվացրեք SMS-տեղեկացում ծառայությունը (դուք կարող եք դիմում գրել և իրականացնել SMS տեղեկացումների ծառայությունից): Օնլայն վճարումներ իրականացնելիս կարող եք օգտվել 3D Secure ծառայությունից:')}
             </p>
 
-            <h2 className="soc-h2">Օգտագործման տեղեկություն</h2>
+            <h2 className="soc-h2">{t('Օգտագործման տեղեկություն')}</h2>
             <ul className="soc-list">
-              {USAGE.map((p, i) => <li key={i}>{p}</li>)}
+              {USAGE.map((p, i) => <li key={i}>{t(p)}</li>)}
             </ul>
 
-            <h2 className="soc-h2">Զգուշացում</h2>
+            <h2 className="soc-h2">{t('Զգուշացում')}</h2>
             <ul className="soc-list">
-              {SECURITY.map((p, i) => <li key={i}>{p}</li>)}
+              {SECURITY.map((p, i) => <li key={i}>{t(p)}</li>)}
             </ul>
           </div>
         </div>
 
         {/* Документы */}
         <section className="soc-docs">
-          <h2>Փաստաթղթեր</h2>
+          <h2>{t('Փաստաթղթեր')}</h2>
           <ul className="soc-doc-list">
             {DOCS.map((d) => (
               <li key={d}>
                 <a href="#" className="soc-doc" onClick={onDownload(d)}>
                   <FileDown size={26} strokeWidth={1.5} />
-                  <span>{d}</span>
+                  <span>{t(d)}</span>
                 </a>
               </li>
             ))}
@@ -125,7 +121,7 @@ export default function CardsSocial() {
 
       <OnlineBanner />
 
-      <div className="soc-updated"><div>Թարմացվել է՝ 02/09/2026 14:33</div></div>
+      <div className="soc-updated"><div>{t('Թարմացվել է՝')} 02/09/2026 14:33</div></div>
 
       <FloatingActions />
     </main>
