@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { FaFacebookF, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
 import { ChevronDown, ChevronRight, Home } from 'lucide-react';
@@ -10,39 +11,50 @@ import { onDownload } from './downloadFile';
 export const ACC_HERO = 'https://www.evoca.am/images-cache/menu/1/16116367969264/780x585.jpg';
 
 /* ---------- Общие мелкие компоненты (используются и страницей металлических счетов) ---------- */
-export const List = ({ items }) => (
-  <ul className="dp-list">
-    {items.map((t, i) =>
-      Array.isArray(t) ? (
-        <ul key={i} className="dp-dash">{t.map((s) => <li key={s}>{s}</li>)}</ul>
-      ) : (
-        <li key={i}>{t}</li>
-      )
-    )}
-  </ul>
-);
-export const H3 = ({ children }) => <h3 className="dp-h3">{children}</h3>;
-export const H4 = ({ children }) => <h4 className="dp-h4">{children}</h4>;
+// Переводит только строки (JSX-узлы оставляет как есть)
+const useTr = () => {
+  const { t } = useTranslation();
+  return (v) => (typeof v === 'string' ? t(v) : v);
+};
+
+export const List = ({ items }) => {
+  const tr = useTr();
+  return (
+    <ul className="dp-list">
+      {items.map((it, i) =>
+        Array.isArray(it) ? (
+          <ul key={i} className="dp-dash">{it.map((s) => <li key={s}>{tr(s)}</li>)}</ul>
+        ) : (
+          <li key={i}>{tr(it)}</li>
+        )
+      )}
+    </ul>
+  );
+};
+export const H3 = ({ children }) => { const tr = useTr(); return <h3 className="dp-h3">{tr(children)}</h3>; };
+export const H4 = ({ children }) => { const tr = useTr(); return <h4 className="dp-h4">{tr(children)}</h4>; };
 
 export function Crumbs({ current }) {
+  const { t } = useTranslation();
   return (
     <div className="dp-crumbs">
       <Home size={15} /><ChevronRight size={11} />
-      <Link to="/business">Բիզնես</Link><ChevronRight size={11} />
-      <Link to="/business/accounts">Հաշիվներ</Link><ChevronRight size={11} />
-      <span>{current}</span>
+      <Link to="/business">{t('Բիզնես')}</Link><ChevronRight size={11} />
+      <Link to="/business/accounts">{t('Հաշիվներ')}</Link><ChevronRight size={11} />
+      <span>{t(current)}</span>
     </div>
   );
 }
 
 export function Hero({ title, text, img }) {
+  const { t } = useTranslation();
   return (
     <section className="dp-hero">
       <div className="dp-hero-text">
-        <h1>{title}</h1>
-        <p>{text}</p>
+        <h1>{t(title)}</h1>
+        <p>{t(text)}</p>
       </div>
-      <img src={img} alt={title} />
+      <img src={img} alt={t(title)} />
     </section>
   );
 }
@@ -58,11 +70,12 @@ export function Share() {
 }
 
 export function Accordion({ title, defaultOpen = false, wide = false, children }) {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(defaultOpen);
   return (
     <div className={`dp-acc ${open ? 'open' : ''}`}>
       <button className="dp-acc-head" onClick={() => setOpen(!open)} aria-expanded={open}>
-        <ChevronDown size={18} /> {title}
+        <ChevronDown size={18} /> {t(title)}
       </button>
       {open && <div className={`dp-acc-body ${wide ? 'dp-acc-wide' : ''}`}>{children}</div>}
     </div>
@@ -107,13 +120,14 @@ export function RequiredDocs() {
 }
 
 export function FatcaAccordion() {
+  const { t } = useTranslation();
   return (
     <Accordion title="Օտարերկրյա Հաշիվների Հարկման Համապատասխանության ակտի (FATCA) ծանուցում">
-      <p>Հարգելի Հաճախորդ,</p>
+      <p>{t('Հարգելի Հաճախորդ,')}</p>
       <p>
-        «ԷՎՈԿԱԲԱՆԿ» ԲԲԸ-ն Հայաստանի Հանրապետության և Ամերիկայի Միացյալ Նահանգների միջև «Օտարերկրյա հաշիվների հարկային համապատասխանության ակտի» կիրարկմանն օժանդակելու համագործակցության մասին համաձայնագրի պահանջներից ելնելով իրավասու է հաճախորդներից պահանջել լրացուցիչ տեղեկատվություն, մասնավորապես հաճախորդներից պահանջվում է լրացնել վերջիններիս ԱՄՆ անձ կարգավիճակի նույնականացման համար պահանջվող հետևյալ ձևաթղթերը՝{' '}
-        <a href="#" onClick={onDownload('FATCA Model 2')}>Իրավաբանական անձ հաճախորդների ինքնահայտարարագրման ձև՝ Մոդել 2-ի համաձայն (FATCA)</a> կամ{' '}
-        <a href="#" onClick={onDownload('FATCA individual')}>Ֆիզիկական անձ (ներառյալ անհատ ձեռնարկատեր) հաճախորդների ինքնահայտարարագրման ձև FATCA նպատակների համար</a>
+        {t('«ԷՎՈԿԱԲԱՆԿ» ԲԲԸ-ն Հայաստանի Հանրապետության և Ամերիկայի Միացյալ Նահանգների միջև «Օտարերկրյա հաշիվների հարկային համապատասխանության ակտի» կիրարկմանն օժանդակելու համագործակցության մասին համաձայնագրի պահանջներից ելնելով իրավասու է հաճախորդներից պահանջել լրացուցիչ տեղեկատվություն, մասնավորապես հաճախորդներից պահանջվում է լրացնել վերջիններիս ԱՄՆ անձ կարգավիճակի նույնականացման համար պահանջվող հետևյալ ձևաթղթերը՝')}{' '}
+        <a href="#" onClick={onDownload('FATCA Model 2')}>{t('Իրավաբանական անձ հաճախորդների ինքնահայտարարագրման ձև՝ Մոդել 2-ի համաձայն (FATCA)')}</a> {t('կամ')}{' '}
+        <a href="#" onClick={onDownload('FATCA individual')}>{t('Ֆիզիկական անձ (ներառյալ անհատ ձեռնարկատեր) հաճախորդների ինքնահայտարարագրման ձև FATCA նպատակների համար')}</a>
       </p>
     </Accordion>
   );
@@ -121,6 +135,7 @@ export function FatcaAccordion() {
 
 /* ---------- Страница: Հաշիվների բացում և սպասարկում ---------- */
 export default function Accounts() {
+  const { t } = useTranslation();
   return (
     <div className="dp dp-v2">
       <div className="dp-wrap">
@@ -136,22 +151,20 @@ export default function Accounts() {
           <Share />
           <article className="dp-content">
             <p className="dp-p">
-              Հաշիվների սպասարկումն իրականացնում ենք մեր{' '}
-              <a className="dp-link" href="#">Ընթացիկ հաշիվների սպասարկման սակագների համաձայն</a>: Հաշիվներ բացելու համար կարող եք դիմել մեր Գլխամասային գրասենյակ և ցանկացած մասնաճյուղ:
+              {t('Հաշիվների սպասարկումն իրականացնում ենք մեր')}{' '}
+              <a className="dp-link" href="#">{t('Ընթացիկ հաշիվների սպասարկման սակագների համաձայն')}</a>{t(': Հաշիվներ բացելու համար կարող եք դիմել մեր Գլխամասային գրասենյակ և ցանկացած մասնաճյուղ:')}
             </p>
             <p className="dp-p">
-              <span className="dp-pur">Ուշադրություն.</span>{' '}
-              <Link className="dp-link" to="/business/accounts/metal">Առարկայազուրկ մետաղական հաշիվների</Link>, Ավանդային և Քարտային հաշիվների սպասարկման պայմաններին կարող եք ծանոթանալ Առարկայազուրկ մետաղական հաշիվներ, Վճարային քարտեր ենթաբաժիններում և իրավաբանական անձանց բանկային ծառայությունների Ավանդներ բաժնում:
+              <span className="dp-pur">{t('Ուշադրություն')}.</span>{' '}
+              <Link className="dp-link" to="/business/accounts/metal">{t('Առարկայազուրկ մետաղական հաշիվների')}</Link>{t(', Ավանդային և Քարտային հաշիվների սպասարկման պայմաններին կարող եք ծանոթանալ Առարկայազուրկ մետաղական հաշիվներ, Վճարային քարտեր ենթաբաժիններում և իրավաբանական անձանց բանկային ծառայությունների Ավանդներ բաժնում:')}
             </p>
 
-            <h2 className="dp-h2 dp-caps">Անհրաժեշտ տեղեկատվություն</h2>
+            <h2 className="dp-h2 dp-caps">{t('Անհրաժեշտ տեղեկատվություն')}</h2>
 
             <div className="dp-accs">
               <Accordion title="Անվանատիրոջ հատուկ հաշիվներ" defaultOpen>
-                <p>
-                  Անվանատիրոջ հատուկ հաշիվը կարող է օգտագործվել միայն ներդրումային ծառայություններ մատուցող անձի և ներդրումային ֆոնդի կառավարչի կողմից ներդրումային ծառայությունների մատուցման կամ ներդրումային ֆոնդերի կառավարման հետ կապված գործառնությունների իրականացման համար:
-                </p>
-                <p>Հաշվի տարեկան սպասարկումը 5,000 ՀՀ դրամ է:</p>
+                <p>{t('Անվանատիրոջ հատուկ հաշիվը կարող է օգտագործվել միայն ներդրումային ծառայություններ մատուցող անձի և ներդրումային ֆոնդի կառավարչի կողմից ներդրումային ծառայությունների մատուցման կամ ներդրումային ֆոնդերի կառավարման հետ կապված գործառնությունների իրականացման համար:')}</p>
+                <p>{t('Հաշվի տարեկան սպասարկումը 5,000 ՀՀ դրամ է:')}</p>
               </Accordion>
 
               <Accordion title="Անհրաժեշտ փաստաթղթեր">
@@ -209,7 +222,7 @@ export default function Accounts() {
       </div>
 
       <OnlineBanner />
-      <p className="dp-updated">Թարմացվել է՝ 01/08/2025 17:15</p>
+      <p className="dp-updated">{t('Թարմացվել է՝')} 01/08/2025 17:15</p>
     </div>
   );
 }
