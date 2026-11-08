@@ -8,6 +8,7 @@ import {
   FaPinterestP
 } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from './LanguageSwitcher';
 
 // Header для страницы онлайн-оплаты
 export function PaymentHeader() {
@@ -36,21 +37,7 @@ export function PaymentHeader() {
             +374 10 605555
           </a>
 
-          <button
-            aria-label={t('Լեզու')}
-            className="text-gray-500 hover:text-purple-700"
-          >
-            <svg
-              className="h-5 w-5"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <circle cx="12" cy="12" r="10" />
-              <path d="M2 12h20M12 2a15 15 0 010 20 15 15 0 010-20z" />
-            </svg>
-          </button>
+          <LanguageSwitcher compact />
 
           <button className="whitespace-nowrap rounded-full bg-purple-700 px-4 py-2 text-sm font-semibold text-white hover:bg-purple-800 sm:px-6 sm:py-2.5">
             {t('Պատմություն')}

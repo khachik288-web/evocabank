@@ -12,6 +12,7 @@ import { initZegoService, destroyZegoService } from './zego';
 import Business from './busines';
 import WebPayment from './WebPayment';
 import PaymentCategory from './PaymentCategory';
+import PaymentItem from './PaymentItem';
 import About from './About';
 import Career from './Career';
 import CareerBenefits from './CareerBenefits';
@@ -1935,6 +1936,7 @@ function App() {
           <Route path="/about" element={<SiteLayout><About /></SiteLayout>} />
           <Route path="/web-payment" element={<WebPayment />} />
           <Route path="/web-payment/:slug" element={<PaymentCategory />} />
+          <Route path="/web-payment/:slug/:item" element={<PaymentItem />} />
           <Route path="/career" element={<SiteLayout><Career /></SiteLayout>} />
           <Route path="/career/benefits" element={<SiteLayout><CareerBenefits /></SiteLayout>} />
           <Route path="/career/faq" element={<SiteLayout><CareerFaq /></SiteLayout>} />
