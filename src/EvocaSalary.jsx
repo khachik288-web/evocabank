@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Tr from './Tr';
 import { Link } from 'react-router-dom';
 import { Home, ChevronRight, ChevronDown } from 'lucide-react';
 import { FaFacebookF, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
@@ -46,7 +47,7 @@ export default function EvocaSalary() {
       <div className="max-w-7xl mx-auto px-4 py-3 text-sm text-gray-500 flex items-center gap-2">
         <Home className="w-4 h-4 text-gray-400" />
         <ChevronRight className="w-3 h-3 text-gray-400" />
-        <span>Ահատ</span>
+        <span><Tr>{"Անհատ"}</Tr></span>
         <ChevronRight className="w-3 h-3 text-gray-400" />
         <span className="text-purple-700 font-medium">EvocaSALARY</span>
       </div>
@@ -56,12 +57,12 @@ export default function EvocaSalary() {
         <div className="lg:col-span-7 space-y-4">
           <h1 className="text-3xl lg:text-5xl font-bold tracking-tight text-gray-900 leading-snug">
             EVOCA <br />
-            ԱՇԽԱՏԱՎԱՐՁԱՅԻՆ <br />
-            ՆԱԽԱԳԻԾ
+            <Tr>{"ԱՇԽԱՏԱՎԱՐՁԱՅԻՆ "}</Tr><br />
+            <Tr>{"ՆԱԽԱԳԻԾ"}</Tr>
           </h1>
           <p className="text-gray-600 text-base lg:text-lg max-w-xl">
-            Քո աշխատավարձը կարող է քեզ տալ շատ ավելին: <br />
-            Պարզապես պետք է ընտրել Evocabank-ը:
+            <Tr>{"Քո աշխատավարձը կարող է քեզ տալ շատ ավելին: "}</Tr><br />
+            <Tr>{"Պարզապես պետք է ընտրել Evocabank-ը:"}</Tr>
           </p>
         </div>
         <div className="lg:col-span-5 relative flex justify-center">
@@ -93,57 +94,57 @@ export default function EvocaSalary() {
         {/* Content Body */}
         <div className="lg:col-span-11 space-y-8 text-gray-700 leading-relaxed text-base">
           <p>
-            Evoca աշխատավարձային նախագիծը մեկնարկել է նրանց համար, ովքեր, իրենց աշխատավարձը քարտին ստանալուից բացի, ցանկանում են նաև ստանալ <span className="text-purple-700 font-semibold cursor-pointer hover:underline">նոր հնարավորություններ ու առավելություններ</span>:
+            <Tr>{"Evoca աշխատավարձային նախագիծը մեկնարկել է նրանց համար, ովքեր, իրենց աշխատավարձը քարտին ստանալուից բացի, ցանկանում են նաև ստանալ "}</Tr><span className="text-purple-700 font-semibold cursor-pointer hover:underline"><Tr>{"նոր հնարավորություններ ու առավելություններ"}</Tr></span>:
           </p>
 
           <div className="space-y-3">
             <h3 className="text-purple-700 font-bold text-lg cursor-pointer hover:underline">
-              Բեր աշխատավարձ Evoca, Տար անվճար Mastercard Gold
+              <Tr>{"Բեր աշխատավարձ Evoca, Տար անվճար Mastercard Gold"}</Tr>
             </h3>
             <ul className="list-disc pl-5 space-y-2 text-gray-700">
-              <li>Պրեմիում դասի քարտ</li>
-              <li>Հասանելի ամբողջ աշխարհում</li>
-              <li>Գումարի անվտանգության բարձր մակարդակ</li>
-              <li>Դրական մնացորդի նկատմամբ <span className="font-semibold text-purple-700">2% տարեկան տոկոսադրույք</span></li>
+              <li><Tr>{"Պրեմիում դասի քարտ"}</Tr></li>
+              <li><Tr>{"Հասանելի ամբողջ աշխարհում"}</Tr></li>
+              <li><Tr>{"Գումարի անվտանգության բարձր մակարդակ"}</Tr></li>
+              <li><Tr>{"Դրական մնացորդի նկատմամբ "}</Tr><span className="font-semibold text-purple-700"><Tr>{"2% տարեկան տոկոսադրույք"}</Tr></span></li>
             </ul>
           </div>
 
           <div className="space-y-3">
             <h3 className="text-purple-700 font-bold text-lg cursor-pointer hover:underline">
-              Բեր աշխատավարձ Evoca, Տար 50% զեղչով Evoca Travel Card
+              <Tr>{"Բեր աշխատավարձ Evoca, Տար 50% զեղչով Evoca Travel Card"}</Tr>
             </h3>
             <ul className="list-disc pl-5 space-y-2 text-gray-700">
-              <li>Մինչև <span className="font-semibold text-purple-700">1.5% cashback</span> արտասահմանում իրականացված վճարումների համար</li>
-              <li>Անվճար <span className="font-semibold text-purple-700">6 մուտք</span> Lounge Key սրահներ քեզ և հյուրերիդ համար</li>
-              <li>Անվճար <span className="font-semibold text-purple-700">6 անգամ</span> Fast track-ից օգտվելու հնարավորություն քեզ և հյուրերիդ համար</li>
-              <li>Այլ ճամփորդական առավելություններ</li>
+              <li><Tr>{"Մինչև "}</Tr><span className="font-semibold text-purple-700">1.5% cashback</span><Tr>{" արտասահմանում իրականացված վճարումների համար"}</Tr></li>
+              <li><Tr>{"Անվճար "}</Tr><span className="font-semibold text-purple-700"><Tr>{"6 մուտք"}</Tr></span><Tr>{" Lounge Key սրահներ քեզ և հյուրերիդ համար"}</Tr></li>
+              <li><Tr>{"Անվճար "}</Tr><span className="font-semibold text-purple-700"><Tr>{"6 անգամ"}</Tr></span><Tr>{" Fast track-ից օգտվելու հնարավորություն քեզ և հյուրերիդ համար"}</Tr></li>
+              <li><Tr>{"Այլ ճամփորդական առավելություններ"}</Tr></li>
             </ul>
           </div>
 
           <div className="space-y-3">
             <h3 className="text-purple-700 font-bold text-lg cursor-pointer hover:underline">
-              Բեր աշխատավարձ Evoca, Տար մի շարք Բենեֆիթներ
+              <Tr>{"Բեր աշխատավարձ Evoca, Տար մի շարք Բենեֆիթներ"}</Tr>
             </h3>
             <p>
-              Դառնալով Evoca քարտապան՝ կունենաս հնարավորություն օգտվելու <span className="text-purple-700 font-semibold cursor-pointer hover:underline">Evoca Benefits</span> նախագծից և մեր 100-ից ավել գործընկերների մոտ կստանաս՝
+              <Tr>{"Դառնալով Evoca քարտապան՝ կունենաս հնարավորություն օգտվելու "}</Tr><span className="text-purple-700 font-semibold cursor-pointer hover:underline">Evoca Benefits</span><Tr>{" նախագծից և մեր 100-ից ավել գործընկերների մոտ կստանաս՝"}</Tr>
             </p>
             <ul className="list-disc pl-5 space-y-2 text-gray-700">
-              <li>Մինչև <span className="font-semibold text-purple-700">25% զեղչ</span></li>
-              <li>Մինչև <span className="font-semibold text-purple-700">25% cashback</span></li>
-              <li>Նվեր քարտեր</li>
+              <li><Tr>{"Մինչև "}</Tr><span className="font-semibold text-purple-700"><Tr>{"25% զեղչ"}</Tr></span></li>
+              <li><Tr>{"Մինչև "}</Tr><span className="font-semibold text-purple-700">25% cashback</span></li>
+              <li><Tr>{"Նվեր քարտեր"}</Tr></li>
             </ul>
           </div>
 
           <div className="space-y-3">
             <h3 className="text-purple-700 font-bold text-lg cursor-pointer hover:underline">
-              Բեր աշխատավարձ Evoca, Տար ավելի ցածր տոկոսադրույքով վարկեր
+              <Tr>{"Բեր աշխատավարձ Evoca, Տար ավելի ցածր տոկոսադրույքով վարկեր"}</Tr>
             </h3>
             <div className="mt-4 p-5 bg-purple-50/50 rounded-2xl border border-purple-100 space-y-2">
-              <h4 className="text-purple-800 font-bold cursor-pointer hover:underline">Անշարժ գույքի գրավով սպառողական վարկ</h4>
+              <h4 className="text-purple-800 font-bold cursor-pointer hover:underline"><Tr>{"Անշարժ գույքի գրավով սպառողական վարկ"}</Tr></h4>
               <ul className="list-disc pl-5 space-y-1 text-gray-700">
-                <li><span className="font-semibold text-purple-700">0.5%-ով</span> ցածր տոկոսադրույք</li>
-                <li>Մինչև <span className="font-semibold text-purple-700">100 մլն դրամ</span> գումար</li>
-                <li>Մինչև <span className="font-semibold text-purple-700">120 ամիս</span> մարման ժամկետ</li>
+                <li><span className="font-semibold text-purple-700"><Tr>{"0.5%-ով"}</Tr></span><Tr>{" ցածր տոկոսադրույք"}</Tr></li>
+                <li><Tr>{"Մինչև "}</Tr><span className="font-semibold text-purple-700"><Tr>{"100 մլն դրամ"}</Tr></span><Tr>{" գումար"}</Tr></li>
+                <li><Tr>{"Մինչև "}</Tr><span className="font-semibold text-purple-700"><Tr>{"120 ամիս"}</Tr></span><Tr>{" մարման ժամկետ"}</Tr></li>
               </ul>
             </div>
           </div>
@@ -154,9 +155,9 @@ export default function EvocaSalary() {
       <div className="bg-gray-50/70 py-16 mt-12 border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center mb-8">
-            <h2 className="text-2xl lg:text-3xl font-bold text-gray-900">Վերջին նորությունները</h2>
+            <h2 className="text-2xl lg:text-3xl font-bold text-gray-900"><Tr>{"Վերջին նորությունները"}</Tr></h2>
             <Link to="/news" className="px-6 py-2.5 bg-purple-100 text-purple-700 rounded-full font-medium hover:bg-purple-200 transition-colors flex items-center gap-2 no-underline">
-              Բոլոր նորությունները <ChevronRight className="w-4 h-4" />
+              <Tr>{"Բոլոր նորությունները "}</Tr><ChevronRight className="w-4 h-4" />
             </Link>
           </div>
           <News />
@@ -165,7 +166,7 @@ export default function EvocaSalary() {
 
       {/* FAQ Section */}
       <div className="max-w-5xl mx-auto px-4 py-16">
-        <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-8">Հաճախ տրվող հարցեր</h2>
+        <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-8"><Tr>{"Հաճախ տրվող հարցեր"}</Tr></h2>
         <div className="space-y-4">
           {faqs.map((faq, index) => (
             <div 
@@ -178,12 +179,12 @@ export default function EvocaSalary() {
                 onClick={() => toggleFaq(index)}
                 className="w-full px-6 py-4 flex justify-between items-center text-left font-semibold text-gray-800 focus:outline-none"
               >
-                <span>{faq.question}</span>
+                <span><Tr>{faq.question}</Tr></span>
                 <ChevronDown className={`w-5 h-5 text-purple-600 transition-transform duration-300 ${openFaq === index ? 'rotate-180' : ''}`} />
               </button>
               {openFaq === index && (
                 <div className="px-6 pb-4 text-gray-600 text-sm lg:text-base leading-relaxed border-t border-purple-100 pt-3">
-                  {faq.answer}
+                  <Tr>{faq.answer}</Tr>
                 </div>
               )}
             </div>
