@@ -1,4 +1,5 @@
 import React from 'react';
+import Tr from './Tr';
 import { FileDown } from 'lucide-react';
 import { PlainPage, List, Accordion, Soon, useIsPersonal } from './SecurityParts';
 import { onDownload } from './downloadFile';
@@ -50,50 +51,50 @@ export default function Bonds() {
   return (
     <PlainPage title="Պարտատոմսեր" updated="22/05/2026 10:36">
       <p className="dp-p">
-        Առաջին անգամ հայաստանյան ֆինանսական համակարգում Evocabank-ը, որպես նորարար և ժամանակակից Բանկ, իրականացրել է իր կողմից թողարկված պարտատոմսերի օնլայն տեղաբաշխում՝ EvocaTOUCH հավելվածի միջոցով:
+        <Tr>{"Առաջին անգամ հայաստանյան ֆինանսական համակարգում Evocabank-ը, որպես նորարար և ժամանակակից Բանկ, իրականացրել է իր կողմից թողարկված պարտատոմսերի օնլայն տեղաբաշխում՝ EvocaTOUCH հավելվածի միջոցով:"}</Tr>
       </p>
       <p className="dp-p">
-        <a className="dp-link" href="#">Պարտատոմսերը</a> պահանջված և բարձր եկամտաբեր ֆինանսական գործիքներ են: Դրանք ապահով են և ունեն մի շարք առավելություններ՝
+        <a className="dp-link" href="#"><Tr>{"Պարտատոմսերը"}</Tr></a><Tr>{" պահանջված և բարձր եկամտաբեր ֆինանսական գործիքներ են: Դրանք ապահով են և ունեն մի շարք առավելություններ՝"}</Tr>
       </p>
       <List items={[
         'Անվանական պարտատոմսերով ներգրավված դրամական միջոցները համարվում են երաշխավորված բանկային ավանդ և ՀՀ օրենսդրությամբ սահմանված չափերով երաշխավորված են «Ավանդների հատուցումը երաշխավորող հիմնադրամ»-ի կողմից:',
         'ՀՀ Ֆոնդային Բորսայում ցուցակված պարտատոմսերից ստացվող եկամուտները ազատվում են եկամտային հարկից և ոչ ռեզիդենտի շահութահարկից՝ ապահովելով ավելի բարձր եկամտաբերություն:',
       ]} />
 
-      <h2 className="dp-h2 dp-caps">Անհրաժեշտ տեղեկատվություն</h2>
+      <h2 className="dp-h2 dp-caps"><Tr>{"Անհրաժեշտ տեղեկատվություն"}</Tr></h2>
       <div className="dp-accs">
         <Accordion title={personal ? 'Պարտատոմսերի թողարկում' : 'ՏԱՍՆՉՈՐՍԵՐՈՐԴ ԵՎ ՏԱՍՆՀԻՆԳԵՐՈՐԴ ԹՈՂԱՐԿՈՒՄ'} defaultOpen>
-          <h3 className="dp-center-h">Թողարկվող պարտատոմսերի պայմաններ</h3>
+          <h3 className="dp-center-h"><Tr>{"Թողարկվող պարտատոմսերի պայմաններ"}</Tr></h3>
           <div className="dp-table-wrap">
             <table className="dp-table">
               <thead>
                 <tr>
-                  <th className="dp-left">Դաս</th>
-                  <th className="dp-left" colSpan={2}>Անվանական արժեկտրոնային</th>
+                  <th className="dp-left"><Tr>{"Դաս"}</Tr></th>
+                  <th className="dp-left" colSpan={2}><Tr>{"Անվանական արժեկտրոնային"}</Tr></th>
                 </tr>
               </thead>
               <tbody>
                 {ROWS.map((r) => (
                   <tr key={r[0]}>
-                    <td className="dp-left">{r[0]}</td>
-                    <td className="dp-left">{r[1]}</td>
-                    <td className="dp-left">{r[2]}</td>
+                    <td className="dp-left"><Tr>{r[0]}</Tr></td>
+                    <td className="dp-left"><Tr>{r[1]}</Tr></td>
+                    <td className="dp-left"><Tr>{r[2]}</Tr></td>
                   </tr>
                 ))}
                 <tr>
-                  <td className="dp-left">Տեղաբաշխող</td>
-                  <td className="dp-left" colSpan={2}>«Էվոկաբանկ» ԲԲԸ</td>
+                  <td className="dp-left"><Tr>{"Տեղաբաշխող"}</Tr></td>
+                  <td className="dp-left" colSpan={2}><Tr>{"«Էվոկաբանկ» ԲԲԸ"}</Tr></td>
                 </tr>
               </tbody>
             </table>
           </div>
           <p style={{ margin: '36px 0 8px' }}>
-            Պարտատոմսերի ծրագրային ազդագիրը գրանցվել է ՀՀ ԿԲ Նախագահի 03.07.2024թ-ի թիվ 1/254Ա որոշմամբ:
+            <Tr>{"Պարտատոմսերի ծրագրային ազդագիրը գրանցվել է ՀՀ ԿԲ Նախագահի 03.07.2024թ-ի թիվ 1/254Ա որոշմամբ:"}</Tr>
           </p>
           <div className="dp-docs3">
             {DOC_CARDS.map(([a, b, badge]) => (
               <a key={b} href="#" onClick={onDownload(`${a} ${b}`)} className="dp-doccard">
-                <span>{a}<br />{b}</span>
+                <span><Tr>{a}</Tr><br /><Tr>{b}</Tr></span>
                 <DocIcon badge={badge} />
               </a>
             ))}
@@ -106,10 +107,10 @@ export default function Bonds() {
         <Accordion title="Հաճախ տրվող հարցեր պարտատոմսերի մասին"><Soon /></Accordion>
       </div>
 
-      <h2 className="dp-h2s">Փաստաթղթեր</h2>
+      <h2 className="dp-h2s"><Tr>{"Փաստաթղթեր"}</Tr></h2>
       <ul className="dp-files">
         {FILES.map((f) => (
-          <li key={f}><a className="dp-file" href="#" onClick={onDownload(f)}><FileDown size={26} strokeWidth={1.5} />{f}</a></li>
+          <li key={f}><a className="dp-file" href="#" onClick={onDownload(f)}><FileDown size={26} strokeWidth={1.5} /><Tr>{f}</Tr></a></li>
         ))}
       </ul>
     </PlainPage>

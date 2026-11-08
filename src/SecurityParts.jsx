@@ -1,4 +1,5 @@
 import React from 'react';
+import Tr from './Tr';
 import { Link, useLocation } from 'react-router-dom';
 import { ChevronRight, Home } from 'lucide-react';
 import './Avandner.css';
@@ -29,18 +30,18 @@ export function SecCrumbs({ current, section = SEC }) {
     return (
       <div className="dp-crumbs">
         <Link to="/" aria-label="home"><Home size={15} /></Link><ChevronRight size={11} />
-        <Link to="/">Անհատ</Link><ChevronRight size={11} />
-        <Link to={PERSONAL_SEC.path}>{PERSONAL_SEC.label}</Link><ChevronRight size={11} />
-        <span>{current}</span>
+        <Link to="/"><Tr>{"Անհատ"}</Tr></Link><ChevronRight size={11} />
+        <Link to={PERSONAL_SEC.path}><Tr>{PERSONAL_SEC.label}</Tr></Link><ChevronRight size={11} />
+        <span><Tr>{current}</Tr></span>
       </div>
     );
   }
   return (
     <div className="dp-crumbs">
       <Home size={15} /><ChevronRight size={11} />
-      <Link to="/business">Բիզնես</Link><ChevronRight size={11} />
-      <Link to={section.path}>{section.label}</Link><ChevronRight size={11} />
-      <span>{current}</span>
+      <Link to="/business"><Tr>{"Բիզնես"}</Tr></Link><ChevronRight size={11} />
+      <Link to={section.path}><Tr>{section.label}</Tr></Link><ChevronRight size={11} />
+      <span><Tr>{current}</Tr></span>
     </div>
   );
 }
@@ -57,13 +58,13 @@ export function PlainPage({ title, current, updated, section, after, children })
         <div className={`dp-body${hero ? '' : ' dp-plain'}`}>
           <Share />
           <article className="dp-content">
-            {!hero && <h1 className="dp-title">{title}</h1>}
+            {!hero && <h1 className="dp-title"><Tr>{title}</Tr></h1>}
             {children}
           </article>
         </div>
       </div>
       {after}
-      {updated && <p className="dp-updated">Թարմացվել է՝ {updated}</p>}
+      {updated && <p className="dp-updated"><Tr>{"Թարմացվել է՝ "}</Tr>{updated}</p>}
     </div>
   );
 }
@@ -72,4 +73,4 @@ export function PlainPage({ title, current, updated, section, after, children })
 export const PH = ({ children }) => <h3 className="dp-ph">{children}</h3>;
 
 /* Пустой аккордеон, пока нет текста */
-export const Soon = () => <p className="dp-muted">Բովանդակությունը շուտով կհրապարակվի:</p>;
+export const Soon = () => <p className="dp-muted"><Tr>{"Բովանդակությունը շուտով կհրապարակվի:"}</Tr></p>;
