@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Tr from './Tr';
 
 // Копия OnlineBankingBanner из App.jsx (баннер перед футером)
 export default function OnlineBanner() {
@@ -66,14 +67,14 @@ export default function OnlineBanner() {
 
         <div className="relative w-full lg:w-1/2 text-white z-10 flex flex-col items-center text-center lg:items-start lg:text-left mt-8 max-[550px]:mt-6 lg:mt-0 px-4 lg:px-10">
           <h2 className="text-3xl max-[550px]:text-2xl font-bold mb-4 max-[550px]:mb-2 tracking-wide text-[#f4f4f4]">
-            Օնլայն և մոբայլ բանկինգ
+            <Tr>{"Օնլայն և մոբայլ բանկինգ"}</Tr>
           </h2>
           <p className="text-[15px] max-[550px]:text-[13px] leading-relaxed mb-8 max-[550px]:mb-6 text-[#e2d5f8] max-w-md font-light">
-            Evocabank-ը արագ, պարզ և նորարար ծառայություններ մատուցող բանկ է, որն առանձնանում է տեղեկատվական նորագույն տեխնոլոգիաների ակտիվ կիրառմամբ:
+            <Tr>{"Evocabank-ը արագ, պարզ և նորարար ծառայություններ մատուցող բանկ է, որն առանձնանում է տեղեկատվական նորագույն տեխնոլոգիաների ակտիվ կիրառմամբ:"}</Tr>
           </p>
 
           <button className="bg-white text-[#5c00b3] px-8 max-[550px]:px-6 py-3.5 max-[550px]:py-3 rounded-full font-bold max-[550px]:text-sm shadow-lg hover:bg-gray-100 transition-colors mb-10 max-[550px]:mb-8 w-max max-[550px]:w-full">
-            Դառնալ հաճախորդ
+            <Tr>{"Դառնալ հաճախորդ"}</Tr>
           </button>
         </div>
       </div>
