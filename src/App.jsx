@@ -98,6 +98,7 @@ export function Header() {
   const isAccounts = pathname.startsWith('/accounts');
   const isTransfers = pathname.startsWith('/transfers');
   const isSecurities = pathname.startsWith('/securities');
+  const isDeposits = pathname.startsWith('/deposits');
   const isTariffs = pathname.startsWith('/about/tariffs');
 
   const topLinks = [
@@ -112,7 +113,7 @@ export function Header() {
 
   const isTopActive = (path) =>
     path === '/'
-      ? pathname === '/' || isLoans || isCards || isAccounts || isTransfers || isSecurities// «Անհատ» подсвечен и на подстраницах раздела (Վարկեր)
+      ? pathname === '/' || isLoans || isCards || isAccounts || isTransfers || isSecurities || isDeposits// «Անհատ» подсвечен и на подстраницах раздела (Վարկեր)
       : path !== '#' && pathname.startsWith(path);
 
   const personalLinks = [
@@ -169,6 +170,11 @@ export function Header() {
     { label: 'Ոչ ռեզիդենտ հաճախորդների հեռավար սպասարկում', path: '/accounts/non-resident' },
   ];
 
+  const depositsSubNav = [
+    { label: 'Ավանդներ', path: '/deposits' },
+    { label: 'Կարևոր տեղեկատվություն', path: '/deposits/info' },
+  ];
+
   const transfersSubNav = [
     { label: 'Դրամական փոխանցումներ', path: '/transfers' },
     { label: 'Վճարային համակարգեր', path: '/transfers/payment-systems' },
@@ -201,7 +207,7 @@ export function Header() {
     { label: 'Էվոկա ֆինանսական խումբ', path: '/about/financial-group' },
   ];
 
-  const subNav = isAnnouncements ? null : isReports ? reportsSubNav : isTariffs ? tariffsSubNav : isAbout ? aboutSubNav : isLoans ? loansSubNav : isCards ? cardsSubNav : isAccounts ? accountsSubNav : isTransfers ? transfersSubNav : isSecurities ? securitiesSubNav : null;
+  const subNav = isAnnouncements ? null : isReports ? reportsSubNav : isTariffs ? tariffsSubNav : isAbout ? aboutSubNav : isLoans ? loansSubNav : isCards ? cardsSubNav : isAccounts ? accountsSubNav : isTransfers ? transfersSubNav : isSecurities ? securitiesSubNav : isDeposits ? depositsSubNav : null;
   return (
     <header className="w-full text-sm">
       {/* Top thin bar */}
@@ -285,7 +291,7 @@ export function Header() {
           <div className="mx-auto max-w-7xl overflow-x-auto px-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             <nav className="flex min-w-max items-stretch">
               {subNav.map((item) => {
-                const active = item.path !== '#' && (pathname === item.path || (item.path === '/about/tariffs/loans' && pathname.startsWith('/about/tariffs/loans')) || (item.path === '/cards' && pathname.startsWith('/cards/') && !['/cards/social', '/cards/benefits'].includes(pathname)));
+                const active = item.path !== '#' && (pathname === item.path || (item.path === '/about/tariffs/loans' && pathname.startsWith('/about/tariffs/loans')) || (item.path === '/cards' && pathname.startsWith('/cards/') && !['/cards/social', '/cards/benefits'].includes(pathname)) || (item.path === '/deposits' && pathname.startsWith('/deposits/') && pathname !== '/deposits/info'));
                 return (
                   <Link
                     key={item.label}
@@ -1954,7 +1960,8 @@ function App() {
           <Route path="/cards/social" element={<SiteLayout><CardsSocial /></SiteLayout>} />
           <Route path="/cards/benefits" element={<SiteLayout><Benefits /></SiteLayout>} />
           <Route path="/cards/:cardId" element={<SiteLayout><CardDetail /></SiteLayout>} />
-          <Route path="/deposits" element={<DepositsPage />} />
+          <Route path="/deposits" element={<SiteLayout><DepositsPage /></SiteLayout>} />
+          <Route path="/deposits/info" element={<SiteLayout><DepositsPage /></SiteLayout>} />
           <Route path="/deposits/:id" element={<SiteLayout><DepositDetailPage /></SiteLayout>} />
           <Route path="/transfers" element={<SiteLayout><MoneyTransfers /></SiteLayout>} />
           <Route path="/transfers/payment-systems" element={<SiteLayout><PaymentSystems /></SiteLayout>} />

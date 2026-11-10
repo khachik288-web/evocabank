@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import Tr from './Tr';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import './DepositsPage.css';
-import { Header } from './App';
 import { DEPOSITS } from './depositsData';
 import { onDownload } from './downloadFile';
 
@@ -39,7 +38,9 @@ const DepositCard = ({ image, title, description, stats, buttonText, onDetails }
 
 export default function DepositsPage() {
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState('deposits'); // 'deposits' | 'info'
+  // вкладка берётся из адреса: /deposits и /deposits/info (панель вкладок — общая, в Header)
+  const { pathname } = useLocation();
+  const activeTab = pathname === '/deposits/info' ? 'info' : 'deposits';
   const [openAccordion, setOpenAccordion] = useState(null);
 
   const toggleAccordion = (index) => {
@@ -81,25 +82,6 @@ export default function DepositsPage() {
 
   return (
     <div className="evoca-container">
-      <Header />
-        {/* Header Secondary Purple Bar / Tabs */}
-        <div className="sub-purple-bar">
-          <div className="tabs-wrapper">
-            <button 
-              className={`tab-btn ${activeTab === 'deposits' ? 'active' : ''}`}
-              onClick={() => setActiveTab('deposits')}
-            >
-              <Tr>{"Ավանդներ"}</Tr>
-            </button>
-            <button 
-              className={`tab-btn ${activeTab === 'info' ? 'active' : ''}`}
-              onClick={() => setActiveTab('info')}
-            >
-              <Tr>{"Կարևոր տեղեկատվություն"}</Tr>
-            </button>
-          </div>
-        </div>
-
       {/* Breadcrumbs */}
       <div className="breadcrumbs">
         <span>🏠</span> &rsaquo; <span><Tr>{"Անհատ"}</Tr></span> &rsaquo; <span><Tr>{"Ավանդներ"}</Tr></span> &rsaquo; 
@@ -171,70 +153,6 @@ export default function DepositsPage() {
           </div>
         )}
       </main>
-
-      {/* Footer */}
-      <footer className="evoca-footer">
-        <div className="footer-content">
-          <div className="footer-col brand-col">
-            <div className="footer-logo">evocaBANK</div>
-            <p className="address"><Tr>{"ք. Երևան, 0010, Հանրապետության 44/2"}</Tr></p>
-            <p className="reg"><Tr>{"Evocabank-ը վերահսկվում է Հայաստանի Հանրապետության Կենտրոնական բանկի կողմից"}</Tr></p>
-            <p className="copy"><Tr>{"1990 - 2026, © ԲՈԼՈՐ ԻՐԱՎՈՒՆՔՆԵՐԸ ՊԱՇՏՊԱՆՎԱԾ ԵՆ"}</Tr></p>
-          </div>
-
-          <div className="footer-col">
-            <h4><Tr>{"Բանկի մասին"}</Tr></h4>
-            <ul>
-              <li><Tr>{"Մեր մասին"}</Tr></li>
-              <li><Tr>{"Ղեկավարություն"}</Tr></li>
-              <li><Tr>{"Բաժնետերեր"}</Tr></li>
-              <li><Tr>{"Հաշվետվություններ"}</Tr></li>
-              <li><Tr>{"Իրավական ակտեր"}</Tr></li>
-              <li><Tr>{"Սակագներ"}</Tr></li>
-            </ul>
-          </div>
-
-          <div className="footer-col">
-            <h4><Tr>{"Օգտակար հղումներ"}</Tr></h4>
-            <ul>
-              <li><Tr>{"Հաճախորդի իրավունքները (Բողոքի ներկայացման կանոններ)"}</Tr></li>
-              <li><Tr>{"Հաճախորդի ռեզիդենտության չափանիշներ"}</Tr></li>
-              <li><Tr>{"Կարգավորում"}</Tr></li>
-              <li><Tr>{"Գաղտնիության"}</Tr></li>
-            </ul>
-          </div>
-
-          <div className="footer-col">
-            <h4><Tr>{"Այլ հղումներ"}</Tr></h4>
-            <ul>
-              <li>EvocaONLINE</li>
-              <li><Tr>{"Պահատուփեր"}</Tr></li>
-              <li><Tr>{"Հաճախ տրվող հարցեր"}</Tr></li>
-              <li><Tr>{"Հայտարարություններ"}</Tr></li>
-              <li>Dibrary</li>
-              <li><Tr>{"Բրոկերներ"}</Tr></li>
-            </ul>
-          </div>
-
-          <div className="footer-col social-col">
-            <div className="social-icons">
-              <span>facebook</span>
-              <span>instagram</span>
-              <span>youtube</span>
-              <span>linkedin</span>
-            </div>
-            <div className="app-buttons">
-              <button className="app-btn">App Store</button>
-              <button className="app-btn">Google Play</button>
-            </div>
-            <div className="footer-contacts">
-              <a href="#link"><Tr>{"Բանկի հասցեները և աշխատաժամերը"}</Tr></a>
-              <p><Tr>{"Կապ մեզ հետ"}</Tr></p>
-              <p className="phone">+374 10 605555</p>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }
