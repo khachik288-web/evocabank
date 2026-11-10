@@ -4,6 +4,8 @@ import 'leaflet/dist/leaflet.css';
 import 'leaflet.markercluster';
 import 'leaflet.markercluster/dist/MarkerCluster.css';
 import { Clock, MapPin, Phone, SlidersHorizontal } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import Tr from './Tr';
 import { BRANCHES, ATMS, EXCHANGE_TERMINALS, CITIES } from './branchesData';
 
 const TABS = [
@@ -38,6 +40,7 @@ const clusterIcon = (cluster) =>
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
 export default function Branches() {
+  const { t, i18n } = useTranslation();
   const [tab, setTab] = useState('branches');
   const [city, setCity] = useState(CITIES[0]);
   const [district, setDistrict] = useState('');
@@ -51,7 +54,7 @@ export default function Branches() {
   const markersRef = useRef({});
   const itemRefs = useRef({});
 
-  const all = TABS.find((t) => t.id === tab).data;
+  const all = TABS.find((x) => x.id === tab).data;
   const districts = useMemo(() => [...new Set(all.filter((p) => p.city === city).map((p) => p.district))], [all, city]);
   const list = useMemo(
     () =>
@@ -87,9 +90,9 @@ export default function Branches() {
     cluster.clearLayers();
     markersRef.current = {};
     list.forEach((p) => {
-      const m = L.marker([p.lat, p.lng], { icon: pinIcon(false), title: p.name });
+      const m = L.marker([p.lat, p.lng], { icon: pinIcon(false), title: t(p.name) });
       m.bindPopup(
-        `<strong>${esc(p.name)}</strong>${p.hours ? `<br/>${esc(p.hours)}` : ''}${p.address ? `<br/>${esc(p.address)}` : ''}`
+        `<strong>${esc(t(p.name))}</strong>${p.hours ? `<br/>${esc(t(p.hours))}` : ''}${p.address ? `<br/>${esc(t(p.address))}` : ''}`
       );
       m.on('click', () => setActiveId(p.id));
       cluster.addLayer(m);
@@ -97,7 +100,7 @@ export default function Branches() {
     });
     if (list.length) map.fitBounds(L.latLngBounds(list.map((p) => [p.lat, p.lng])), { padding: [60, 60], maxZoom: 14 });
     setActiveId(null);
-  }, [list]);
+  }, [list, i18n.language]); // пересобираем подписи на карте при смене языка
 
   // Подсветка выбранной точки + прокрутка списка
   useEffect(() => {
@@ -145,12 +148,12 @@ export default function Branches() {
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <h1 style={{ fontWeight: 700, color: '#111', fontSize: 'clamp(1.6rem, 1.2rem + 1.6vw, 2.4rem)', margin: 'clamp(24px,4vw,40px) 0 clamp(20px,3vw,40px)' }}>
-          Բանկի հասցեները և աշխատաժամերը
+          <Tr>Բանկի հասցեները և աշխատաժամերը</Tr>
         </h1>
         <div className="flex gap-6 overflow-x-auto sm:gap-12 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" role="tablist">
-          {TABS.map((t) => (
-            <button key={t.id} role="tab" aria-selected={tab === t.id} className={`br-tab ${tab === t.id ? 'on' : ''}`} onClick={() => changeTab(t.id)}>
-              {t.label}
+          {TABS.map((x) => (
+            <button key={x.id} role="tab" aria-selected={tab === x.id} className={`br-tab ${tab === x.id ? 'on' : ''}`} onClick={() => changeTab(x.id)}>
+              <Tr>{x.label}</Tr>
             </button>
           ))}
         </div>
@@ -160,7 +163,7 @@ export default function Branches() {
         <aside className="br-list overflow-y-auto" style={{ width: 'min(34%, 440px)', flex: 'none', boxShadow: '2px 0 10px rgba(0,0,0,.06)', zIndex: 2 }}>
           {list.length === 0 && (
             <p style={{ padding: 28, color: '#777', fontSize: 14 }}>
-              {all.length === 0 ? 'Տվյալները շուտով կհրապարակվեն:' : 'Ըստ ընտրված պայմանների արդյունք չի գտնվել:'}
+              <Tr>{all.length === 0 ? 'Տվյալները շուտով կհրապարակվեն:' : 'Ըստ ընտրված պայմանների արդյունք չի գտնվել:'}</Tr>
             </p>
           )}
           {list.map((p) => (
@@ -170,9 +173,9 @@ export default function Branches() {
               className={`br-item ${activeId === p.id ? 'on' : ''}`}
               onClick={() => selectItem(p)}
             >
-              <h3>{p.name}</h3>
-              {p.hours && <div className="br-row"><Clock size={14} /> <span>{p.hours}</span></div>}
-              {p.address && <div className="br-row"><MapPin size={14} /> <span>{p.address}</span></div>}
+              <h3><Tr>{p.name}</Tr></h3>
+              {p.hours && <div className="br-row"><Clock size={14} /> <span><Tr>{p.hours}</Tr></span></div>}
+              {p.address && <div className="br-row"><MapPin size={14} /> <span><Tr>{p.address}</Tr></span></div>}
               {p.phones?.length > 0 && <div className="br-row"><Phone size={14} /> <span>{p.phones.join(', ')}</span></div>}
             </button>
           ))}
@@ -186,13 +189,13 @@ export default function Branches() {
               onClick={() => setFilterOpen((o) => !o)}
               style={{ display: 'flex', alignItems: 'center', gap: 10, background: '#fff', border: 0, borderRadius: 6, padding: '12px 18px', fontWeight: 600, color: '#4b0094', boxShadow: '0 2px 8px rgba(0,0,0,.18)', cursor: 'pointer' }}
             >
-              <SlidersHorizontal size={18} /> Ֆիլտր
+              <SlidersHorizontal size={18} /> <Tr>Ֆիլտր</Tr>
             </button>
             {filterOpen && (
               <div style={{ marginTop: 8, background: '#fff', borderRadius: 8, padding: 16, boxShadow: '0 4px 16px rgba(0,0,0,.2)', minWidth: 220 }}>
                 <label style={{ display: 'flex', gap: 10, alignItems: 'center', fontSize: 14, cursor: 'pointer', margin: 0 }}>
                   <input type="checkbox" checked={saturdayOnly} onChange={(e) => setSaturdayOnly(e.target.checked)} />
-                  Աշխատում է շաբաթ օրը
+                  <Tr>Աշխատում է շաբաթ օրը</Tr>
                 </label>
               </div>
             )}
@@ -200,16 +203,16 @@ export default function Branches() {
 
           <div style={{ position: 'absolute', top: 16, right: 16, zIndex: 500, display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'flex-end' }}>
             <select className="br-select" value={city} onChange={(e) => { setCity(e.target.value); setDistrict(''); }} aria-label="city">
-              {CITIES.map((c) => <option key={c}>{c}</option>)}
+              {CITIES.map((c) => <option key={c} value={c}>{t(c)}</option>)}
             </select>
             <select className="br-select" value={district} onChange={(e) => setDistrict(e.target.value)} aria-label="district">
-              <option value="">Համայնք</option>
-              {districts.map((d) => <option key={d}>{d}</option>)}
+              <option value="">{t('Համայնք')}</option>
+              {districts.map((d) => <option key={d} value={d}>{t(d)}</option>)}
             </select>
           </div>
         </div>
       </div>
-      <p style={{ textAlign: 'right', margin: 0, padding: '14px 24px', fontSize: 12, color: '#888' }} className="mx-auto max-w-7xl">Թարմացվել է՝ 27/10/2026</p>
+      <p style={{ textAlign: 'right', margin: 0, padding: '14px 24px', fontSize: 12, color: '#888' }} className="mx-auto max-w-7xl"><Tr>Թարմացվել է՝ </Tr>27/10/2026</p>
     </main>
   );
 }
