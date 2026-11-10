@@ -1104,10 +1104,10 @@ function Partners() {
 function BestFromEvoca() {
 const { t } = useTranslation();
   const cards = [
-    { tag: 'Թվային քարտեր', title: 'Evoca Digital քարտ', desc: 'Evoca Digital քարտն արդեն հասանելի է EvocaTOUCH հավելվածով։' },
-    { tag: 'Նվեր քարտեր', title: 'Evoca Gift Card', desc: 'Գնիր Evoca Gift Card, և լավագույն նվերը կլինի քոնը:' },
-    { tag: 'Նոր հավելված', title: 'EvocaTOUCH 2', desc: 'EvocaTOUCH-ը պարզապես բանկային հավելված չէ։' },
-    { tag: 'Օնլայն վճարումներ', title: 'Արագ online վճարումներ', desc: 'Կատարիր քո ընթացիկ վճարումները Evocabank-ի online տերմինալի միջոցով։' },
+    { tag: 'Թվային քարտեր', title: 'Evoca Digital քարտ', desc: 'Evoca Digital քարտն արդեն հասանելի է EvocaTOUCH հավելվածով։', to: '/news/digitalcard' },
+    { tag: 'Թվային քարտեր', title: 'Visa Digital', desc: 'Պատվիրիր Visa Digital քարտը EvocaTOUCH հավելվածով, և այն կակտիվանա րոպեների ընթացքում:', to: '/cards/visa-digital' },
+    { tag: 'Նոր հավելված', title: 'EvocaTOUCH 2', desc: 'EvocaTOUCH-ը պարզապես բանկային հավելված չէ։', to: '/news/evocatouch2' },
+    { tag: 'Օնլայն վճարումներ', title: 'Ակնթարթային վճարումներ', desc: 'Կատարիր քո ընթացիկ վճարումները Evocabank-ի online տերմինալի միջոցով։', to: '/web-payment' },
   ];
 
   return (
@@ -1118,13 +1118,13 @@ const { t } = useTranslation();
         </h2>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 mt-[40px]">
           {cards.map((c) => (
-            <div key={t(c.title)} className="rounded-2xl bg-white p-6 shadow-lg">
+            <Link key={c.to} to={c.to} className="block rounded-2xl bg-white p-6 no-underline shadow-lg transition hover:-translate-y-1 hover:shadow-xl">
               <span className="mb-3 inline-block rounded bg-purple-50 px-2 py-1 text-xs font-medium text-purple-700">
                 {t(c.tag)}
               </span>
               <h3 className="mb-2 text-lg font-bold text-gray-900">{t(c.title)}</h3>
               <p className="text-sm text-gray-500">{t(c.desc)}</p>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
