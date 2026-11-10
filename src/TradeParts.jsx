@@ -1,4 +1,5 @@
 import React from 'react';
+import Tr from './Tr';
 import { PlainPage } from './SecurityParts';
 import NewsBlock from './NewsBlock';
 import './Trade.css';
@@ -23,15 +24,15 @@ export function NumTable({ rows, head }) {
       <table className="dp-numtable">
         {head && (
           <thead>
-            <tr><th colSpan={3}>{head}</th></tr>
+            <tr><th colSpan={3}><Tr>{head}</Tr></th></tr>
           </thead>
         )}
         <tbody>
           {rows.map(([label, value], i) => (
             <tr key={i}>
               <td className="n">{i + 1}.</td>
-              <td className="l">{label}</td>
-              <td className={`v ${React.isValidElement(value) && value.type === 'table' ? 'sub' : ''}`}>{value}</td>
+              <td className="l"><Tr>{label}</Tr></td>
+              <td className={`v ${React.isValidElement(value) && value.type === 'table' ? 'sub' : ''}`}><Tr>{value}</Tr></td>
             </tr>
           ))}
         </tbody>
@@ -44,7 +45,7 @@ export function NumTable({ rows, head }) {
 export function GuaranteeItem({ name, en, children }) {
   return (
     <>
-      <p className="dp-gt">{name}</p>
+      <p className="dp-gt"><Tr>{name}</Tr></p>
       <div className="dp-card">
         <i>({en})</i>
         {children}

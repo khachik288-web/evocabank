@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Tr from './Tr';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import './DepositsPage.css';
@@ -22,7 +23,7 @@ const DepositCard = ({ image, title, description, stats, buttonText, onDetails }
           {stats.map((stat, idx) => (
             <div key={idx} className="stat-item">
               <span className="stat-label">{t(stat.label)}</span>
-              <span className="stat-value">{stat.value}</span>
+              <span className="stat-value"><Tr>{stat.value}</Tr></span>
               <span className="stat-sub">{t(stat.sub)}</span>
             </div>
           ))}
@@ -50,26 +51,26 @@ export default function DepositsPage() {
       title: "ԱՆՀՐԱԺԵՇՏ ՏԵՂԵԿԱՏՎՈՒԹՅՈՒՆ - Ավանդների ներգրավման պայմանները",
       content: (
         <ol className="info-list">
-          <li>Հաճախորդը (ստորև նաև` Ավանդատու) կարող է ավանդ ներդնել ինչպես «ԷՎՈԿԱԲԱՆԿ» ԲԲԸ գործունեության վայրում (գլխամասային գրասենյակ և մասնաճյուղեր), այնպես էլ Բանկի հեռակառավարման համակարգերի (EvocaMobile, EvocaTouch) միջոցով:</li>
-          <li>Հեռակառավարման համակարգերի միջոցով ավանդ ներդնելու համար Հաճախորդը պետք է նախապես հանդիսանա Բանկի հաշվետեր հաճախորդ և Բանկից ստացած լինի նշված համակարգեր մուտք գործելու գաղտնաբառերը:</li>
-          <li>Ավանդների ներդրումը, դրանց դիմաց հաշվեգրված տոկոսագումարների վճարումը Ավանդատուի ցանկությամբ կարող է կատարվել ինչպես կանխիկ, այնպես էլ անկանխիկ եղանակով:</li>
-          <li>Ավանդ ներդնելու համար անհրաժեշտ է ներկայացնել անձը հաստատող փաստաթուղթ և սոցիալական քարտ (նույնականացման քարտի առկայության դեպքում սոցիալական քարտ չի պահանջվում):</li>
-          <li>Բանկի գործունեության վայրում ավանդ ներդնելու նպատակով Հաճախորդը լրացնում է հայտ-պայմանագիր:</li>
-          <li>Բանկը կարող է Հաճախորդից պահանջել լրացուցիչ փաստաթղթեր (օրինակ՝ FATCA, AML):</li>
-          <li>Ֆիզիկական անձանց ավանդները երաշխավորվում են համաձայն ՀՀ օրենքի:</li>
-          <li>Ավանդի ներդրման համար Հաճախորդի համար բացվում է ավանդային արժույթով ընթացիկ հաշիվ:</li>
-          <li>Ավանդի գումարի վերադարձը կատարվում է Ավանդային պայմանագրի վերջին օրը:</li>
+          <li><Tr>{"Հաճախորդը (ստորև նաև` Ավանդատու) կարող է ավանդ ներդնել ինչպես «ԷՎՈԿԱԲԱՆԿ» ԲԲԸ գործունեության վայրում (գլխամասային գրասենյակ և մասնաճյուղեր), այնպես էլ Բանկի հեռակառավարման համակարգերի (EvocaMobile, EvocaTouch) միջոցով:"}</Tr></li>
+          <li><Tr>{"Հեռակառավարման համակարգերի միջոցով ավանդ ներդնելու համար Հաճախորդը պետք է նախապես հանդիսանա Բանկի հաշվետեր հաճախորդ և Բանկից ստացած լինի նշված համակարգեր մուտք գործելու գաղտնաբառերը:"}</Tr></li>
+          <li><Tr>{"Ավանդների ներդրումը, դրանց դիմաց հաշվեգրված տոկոսագումարների վճարումը Ավանդատուի ցանկությամբ կարող է կատարվել ինչպես կանխիկ, այնպես էլ անկանխիկ եղանակով:"}</Tr></li>
+          <li><Tr>{"Ավանդ ներդնելու համար անհրաժեշտ է ներկայացնել անձը հաստատող փաստաթուղթ և սոցիալական քարտ (նույնականացման քարտի առկայության դեպքում սոցիալական քարտ չի պահանջվում):"}</Tr></li>
+          <li><Tr>{"Բանկի գործունեության վայրում ավանդ ներդնելու նպատակով Հաճախորդը լրացնում է հայտ-պայմանագիր:"}</Tr></li>
+          <li><Tr>{"Բանկը կարող է Հաճախորդից պահանջել լրացուցիչ փաստաթղթեր (օրինակ՝ FATCA, AML):"}</Tr></li>
+          <li><Tr>{"Ֆիզիկական անձանց ավանդները երաշխավորվում են համաձայն ՀՀ օրենքի:"}</Tr></li>
+          <li><Tr>{"Ավանդի ներդրման համար Հաճախորդի համար բացվում է ավանդային արժույթով ընթացիկ հաշիվ:"}</Tr></li>
+          <li><Tr>{"Ավանդի գումարի վերադարձը կատարվում է Ավանդային պայմանագրի վերջին օրը:"}</Tr></li>
         </ol>
       )
     },
-    { title: "Ավանդների տոկոսագումարների հաշվարկման և վճարման կարգը", content: <p>Տոկոսագումարները հաշվարկվում են օրական կտրվածքով...</p> },
-    { title: "Ավանդային հաշվի վերաբերյալ տրամադրվող տեղեկատվություն", content: <p>Տեղեկատվությունը տրամադրվում է քաղվածքների միջոցով...</p> },
-    { title: "Երաշխավորված ավանդների չափերը", content: <p>Համաձայն «Ֆիզիկական անձանց բանկային ավանդների հատուցումը երաշխավորելու մասին» ՀՀ օրենքի...</p> },
-    { title: "Ավանդատուներին անվճար տրամադրվող վճարային քարտեր", content: <p>Ավանդատուներին տրամադրվում են ArCa, Visa, MasterCard քարտեր...</p> },
-    { title: "Տոկոսագումարների հաշվարկման ներկայացուցչական օրինակներ", content: <p>Օրինակների ցանկը ներկայացված է ստորև...</p> },
-    { title: "Ավանդի տարեկան տոկոսային եկամտաբերության չափը", content: <p>Տարեկան տոկոսային եկամտաբերության հաշվարկ...</p> },
-    { title: "Բանկի կողմից առաջարկվող ավանդատեսակների տարեկան տոկոսային եկամտաբերության աղյուսակներ", content: <p>Աղյուսակները թարմացված են:</p> },
-    { title: "Օտարերկրյա Հաշիվների Հարկման Համապատասխանության ակտի (FATCA) ծանուցում", content: <p>FATCA-ի վերաբերյալ ծանուցման տեքստը...</p> }
+    { title: "Ավանդների տոկոսագումարների հաշվարկման և վճարման կարգը", content: <p><Tr>{"Տոկոսագումարները հաշվարկվում են օրական կտրվածքով..."}</Tr></p> },
+    { title: "Ավանդային հաշվի վերաբերյալ տրամադրվող տեղեկատվություն", content: <p><Tr>{"Տեղեկատվությունը տրամադրվում է քաղվածքների միջոցով..."}</Tr></p> },
+    { title: "Երաշխավորված ավանդների չափերը", content: <p><Tr>{"Համաձայն «Ֆիզիկական անձանց բանկային ավանդների հատուցումը երաշխավորելու մասին» ՀՀ օրենքի..."}</Tr></p> },
+    { title: "Ավանդատուներին անվճար տրամադրվող վճարային քարտեր", content: <p><Tr>{"Ավանդատուներին տրամադրվում են ArCa, Visa, MasterCard քարտեր..."}</Tr></p> },
+    { title: "Տոկոսագումարների հաշվարկման ներկայացուցչական օրինակներ", content: <p><Tr>{"Օրինակների ցանկը ներկայացված է ստորև..."}</Tr></p> },
+    { title: "Ավանդի տարեկան տոկոսային եկամտաբերության չափը", content: <p><Tr>{"Տարեկան տոկոսային եկամտաբերության հաշվարկ..."}</Tr></p> },
+    { title: "Բանկի կողմից առաջարկվող ավանդատեսակների տարեկան տոկոսային եկամտաբերության աղյուսակներ", content: <p><Tr>{"Աղյուսակները թարմացված են:"}</Tr></p> },
+    { title: "Օտարերկրյա Հաշիվների Հարկման Համապատասխանության ակտի (FATCA) ծանուցում", content: <p><Tr>{"FATCA-ի վերաբերյալ ծանուցման տեքստը..."}</Tr></p> }
   ];
 
   const documentsData = [
@@ -88,21 +89,21 @@ export default function DepositsPage() {
               className={`tab-btn ${activeTab === 'deposits' ? 'active' : ''}`}
               onClick={() => setActiveTab('deposits')}
             >
-              Ավանդներ
+              <Tr>{"Ավանդներ"}</Tr>
             </button>
             <button 
               className={`tab-btn ${activeTab === 'info' ? 'active' : ''}`}
               onClick={() => setActiveTab('info')}
             >
-              Կարևոր տեղեկատվություն
+              <Tr>{"Կարևոր տեղեկատվություն"}</Tr>
             </button>
           </div>
         </div>
 
       {/* Breadcrumbs */}
       <div className="breadcrumbs">
-        <span>🏠</span> &rsaquo; <span>Անհատ</span> &rsaquo; <span>Ավանդներ</span> &rsaquo; 
-        <span className="current"> {activeTab === 'deposits' ? 'Ավանդներ' : 'Կարևոր տեղեկատվություն'}</span>
+        <span>🏠</span> &rsaquo; <span><Tr>{"Անհատ"}</Tr></span> &rsaquo; <span><Tr>{"Ավանդներ"}</Tr></span> &rsaquo; 
+        <span className="current"> <Tr>{activeTab === 'deposits' ? 'Ավանդներ' : 'Կարևոր տեղեկատվություն'}</Tr></span>
       </div>
 
       {/* Main Content Area */}
@@ -110,7 +111,7 @@ export default function DepositsPage() {
         {activeTab === 'deposits' ? (
           /* ----- TAB 1: Ավանդներ ----- */
           <div className="tab-page-deposits">
-            <h1 className="page-title">Ավանդներ</h1>
+            <h1 className="page-title"><Tr>{"Ավանդներ"}</Tr></h1>
             <div className="cards-list">
               {DEPOSITS.map((dep) => (
                 <DepositCard
@@ -127,7 +128,7 @@ export default function DepositsPage() {
         ) : (
           /* ----- TAB 2: Կարևոր տեղեկատվություն ----- */
           <div className="tab-page-info">
-            <h1 className="page-title">Կարևոր տեղեկատվություն</h1>
+            <h1 className="page-title"><Tr>{"Կարևոր տեղեկատվություն"}</Tr></h1>
 
             <div className="accordion-section">
               {accordionItems.map((item, idx) => (
@@ -139,7 +140,7 @@ export default function DepositsPage() {
                     className="accordion-header"
                     onClick={() => toggleAccordion(idx)}
                   >
-                    <span>{item.title}</span>
+                    <span><Tr>{item.title}</Tr></span>
                     <span className="arrow">{openAccordion === idx ? '▲' : '▼'}</span>
                   </div>
                   {openAccordion === idx && (
@@ -153,19 +154,19 @@ export default function DepositsPage() {
 
             {/* Block Փաստաթղթեր */}
             <div className="documents-section">
-              <h2 className="docs-title">Փաստաթղթեր</h2>
+              <h2 className="docs-title"><Tr>{"Փաստաթղթեր"}</Tr></h2>
               <div className="docs-list">
                 {documentsData.map((doc, idx) => (
                   <div className="doc-item" key={idx} onClick={onDownload(doc)} role="button" tabIndex={0}>
                     <div className="doc-icon">📄</div>
-                    <span className="doc-name">{doc}</span>
+                    <span className="doc-name"><Tr>{doc}</Tr></span>
                   </div>
                 ))}
               </div>
             </div>
 
             <div className="updated-date">
-              Թարմացվել է՝ 14/10/2025 12:15
+              <Tr>{"Թարմացվել է՝ "}</Tr>{'14/10/2025 12:15'}
             </div>
           </div>
         )}
@@ -176,42 +177,42 @@ export default function DepositsPage() {
         <div className="footer-content">
           <div className="footer-col brand-col">
             <div className="footer-logo">evocaBANK</div>
-            <p className="address">ք. Երևան, 0010, Հանրապետության 44/2</p>
-            <p className="reg">Evocabank-ը վերահսկվում է Հայաստանի Հանրապետության Կենտրոնական բանկի կողմից</p>
-            <p className="copy">1990 - 2026, © ԲՈԼՈՐ ԻՐԱՎՈՒՆՔՆԵՐԸ ՊԱՇՏՊԱՆՎԱԾ ԵՆ</p>
+            <p className="address"><Tr>{"ք. Երևան, 0010, Հանրապետության 44/2"}</Tr></p>
+            <p className="reg"><Tr>{"Evocabank-ը վերահսկվում է Հայաստանի Հանրապետության Կենտրոնական բանկի կողմից"}</Tr></p>
+            <p className="copy"><Tr>{"1990 - 2026, © ԲՈԼՈՐ ԻՐԱՎՈՒՆՔՆԵՐԸ ՊԱՇՏՊԱՆՎԱԾ ԵՆ"}</Tr></p>
           </div>
 
           <div className="footer-col">
-            <h4>Բանկի մասին</h4>
+            <h4><Tr>{"Բանկի մասին"}</Tr></h4>
             <ul>
-              <li>Մեր մասին</li>
-              <li>Ղեկավարություն</li>
-              <li>Բաժնետերեր</li>
-              <li>Հաշվետվություններ</li>
-              <li>Իրավական ակտեր</li>
-              <li>Սակագներ</li>
+              <li><Tr>{"Մեր մասին"}</Tr></li>
+              <li><Tr>{"Ղեկավարություն"}</Tr></li>
+              <li><Tr>{"Բաժնետերեր"}</Tr></li>
+              <li><Tr>{"Հաշվետվություններ"}</Tr></li>
+              <li><Tr>{"Իրավական ակտեր"}</Tr></li>
+              <li><Tr>{"Սակագներ"}</Tr></li>
             </ul>
           </div>
 
           <div className="footer-col">
-            <h4>Օգտակար հղումներ</h4>
+            <h4><Tr>{"Օգտակար հղումներ"}</Tr></h4>
             <ul>
-              <li>Հաճախորդի իրավունքները (Բողոքի ներկայացման կանոններ)</li>
-              <li>Հաճախորդի ռեզիդենտության չափանիշներ</li>
-              <li>Կարգավորում</li>
-              <li>Գաղտնիության</li>
+              <li><Tr>{"Հաճախորդի իրավունքները (Բողոքի ներկայացման կանոններ)"}</Tr></li>
+              <li><Tr>{"Հաճախորդի ռեզիդենտության չափանիշներ"}</Tr></li>
+              <li><Tr>{"Կարգավորում"}</Tr></li>
+              <li><Tr>{"Գաղտնիության"}</Tr></li>
             </ul>
           </div>
 
           <div className="footer-col">
-            <h4>Այլ հղումներ</h4>
+            <h4><Tr>{"Այլ հղումներ"}</Tr></h4>
             <ul>
               <li>EvocaONLINE</li>
-              <li>Պահատուփեր</li>
-              <li>Հաճախ տրվող հարցեր</li>
-              <li>Հայտարարություններ</li>
+              <li><Tr>{"Պահատուփեր"}</Tr></li>
+              <li><Tr>{"Հաճախ տրվող հարցեր"}</Tr></li>
+              <li><Tr>{"Հայտարարություններ"}</Tr></li>
               <li>Dibrary</li>
-              <li>Բրոկերներ</li>
+              <li><Tr>{"Բրոկերներ"}</Tr></li>
             </ul>
           </div>
 
@@ -227,8 +228,8 @@ export default function DepositsPage() {
               <button className="app-btn">Google Play</button>
             </div>
             <div className="footer-contacts">
-              <a href="#link">Բանկի հասցեները և աշխատաժամերը</a>
-              <p>Կապ մեզ հետ</p>
+              <a href="#link"><Tr>{"Բանկի հասցեները և աշխատաժամերը"}</Tr></a>
+              <p><Tr>{"Կապ մեզ հետ"}</Tr></p>
               <p className="phone">+374 10 605555</p>
             </div>
           </div>
