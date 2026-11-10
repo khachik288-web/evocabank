@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { FAQ_CATEGORIES } from './faqData';
+import Tr from './Tr';
 
 // [текст](url) -> <a>
 function renderInline(text) {
@@ -10,15 +11,15 @@ function renderInline(text) {
   let m;
   let i = 0;
   while ((m = re.exec(text))) {
-    if (m.index > last) parts.push(text.slice(last, m.index));
+    if (m.index > last) parts.push(<Tr key={`t${i}`}>{text.slice(last, m.index)}</Tr>);
     parts.push(
       <a key={i++} href={m[2]} target="_blank" rel="noreferrer" style={{ color: '#7000ff', textDecoration: 'underline' }}>
-        {m[1]}
+        <Tr>{m[1]}</Tr>
       </a>
     );
     last = m.index + m[0].length;
   }
-  if (last < text.length) parts.push(text.slice(last));
+  if (last < text.length) parts.push(<Tr key={`t${i}`}>{text.slice(last)}</Tr>);
   return parts;
 }
 
@@ -80,7 +81,7 @@ export default function Faq() {
           .faq-tab[data-active="true"] { background:transparent; color:#7000ff; border-left-color:#7000ff; }
         }
       `}</style>
-      <h1 className="mb-6 sm:mb-10" style={{ fontWeight: 700, color: '#111', fontSize: 'clamp(1.6rem, 1.2rem + 1.6vw, 2.4rem)' }}>Հաճախ տրվող հարցեր</h1>
+      <h1 className="mb-6 sm:mb-10" style={{ fontWeight: 700, color: '#111', fontSize: 'clamp(1.6rem, 1.2rem + 1.6vw, 2.4rem)' }}><Tr>Հաճախ տրվող հարցեր</Tr></h1>
 
       <div className="flex flex-col gap-6 lg:flex-row lg:gap-16">
         {/* Разделы: на телефоне и планшете — горизонтальная лента, на ПК — боковая колонка */}
@@ -99,7 +100,7 @@ export default function Faq() {
                   className="faq-tab whitespace-nowrap text-left text-sm font-semibold transition-colors lg:text-[15px]"
                   data-active={active}
                 >
-                  {c.title}
+                  <Tr>{c.title}</Tr>
                 </button>
               );
             })}
@@ -107,7 +108,7 @@ export default function Faq() {
         </aside>
 
         <section className="min-w-0 flex-1">
-          <h2 className="mb-5 sm:mb-7" style={{ fontWeight: 700, color: '#111', fontSize: 'clamp(1.35rem, 1.1rem + 1vw, 2rem)' }}>{cat.title}</h2>
+          <h2 className="mb-5 sm:mb-7" style={{ fontWeight: 700, color: '#111', fontSize: 'clamp(1.35rem, 1.1rem + 1vw, 2rem)' }}><Tr>{cat.title}</Tr></h2>
           <div className="flex flex-col gap-3">
             {cat.items.map((item, i) => {
               const open = openIdx === i;
@@ -128,7 +129,7 @@ export default function Faq() {
                       {open ? <ChevronUp size={22} /> : <ChevronDown size={22} />}
                     </span>
                     <span className={`text-[15px] font-semibold leading-snug sm:text-base ${open ? 'text-black' : 'text-gray-600'}`}>
-                      {item.q}
+                      <Tr>{item.q}</Tr>
                     </span>
                   </button>
                   {open && (
